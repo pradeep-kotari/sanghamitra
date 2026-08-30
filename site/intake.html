@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sanghamitra — a few choices for the website</title>
+  <style>
+    :root {
+      --paper: #f4e8d4;
+      --paper-2: #efe0c8;
+      --card: #fbf6ec;
+      --ink: #1a120c;
+      --muted: #5a4a3e;
+      --saffron: #c24e1d;
+      --indigo: #243c5a;
+      --rule: #c4a574;
+      --ok: #2f5d3a;
+      --line: #d8c4a4;
+      --suggest: #fff6e0;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font: 18px/1.5 "Source Serif 4", "Georgia", serif;
+      color: var(--ink);
+      background:
+        radial-gradient(1200px 400px at 50% -10%, #f8edd8, transparent 60%),
+        var(--paper);
+    }
+    .wrap { max-width: 42rem; margin: 0 auto; padding: 1.5rem 1.15rem 9rem; }
+    .telugu {
+      font-family: "Noto Serif Telugu", "Noto Sans Telugu", serif;
+      font-size: 1.35rem;
+      color: var(--indigo);
+    }
+    header { margin-bottom: 2rem; }
+    .kicker {
+      font: 0.75rem/1.3 "Source Sans 3", system-ui, sans-serif;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--saffron);
+    }
+    h1 { font-size: 1.85rem; line-height: 1.2; margin: 0.35rem 0 0.75rem; }
+    .lede { color: var(--muted); margin: 0 0 1rem; }
+    .note {
+      background: var(--suggest);
+      border: 1px solid var(--rule);
+      border-left: 4px solid var(--saffron);
+      padding: 0.85rem 1rem;
+      font-size: 0.98rem;
+    }
+    section {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 2px;
+      padding: 1.15rem 1.1rem 1.25rem;
+      margin: 1.15rem 0;
+    }
+    section h2 {
+      font-size: 1.2rem;
+      margin: 0 0 0.35rem;
+    }
+    .why { color: var(--muted); font-size: 0.95rem; margin: 0 0 0.9rem; }
+    fieldset { border: 0; margin: 0; padding: 0; }
+    legend {
+      font: 0.72rem/1.3 "Source Sans 3", system-ui, sans-serif;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--indigo);
+      margin-bottom: 0.5rem;
+    }
+    label.opt {
+      display: flex;
+      gap: 0.65rem;
+      align-items: flex-start;
+      padding: 0.55rem 0.6rem;
+      margin: 0.25rem 0;
+      border: 1px solid transparent;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    label.opt:hover { background: var(--paper-2); }
+    label.opt:has(input:checked) {
+      background: #eef3e8;
+      border-color: #b7c9b4;
+    }
+    label.opt.suggested:has(input:checked) {
+      background: var(--suggest);
+      border-color: var(--rule);
+    }
+    .tag {
+      font: 0.68rem/1 "Source Sans 3", system-ui, sans-serif;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ok);
+      border: 1px solid #9cba9a;
+      padding: 0.12rem 0.35rem;
+      margin-left: 0.35rem;
+      vertical-align: middle;
+    }
+    input[type="text"], input[type="email"], input[type="url"], textarea {
+      width: 100%;
+      font: 1rem/1.4 "Source Sans 3", system-ui, sans-serif;
+      padding: 0.55rem 0.65rem;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      margin-top: 0.35rem;
+    }
+    textarea { min-height: 5rem; resize: vertical; }
+    .grid-2 { display: grid; gap: 0.65rem; }
+    @media (min-width: 640px) { .grid-2 { grid-template-columns: 1fr 1fr; } }
+    .bar {
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      background: var(--indigo);
+      color: #fbf6ec;
+      padding: 0.7rem 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 -6px 24px rgba(26, 18, 12, 0.18);
+    }
+    .bar button, .bar a.btn {
+      font: 0.92rem/1 "Source Sans 3", system-ui, sans-serif;
+      border: 0;
+      padding: 0.65rem 0.9rem;
+      cursor: pointer;
+      background: var(--saffron);
+      color: #fff;
+      text-decoration: none;
+    }
+    .bar button.ghost {
+      background: transparent;
+      color: #fbf6ec;
+      border: 1px solid #8aa0b8;
+    }
+    .status { font: 0.85rem/1.3 "Source Sans 3", system-ui, sans-serif; opacity: 0.9; }
+    .preview {
+      white-space: pre-wrap;
+      font: 0.88rem/1.45 "Source Sans 3", ui-monospace, monospace;
+      background: #1a120c;
+      color: #f4e8d4;
+      padding: 1rem;
+      overflow: auto;
+      display: none;
+    }
+    .preview.show { display: block; }
+    a { color: var(--saffron-deep, #8e3512); }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Telugu:wght@500;600&family=Source+Sans+3:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <p class="kicker">For Sreenivasa Ainapurapu · 10 minutes</p>
+      <p class="telugu">నమస్కారం</p>
+      <h1>A few choices so Pradeep can build the website</h1>
+      <p class="lede">You do not need to write an essay. Orange boxes are already filled with our best guess. Change only what is wrong. At the bottom, download the answers or copy them into an email.</p>
+      <p class="note">Your answers stay on this computer until you download or copy them. Nothing is sent anywhere automatically.</p>
+    </header>
+
+    <form id="q" autocomplete="on">
+      <section>
+        <h2>1. Whose website is this?</h2>
+        <p class="why">This decides the homepage. One door, not eight.</p>
+        <fieldset>
+          <legend>The site is mainly</legend>
+          <label class="opt suggested"><input type="radio" name="site_type" value="org-face" checked> Sanghamitra the organization. I am the face. <span class="tag">suggestion</span></label>
+          <label class="opt"><input type="radio" name="site_type" value="personal"> My personal site. Sanghamitra is one chapter.</label>
+          <label class="opt"><input type="radio" name="site_type" value="both"> Split: half me, half the organization.</label>
+        </fieldset>
+      </section>
+
+      <section>
+        <h2>2. Who should the homepage talk to first?</h2>
+        <p class="why">Others can still come. The first screen can only greet one person well.</p>
+        <fieldset>
+          <legend>Main visitor</legend>
+          <label class="opt suggested"><input type="radio" name="visitor" value="watch-join" checked> Families and friends who want to watch a program or join a class <span class="tag">suggestion</span></label>
+          <label class="opt"><input type="radio" name="visitor" value="parents-math"> Parents looking for math / SAT / Telugu for children</label>
+          <label class="opt"><input type="radio" name="visitor" value="katha"> People who want Harikatha, Burrakatha, or Sundara Kanda</label>
+          <label class="opt"><input type="radio" name="visitor" value="donate"> People who want to give or volunteer</label>
+          <label class="opt"><input type="radio" name="visitor" value="talk"> People who want me to give a talk</label>
+        </fieldset>
+        <fieldset style="margin-top:1rem">
+          <legend>When they arrive, the main button should say</legend>
+          <label class="opt suggested"><input type="radio" name="cta" value="contact" checked> Contact / join a program <span class="tag">suggestion</span></label>
+          <label class="opt"><input type="radio" name="cta" value="watch"> Watch videos</label>
+          <label class="opt"><input type="radio" name="cta" value="donate"> Donate</label>
+          <label class="opt"><input type="radio" name="cta" value="talk"> Invite a talk</label>
+        </fieldset>
+      </section>
+
+      <section>
+        <h2>3. Names, exactly as they should appear</h2>
+        <fieldset>
+          <legend>Your name on the site</legend>
+          <label class="opt suggested"><input type="radio" name="person_name" value="Sreenivasa Ainapurapu" checked> Sreenivasa Ainapurapu <span class="tag">suggestion</span></label>
+          <label class="opt"><input type="radio" name="person_name" value="Sreenivas Ainapurapu"> Sreenivas Ainapurapu</label>
+          <label class="opt"><input type="radio" name="person_name" value="Srinivasa Ainapurapu"> Srinivasa Ainapurapu</label>
+          <label class="opt"><input type="radio" name="person_name" value="other"> Other</label>
+          <input type="text" name="person_name_other" placeholder="Write it exactly" aria-label="Other personal name">
+        </fieldset>
+        <fieldset style="margin-top:1rem">
+          <legend>Organization name</legend>
+          <label class="opt suggested"><input type="radio" name="org_name" value="Sanghamitra" checked> Sanghamitra, with Telugu సంఘమిత్ర <span class="tag">suggestion</span></label>
+          <label class="opt"><input type="radio" name="org_name" value="Sanghamitra Organization"> Sanghamitra Organization</label>
+          <label class="opt"><input type="radio" name="org_name" value="other"> Other</label>
+          <input type="text" name="org_name_other" placeholder="Exact organization name" aria-label="Other organization name">
+        </fieldset>
+        <p>
+          <label>Meaning under the name (one line)
+            <input type="text" name="org_meaning" value="Friend of society">
+          </label>
+        </p>
+        <p>
+          <label>Math club name
+            <input type="text" name="math_club" value="Srinivasa Ramanujan Mathematricks Club">
+          </label>
+        </p>
+      </section>
+
+      <section>
+        <h2>4. How should the years read?</h2>
+        <p class="why">Email said 25 years. YouTube said 2003. The 2014 talk said named in 2004. We should pick one headline.</p>
+        <fieldset>
+          <legend>Homepage line</legend>
+          <label class="opt suggested"><input type="radio" name="years" value="named-2004-older-service" checked> Named Sanghamitra in 2004, after earlier service in India and the US <span class="tag">suggestion</span></label>
+          <label class="opt"><input type="radio" name="years" value="since-2004"> Since 2004</label>
+          <label class="opt"><input type="radio" name="years" value="since-2003"> Since 2003</label>
+          <label class="opt"><input type="radio" name="years" value="25-years"> 25 years of service</label>
+        </fieldset>
+      </section>
+
+      <section>
+        <h2>5. What belongs on the homepage?</h2>
+        <p class="why">You asked for Harikatha, Burrakatha, Medhavadhanam, and Sundara Kanda. Sharing and caring can sit under About unless you want it on the first screen too.</p>
+        <fieldset>
+          <legend>Show these as the four main doors (uncheck to drop)</legend>
+          <label class="opt suggested"><input type="checkbox" name="home_doors" value="harikatha" checked> Harikatha <span class="tag">you asked</span></label>
+          <label class="opt suggested"><input type="checkbox" name="home_doors" value="burrakatha" checked> Burrakatha <span class="tag">you asked</span></label>
+          <label class="opt suggested"><input type="checkbox" name="home_doors" value="medhavadhanam" checked> Medhavadhanam (mental math showcase) <span class="tag">you asked</span></label>
+          <label class="opt suggested"><input type="checkbox" name="home_doors" value="sundara-kanda" checked> Sundara Kanda <span class="tag">you asked</span></label>
+        </fieldset>
+        <fieldset style="margin-top:1rem">
+          <legend>Also on the first screen?</legend>
+          <label class="opt suggested"><input type="checkbox" name="home_extra" value="sharing-caring" checked> A short line on sharing and caring (food, clothes, books, elders) <span class="tag">suggestion</span></label>
+          <label class="opt"><input type="checkbox" name="home_extra" value="math-club"> Math club / tutoring / SAT as its own door</label>
+          <label class="opt"><input type="checkbox" name="home_extra" value="telugu"> Telugu / SiliconAndhra Manabadi as its own door</label>
+          <label class="opt"><input type="checkbox" name="home_extra" value="poetry"> Poetry / Satakam as its own door</label>
+          <label class="opt"><input type="checkbox" name="home_extra" value="meditation"> Meditation / stress talks as its own door</label>
+        </fieldset>
+        <p>
+          <label>Sundara Kanda on this site is mainly
+            <select name="sundara_kind" style="width:100%;margin-top:.35rem;padding:.5rem;font:1rem Source Sans 3,sans-serif">
+              <option value="discourse" selected>Discourse / pravachanam (you or guest scholars)</option>
+              <option value="recitation">Recitation / parayanam</option>
+              <option value="series">A video series already on YouTube</option>
+              <option value="mixed">All of the above</option>
+            </select>
+          </label>
+        </p>
+      </section>
+
+      <section>
+        <h2>6. What is live this year?</h2>
+        <p class="why">Helps us say “we do this” versus “we have done this.”</p>
+        <fieldset>
+          <legend>Check every program that still happens</legend>
+          <label class="opt"><input type="checkbox" name="live" value="sharing" checked> Sharing and caring</label>
+          <label class="opt"><input type="checkbox" name="live" value="math" checked> Math club / Medhavadhanam</label>
+          <label class="opt"><input type="checkbox" name="live" value="harikatha" checked> Harikatha</label>
+          <label class="opt"><input type="checkbox" name="live" value="burrakatha" checked> Burrakatha</label>
+          <label class="opt"><input type="checkbox" name="live" value="sundara" checked> Sundara Kanda / Ramayana</label>
+          <label class="opt"><input type="checkbox" name="live" value="telugu"> Telugu teaching</label>
+          <label class="opt"><input type="checkbox" name="live" value="poetry"> Poetry / Satakam</label>
+          <label class="opt"><input type="checkbox" name="live" value="talks"> Meditation / anger / stress talks</label>
+          <label class="opt"><input type="checkbox" name="live" value="arts"> Other ancient art forms</label>
+          <label class="opt"><input type="checkbox" name="live" value="magazine"> Magazine (restarting)</label>
+        </fieldset>
+        <fieldset style="margin-top:1rem">
+          <legend>SiliconAndhra Manabadi</legend>
+          <label class="opt suggested"><input type="radio" name="manabadi" value="name-only" checked> Mention Telugu teaching. Do not use their logo until they say yes. <span class="tag">suggestion</span></label>
+          <label class="opt"><input type="radio" name="manabadi" value="official"> I am an official teacher/center. You may use the name and logo.</label>
+          <label class="opt"><input type="radio" name="manabadi" value="omit"> Leave Telugu off the first version.</label>
+        </fieldset>
+      </section>
+
+      <section>
+        <h2>7. Place, language, money</h2>
+        <fieldset>
+          <legend>Where do you serve?</legend>
+          <label class="opt suggested"><input type="radio" name="place" value="stl-plus" checked> St. Louis, and other places when invited <span class="tag">suggestion</span></label>
+          <label class="opt"><input type="radio" name="place" value="stl"> St. Louis only</label>
+          <label class="opt"><input type="radio" name="place" value="us-india"> US and India</label>
+        </fieldset>
+        <fieldset style="margin-top:1rem">
+          <legend>May we name the Hindu Temple of Saint Louis as the usual venue?</legend>
+          <label class="opt suggested"><input type="radio" name="temple" value="yes" checked> Yes <span class="tag">suggestion</span></label>
+          <label class="opt"><input type="radio" name="temple" value="no"> No — say only “St. Louis”</label>
+        </fieldset>
+        <fieldset style="margin-top:1rem">
+          <legend>Language of the first site</legend>
+          <label class="opt suggested"><input type="radio" name="language" value="en-telugu-headings" checked> English, with Telugu titles (సంఘమిత్ర, హరికథ, బుర్రకథ) <span class="tag">suggestion</span></label>
+          <label class="opt"><input type="radio" name="language" value="en"> English only</label>
+          <label class="opt"><input type="radio" name="language" value="bilingual"> Full English and Telugu pages</label>
+        </fieldset>
+        <fieldset style="margin-top:1rem">
+          <legend>Money on the site</legend>
+          <label class="opt suggested"><input type="radio" name="money" value="no-donate" checked> No donate button. People can write to you. <span class="tag">suggestion</span></label>
+          <label class="opt"><input type="radio" name="money" value="soft"> A “support the work” note, no payment button</label>
+          <label class="opt"><input type="radio" name="money" value="donate"> I want a donate button (I will send how: Zelle / check / nonprofit)</label>
+        </fieldset>
+        <p>
+          <label>If donate: how should people give? (skip if no button)
+            <input type="text" name="donate_how" placeholder="Zelle, check to…, 501(c)(3) name…">
+          </label>
+        </p>
+      </section>
+
+      <section>
+        <h2>8. Contact and videos</h2>
+        <div class="grid-2">
+          <p><label>Public email<input type="email" name="email" placeholder="the address people may write to"></label></p>
+          <p><label>Phone or WhatsApp (optional)<input type="text" name="phone" placeholder="Include country code if you want it public"></label></p>
+        </div>
+        <p><label>YouTube (already found)
+          <input type="url" name="youtube" value="https://www.youtube.com/@sreenivasaainapurapu3741">
+        </label></p>
+        <p><label>Facebook or other links, one per line
+          <textarea name="social" placeholder="https://…"></textarea>
+        </label></p>
+        <fieldset>
+          <legend>Videos on the website</legend>
+          <label class="opt suggested"><input type="radio" name="videos" value="embed" checked> Embed a few YouTube programs on the pages <span class="tag">suggestion</span></label>
+          <label class="opt"><input type="radio" name="videos" value="link"> Only a link to the channel</label>
+        </fieldset>
+        <p>
+          <label>Do you have a Burrakatha recording we may use?
+            <select name="burra_video" style="width:100%;margin-top:.35rem;padding:.5rem;font:1rem Source Sans 3,sans-serif">
+              <option value="later" selected>Not yet — leave a “coming” note</option>
+              <option value="youtube">Yes, I will send a YouTube link</option>
+              <option value="file">Yes, I will send a file</option>
+            </select>
+          </label>
+        </p>
+      </section>
+
+      <section>
+        <h2>9. Photos, stories, magazine</h2>
+        <fieldset>
+          <legend>Photos of children</legend>
+          <label class="opt suggested"><input type="radio" name="kids_photos" value="no-faces" checked> Do not show children’s faces unless I send a photo and say the parent agreed <span class="tag">suggestion</span></label>
+          <label class="opt"><input type="radio" name="kids_photos" value="group-ok"> Group photos from events are fine</label>
+          <label class="opt"><input type="radio" name="kids_photos" value="none"> No photos of children at all</label>
+        </fieldset>
+        <fieldset style="margin-top:1rem">
+          <legend>Parent stories from the 2014 and 2017 programs (no last names)</legend>
+          <label class="opt suggested"><input type="radio" name="testimonials" value="ask-first" checked> Ask me before any story goes live <span class="tag">suggestion</span></label>
+          <label class="opt"><input type="radio" name="testimonials" value="ok-anonymous"> Anonymous is fine (“a parent said…”)</label>
+          <label class="opt"><input type="radio" name="testimonials" value="omit"> Leave testimonials off v1</label>
+        </fieldset>
+        <fieldset style="margin-top:1rem">
+          <legend>The old quarterly magazine (ended July 2011)</legend>
+          <label class="opt suggested"><input type="radio" name="magazine" value="history" checked> One history paragraph. No fake archive. <span class="tag">suggestion</span></label>
+          <label class="opt"><input type="radio" name="magazine" value="omit"> Do not mention it</label>
+          <label class="opt"><input type="radio" name="magazine" value="pdfs"> I still have PDFs — we can add an archive later</label>
+        </fieldset>
+        <fieldset style="margin-top:1rem">
+          <legend>Satakam published last year</legend>
+          <label>Title <input type="text" name="satakam_title" placeholder="Exact title"></label>
+          <label>May we show a few verses?
+            <select name="satakam_verses" style="width:100%;margin-top:.35rem;padding:.5rem;font:1rem Source Sans 3,sans-serif">
+              <option value="later" selected>Later — not on the first site</option>
+              <option value="yes">Yes, I will send verses</option>
+              <option value="link">Only a buy / download link</option>
+            </select>
+          </label>
+        </fieldset>
+      </section>
+
+      <section>
+        <h2>10. After the site is live</h2>
+        <fieldset>
+          <legend>Who changes text and photos later?</legend>
+          <label class="opt suggested"><input type="radio" name="maintain" value="pradeep-then-hand-off" checked> Pradeep ships v1. Then we keep it simple so I rarely need to change it. <span class="tag">suggestion</span></label>
+          <label class="opt"><input type="radio" name="maintain" value="pradeep"> Pradeep will keep updating it</label>
+          <label class="opt"><input type="radio" name="maintain" value="sreenivas"> I will learn to change pages</label>
+        </fieldset>
+        <p>
+          <label>Anything else we must get right (optional)
+            <textarea name="notes" placeholder="A line or two is enough."></textarea>
+          </label>
+        </p>
+      </section>
+    </form>
+
+    <section>
+      <h2>Send this back to Pradeep</h2>
+      <p class="why">Download the file, or copy the text into an email. Either is enough for us to build.</p>
+      <pre class="preview" id="preview"></pre>
+    </section>
+  </div>
+
+  <div class="bar">
+    <span class="status" id="status">Answers save on this device as you go.</span>
+    <button type="button" class="ghost" id="btn-preview">Show summary</button>
+    <button type="button" class="ghost" id="btn-copy">Copy for email</button>
+    <button type="button" id="btn-download">Download answers</button>
+  </div>
+
+  <script>
+    const form = document.getElementById("q");
+    const KEY = "sanghamitra-intake-v1";
+
+    function collect() {
+      const fd = new FormData(form);
+      const data = {};
+      for (const [k, v] of fd.entries()) {
+        if (data[k] === undefined) data[k] = v;
+        else if (Array.isArray(data[k])) data[k].push(v);
+        else data[k] = [data[k], v];
+      }
+      data.saved_at = new Date().toISOString();
+      return data;
+    }
+
+    function summaryText(d) {
+      const doors = [].concat(d.home_doors || []);
+      const extra = [].concat(d.home_extra || []);
+      const live = [].concat(d.live || []);
+      const name = d.person_name === "other" ? d.person_name_other : d.person_name;
+      const org = d.org_name === "other" ? d.org_name_other : d.org_name;
+      return [
+        "Sanghamitra website choices",
+        "Saved: " + d.saved_at,
+        "",
+        "Site type: " + d.site_type,
+        "Main visitor: " + d.visitor,
+        "Main button: " + d.cta,
+        "Name: " + name,
+        "Organization: " + org,
+        "Meaning: " + d.org_meaning,
+        "Math club: " + d.math_club,
+        "Years headline: " + d.years,
+        "Homepage doors: " + doors.join(", "),
+        "Also on home: " + (extra.join(", ") || "none"),
+        "Sundara Kanda is: " + d.sundara_kind,
+        "Live this year: " + live.join(", "),
+        "Manabadi: " + d.manabadi,
+        "Place: " + d.place,
+        "Name the temple: " + d.temple,
+        "Language: " + d.language,
+        "Money: " + d.money,
+        "Donate how: " + (d.donate_how || "—"),
+        "Email: " + (d.email || "—"),
+        "Phone: " + (d.phone || "—"),
+        "YouTube: " + d.youtube,
+        "Other links: " + (d.social || "—"),
+        "Videos: " + d.videos,
+        "Burrakatha recording: " + d.burra_video,
+        "Children photos: " + d.kids_photos,
+        "Testimonials: " + d.testimonials,
+        "Magazine: " + d.magazine,
+        "Satakam title: " + (d.satakam_title || "—"),
+        "Satakam verses: " + d.satakam_verses,
+        "Who maintains: " + d.maintain,
+        "Notes: " + (d.notes || "—")
+      ].join("\n");
+    }
+
+    function persist() {
+      const d = collect();
+      try { localStorage.setItem(KEY, JSON.stringify(d)); } catch (e) {}
+    }
+
+    function restore() {
+      try {
+        const raw = localStorage.getItem(KEY);
+        if (!raw) return;
+        const d = JSON.parse(raw);
+        for (const [k, v] of Object.entries(d)) {
+          if (k === "saved_at") continue;
+          const els = form.elements[k];
+          if (!els) continue;
+          const list = els.length ? els : [els];
+          const values = [].concat(v);
+          for (const el of list) {
+            if (el.type === "radio" || el.type === "checkbox") el.checked = values.includes(el.value);
+            else el.value = values[0] ?? "";
+          }
+        }
+      } catch (e) {}
+    }
+
+    form.addEventListener("input", persist);
+    restore();
+
+    const preview = document.getElementById("preview");
+    document.getElementById("btn-preview").onclick = () => {
+      persist();
+      preview.textContent = summaryText(collect());
+      preview.classList.add("show");
+      preview.scrollIntoView({ behavior: "smooth" });
+    };
+    document.getElementById("btn-copy").onclick = async () => {
+      persist();
+      const text = summaryText(collect());
+      preview.textContent = text;
+      preview.classList.add("show");
+      try {
+        await navigator.clipboard.writeText(text);
+        document.getElementById("status").textContent = "Copied. Paste into an email to Pradeep.";
+      } catch (e) {
+        document.getElementById("status").textContent = "Select the summary and copy it yourself.";
+      }
+    };
+    document.getElementById("btn-download").onclick = () => {
+      persist();
+      const d = collect();
+      const blob = new Blob([JSON.stringify(d, null, 2)], { type: "application/json" });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "sanghamitra-website-answers.json";
+      a.click();
+      const t = new Blob([summaryText(d)], { type: "text/plain" });
+      const b = document.createElement("a");
+      b.href = URL.createObjectURL(t);
+      b.download = "sanghamitra-website-answers.txt";
+      b.click();
+      document.getElementById("status").textContent = "Downloaded JSON and text. Email those two files to Pradeep.";
+    };
+  </script>
+</body>
+</html>

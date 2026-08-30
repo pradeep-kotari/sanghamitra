@@ -1,0 +1,16 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Sanghamitra//Events//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:sanghamitra-2026-09-05-zoom@sanghamitra.org
+DTSTAMP:20260830T100500Z
+DTSTART:20260905T123000Z
+DTEND:20260905T140000Z
+SUMMARY:Sundara Kanda Harikatha
+DESCRIPTION:Sundara Kanda Harikatha by Srimati Jayanti Savitri, from the Kanda Ramayanam.\nఅందరికీ ఇదే ఆహ్వానము — everyone is welcome.\nJoin: https://us02web.zoom.us/j/86386435256\nWhatsApp: https://chat.whatsapp.com/EAEwM6yk9jG3zIiRd6qOKg
+LOCATION:https://us02web.zoom.us/j/86386435256
+URL:https://us02web.zoom.us/j/86386435256
+END:VEVENT
+END:VCALENDAR

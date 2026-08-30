@@ -1,0 +1,14 @@
+.venv-whisper/
+.wrangler/
+node_modules/
+.env
+.env.*
+__pycache__/
+*.pyc
+.DS_Store
+interceptor-screenshot*.png
+research/transcripts/whisper/
+*.mp3
+*.wav
+*.mp4
+*.webm

@@ -1,0 +1,52 @@
+{
+  "org": {
+    "name": "Sanghamitra",
+    "nameTe": "సంఘమిత్ర",
+    "meaning": "Friend of society",
+    "meaningTe": "సమాజ మిత్రుడు",
+    "domain": "https://sanghamitra.org"
+  },
+  "person": {
+    "name": "Sreenivasa Ainapurapu",
+    "role": "Founder"
+  },
+  "links": {
+    "youtube": "https://www.youtube.com/@sreenivasaainapurapu3741/featured",
+    "facebook": "https://www.facebook.com/sreenivasa.ainapurapu",
+    "whatsappGroup": "https://chat.whatsapp.com/EAEwM6yk9jG3zIiRd6qOKg"
+  },
+  "booking": {
+    "provider": "request",
+    "embedUrl": "",
+    "durationMinutes": 45,
+    "note": "Paste a Cal.com or Google Appointment Schedule URL into embedUrl when his calendar is connected. Until then, 1:1 requests go through the WhatsApp group."
+  },
+  "announcements": {
+    "note": "He publishes by sending a Word PDF. Drop the file on this machine and run: .venv-whisper/bin/python tools/ingest-flyer.py /path/to.pdf"
+  },
+  "events": [
+    {
+      "id": "2026-09-05-sundara-kanda",
+      "title": "Sundara Kanda Harikatha",
+      "titleTe": "సుందర కాండ హరికథ",
+      "kind": "group",
+      "presenter": "Srimati Jayanti Savitri",
+      "presenterTe": "శ్రీమతి జయంతి సావిత్రి గారిచే",
+      "source": "Composed from the Kanda Ramayanam",
+      "sourceTe": "శ్రీమత్కంద రామాయణము ఆధారముగా సుందర కాండ హరికథ కూర్చడం జరిగింది.",
+      "inviteTe": "అందరికీ ఇదే ఆహ్వానము",
+      "blurb": "Sit at home. Invite family and friends. Knowledge and merit, gathered without leaving the house.",
+      "blurbTe": "మీ ఇంటివద్దనే కూర్చుని విజ్ఞానము, పుణ్యము ప్రోగుచేసుకోవచ్చు. ఈ కార్యక్రమమునకు మీ బంధుమిత్రులనందరిని ఆహ్వానించండి.",
+      "host": "Ainapurapu family",
+      "hostTe": "అయినాపురపు కుటుంబ సభ్యులు",
+      "startsAt": "2026-09-05T18:00:00+05:30",
+      "timezoneLabel": "6:00 PM IST / 7:30 AM US Central",
+      "durationMinutes": 90,
+      "joinUrl": "https://us02web.zoom.us/j/86386435256",
+      "ics": "events/sanghamitra-2026-09-05.ics",
+      "pdf": "announcements/2026-09-05/SundaraKanda_From_KandaRamayanam_09052026.pdf",
+      "flyer": "announcements/2026-09-05/flyer.jpg",
+      "openTo": "Everyone is welcome. Same invitation for all."
+    }
+  ]
+}
