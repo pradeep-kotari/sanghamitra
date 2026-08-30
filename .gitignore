@@ -7,6 +7,8 @@ __pycache__/
 *.pyc
 .DS_Store
 interceptor-screenshot*.png
+*:Zone.Identifier
+Thumbs.db
 research/transcripts/whisper/
 *.mp3
 *.wav
