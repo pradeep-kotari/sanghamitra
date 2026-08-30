@@ -13,17 +13,129 @@
   "links": {
     "youtube": "https://www.youtube.com/@sreenivasaainapurapu3741/featured",
     "facebook": "https://www.facebook.com/sreenivasa.ainapurapu",
-    "whatsappGroup": "https://chat.whatsapp.com/EAEwM6yk9jG3zIiRd6qOKg"
+    "whatsappGroup": "https://chat.whatsapp.com/EAEwM6yk9jG3zIiRd6qOKg",
+    "whatsappDirect": "https://wa.me/13146015309",
+    "phone": "+1 314 601 5309",
+    "phoneTel": "+13146015309",
+    "email": "",
+    "medhavadhanam2025": "https://www.youtube.com/watch?v=25QItDADXz8"
   },
+  "sessions": [
+    {
+      "id": "medhavadhanam-2025",
+      "kind": "medhavadhanam",
+      "featured": true,
+      "title": "Medhavadhanam 2025",
+      "when": "2025",
+      "youtubeId": "25QItDADXz8",
+      "blurb": "The latest streamed sitting. Start here, then walk back through the earlier halls."
+    },
+    {
+      "id": "medhavadhanam-2017",
+      "kind": "medhavadhanam",
+      "title": "Medhavadhanam 2017",
+      "when": "Hindu Temple of Saint Louis",
+      "youtubeId": "a2FPZyH2VQg",
+      "blurb": "Same temple family as the 2026 photographs. The host says the annual sitting has been in the second or third week of August since 2007, with the temple’s help named from 2012.",
+      "quote": "Once she started this program, she was really doing great in mathematics — two or three years ahead of her school grade.",
+      "quoteAttrib": "A parent, opening the 2017 sitting",
+      "chapters": [
+        { "t": 11, "label": "How the temple introduces the program" },
+        { "t": 59, "label": "Annual sitting, second or third week of August" },
+        { "t": 93, "label": "A parent on school math" }
+      ]
+    },
+    {
+      "id": "medhavadhanam-2014",
+      "kind": "medhavadhanam",
+      "title": "Medhavadhanam 2014",
+      "when": "25 September 2014",
+      "youtubeId": "8sl-wLo0yUs",
+      "blurb": "The three-part public showcase. Part 1 is how the sitting works and why Sanghamitra exists. Parts 2 and 3 are the students, then one taught method.",
+      "quote": "The base of Sanghamitra is caring, sharing, and love.",
+      "quoteAttrib": "Sreenivasa, opening Part 1",
+      "parts": [
+        {
+          "label": "Part 1 · how it works",
+          "youtubeId": "8sl-wLo0yUs",
+          "chapters": [
+            { "t": 34, "label": "Audience asks; each student answers in a minute" },
+            { "t": 45, "label": "No paper, pencil, or calculator" },
+            { "t": 100, "label": "Sanghamitra: caring, sharing, love" },
+            { "t": 212, "label": "Named in 2004 — friend of society" },
+            { "t": 274, "label": "First Medhavadhanam, 2007" }
+          ]
+        },
+        {
+          "label": "Part 2 · the student showcase",
+          "youtubeId": "9f60lg0Ku8M",
+          "chapters": [
+            { "t": 118, "label": "Reciting 1/n for numbers ending in 9" },
+            { "t": 354, "label": "5×5 grid" },
+            { "t": 516, "label": "Pythagorean triples" },
+            { "t": 874, "label": "Multiply by 25, left to right" },
+            { "t": 1237, "label": "Calendar: date to weekday" },
+            { "t": 1744, "label": "Number charts, 1 to 31" }
+          ]
+        },
+        {
+          "label": "Part 3 · one method, then the close",
+          "youtubeId": "Qp1nveUyChQ",
+          "chapters": [
+            { "t": 907, "label": "From showcase to teaching" },
+            { "t": 952, "label": "97 × 98 by complements to 100" },
+            { "t": 1331, "label": "Parents on the summer" },
+            { "t": 1746, "label": "Sign-up for St. Louis and other cities" }
+          ]
+        }
+      ]
+    }
+  ],
   "booking": {
     "provider": "request",
     "embedUrl": "",
     "durationMinutes": 45,
-    "note": "Paste a Cal.com or Google Appointment Schedule URL into embedUrl when his calendar is connected. Until then, 1:1 requests go through the WhatsApp group."
+    "note": "Paste a Cal.com or Google Appointment Schedule URL into embedUrl when his calendar is connected. Until then, 1:1 requests go to WhatsApp +1 314 601 5309."
+  },
+  "copy": {
+    "whoLine": "Sanghamitra does the work. Sreenivasa Ainapurapu founded it and still teaches, speaks, and hosts.",
+    "homepageLede": "Parents come for Vedic mathematics, SAT-facing math, and Telugu. Others come to donate or volunteer, to invite a talk on meditation, anger, or stress, or because they read his poetry. Everyone can write him from this site.",
+    "yearsLine": "",
+    "donateMode": "ask",
+    "donateHow": "",
+    "enrollLive": { "math": true, "sat": true, "telugu": true }
   },
   "announcements": {
     "note": "He publishes by sending a Word PDF. Drop the file on this machine and run: .venv-whisper/bin/python tools/ingest-flyer.py /path/to.pdf"
   },
+  "press": [
+    {
+      "source": "India Post",
+      "title": "Ramanujan Club hosts Medhavadhanam",
+      "url": "https://indiapost.com/ramanujan-club-hosts-medhavadhanam/"
+    },
+    {
+      "source": "India Post",
+      "title": "Ramanujan Club kids amaze with their talent",
+      "url": "https://indiapost.com/ramanujan-club-kids-amaze-with-their-talent/"
+    },
+    {
+      "source": "Vedic Maths calendar",
+      "title": "2-hour Fun Dimension of Math, Herndon Fortnightly Library",
+      "url": "https://vedicmaths.org/community/calendar-of-events",
+      "note": "April 12, 2 p.m. Srinivasa Ramanujan Mathematricks Club, organized by Sanghamitra. First East Coast sitting on that calendar. Contact listed: Sreeni Ainapurapu, (314) 601-5309, ainapura@yahoo.com."
+    },
+    {
+      "source": "Vedic Maths Issue 128",
+      "title": "Summer school given by Sreenivasa Ainapurapu",
+      "url": "http://vedicmaths.org/2020/issue128-summer-school"
+    },
+    {
+      "source": "Vedic Maths Issue 86",
+      "title": "My view about Vedic Mathematics",
+      "url": "https://vedicmaths.org/2013-newsletter-index/86-my-view-about-vedic-mathematics-and-its-relation-with-other-fields-of-science"
+    }
+  ],
   "events": [
     {
       "id": "2026-09-05-sundara-kanda",
@@ -47,6 +159,21 @@
       "pdf": "announcements/2026-09-05/SundaraKanda_From_KandaRamayanam_09052026.pdf",
       "flyer": "announcements/2026-09-05/flyer.jpg",
       "openTo": "Everyone is welcome. Same invitation for all."
+    },
+    {
+      "id": "2026-summer-mathematricks",
+      "title": "Summer Program 2026",
+      "kind": "learn",
+      "kicker": "Earlier · the club",
+      "presenter": "Sreenivasa Ainapurapu",
+      "blurb": "Srinivasa Ramanujan Mathematricks Club — weekends from 6 June to 25 July. Vedic mathematics, problem-solving, and algorithms. The club has run this summer sitting since 2005. Medhavadhanam followed in August at the Hindu Temple of St. Louis.",
+      "startsAt": "2026-06-06T17:00:00-05:00",
+      "timezoneLabel": "Weekends, 6 June – 25 July 2026",
+      "whenLabel": "Weekends, 6 June – 25 July 2026",
+      "durationMinutes": 1,
+      "flyer": "announcements/2026-summer/flyer.jpg",
+      "moreHref": "learn.html#enroll",
+      "moreLabel": "Ask about the next summer"
     }
   ]
 }

@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Get involved · Sanghamitra</title>
+  <title>Poetry · Sanghamitra</title>
+  <meta name="description" content="Readers of Sreenivasa Ainapurapu’s poetry — and the literary sittings Sanghamitra hosts.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,700&family=Noto+Serif+Telugu:wght@500;700&family=Source+Serif+4:opsz,wght@8..60,480;8..60,600&display=swap" rel="stylesheet">
@@ -19,53 +20,51 @@
             <nav>
         <a href="about.html">About</a>
         <a href="learn.html">Learn</a>
-        <a href="poetry.html">Poetry</a>
+        <a href="poetry.html" aria-current="page">Poetry</a>
         <a href="talks.html">Invite</a>
         <a href="give.html">Give</a>
         <a href="events.html">Events</a>
         <a href="contact.html">Contact</a>
-        <a href="learn.html#enroll" class="cta" aria-current="page">Enroll</a>
+        <a href="learn.html#enroll" class="cta">Enroll</a>
       </nav>
     </div>
   </header>
 
   <main class="section">
     <div class="wrap">
-      <p class="kicker">Start here</p>
-      <h1>Enroll, give, invite, or just write.</h1>
-      <p class="lede">Pick the door that matches why you came. Every form reaches Sreenivasa. WhatsApp is the same person: +1 314 601 5309.</p>
-      <div class="doors">
-        <a class="door" href="learn.html#enroll">
-          <span>Parents</span>
-          <h3>Enroll</h3>
-          <p>Vedic mathematics, SAT-facing math, Telugu.</p>
-        </a>
-        <a class="door" href="give.html#donate">
-          <span>Give</span>
-          <h3>Donate</h3>
-          <p>He will send how. This site does not take a card.</p>
-        </a>
-        <a class="door" href="give.html#volunteer">
-          <span>Hands</span>
-          <h3>Volunteer</h3>
-          <p>The hall, the summer, a talk in your city.</p>
-        </a>
-        <a class="door" href="talks.html">
-          <span>Invite</span>
-          <h3>Book a talk</h3>
-          <p>Meditation, anger, stress, or the old arts.</p>
-        </a>
-        <a class="door" href="contact.html">
-          <span>Write</span>
-          <h3>Contact Sreenivasa</h3>
-          <p>A question that does not fit the other doors.</p>
-        </a>
-        <a class="door" href="events.html">
-          <span>Sit</span>
-          <h3>Next group session</h3>
-          <p>September 5 Sundara Kanda Harikatha on Zoom. No RSVP.</p>
-        </a>
-      </div>
+      <p class="kicker">సాహిత్యం</p>
+      <h1>If you came for the poetry, you are in the right house.</h1>
+      <p class="lede">Sreenivasa writes. One Satakam was published last year; others are in progress. Write if you would like a poem he has already shared, or a time to hear it.</p>
+
+      <article class="card">
+        <h2>A literary sitting already on the channel</h2>
+        <p>A talk on the literature of Viswanatha Satyanarayana, Kavisamrat, Jnanpith — hosted on the Sanghamitra channel.</p>
+        <div class="actions">
+          <a class="btn btn-dark" href="https://www.youtube.com/watch?v=Os_hWIc6WpM">Open the Viswanatha sitting</a>
+          <a class="btn btn-ghost" href="https://www.youtube.com/@sreenivasaainapurapu3741/featured">The full channel</a>
+        </div>
+      </article>
+
+      <form class="intent card" style="margin-top:1.4rem">
+        <h2>I read his poetry — write to him</h2>
+        <input type="hidden" name="kind" value="poetry">
+        <div class="form-row">
+          <label>Your name
+            <input name="name" required autocomplete="name">
+          </label>
+          <label>Email
+            <input name="email" type="email" required autocomplete="email">
+          </label>
+        </div>
+        <label>Phone
+          <input name="phone" type="tel" autocomplete="tel">
+        </label>
+        <label>What you want — a poem he has already shared, a reading, a new sitting
+          <textarea name="notes" required></textarea>
+        </label>
+        <button class="btn btn-primary" type="submit">Send to Sreenivasa</button>
+        <p class="intent-note" data-note></p>
+      </form>
     </div>
   </main>
       <footer class="site-footer">

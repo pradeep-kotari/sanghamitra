@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Learn · Sanghamitra</title>
+  <meta name="description" content="Enroll in Vedic mathematics, SAT-facing math, or Telugu with Sanghamitra. Sreenivasa Ainapurapu teaches; parents write for a seat.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,700&family=Noto+Serif+Telugu:wght@500;700&family=Source+Serif+4:opsz,wght@8..60,480;8..60,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="index.html">
+        <strong>Sanghamitra</strong>
+        <small>సంఘమిత్ర · friend of society</small>
+      </a>
+            <nav>
+        <a href="about.html">About</a>
+        <a href="learn.html" aria-current="page">Learn</a>
+        <a href="poetry.html">Poetry</a>
+        <a href="talks.html">Invite</a>
+        <a href="give.html">Give</a>
+        <a href="events.html">Events</a>
+        <a href="contact.html">Contact</a>
+        <a href="learn.html#enroll" class="cta">Enroll</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="wrap">
+      <p class="kicker">For parents</p>
+      <h1>Math, exams, and Telugu — taught as a sitting, not a product.</h1>
+      <p class="lede">Sanghamitra is the organization. Sreenivasa Ainapurapu is the teacher you will meet. Summer programs have run for years under the Srinivasa Ramanujan Mathematricks Club. India Post wrote about the hall. Enroll below; he writes back with a seat or a wait.</p>
+
+      <div class="doors">
+        <article class="door" id="math" data-enroll="math">
+          <span>గణితం</span>
+          <h3>Vedic mathematics</h3>
+          <p>Mental calculation without paper, pencil, or a calculator — the same methods students show at Medhavadhanam. School math gets faster. Confidence is the point parents usually name.</p>
+        </article>
+        <article class="door" id="sat" data-enroll="sat">
+          <span>Exams</span>
+          <h3>SAT and ACT</h3>
+          <p>Middle- and high-school tutoring, and ACT/SAT coaching, under the same club. Say which exam on the form.</p>
+        </article>
+        <article class="door" id="telugu" data-enroll="telugu">
+          <span>భాష</span>
+          <h3>Telugu · SiliconAndhra Manabadi</h3>
+          <p>Telugu teaching through SiliconAndhra Manabadi, and earlier work with Balavikas of Greater St. Louis. Ask for a child or for yourself.</p>
+        </article>
+        <article class="door">
+          <span>The club</span>
+          <h3>Ramanujan MathemaTRICKS</h3>
+          <p>Vedic mathematics summer program, then the public showcase — Medhavadhanam. <a href="watch.html">Watch a sitting</a>, then enroll if you want a seat in the next summer.</p>
+        </article>
+      </div>
+
+      <form id="enroll" class="intent card" style="margin-top:2rem">
+        <h2>Enroll</h2>
+        <p>A note goes to Sreenivasa. You can also <a href="https://wa.me/13146015309">WhatsApp him</a>.</p>
+        <input type="hidden" name="kind" value="enroll">
+        <div class="form-row">
+          <label>Your name
+            <input name="name" required autocomplete="name">
+          </label>
+          <label>Email
+            <input name="email" type="email" required autocomplete="email">
+          </label>
+        </div>
+        <div class="form-row">
+          <label>Phone
+            <input name="phone" type="tel" autocomplete="tel">
+          </label>
+          <label>Program
+            <select name="program" required>
+              <option value="">Choose one</option>
+              <option data-enroll="math">Vedic mathematics summer program</option>
+              <option data-enroll="sat">Middle- or high-school tutoring</option>
+              <option data-enroll="sat">ACT coaching</option>
+              <option data-enroll="sat">SAT coaching</option>
+              <option data-enroll="telugu">Telugu · SiliconAndhra Manabadi</option>
+              <option>More than one — I’ll explain</option>
+            </select>
+          </label>
+        </div>
+        <label>Student name and grade, if this is for a child
+          <input name="student" autocomplete="off">
+        </label>
+        <label>Anything he should know — city, summer vs year-round, Zoom or in person
+          <textarea name="notes"></textarea>
+        </label>
+        <button class="btn btn-primary" type="submit">Send enrollment</button>
+        <p class="intent-note" data-note></p>
+      </form>
+    </div>
+  </main>
+      <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <p>© <span data-year>2026</span> Sanghamitra · సంఘమిత్ర</p>
+        <p class="muted">An organization. Sreenivasa Ainapurapu is the founder and the face of the work.</p>
+      </div>
+      <p class="social">
+        <a href="learn.html#enroll">Enroll</a>
+        <a href="give.html#donate">Donate</a>
+        <a href="give.html#volunteer">Volunteer</a>
+        <a href="talks.html">Book a talk</a>
+        <a href="contact.html">Contact Sreenivasa</a>
+        <a href="poetry.html">Poetry</a>
+        <a href="magazine.html">Magazine</a>
+        <a href="press.html">Press</a>
+        <a href="watch.html">Watch</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="traditions.html">Traditions</a>
+        <a href="https://wa.me/13146015309">WhatsApp</a>
+        <a href="admin/login.html">Admin</a>
+      </p>
+    </div>
+  </footer>
+  <script src="js/site.js"></script>
+</body>
+</html>

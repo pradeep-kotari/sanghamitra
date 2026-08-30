@@ -16,54 +16,101 @@
         <strong>Sanghamitra</strong>
         <small>సంఘమిత్ర · friend of society</small>
       </a>
-      <nav>
+            <nav>
         <a href="about.html">About</a>
-        <a href="traditions.html">Traditions</a>
-        <a href="watch.html">Watch</a>
+        <a href="learn.html">Learn</a>
+        <a href="poetry.html">Poetry</a>
+        <a href="talks.html">Invite</a>
+        <a href="give.html">Give</a>
         <a href="events.html">Events</a>
         <a href="contact.html" aria-current="page">Contact</a>
-        <a href="book.html" class="cta">Book a session</a>
+        <a href="learn.html#enroll" class="cta">Enroll</a>
       </nav>
     </div>
   </header>
 
   <main class="section">
     <div class="wrap">
-      <p class="kicker">Reach the work</p>
-      <h1>WhatsApp is the front door.</h1>
-      <p class="lede">The group is where dates, Zoom links, and questions go. YouTube and Facebook are public. Booking is for a 1:1 or a seat in a listed session.</p>
+      <p class="kicker">Contact Sreenivasa</p>
+      <h1>Write the person. The organization answers.</h1>
+      <p class="lede">WhatsApp is the fastest door. The form below lands on the admin page so he can reply by email. If you already know what you want, use the shorter doors.</p>
+      <p id="public-email" class="muted" hidden></p>
       <div class="doors">
+        <a class="door" href="https://wa.me/13146015309">
+          <span>1:1</span>
+          <h3>WhatsApp Sreenivasa</h3>
+          <p><span data-bind="links.phone">+1 314 601 5309</span>. A private chat with him.</p>
+        </a>
+        <a class="door" href="tel:+13146015309">
+          <span>Call</span>
+          <h3 data-bind="links.phone">+1 314 601 5309</h3>
+          <p>Same number, if you would rather call.</p>
+        </a>
+        <a class="door" href="learn.html#enroll">
+          <span>Parents</span>
+          <h3>Enroll</h3>
+          <p>Math, SAT-facing work, Telugu.</p>
+        </a>
+        <a class="door" href="give.html">
+          <span>Give</span>
+          <h3>Donate or volunteer</h3>
+          <p>Money or time. He sends the next step.</p>
+        </a>
+        <a class="door" href="talks.html">
+          <span>Invite</span>
+          <h3>Book a talk</h3>
+          <p>Meditation, anger, stress, or the old arts.</p>
+        </a>
         <a class="door" href="https://chat.whatsapp.com/EAEwM6yk9jG3zIiRd6qOKg">
           <span>Community</span>
           <h3>WhatsApp group</h3>
-          <p>Follow this link to join. That is the noticeboard.</p>
-        </a>
-        <a class="door" href="https://www.youtube.com/@sreenivasaainapurapu3741/featured">
-          <span>Watch</span>
-          <h3>YouTube</h3>
-          <p>Official channel — Harikatha, mathematics, Ramayana, and more.</p>
-        </a>
-        <a class="door" href="https://www.facebook.com/sreenivasa.ainapurapu">
-          <span>Updates</span>
-          <h3>Facebook</h3>
-          <p>Sreenivasa Ainapurapu’s public profile for announcements.</p>
-        </a>
-        <a class="door" href="book.html">
-          <span>Time</span>
-          <h3>Book a session</h3>
-          <p>Join September 5 on Zoom, or request a 1:1.</p>
+          <p>Dates and Zoom links for gatherings.</p>
         </a>
       </div>
+
+      <form class="intent card" style="margin-top:2rem">
+        <h2>A note that does not fit the other doors</h2>
+        <p>Sreenivasa reads these and replies from admin. Your email is only used for the answer.</p>
+        <input type="hidden" name="kind" value="contact">
+        <div class="form-row">
+          <label>Your name
+            <input name="name" required autocomplete="name">
+          </label>
+          <label>Email
+            <input name="email" type="email" autocomplete="email">
+          </label>
+        </div>
+        <label>Phone
+          <input name="phone" type="tel" autocomplete="tel">
+        </label>
+        <label>Message
+          <textarea name="message" required></textarea>
+        </label>
+        <button class="btn btn-primary" type="submit">Send to Sreenivasa</button>
+        <p class="intent-note" data-note></p>
+      </form>
     </div>
   </main>
-
-  <footer class="site-footer">
-    <div class="wrap">
-      <p>© <span id="year">2026</span> Sanghamitra</p>
+      <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <p>© <span data-year>2026</span> Sanghamitra · సంఘమిత్ర</p>
+        <p class="muted">An organization. Sreenivasa Ainapurapu is the founder and the face of the work.</p>
+      </div>
       <p class="social">
-        <a href="https://www.youtube.com/@sreenivasaainapurapu3741/featured">YouTube</a>
-        <a href="https://www.facebook.com/sreenivasa.ainapurapu">Facebook</a>
-        <a href="https://chat.whatsapp.com/EAEwM6yk9jG3zIiRd6qOKg">WhatsApp</a>
+        <a href="learn.html#enroll">Enroll</a>
+        <a href="give.html#donate">Donate</a>
+        <a href="give.html#volunteer">Volunteer</a>
+        <a href="talks.html">Book a talk</a>
+        <a href="contact.html">Contact Sreenivasa</a>
+        <a href="poetry.html">Poetry</a>
+        <a href="magazine.html">Magazine</a>
+        <a href="press.html">Press</a>
+        <a href="watch.html">Watch</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="traditions.html">Traditions</a>
+        <a href="https://wa.me/13146015309">WhatsApp</a>
+        <a href="admin/login.html">Admin</a>
       </p>
     </div>
   </footer>

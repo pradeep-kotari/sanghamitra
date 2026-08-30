@@ -1,0 +1,699 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin · Sanghamitra</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,700&family=Noto+Serif+Telugu:wght@500;700&family=Source+Serif+4:opsz,wght@8..60,480;8..60,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/site.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="../index.html">
+        <strong>Sanghamitra</strong>
+        <small>సంఘమిత్ర · admin</small>
+      </a>
+      <nav>
+        <span id="who"></span>
+        <a href="#edit">Edit the site</a>
+        <a href="#inbox">Tell Jason</a>
+        <a href="#questions">From the site</a>
+        <a href="#decisions">Design choices</a>
+        <a href="#photos">Photos</a>
+        <a href="../gallery.html">Gallery</a>
+        <button class="btn btn-ghost" type="button" id="logout">Sign out</button>
+      </nav>
+    </div>
+  </header>
+  <main class="section">
+    <div class="wrap">
+      <p class="kicker">Admin</p>
+      <h1>Edit the site, or tell Jason what to build.</h1>
+      <p class="lede">Two doors. Change contact, donate, enroll, or events here and the public pages update. For a new page or a rewrite, write Jason a note — he reads it on the next login and builds.</p>
+      <p id="db-note" class="notice hidden"></p>
+
+      <section id="edit" style="margin-top:2rem">
+        <p class="kicker">Live</p>
+        <h2>Edit the public site</h2>
+        <p class="muted">These fields publish as soon as you save. Jason still reads them so he knows what you changed.</p>
+        <form id="site-form" class="card">
+          <h3>Who people reach</h3>
+          <div class="form-row">
+            <label>Name on the site
+              <input name="personName" maxlength="120">
+            </label>
+            <label>Public email
+              <input name="publicEmail" type="email" maxlength="120">
+            </label>
+          </div>
+          <div class="form-row">
+            <label>Phone / WhatsApp
+              <input name="phone" maxlength="40" placeholder="+1 314 601 5309">
+            </label>
+            <label>WhatsApp group link
+              <input name="whatsappGroup" maxlength="240">
+            </label>
+          </div>
+          <h3>Homepage lines</h3>
+          <label>Years line
+            <input name="yearsLine" maxlength="240" placeholder="Named in 2004, after earlier service">
+          </label>
+          <label>Who-line under the title
+            <textarea name="whoLine" maxlength="400"></textarea>
+          </label>
+          <label>Homepage lede
+            <textarea name="homepageLede" maxlength="800"></textarea>
+          </label>
+          <h3>Donate</h3>
+          <label>Donate button
+            <select name="donateMode">
+              <option value="ask">Keep the form — he writes how to give</option>
+              <option value="how">Show how to give on the page</option>
+              <option value="hide">Take Donate off the public site</option>
+            </select>
+          </label>
+          <label>How to give (if you chose show)
+            <textarea name="donateHow" maxlength="800" placeholder="Zelle to … / check to …"></textarea>
+          </label>
+          <h3>Who we enroll this month</h3>
+          <label class="opt"><input type="checkbox" name="enrollMath"> Vedic mathematics</label>
+          <label class="opt"><input type="checkbox" name="enrollSat"> SAT / ACT / school tutoring</label>
+          <label class="opt"><input type="checkbox" name="enrollTelugu"> Telugu</label>
+          <button class="btn btn-primary" type="submit">Save public details</button>
+        </form>
+
+        <h3 style="margin-top:2rem">Events</h3>
+        <p class="muted">Change a sitting or add one. Photos for older events still upload below.</p>
+        <div id="event-editor"></div>
+        <p style="margin-top:1rem">
+          <button class="btn btn-dark" type="button" id="add-event">Add an event</button>
+          <button class="btn btn-primary" type="button" id="save-events">Save events</button>
+        </p>
+      </section>
+
+      <section id="inbox" style="margin-top:2.8rem">
+        <p class="kicker">For Jason</p>
+        <h2>Tell Jason what to build</h2>
+        <form id="answer-form" class="card">
+          <label>A ranking, a yes/no, or a change that needs building
+            <textarea name="body" required placeholder="Example: 1-A, 2-C, 3-E — or “rewrite About in Telugu.”"></textarea>
+          </label>
+          <button class="btn btn-primary" type="submit">Save note for Jason</button>
+        </form>
+
+        <form id="owner-ask-form" class="card hidden" style="margin-top:1.4rem">
+          <h3>Email Sreenivasa a question</h3>
+          <p class="muted">Builder only. The email includes how to sign in. The site does not store the questions.</p>
+          <label>Questions
+            <textarea name="body" required></textarea>
+          </label>
+          <button class="btn btn-dark" type="submit">Email him these questions</button>
+        </form>
+
+        <h2 style="margin-top:2rem">Saved answers</h2>
+        <div id="answers"></div>
+      </section>
+
+      <section id="questions" style="margin-top:2.8rem">
+        <p class="kicker">From the site</p>
+        <h2>Notes people sent</h2>
+        <p>Enroll, donate, volunteer, talks, poetry, and the contact form. Your reply is stored here and emailed if they left an address.</p>
+        <div id="queries"></div>
+      </section>
+
+      <section id="decisions" style="margin-top:2.8rem">
+        <p class="kicker">Design decisions</p>
+        <h2>The website choices</h2>
+        <p>These are the questions from the intake sheet. Save an answer and it stays in D1. Earlier answers stay as history.</p>
+        <div id="decision-list"></div>
+      </section>
+
+      <section id="photos" style="margin-top:2.8rem">
+        <p class="kicker">Gallery</p>
+        <h2>Photos</h2>
+        <form id="upload" class="card" style="margin:1.4rem 0">
+          <h3>Upload a photo</h3>
+          <p class="muted">For an older sitting, choose Earlier events or Both and name the event. It will show on the Events page under Earlier sessions.</p>
+          <label>Photo
+            <input name="file" type="file" accept="image/jpeg,image/png,image/webp,image/gif" required>
+          </label>
+          <label>Caption
+            <input name="caption" maxlength="200" placeholder="Medhavadhanam, St. Louis, 2026">
+          </label>
+          <label>Show on
+            <select name="place">
+              <option value="both">Gallery and earlier events</option>
+              <option value="events">Earlier events only</option>
+              <option value="gallery">Gallery only</option>
+            </select>
+          </label>
+          <label>Earlier event name
+            <input name="eventTitle" list="event-titles" maxlength="120" placeholder="Summer Program 2026">
+          </label>
+          <datalist id="event-titles"></datalist>
+          <button class="btn btn-primary" type="submit">Upload</button>
+          <p id="up-note"></p>
+        </form>
+        <div id="photos-box" class="photos"></div>
+      </section>
+    </div>
+  </main>
+  <script type="module">
+    function esc(s) {
+      return String(s || "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+    }
+    function showNote(msg, ok) {
+      const note = document.getElementById("db-note");
+      note.classList.remove("hidden");
+      note.className = "notice " + (ok ? "ok" : "");
+      note.textContent = msg;
+    }
+    async function me() {
+      const res = await fetch("/api/auth/me");
+      if (!res.ok) { location.href = "/admin/login"; return null; }
+      return res.json();
+    }
+    function el(html) {
+      const d = document.createElement("div");
+      d.innerHTML = html.trim();
+      return d.firstElementChild;
+    }
+    function fmtValue(v) {
+      if (Array.isArray(v)) return v.join(", ");
+      return String(v ?? "");
+    }
+
+    const user = await me();
+    if (!user) throw new Error("redirect");
+    document.getElementById("who").textContent = user.name + " · " + user.email;
+
+    document.getElementById("logout").onclick = async () => {
+      await fetch("/api/auth/logout", { method: "POST" });
+      location.href = "/admin/login";
+    };
+
+    async function loadEventTitles() {
+      try {
+        const res = await fetch("../data/site.json", { cache: "no-store" });
+        const data = await res.json();
+        const list = document.getElementById("event-titles");
+        list.innerHTML = (data.events || []).map((e) =>
+          `<option value="${esc(e.title)}"></option>`
+        ).join("");
+      } catch {
+        /* optional */
+      }
+    }
+
+    function placeLabel(p) {
+      if (p.place === "events") return "Earlier events";
+      if (p.place === "both") return "Gallery + earlier events";
+      return "Gallery";
+    }
+
+    async function loadPhotos() {
+      const res = await fetch("/api/photos");
+      const data = await res.json().catch(() => ({}));
+      const box = document.getElementById("photos-box");
+      box.innerHTML = "";
+      (data.photos || []).forEach((p) => {
+        const fig = el(`<figure>
+          <img src="/media/${p.id}" alt="">
+          <figcaption>
+            <form class="photo-meta">
+              <p class="muted">${esc(placeLabel(p))}${p.eventTitle ? ` · ${esc(p.eventTitle)}` : ""}</p>
+              <input name="caption" maxlength="200" value="${esc(p.caption || "")}" placeholder="Caption">
+              <select name="place">
+                <option value="both"${p.place === "both" ? " selected" : ""}>Gallery and earlier events</option>
+                <option value="events"${p.place === "events" ? " selected" : ""}>Earlier events only</option>
+                <option value="gallery"${!p.place || p.place === "gallery" ? " selected" : ""}>Gallery only</option>
+              </select>
+              <input name="eventTitle" list="event-titles" maxlength="120" value="${esc(p.eventTitle || "")}" placeholder="Earlier event name">
+              <button class="btn btn-dark" type="submit">Save</button>
+              <button class="btn btn-ghost" type="button" data-id="${p.id}">Remove</button>
+            </form>
+          </figcaption>
+        </figure>`);
+        fig.querySelector("form").onsubmit = async (ev) => {
+          ev.preventDefault();
+          const fd = new FormData(ev.target);
+          const out = await fetch("/api/photos/" + p.id, {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify({
+              caption: fd.get("caption"),
+              place: fd.get("place"),
+              eventTitle: fd.get("eventTitle"),
+            }),
+          });
+          const body = await out.json().catch(() => ({}));
+          if (!out.ok) return showNote(body.error || "Could not update photo", false);
+          showNote("Photo saved.", true);
+          loadPhotos();
+        };
+        fig.querySelector("[data-id]").onclick = async () => {
+          await fetch("/api/photos/" + p.id, { method: "DELETE" });
+          loadPhotos();
+        };
+        box.append(fig);
+      });
+    }
+
+    async function loadQueries() {
+      const box = document.getElementById("queries");
+      const res = await fetch("/api/queries");
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        box.innerHTML = `<p class="notice">${esc(data.error || "Could not load questions. Sign in again.")}</p>`;
+        return;
+      }
+      const queries = data.queries || [];
+      if (!queries.length) {
+        box.innerHTML = "<p>No notes from the public forms yet. New ones from Contact, Enroll, Give, Invite, and Poetry appear here.</p>";
+        return;
+      }
+      box.innerHTML = "";
+      queries.forEach((q) => {
+        const replies = (q.replies || []).map((r) =>
+          `<p class="reply"><strong>${esc(r.name)}:</strong> ${esc(r.text)} <span class="muted">${esc(new Date(r.createdAt).toLocaleString())}</span></p>`
+        ).join("");
+        const card = el(`<article class="card qa-card">
+          <p class="kicker">${esc(q.kind || "contact")}</p>
+          <p><strong>${esc(q.name)}</strong> · ${esc(q.email || "no email")}${q.phone ? ` · ${esc(q.phone)}` : ""} · ${esc(new Date(q.createdAt).toLocaleString())}</p>
+          <p>${esc(q.message)}</p>
+          ${replies || "<p class=\"muted\">No reply yet.</p>"}
+          <form class="reply-form">
+            <label>Reply
+              <textarea name="reply" required></textarea>
+            </label>
+            <button class="btn btn-dark" type="submit">Save reply</button>
+          </form>
+        </article>`);
+        card.querySelector("form").onsubmit = async (ev) => {
+          ev.preventDefault();
+          const reply = new FormData(ev.target).get("reply");
+          const out = await fetch("/api/queries/" + q.id, {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify({ reply }),
+          });
+          const body = await out.json().catch(() => ({}));
+          if (!out.ok) return showNote(body.error || "Reply did not save", false);
+          showNote("Reply saved in D1.", true);
+          loadQueries();
+        };
+        box.append(card);
+      });
+    }
+
+    function fieldControls(field) {
+      const latest = field.latest ? field.latest.value : "";
+      const opts = field.options || [];
+      if (field.type === "radio") {
+        return opts.map((o) => {
+          const checked = latest === o.value ? " checked" : "";
+          return `<label class="opt"><input type="radio" name="${esc(field.id)}" value="${esc(o.value)}"${checked}> ${esc(o.label)}${o.suggested ? ' <span class="tag">suggestion</span>' : ""}</label>`;
+        }).join("");
+      }
+      if (field.type === "checkbox") {
+        const selected = Array.isArray(latest) ? latest : [];
+        return opts.map((o) => {
+          const checked = selected.includes(o.value) ? " checked" : "";
+          return `<label class="opt"><input type="checkbox" name="${esc(field.id)}" value="${esc(o.value)}"${checked}> ${esc(o.label)}</label>`;
+        }).join("");
+      }
+      if (field.type === "select") {
+        const options = opts.map((o) => {
+          const sel = latest === o.value ? " selected" : "";
+          return `<option value="${esc(o.value)}"${sel}>${esc(o.label)}</option>`;
+        }).join("");
+        return `<select name="${esc(field.id)}">${options}</select>`;
+      }
+      if (field.type === "textarea") {
+        return `<textarea name="${esc(field.id)}">${esc(typeof latest === "string" ? latest : "")}</textarea>`;
+      }
+      return `<input type="text" name="${esc(field.id)}" value="${esc(typeof latest === "string" ? latest : "")}">`;
+    }
+
+    function readFieldValue(form, field) {
+      if (field.type === "checkbox") {
+        return [...form.querySelectorAll(`input[name="${field.id}"]:checked`)].map((i) => i.value);
+      }
+      const el = form.elements[field.id];
+      return el ? el.value : "";
+    }
+
+    async function loadDecisions() {
+      const box = document.getElementById("decision-list");
+      const res = await fetch("/api/decisions");
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        box.innerHTML = `<p class="notice">${esc(data.error || "Could not load design decisions.")}</p>`;
+        return;
+      }
+      const sections = data.sections || [];
+      if (!sections.length) {
+        box.innerHTML = "<p>No design questions are in the database yet.</p>";
+        return;
+      }
+      box.innerHTML = "";
+      sections.forEach((sec) => {
+        const fields = (sec.fields || []).map((field) => {
+          const latest = field.latest
+            ? `<p class="answer-now"><strong>Saved:</strong> ${esc(fmtValue(field.latest.value))} <span class="muted">· ${esc(field.latest.name)} · ${esc(new Date(field.latest.createdAt).toLocaleString())}</span></p>`
+            : `<p class="muted">No answer saved yet.</p>`;
+          const hist = (field.history || []).length > 1
+            ? `<details><summary>Earlier answers (${field.history.length - 1})</summary>${
+                field.history.slice(0, -1).reverse().map((h) =>
+                  `<p>${esc(fmtValue(h.value))} <span class="muted">· ${esc(h.name)} · ${esc(new Date(h.createdAt).toLocaleString())}</span></p>`
+                ).join("")
+              }</details>`
+            : "";
+          return `<article class="decision-field" data-id="${esc(field.id)}">
+            <h3>${esc(field.title)}</h3>
+            ${field.why ? `<p class="muted">${esc(field.why)}</p>` : ""}
+            ${latest}
+            <form>
+              ${fieldControls(field)}
+              <button class="btn btn-dark" type="submit">Save this answer</button>
+            </form>
+            ${hist}
+          </article>`;
+        }).join("");
+        const wrap = el(`<article class="card qa-card">
+          <p class="kicker">Question ${sec.section}</p>
+          <h2>${esc(sec.title)}</h2>
+          ${sec.why ? `<p>${esc(sec.why)}</p>` : ""}
+          ${fields}
+        </article>`);
+        wrap.querySelectorAll("form").forEach((form) => {
+          form.onsubmit = async (ev) => {
+            ev.preventDefault();
+            const fieldEl = form.closest("[data-id]");
+            const id = fieldEl.getAttribute("data-id");
+            const field = sec.fields.find((f) => f.id === id);
+            const value = readFieldValue(form, field);
+            const out = await fetch("/api/decisions/" + id, {
+              method: "POST",
+              headers: { "content-type": "application/json" },
+              body: JSON.stringify({ value }),
+            });
+            const body = await out.json().catch(() => ({}));
+            if (!out.ok) return showNote(body.error || "Answer did not save", false);
+            showNote("Answer saved in D1.", true);
+            loadDecisions();
+          };
+        });
+        box.append(wrap);
+      });
+    }
+
+    document.getElementById("upload").onsubmit = async (ev) => {
+      ev.preventDefault();
+      const note = document.getElementById("up-note");
+      const res = await fetch("/api/photos", { method: "POST", body: new FormData(ev.target) });
+      const data = await res.json();
+      note.textContent = res.ok ? "Uploaded." : (data.error || "Upload failed");
+      if (res.ok) {
+        const place = ev.target.place.value;
+        const eventTitle = ev.target.eventTitle.value;
+        ev.target.reset();
+        ev.target.place.value = place;
+        ev.target.eventTitle.value = eventTitle;
+        loadPhotos();
+      }
+    };
+
+    const DEFAULT_ASK = [
+      "Please rank what we should do now. Reply like: 1-A, 2-C, 3-E",
+      "Skip anything you do not want this round.",
+      "",
+      "A. Point sanghamitra.org at the live site (you change DNS; we will send the target)",
+      "B. Public email + confirm WhatsApp / group on every page",
+      "C. Donate: real how-to-give, or take the Donate button down",
+      "D. 2026 student photos: keep, replace, or take down",
+      "E. Who we enroll this month: Vedic math / SAT-ACT / Telugu",
+      "F. Satakam title + 2–4 verses, or “later”",
+      "G. Burrakatha: a YouTube link, or “coming”",
+      "H. Next public sitting after 5 September, or “none listed”",
+      "I. Homepage name spelling + years line (2003 / 2004 / 25 years)",
+      "J. Old magazine PDFs only if you still have them",
+      "",
+      "Not this round unless you put it first: dance directory, full Telugu pages, magazine restart, SiliconAndhra logo.",
+    ].join("\n");
+
+    if (user.email === "pradeep.kotari@gmail.com") {
+      const askForm = document.getElementById("owner-ask-form");
+      askForm.classList.remove("hidden");
+      askForm.body.value = DEFAULT_ASK;
+      askForm.onsubmit = async (ev) => {
+        ev.preventDefault();
+        const out = await fetch("/api/owner-ask", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ body: new FormData(ev.target).get("body") }),
+        });
+        const data = await out.json().catch(() => ({}));
+        if (!out.ok) return showNote(data.error || "Email did not send", false);
+        showNote("Emailed Sreenivasa the questions and how to sign in. You are copied.", true);
+      };
+    }
+
+    async function loadAnswers() {
+      const box = document.getElementById("answers");
+      const res = await fetch("/api/conversation");
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        box.innerHTML = `<p class="notice">${esc(data.error || "Could not load answers.")}</p>`;
+        return;
+      }
+      const answers = data.answers || [];
+      if (!answers.length) {
+        box.innerHTML = "<p>No answers saved yet.</p>";
+        return;
+      }
+      box.innerHTML = answers.map((m) =>
+        `<article class="thread-item kind-answer">
+          <p class="kicker">Answer</p>
+          <p>${esc(m.body)}</p>
+          <p class="muted">${esc(m.authorName)} · ${esc(new Date(m.createdAt).toLocaleString())}</p>
+        </article>`
+      ).join("");
+    }
+
+    let siteOverlay = {
+      personName: "",
+      yearsLine: "",
+      whoLine: "",
+      homepageLede: "",
+      publicEmail: "",
+      phone: "",
+      whatsappGroup: "",
+      donateMode: "ask",
+      donateHow: "",
+      enrollLive: { math: true, sat: true, telugu: true },
+      eventPatches: {},
+      extraEvents: [],
+      hiddenEventIds: [],
+    };
+    let siteBase = { events: [], person: {}, links: {}, copy: {} };
+
+    function fillSiteForm() {
+      const f = document.getElementById("site-form");
+      const o = siteOverlay;
+      const b = siteBase;
+      f.personName.value = o.personName || (b.person && b.person.name) || "";
+      f.publicEmail.value = o.publicEmail || (b.links && b.links.email) || "";
+      f.phone.value = o.phone || (b.links && b.links.phone) || "";
+      f.whatsappGroup.value = o.whatsappGroup || (b.links && b.links.whatsappGroup) || "";
+      f.yearsLine.value = o.yearsLine || (b.copy && b.copy.yearsLine) || "";
+      f.whoLine.value = o.whoLine || (b.copy && b.copy.whoLine) || "";
+      f.homepageLede.value = o.homepageLede || (b.copy && b.copy.homepageLede) || "";
+      f.donateMode.value = o.donateMode || "ask";
+      f.donateHow.value = o.donateHow || "";
+      const live = o.enrollLive || {};
+      f.enrollMath.checked = live.math !== false;
+      f.enrollSat.checked = live.sat !== false;
+      f.enrollTelugu.checked = live.telugu !== false;
+    }
+
+    function visibleEvents() {
+      const hidden = new Set(siteOverlay.hiddenEventIds || []);
+      const patches = siteOverlay.eventPatches || {};
+      const list = [];
+      for (const e of siteBase.events || []) {
+        if (hidden.has(e.id)) continue;
+        const patch = patches[e.id] || {};
+        const next = { ...e };
+        for (const [k, v] of Object.entries(patch)) if (v) next[k] = v;
+        list.push({ ...next, _extra: false });
+      }
+      for (const e of siteOverlay.extraEvents || []) {
+        if (!e || hidden.has(e.id)) continue;
+        list.push({ ...e, _extra: true });
+      }
+      return list;
+    }
+
+    function renderEventEditor() {
+      const box = document.getElementById("event-editor");
+      const events = visibleEvents();
+      if (!events.length) {
+        box.innerHTML = "<p class=\"muted\">No events on the public site. Add one.</p>";
+        return;
+      }
+      box.innerHTML = events.map((e) => `
+        <article class="card event-edit" data-id="${esc(e.id)}" data-extra="${e._extra ? "1" : "0"}">
+          <div class="form-row">
+            <label>Title <input name="title" value="${esc(e.title || "")}"></label>
+            <label>When label <input name="whenLabel" value="${esc(e.whenLabel || e.timezoneLabel || "")}"></label>
+          </div>
+          <div class="form-row">
+            <label>Start (upcoming vs earlier)
+              <input name="startsAt" value="${esc(e.startsAt || "")}" placeholder="2026-09-05T18:00:00+05:30">
+            </label>
+            <label>Join URL
+              <input name="joinUrl" value="${esc(e.joinUrl || "")}">
+            </label>
+          </div>
+          <label>Flyer image URL
+            <input name="flyer" value="${esc(e.flyer || "")}" placeholder="announcements/…/flyer.jpg or /media/…">
+          </label>
+          <label>What it is
+            <textarea name="blurb">${esc(e.blurb || "")}</textarea>
+          </label>
+          <button class="btn btn-ghost" type="button" data-hide="${esc(e.id)}">Remove from the public site</button>
+        </article>
+      `).join("");
+      box.querySelectorAll("[data-hide]").forEach((btn) => {
+        btn.onclick = () => {
+          const id = btn.getAttribute("data-hide");
+          if ((siteOverlay.extraEvents || []).some((e) => e.id === id)) {
+            siteOverlay.extraEvents = siteOverlay.extraEvents.filter((e) => e.id !== id);
+          } else {
+            siteOverlay.hiddenEventIds = [...new Set([...(siteOverlay.hiddenEventIds || []), id])];
+          }
+          renderEventEditor();
+        };
+      });
+    }
+
+    function collectEventEdits() {
+      const patches = { ...(siteOverlay.eventPatches || {}) };
+      const extras = [];
+      document.querySelectorAll("#event-editor .event-edit").forEach((card) => {
+        const id = card.getAttribute("data-id");
+        const fields = {
+          id,
+          title: card.querySelector("[name=title]").value.trim(),
+          whenLabel: card.querySelector("[name=whenLabel]").value.trim(),
+          startsAt: card.querySelector("[name=startsAt]").value.trim(),
+          joinUrl: card.querySelector("[name=joinUrl]").value.trim(),
+          flyer: card.querySelector("[name=flyer]").value.trim(),
+          blurb: card.querySelector("[name=blurb]").value.trim(),
+        };
+        if (card.getAttribute("data-extra") === "1") extras.push(fields);
+        else patches[id] = fields;
+      });
+      siteOverlay.eventPatches = patches;
+      siteOverlay.extraEvents = extras;
+    }
+
+    async function saveOverlay() {
+      const out = await fetch("/api/site", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ overlay: siteOverlay }),
+      });
+      const data = await out.json().catch(() => ({}));
+      if (!out.ok) {
+        showNote(data.error || "Did not save", false);
+        return false;
+      }
+      if (data.overlay) siteOverlay = data.overlay;
+      return true;
+    }
+
+    document.getElementById("site-form").onsubmit = async (ev) => {
+      ev.preventDefault();
+      const f = ev.target;
+      siteOverlay.personName = f.personName.value.trim();
+      siteOverlay.publicEmail = f.publicEmail.value.trim();
+      siteOverlay.phone = f.phone.value.trim();
+      siteOverlay.whatsappGroup = f.whatsappGroup.value.trim();
+      siteOverlay.yearsLine = f.yearsLine.value.trim();
+      siteOverlay.whoLine = f.whoLine.value.trim();
+      siteOverlay.homepageLede = f.homepageLede.value.trim();
+      siteOverlay.donateMode = f.donateMode.value;
+      siteOverlay.donateHow = f.donateHow.value.trim();
+      siteOverlay.enrollLive = {
+        math: f.enrollMath.checked,
+        sat: f.enrollSat.checked,
+        telugu: f.enrollTelugu.checked,
+      };
+      if (await saveOverlay()) showNote("Public details are live. Open the homepage to see them.", true);
+    };
+
+    document.getElementById("add-event").onclick = () => {
+      collectEventEdits();
+      siteOverlay.extraEvents = siteOverlay.extraEvents || [];
+      siteOverlay.extraEvents.push({
+        id: "admin-" + Date.now(),
+        title: "New sitting",
+        kind: "group",
+        startsAt: new Date().toISOString(),
+        whenLabel: "",
+        blurb: "",
+        joinUrl: "",
+        flyer: "",
+      });
+      renderEventEditor();
+    };
+
+    document.getElementById("save-events").onclick = async () => {
+      collectEventEdits();
+      if (await saveOverlay()) showNote("Events are live on the Events page.", true);
+    };
+
+    async function loadSiteEditor() {
+      try {
+        const [baseRes, liveRes] = await Promise.all([
+          fetch("../data/site.json", { cache: "no-store" }),
+          fetch("/api/site"),
+        ]);
+        siteBase = await baseRes.json();
+        const live = await liveRes.json().catch(() => ({}));
+        if (live.overlay) siteOverlay = { ...siteOverlay, ...live.overlay };
+        fillSiteForm();
+        renderEventEditor();
+      } catch {
+        showNote("Could not load the live editor. You can still leave Jason a note.", false);
+      }
+    }
+
+    document.getElementById("answer-form").onsubmit = async (ev) => {
+      ev.preventDefault();
+      const out = await fetch("/api/conversation", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ kind: "answer", body: new FormData(ev.target).get("body") }),
+      });
+      const data = await out.json().catch(() => ({}));
+      if (!out.ok) return showNote(data.error || "Did not save", false);
+      showNote("Saved for Jason. He will build from this.", true);
+      ev.target.reset();
+      loadAnswers();
+    };
+
+    loadSiteEditor();
+    loadAnswers();
+    loadEventTitles();
+    loadPhotos();
+    loadQueries();
+    loadDecisions();
+  </script>
+</body>
+</html>

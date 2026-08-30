@@ -162,7 +162,7 @@
       <p class="telugu">నమస్కారం</p>
       <h1>A few choices so Pradeep can build the website</h1>
       <p class="lede">You do not need to write an essay. Orange boxes are already filled with our best guess. Change only what is wrong. At the bottom, download the answers or copy them into an email.</p>
-      <p class="note">Your answers stay on this computer until you download or copy them. Nothing is sent anywhere automatically.</p>
+      <p class="note">Answers still save on this computer as you go. If you are signed in as admin, <strong>Save to the admin database</strong> writes them to Cloudflare D1 so both admins can see and change them later.</p>
     </header>
 
     <form id="q" autocomplete="on">
@@ -412,6 +412,7 @@
     <span class="status" id="status">Answers save on this device as you go.</span>
     <button type="button" class="ghost" id="btn-preview">Show summary</button>
     <button type="button" class="ghost" id="btn-copy">Copy for email</button>
+    <button type="button" class="ghost" id="btn-cloud">Save to the admin database</button>
     <button type="button" id="btn-download">Download answers</button>
   </div>
 
@@ -520,6 +521,24 @@
       } catch (e) {
         document.getElementById("status").textContent = "Select the summary and copy it yourself.";
       }
+    };
+    document.getElementById("btn-cloud").onclick = async () => {
+      persist();
+      const d = collect();
+      const res = await fetch("/api/decisions", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        credentials: "same-origin",
+        body: JSON.stringify({ answers: d }),
+      });
+      const out = await res.json().catch(() => ({}));
+      if (res.status === 401) {
+        document.getElementById("status").textContent = "Sign in at Admin first, then come back and save.";
+        return;
+      }
+      document.getElementById("status").textContent = res.ok
+        ? "Saved to Cloudflare D1. Open Admin to see every question and answer."
+        : (out.error || "Could not save to the database.");
     };
     document.getElementById("btn-download").onclick = () => {
       persist();

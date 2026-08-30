@@ -1,5 +1,20 @@
 {
   "name": "sanghamitra",
   "compatibility_date": "2026-08-30",
-  "pages_build_output_dir": "./site"
+  "pages_build_output_dir": "./site",
+  "kv_namespaces": [
+    {
+      "binding": "ADMIN",
+      "id": "f392d8c33aa54a68b3db16e22d8237f7",
+      "preview_id": "d5c20709f70c4b308379cd5ba253bda7"
+    }
+  ],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "sanghamitra",
+      "database_id": "976516cf-14ca-45ca-86f9-0c9f94c80937",
+      "migrations_dir": "migrations"
+    }
+  ]
 }

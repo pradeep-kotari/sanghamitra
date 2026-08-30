@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin sign in · Sanghamitra</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,700&family=Noto+Serif+Telugu:wght@500;700&family=Source+Serif+4:opsz,wght@8..60,480;8..60,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/site.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="../index.html">
+        <strong>Sanghamitra</strong>
+        <small>సంఘమిత్ర · admin</small>
+      </a>
+    </div>
+  </header>
+  <main class="section">
+    <div class="wrap" style="max-width:32rem">
+      <p class="kicker">Admin</p>
+      <h1>Sign in to edit the site</h1>
+      <p class="lede">Admins can change the public pages, or leave a note for Jason to build. Only two addresses: Sreenivasa and Pradeep.</p>
+      <ol>
+        <li>Enter <strong>ainapura@yahoo.com</strong></li>
+        <li>Click Send the code</li>
+        <li>Open the next email — six digits, valid 10 minutes</li>
+        <li>Enter the code. Then edit the site, or leave Jason a note</li>
+      </ol>
+      <p class="muted">Only ainapura@yahoo.com and pradeep.kotari@gmail.com can sign in.</p>
+      <form id="ask">
+        <label>Email
+          <input name="email" type="email" required autocomplete="username">
+        </label>
+        <button class="btn btn-primary" type="submit">Send the code</button>
+      </form>
+      <form id="verify" class="hidden" style="margin-top:1rem">
+        <label>Six-digit code
+          <input name="code" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" required autocomplete="one-time-code">
+        </label>
+        <button class="btn btn-dark" type="submit">Sign in</button>
+      </form>
+      <p id="note" class="notice hidden"></p>
+    </div>
+  </main>
+  <script>
+    const ask = document.getElementById("ask");
+    const verify = document.getElementById("verify");
+    const note = document.getElementById("note");
+    let email = "";
+    function show(msg, ok) {
+      note.classList.remove("hidden");
+      note.className = "notice " + (ok ? "ok" : "");
+      note.textContent = msg;
+    }
+    fetch("/api/auth/me").then((r) => { if (r.ok) location.href = "/admin/#edit"; });
+    ask.addEventListener("submit", async (ev) => {
+      ev.preventDefault();
+      email = new FormData(ask).get("email");
+      const res = await fetch("/api/auth/request", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      const data = await res.json();
+      if (!res.ok) return show(data.error || "Could not send");
+      verify.classList.remove("hidden");
+      show(data.message || "Check that inbox.", true);
+    });
+    verify.addEventListener("submit", async (ev) => {
+      ev.preventDefault();
+      const code = new FormData(verify).get("code");
+      const res = await fetch("/api/auth/verify", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ email, code }),
+      });
+      const data = await res.json();
+      if (!res.ok) return show(data.error || "That code did not work");
+      location.href = "/admin/#edit";
+    });
+  </script>
+</body>
+</html>
