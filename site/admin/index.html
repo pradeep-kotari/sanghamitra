@@ -19,9 +19,10 @@
       <nav>
         <span id="who"></span>
         <a href="#edit">Edit the site</a>
-        <a href="#inbox">Tell Jason</a>
+        <a href="#inbox">Tell Pradeep</a>
         <a href="#questions">From the site</a>
         <a href="#decisions">Design choices</a>
+        <a href="#library">Poetry &amp; magazine</a>
         <a href="#photos">Photos</a>
         <a href="../gallery.html">Gallery</a>
         <button class="btn btn-ghost" type="button" id="logout">Sign out</button>
@@ -31,14 +32,26 @@
   <main class="section">
     <div class="wrap">
       <p class="kicker">Admin</p>
-      <h1>Edit the site, or tell Jason what to build.</h1>
-      <p class="lede">Two doors. Change contact, donate, enroll, or events here and the public pages update. For a new page or a rewrite, write Jason a note — he reads it on the next login and builds.</p>
+      <h1>Edit the site, or tell Pradeep what to build.</h1>
+      <p class="lede">Two doors. Change contact, donate, enroll, or events here and the public pages update. For a new page or a rewrite, write Pradeep a note — he reads it on the next login and builds.</p>
       <p id="db-note" class="notice hidden"></p>
+
+      <section id="earn-back" class="card" style="margin-top:2rem">
+        <p class="kicker">Private — not on the public site</p>
+        <h2>What this is for</h2>
+        <p>You have run Sanghamitra for years on WhatsApp, the hall, and YouTube. This site does not replace that. It is one link so sanghamitra.org is not a parking page, and so a flyer can point somewhere real.</p>
+        <ol>
+          <li><strong>Edit what changes.</strong> Phone, events, photos — save here. You do not need us for a new sitting.</li>
+          <li><strong>Give.</strong> Paste a Zelle name or number, Venmo, or PayPal.me under Donate only if you actually accept gifts that way. Blank means the public page will not invent a method.</li>
+          <li><strong>5 September.</strong> Copy invite / WhatsApp friends if you want a second channel besides the group you already have. I’m coming is optional — a name list, not a gate.</li>
+          <li><strong>Notes from the site</strong> land under From the site. WhatsApp is still the faster door, as it always was.</li>
+        </ol>
+      </section>
 
       <section id="edit" style="margin-top:2rem">
         <p class="kicker">Live</p>
         <h2>Edit the public site</h2>
-        <p class="muted">These fields publish as soon as you save. Jason still reads them so he knows what you changed.</p>
+        <p class="muted">These fields publish as soon as you save. Pradeep still reads them so he knows what you changed.</p>
         <form id="site-form" class="card">
           <h3>Who people reach</h3>
           <div class="form-row">
@@ -70,13 +83,24 @@
           <h3>Donate</h3>
           <label>Donate button
             <select name="donateMode">
-              <option value="ask">Keep the form — he writes how to give</option>
-              <option value="how">Show how to give on the page</option>
+              <option value="ask">Show the donate form. Add Zelle / Venmo / PayPal only if you paste them below</option>
+              <option value="how">Same, and also show the extra instructions below</option>
               <option value="hide">Take Donate off the public site</option>
             </select>
           </label>
-          <label>How to give (if you chose show)
-            <textarea name="donateHow" maxlength="800" placeholder="Zelle to … / check to …"></textarea>
+          <div class="form-row">
+            <label>Zelle (blank = do not show a Zelle target)
+              <input name="donateZelle" maxlength="80" placeholder="Only if you accept Zelle">
+            </label>
+            <label>Venmo handle
+              <input name="donateVenmo" maxlength="80" placeholder="YourVenmoName">
+            </label>
+          </div>
+          <label>PayPal.me name or URL
+            <input name="donatePaypal" maxlength="120" placeholder="paypal.me/yourname">
+          </label>
+          <label>Extra instructions (checks, India, etc.)
+            <textarea name="donateHow" maxlength="800" placeholder="Checks to Sanghamitra, mailed to …"></textarea>
           </label>
           <h3>Who we enroll this month</h3>
           <label class="opt"><input type="checkbox" name="enrollMath"> Vedic mathematics</label>
@@ -95,13 +119,13 @@
       </section>
 
       <section id="inbox" style="margin-top:2.8rem">
-        <p class="kicker">For Jason</p>
-        <h2>Tell Jason what to build</h2>
+        <p class="kicker">For Pradeep</p>
+        <h2>Tell Pradeep what to build</h2>
         <form id="answer-form" class="card">
           <label>A ranking, a yes/no, or a change that needs building
             <textarea name="body" required placeholder="Example: 1-A, 2-C, 3-E — or “rewrite About in Telugu.”"></textarea>
           </label>
-          <button class="btn btn-primary" type="submit">Save note for Jason</button>
+          <button class="btn btn-primary" type="submit">Save note for Pradeep</button>
         </form>
 
         <form id="owner-ask-form" class="card hidden" style="margin-top:1.4rem">
@@ -120,7 +144,7 @@
       <section id="questions" style="margin-top:2.8rem">
         <p class="kicker">From the site</p>
         <h2>Notes people sent</h2>
-        <p>Enroll, donate, volunteer, talks, poetry, and the contact form. Your reply is stored here and emailed if they left an address.</p>
+        <p>Enroll, donate, volunteer, talks, poetry, I’m-coming names, and the contact form. Your reply is stored here and emailed if they left an address.</p>
         <div id="queries"></div>
       </section>
 
@@ -129,6 +153,35 @@
         <h2>The website choices</h2>
         <p>These are the questions from the intake sheet. Save an answer and it stays in D1. Earlier answers stay as history.</p>
         <div id="decision-list"></div>
+      </section>
+
+      <section id="library" style="margin-top:2.8rem">
+        <p class="kicker">Your poetry and the magazine</p>
+        <h2>The Satakam and the old issues</h2>
+        <p class="muted">Upload a file here and it appears on the public Poetry or Magazine page straight away. Until you do, those pages say honestly that it is not online yet.</p>
+        <form id="library-upload" class="card" style="margin:1.4rem 0">
+          <label>Which shelf
+            <select name="shelf" required>
+              <option value="satakam">Poetry — a Satakam or a poem</option>
+              <option value="magazine">Sanghamitra magazine — an issue</option>
+            </select>
+          </label>
+          <label>Title
+            <input name="title" maxlength="160" required placeholder="Name of the Satakam, or Issue 4">
+          </label>
+          <label>Year or issue, if you want it shown
+            <input name="when" maxlength="60" placeholder="2025">
+          </label>
+          <label>A line about it
+            <input name="note" maxlength="400" placeholder="Published last year.">
+          </label>
+          <label>File — PDF, or a photo of the cover
+            <input name="file" type="file" accept="application/pdf,image/jpeg,image/png,image/webp" required>
+          </label>
+          <button class="btn btn-primary" type="submit">Upload</button>
+          <p id="lib-note"></p>
+        </form>
+        <div id="library-box"></div>
       </section>
 
       <section id="photos" style="margin-top:2.8rem">
@@ -154,6 +207,20 @@
             <input name="eventTitle" list="event-titles" maxlength="120" placeholder="Summer Program 2026">
           </label>
           <datalist id="event-titles"></datalist>
+          <label>Which of the eight, if this shows one of them
+            <select name="activity">
+              <option value="">Not about one in particular</option>
+              <option value="sharing">Sharing and caring</option>
+              <option value="math-club">Ramanujan MathemaTRICKS Club</option>
+              <option value="telugu">Telugu</option>
+              <option value="poetry">Writing poetry</option>
+              <option value="knowledge">Knowledge sharing</option>
+              <option value="meditation">Meditation, anger, stress</option>
+              <option value="arts">Ancient art forms</option>
+              <option value="magazine">Sanghamitra magazine</option>
+            </select>
+          </label>
+          <p class="muted">Choose one and the photo appears on that card on the homepage and About.</p>
           <button class="btn btn-primary" type="submit">Upload</button>
           <p id="up-note"></p>
         </form>
@@ -165,6 +232,17 @@
     function esc(s) {
       return String(s || "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
     }
+    const ACTIVITY_OPTIONS = [
+      ["", "Not about one in particular"],
+      ["sharing", "Sharing and caring"],
+      ["math-club", "Ramanujan MathemaTRICKS Club"],
+      ["telugu", "Telugu"],
+      ["poetry", "Writing poetry"],
+      ["knowledge", "Knowledge sharing"],
+      ["meditation", "Meditation, anger, stress"],
+      ["arts", "Ancient art forms"],
+      ["magazine", "Sanghamitra magazine"],
+    ];
     function showNote(msg, ok) {
       const note = document.getElementById("db-note");
       note.classList.remove("hidden");
@@ -232,6 +310,9 @@
                 <option value="gallery"${!p.place || p.place === "gallery" ? " selected" : ""}>Gallery only</option>
               </select>
               <input name="eventTitle" list="event-titles" maxlength="120" value="${esc(p.eventTitle || "")}" placeholder="Earlier event name">
+              <select name="activity">
+                ${ACTIVITY_OPTIONS.map(([v, label]) => `<option value="${v}"${(p.activity || "") === v ? " selected" : ""}>${label}</option>`).join("")}
+              </select>
               <button class="btn btn-dark" type="submit">Save</button>
               <button class="btn btn-ghost" type="button" data-id="${p.id}">Remove</button>
             </form>
@@ -247,6 +328,7 @@
               caption: fd.get("caption"),
               place: fd.get("place"),
               eventTitle: fd.get("eventTitle"),
+              activity: fd.get("activity"),
             }),
           });
           const body = await out.json().catch(() => ({}));
@@ -259,6 +341,51 @@
           loadPhotos();
         };
         box.append(fig);
+      });
+    }
+
+    async function loadLibrary() {
+      const box = document.getElementById("library-box");
+      const res = await fetch("/api/library");
+      const data = await res.json().catch(() => ({}));
+      const items = data.items || [];
+      if (!items.length) {
+        box.innerHTML = "<p class=\"muted\">Nothing uploaded yet. The Poetry and Magazine pages are waiting for the first file.</p>";
+        return;
+      }
+      box.innerHTML = "";
+      items.forEach((i) => {
+        const card = el(`<article class="card" style="margin-bottom:1rem">
+          <p class="muted">${i.shelf === "satakam" ? "Poetry" : "Magazine"}${i.when ? ` · ${esc(i.when)}` : ""}</p>
+          <form>
+            <input name="title" maxlength="160" value="${esc(i.title)}" placeholder="Title">
+            <input name="when" maxlength="60" value="${esc(i.when || "")}" placeholder="Year or issue">
+            <input name="note" maxlength="400" value="${esc(i.note || "")}" placeholder="A line about it">
+            <div class="actions">
+              <a class="btn btn-ghost" href="/media/${esc(i.id)}" target="_blank" rel="noopener">Open</a>
+              <button class="btn btn-dark" type="submit">Save</button>
+              <button class="btn btn-ghost" type="button" data-remove="${esc(i.id)}">Remove</button>
+            </div>
+          </form>
+        </article>`);
+        card.querySelector("form").onsubmit = async (ev) => {
+          ev.preventDefault();
+          const fd = new FormData(ev.target);
+          const out = await fetch("/api/library/" + i.id, {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify({ title: fd.get("title"), when: fd.get("when"), note: fd.get("note") }),
+          });
+          const body = await out.json().catch(() => ({}));
+          if (!out.ok) return showNote(body.error || "Could not save", false);
+          showNote("Saved.", true);
+          loadLibrary();
+        };
+        card.querySelector("[data-remove]").onclick = async () => {
+          await fetch("/api/library/" + i.id, { method: "DELETE" });
+          loadLibrary();
+        };
+        box.append(card);
       });
     }
 
@@ -427,13 +554,28 @@
       }
     };
 
+    document.getElementById("library-upload").onsubmit = async (ev) => {
+      ev.preventDefault();
+      const note = document.getElementById("lib-note");
+      note.textContent = "Uploading…";
+      const res = await fetch("/api/library", { method: "POST", body: new FormData(ev.target) });
+      const data = await res.json().catch(() => ({}));
+      note.textContent = res.ok ? "Uploaded. It is on the public page now." : (data.error || "Upload failed");
+      if (res.ok) {
+        const shelf = ev.target.shelf.value;
+        ev.target.reset();
+        ev.target.shelf.value = shelf;
+        loadLibrary();
+      }
+    };
+
     const DEFAULT_ASK = [
       "Please rank what we should do now. Reply like: 1-A, 2-C, 3-E",
       "Skip anything you do not want this round.",
       "",
       "A. Point sanghamitra.org at the live site (you change DNS; we will send the target)",
       "B. Public email + confirm WhatsApp / group on every page",
-      "C. Donate: real how-to-give, or take the Donate button down",
+      "C. Donate: paste Zelle / Venmo / PayPal.me if you use them (blank = the site will not invent a method)",
       "D. 2026 student photos: keep, replace, or take down",
       "E. Who we enroll this month: Vedic math / SAT-ACT / Telugu",
       "F. Satakam title + 2–4 verses, or “later”",
@@ -494,6 +636,9 @@
       whatsappGroup: "",
       donateMode: "ask",
       donateHow: "",
+      donateZelle: "",
+      donateVenmo: "",
+      donatePaypal: "",
       enrollLive: { math: true, sat: true, telugu: true },
       eventPatches: {},
       extraEvents: [],
@@ -514,6 +659,9 @@
       f.homepageLede.value = o.homepageLede || (b.copy && b.copy.homepageLede) || "";
       f.donateMode.value = o.donateMode || "ask";
       f.donateHow.value = o.donateHow || "";
+      f.donateZelle.value = o.donateZelle || "";
+      f.donateVenmo.value = o.donateVenmo || "";
+      f.donatePaypal.value = o.donatePaypal || "";
       const live = o.enrollLive || {};
       f.enrollMath.checked = live.math !== false;
       f.enrollSat.checked = live.sat !== false;
@@ -629,6 +777,9 @@
       siteOverlay.homepageLede = f.homepageLede.value.trim();
       siteOverlay.donateMode = f.donateMode.value;
       siteOverlay.donateHow = f.donateHow.value.trim();
+      siteOverlay.donateZelle = f.donateZelle.value.trim();
+      siteOverlay.donateVenmo = f.donateVenmo.value.trim();
+      siteOverlay.donatePaypal = f.donatePaypal.value.trim();
       siteOverlay.enrollLive = {
         math: f.enrollMath.checked,
         sat: f.enrollSat.checked,
@@ -670,7 +821,7 @@
         fillSiteForm();
         renderEventEditor();
       } catch {
-        showNote("Could not load the live editor. You can still leave Jason a note.", false);
+        showNote("Could not load the live editor. You can still leave Pradeep a note.", false);
       }
     }
 
@@ -683,7 +834,7 @@
       });
       const data = await out.json().catch(() => ({}));
       if (!out.ok) return showNote(data.error || "Did not save", false);
-      showNote("Saved for Jason. He will build from this.", true);
+      showNote("Saved for Pradeep. He will build from this.", true);
       ev.target.reset();
       loadAnswers();
     };
@@ -692,6 +843,7 @@
     loadAnswers();
     loadEventTitles();
     loadPhotos();
+    loadLibrary();
     loadQueries();
     loadDecisions();
   </script>

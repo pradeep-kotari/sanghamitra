@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /intake.html
+
+Sitemap: https://sanghamitra.pages.dev/sitemap.xml

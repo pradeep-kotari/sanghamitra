@@ -15,6 +15,9 @@ const EMPTY = {
   youtube: "",
   donateMode: "ask",
   donateHow: "",
+  donateZelle: "",
+  donateVenmo: "",
+  donatePaypal: "",
   enrollLive: { math: true, sat: true, telugu: true },
   eventPatches: {},
   extraEvents: [],
@@ -44,6 +47,9 @@ export function normalizeOverlay(raw) {
     youtube: String(src.youtube || "").slice(0, 240),
     donateMode: mode,
     donateHow: String(src.donateHow || "").slice(0, 800),
+    donateZelle: String(src.donateZelle || "").slice(0, 80),
+    donateVenmo: String(src.donateVenmo || "").slice(0, 80),
+    donatePaypal: String(src.donatePaypal || "").slice(0, 120),
     enrollLive: {
       math: enroll.math !== false,
       sat: enroll.sat !== false,
@@ -147,6 +153,9 @@ export function mergeSite(base, overlay) {
   if (o.homepageLede) out.copy.homepageLede = o.homepageLede;
   out.copy.donateMode = o.donateMode;
   if (o.donateHow) out.copy.donateHow = o.donateHow;
+  if (o.donateZelle) out.copy.donateZelle = o.donateZelle;
+  if (o.donateVenmo) out.copy.donateVenmo = o.donateVenmo;
+  if (o.donatePaypal) out.copy.donatePaypal = o.donatePaypal;
   out.copy.enrollLive = o.enrollLive;
 
   const hidden = new Set(o.hiddenEventIds);

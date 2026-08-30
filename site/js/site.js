@@ -41,6 +41,9 @@ function mergeSite(base, overlay) {
   if (o.homepageLede) out.copy.homepageLede = o.homepageLede;
   if (o.donateMode) out.copy.donateMode = o.donateMode;
   if (o.donateHow) out.copy.donateHow = o.donateHow;
+  if (o.donateZelle) out.copy.donateZelle = o.donateZelle;
+  if (o.donateVenmo) out.copy.donateVenmo = o.donateVenmo;
+  if (o.donatePaypal) out.copy.donatePaypal = o.donatePaypal;
   if (o.enrollLive) out.copy.enrollLive = o.enrollLive;
 
   const hidden = new Set(o.hiddenEventIds || []);
@@ -64,6 +67,82 @@ function mergeSite(base, overlay) {
   }
   out.events = merged;
   return out;
+}
+
+function zelleTarget(data) {
+  const C = (data && data.copy) || {};
+  return String(C.donateZelle || "").trim();
+}
+
+function venmoHref(handle) {
+  const name = String(handle || "").replace(/^@/, "").trim();
+  return name ? `https://venmo.com/${encodeURIComponent(name)}` : "";
+}
+
+function paypalHref(raw) {
+  const s = String(raw || "").trim();
+  if (!s) return "";
+  if (/^https?:\/\//i.test(s)) return s;
+  const slug = s.replace(/^paypal\.me\//i, "").replace(/^\//, "");
+  return slug ? `https://paypal.me/${slug.replace(/^\/+/, "")}` : "";
+}
+
+function renderPayMethods(data) {
+  const box = document.getElementById("pay-methods");
+  if (!box) return;
+  const C = data.copy || {};
+  const zelle = zelleTarget(data);
+  const parts = [];
+  if (zelle) {
+    parts.push(`<article class="pay-method">
+      <h3>Zelle</h3>
+      <p>Send to <strong>${esc(zelle)}</strong> — Sreenivasa Ainapurapu. Open your bank app, then tell him below so he can thank you.</p>
+      <button type="button" class="btn btn-ghost" data-copy="${esc(zelle)}">Copy the Zelle name or number</button>
+    </article>`);
+  }
+  const venmo = venmoHref(C.donateVenmo);
+  if (venmo) {
+    parts.push(`<article class="pay-method">
+      <h3>Venmo</h3>
+      <p>If you use Venmo, send there and still leave your name on the form.</p>
+      <a class="btn btn-primary" href="${esc(venmo)}" target="_blank" rel="noopener">Open Venmo</a>
+    </article>`);
+  }
+  const paypal = paypalHref(C.donatePaypal);
+  if (paypal) {
+    parts.push(`<article class="pay-method">
+      <h3>PayPal</h3>
+      <a class="btn btn-primary" href="${esc(paypal)}" target="_blank" rel="noopener">Open PayPal</a>
+    </article>`);
+  }
+  if (!parts.length && C.donateHow) {
+    parts.push(`<article class="pay-method"><p>${esc(C.donateHow)}</p></article>`);
+  }
+  box.innerHTML = parts.join("");
+  box.hidden = !parts.length;
+  box.querySelectorAll("[data-copy]").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      await navigator.clipboard.writeText(btn.getAttribute("data-copy") || "");
+      btn.textContent = "Copied";
+    });
+  });
+}
+
+function wireGiftAmounts(data) {
+  const zelle = zelleTarget(data);
+  document.querySelectorAll("[data-gift]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const amt = btn.getAttribute("data-gift");
+      const input = document.querySelector("form[data-donate] [name=amount]");
+      if (input) input.value = `$${amt}`;
+      const note = document.querySelector("form[data-donate] [name=notes]");
+      if (note && !note.value.trim()) {
+        note.value = zelle
+          ? `I am sending $${amt} via Zelle to ${zelle}.`
+          : `Gift in mind: $${amt}.`;
+      }
+    });
+  });
 }
 
 function applyPublicSite(data) {
@@ -105,7 +184,7 @@ function applyPublicSite(data) {
   }
   const how = document.getElementById("donate-how");
   if (how) {
-    if (C.donateMode === "how" && C.donateHow) {
+    if (C.donateHow && C.donateMode !== "hide") {
       how.hidden = false;
       how.textContent = C.donateHow;
     } else {
@@ -114,6 +193,9 @@ function applyPublicSite(data) {
   }
   if (C.donateMode === "hide") {
     document.querySelectorAll("[data-donate]").forEach((el) => { el.hidden = true; });
+  } else {
+    renderPayMethods(data);
+    wireGiftAmounts(data);
   }
   const live = C.enrollLive || {};
   document.querySelectorAll("[data-enroll]").forEach((el) => {
@@ -163,6 +245,50 @@ function isUpcoming(event) {
   return new Date(event.startsAt).getTime() + (event.durationMinutes || 90) * 60000 > Date.now();
 }
 
+function shareInvite(event) {
+  const page = (typeof location !== "undefined" && location.origin)
+    ? `${location.origin}/events.html#${event.id}`
+    : `https://sanghamitra.pages.dev/events.html#${event.id}`;
+  return [
+    `Namaste. Please join Sanghamitra for ${event.title}${event.titleTe ? ` (${event.titleTe})` : ""}.`,
+    event.timezoneLabel || formatEventWhen(event),
+    event.joinUrl ? `Zoom: ${event.joinUrl}` : "",
+    `Details: ${page}`,
+    "Everyone is welcome.",
+  ].filter(Boolean).join("\n");
+}
+
+function rsvpAndShare(event) {
+  const invite = shareInvite(event);
+  const waFriends = `https://wa.me/?text=${encodeURIComponent(invite)}`;
+  return `
+    <form class="intent rsvp-form">
+      <input type="hidden" name="kind" value="rsvp">
+      <input type="hidden" name="eventId" value="${esc(event.id)}">
+      <input type="hidden" name="eventTitle" value="${esc(event.title)}">
+      <h3>I’m coming</h3>
+      <p>He gets your name. After the sitting he can thank you, and parents can ask about a class seat.</p>
+      <div class="form-row">
+        <label>Your name <input name="name" required autocomplete="name"></label>
+        <label>Email <input name="email" type="email" required autocomplete="email"></label>
+      </div>
+      <div class="form-row">
+        <label>Phone <input name="phone" type="tel" autocomplete="tel"></label>
+        <label>City <input name="place" autocomplete="address-level2"></label>
+      </div>
+      <label class="opt"><input type="checkbox" name="alsoEnroll" value="yes"> Also enroll a student for math or SAT</label>
+      <button class="btn btn-primary" type="submit">Save my name</button>
+      <p class="intent-note" data-note></p>
+    </form>
+    <div class="share-pack">
+      <p>Forward this sitting to family.</p>
+      <div class="actions">
+        <button type="button" class="btn btn-ghost" data-share-copy="${encodeURIComponent(invite)}">Copy invite</button>
+        <a class="btn btn-dark" href="${esc(waFriends)}" target="_blank" rel="noopener">WhatsApp friends</a>
+      </div>
+    </div>`;
+}
+
 function eventCard(event, { featured = false } = {}) {
   const upcoming = isUpcoming(event);
   const cls = `event-card${featured ? " featured" : ""}${event.flyer ? " event-with-flyer" : ""}`;
@@ -187,6 +313,7 @@ function eventCard(event, { featured = false } = {}) {
     actions.push(`<a class="btn btn-ghost" href="${esc(event.moreHref)}">${esc(event.moreLabel || "Read more")}</a>`);
   }
   const actionBar = actions.length ? `<div class="actions">${actions.join("")}</div>` : "";
+  const convert = upcoming && event.kind !== "learn" ? rsvpAndShare(event) : "";
   return `
     <article class="${cls}" id="${esc(event.id)}" data-event-title="${esc(event.title)}">
       <div>
@@ -198,6 +325,7 @@ function eventCard(event, { featured = false } = {}) {
         <p>${esc(event.blurbTe || event.blurb || event.openTo || "")}</p>
         ${event.hostTe ? `<p>— ${esc(event.hostTe)}</p>` : ""}
         ${actionBar}
+        ${convert}
       </div>
       ${flyer}
     </article>
@@ -206,11 +334,86 @@ function eventCard(event, { featured = false } = {}) {
 
 function renderNextEvent(data, el) {
   const next = (data.events || []).find(isUpcoming);
-  if (!next) {
-    el.innerHTML = `<article class="event-card"><h2>No public group session is listed yet</h2><p>Join the WhatsApp group to hear about the next one, or request a 1:1.</p></article>`;
+  if (next) {
+    el.innerHTML = eventCard(next, { featured: true });
     return;
   }
-  el.innerHTML = eventCard(next, { featured: true });
+  // Nothing upcoming. Show the last sitting and the two places the next one gets
+  // announced, so the page never reads as abandoned between gatherings.
+  const last = (data.events || [])
+    .filter((e) => !isUpcoming(e))
+    .sort((a, b) => new Date(b.startsAt) - new Date(a.startsAt))[0];
+  const group = SITE.whatsappGroup;
+  const channel = SITE.youtube;
+  el.innerHTML = `
+    <article class="event-card featured${last && last.flyer ? " event-with-flyer" : ""}">
+      <div>
+        <p class="kicker">Between gatherings</p>
+        <h2>${last ? `The last sitting was ${esc(last.title)}` : "The next sitting is being arranged"}</h2>
+        <p class="when">${last ? esc(formatEventWhen(last)) : ""}</p>
+        <p>Dates for the next one go out on WhatsApp first. Recordings of past sittings stay on the channel.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="${esc(group)}">Join the WhatsApp group</a>
+          <a class="btn btn-dark" href="${esc(channel)}">Watch on YouTube</a>
+          <a class="btn btn-ghost" href="events.html">All events</a>
+        </div>
+      </div>
+      ${last && last.flyer ? `<a class="flyer-link" href="${esc(last.pdf || last.flyer)}"><img class="flyer" src="${esc(last.flyer)}" alt="${esc(last.title)} invitation"></a>` : ""}
+    </article>`;
+}
+
+let photosPromise = null;
+function loadPhotosOnce() {
+  if (!photosPromise) {
+    photosPromise = fetch("/api/photos")
+      .then((res) => (res.ok ? res.json() : { photos: [] }))
+      .then((body) => body.photos || [])
+      .catch(() => []);
+  }
+  return photosPromise;
+}
+
+async function attachActivityPhotos() {
+  const slots = [...document.querySelectorAll("[data-activity]")];
+  if (!slots.length) return;
+  const photos = await loadPhotosOnce();
+  const byActivity = new Map();
+  for (const p of photos) {
+    if (!p.activity) continue;
+    if (!byActivity.has(p.activity)) byActivity.set(p.activity, p);
+  }
+  for (const slot of slots) {
+    const photo = byActivity.get(slot.getAttribute("data-activity"));
+    if (!photo) continue;
+    slot.insertAdjacentHTML("beforeend", `
+      <figure class="activity-photo">
+        <img src="/media/${esc(photo.id)}" alt="${esc(photo.caption || "Sanghamitra")}" loading="lazy">
+        ${photo.caption ? `<figcaption>${esc(photo.caption)}</figcaption>` : ""}
+      </figure>`);
+  }
+}
+
+// --- The Satakam and the magazine: whatever Sreenivasa uploads from /admin ---
+async function mountLibrary(shelf, el) {
+  let items = [];
+  try {
+    const res = await fetch("/api/library");
+    if (res.ok) items = ((await res.json()).items || []).filter((i) => i.shelf === shelf);
+  } catch {
+    items = [];
+  }
+  if (!items.length) return; // the page keeps its own honest empty line
+  const empty = document.querySelector(`[data-library-empty="${shelf}"]`);
+  if (empty) empty.hidden = true;
+  el.innerHTML = items.map((i) => `
+    <article class="card library-item">
+      ${i.when ? `<p class="kicker">${esc(i.when)}</p>` : ""}
+      <h2>${esc(i.title)}</h2>
+      ${i.note ? `<p>${esc(i.note)}</p>` : ""}
+      <div class="actions">
+        <a class="btn btn-dark" href="/media/${esc(i.id)}" target="_blank" rel="noopener">${i.type === "application/pdf" ? "Open the PDF" : "Open it"}</a>
+      </div>
+    </article>`).join("");
 }
 
 function eventPhotoRow(photos) {
@@ -233,9 +436,7 @@ function findEventArticle(root, key) {
 
 async function attachEventPhotos(el) {
   try {
-    const res = await fetch("/api/photos");
-    if (!res.ok) return;
-    const { photos } = await res.json();
+    const photos = await loadPhotosOnce();
     const eventPhotos = (photos || []).filter((p) => p.place === "events" || p.place === "both");
     if (!eventPhotos.length) return;
 
@@ -307,7 +508,7 @@ function fillBookingChoices(data, select) {
   const upcoming = (data.events || []).filter(isUpcoming);
   select.innerHTML = [
     `<option value="">I want a new 1:1 time</option>`,
-    ...upcoming.map((e) => `<option value="${e.id}">Join group: ${e.title} — ${e.timezoneLabel}</option>`),
+    ...upcoming.map((e) => `<option value="${esc(e.id)}">Join group: ${esc(e.title)} — ${esc(e.timezoneLabel)}</option>`),
   ].join("");
 }
 
@@ -415,17 +616,19 @@ function wireBookingForm(data) {
 }
 
 const INTENT_OK = {
-  enroll: "Received. Sreenivasa will write back about a seat.",
+  enroll: "Received. Sreenivasa will write back about a seat. Also send the same note on WhatsApp if you want him to see it today.",
   donate: "Received. He will send how to give — this page does not take a card.",
   volunteer: "Received. He will write back about where help is needed.",
   talk: "Received. He will write back about the sitting.",
   poetry: "Received. He will send what is already public, or a time to hear it.",
   contact: "Received. Sreenivasa will reply from the admin page.",
+  rsvp: "Your name is saved. Add the sitting to your calendar, then join on Zoom at the hour.",
 };
 
 function composeIntentMessage(data) {
   if (data.message && data.message.trim()) return data.message.trim();
   return [
+    data.eventTitle && `Event: ${data.eventTitle}`,
     data.program && `Program: ${data.program}`,
     data.student && `Student: ${data.student}`,
     data.org && `Host: ${data.org}`,
@@ -433,36 +636,68 @@ function composeIntentMessage(data) {
     data.when && `When: ${data.when}`,
     data.topic && `Topic: ${data.topic}`,
     data.amount && `Gift in mind: ${data.amount}`,
+    data.alsoEnroll === "yes" && "Also wants to enroll a student for math or SAT",
     data.notes && data.notes.trim(),
   ].filter(Boolean).join("\n") || "A note from the website.";
 }
 
+function intentWhatsAppHref(data) {
+  const body = composeRequest({
+    name: data.name,
+    email: data.email,
+    phone: data.phone,
+    path: data.kind || "contact",
+    topic: data.program || data.topic || data.eventTitle || "",
+    notes: composeIntentMessage(data),
+  });
+  return `${SITE.whatsappDirect}?text=${encodeURIComponent(body)}`;
+}
+
 function wireIntentForms() {
-  document.querySelectorAll("form.intent").forEach((form) => {
-    form.addEventListener("submit", async (ev) => {
-      ev.preventDefault();
-      const note = form.querySelector("[data-note]");
-      const data = Object.fromEntries(new FormData(form).entries());
-      const kind = data.kind || "contact";
-      const res = await fetch("/api/queries", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({
-          name: data.name,
-          email: data.email,
-          phone: data.phone,
-          kind,
-          message: composeIntentMessage(data),
-        }),
-      });
-      const out = await res.json().catch(() => ({}));
-      if (note) {
-        note.textContent = res.ok
-          ? (INTENT_OK[kind] || INTENT_OK.contact)
-          : (out.error || "Could not send. Try WhatsApp.");
-      }
-      if (res.ok) form.reset();
+  document.addEventListener("submit", async (ev) => {
+    const form = ev.target.closest && ev.target.closest("form.intent");
+    if (!form) return;
+    ev.preventDefault();
+    const note = form.querySelector("[data-note]");
+    const data = Object.fromEntries(new FormData(form).entries());
+    const kind = data.kind || "contact";
+    const res = await fetch("/api/queries", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        kind,
+        message: composeIntentMessage(data),
+      }),
     });
+    const out = await res.json().catch(() => ({}));
+    if (note) {
+      if (res.ok) {
+        note.innerHTML = `${INTENT_OK[kind] || INTENT_OK.contact}
+          <span class="actions" style="margin-top:0.7rem">
+            <a class="btn btn-primary" href="${intentWhatsAppHref(data)}" target="_blank" rel="noopener">Also send on WhatsApp</a>
+          </span>`;
+      } else {
+        note.textContent = out.error || "Could not send. Try WhatsApp.";
+      }
+    }
+    if (res.ok) form.querySelectorAll("input:not([type=hidden]), select, textarea").forEach((el) => {
+      if (el.type === "checkbox") el.checked = false;
+      else el.value = "";
+    });
+  });
+
+  document.addEventListener("click", async (ev) => {
+    const copyBtn = ev.target.closest && ev.target.closest("[data-share-copy]");
+    if (!copyBtn) return;
+    ev.preventDefault();
+    const raw = copyBtn.getAttribute("data-share-copy") || "";
+    let text = raw;
+    try { text = decodeURIComponent(raw); } catch { /* already plain */ }
+    await navigator.clipboard.writeText(text);
+    copyBtn.textContent = "Copied";
   });
 }
 
@@ -490,4 +725,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (document.getElementById("booking-form")) wireBookingForm(data);
   const archive = document.getElementById("session-archive");
   if (archive) renderSessions(data, archive);
+
+  attachActivityPhotos();
+  const satakam = document.getElementById("satakam-shelf");
+  if (satakam) mountLibrary("satakam", satakam);
+  const issues = document.getElementById("magazine-shelf");
+  if (issues) mountLibrary("magazine", issues);
 });

@@ -9,7 +9,7 @@ export const PRIORITY_ASK = [
   "",
   "A. Point sanghamitra.org at the live site (you change DNS; we will send the target)",
   "B. Public email + confirm WhatsApp / group on every page",
-  "C. Donate: real how-to-give, or take the Donate button down",
+  "C. Donate: paste Zelle / Venmo / PayPal.me if you use them (blank = the site will not invent a method)",
   "D. 2026 student photos: keep, replace, or take down",
   "E. Who we enroll this month: Vedic math / SAT-ACT / Telugu",
   "F. Satakam title + 2–4 verses, or “later”",

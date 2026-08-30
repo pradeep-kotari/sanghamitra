@@ -1,4 +1,5 @@
 import { json, requireAdmin } from "../../lib/auth.js";
+import { normalizeActivity } from "../../lib/activities.js";
 
 function listPhotos(raw) {
   return raw ? JSON.parse(raw) : [];
@@ -25,6 +26,7 @@ export async function onRequestPost(context) {
   }
   if (body.eventTitle != null) item.eventTitle = String(body.eventTitle).trim().slice(0, 120);
   if (body.eventId != null) item.eventId = String(body.eventId).trim().slice(0, 80);
+  if (body.activity != null) item.activity = normalizeActivity(body.activity);
   await context.env.ADMIN.put("photos", JSON.stringify(photos));
   return json({ ok: true, photo: item });
 }

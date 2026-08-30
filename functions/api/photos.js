@@ -1,4 +1,5 @@
 import { json, requireAdmin } from "../lib/auth.js";
+import { normalizeActivity } from "../lib/activities.js";
 
 const ALLOWED = new Set(["image/jpeg", "image/png", "image/webp", "image/gif"]);
 const MAX_BYTES = 8 * 1024 * 1024;
@@ -28,6 +29,7 @@ export async function onRequestPost(context) {
   const place = ["gallery", "events", "both"].includes(placeRaw) ? placeRaw : "gallery";
   const eventTitle = String(form.get("eventTitle") || "").trim().slice(0, 120);
   const eventId = String(form.get("eventId") || "").trim().slice(0, 80);
+  const activity = normalizeActivity(form.get("activity"));
 
   const id = crypto.randomUUID();
   await context.env.ADMIN.put(`blob:${id}`, await file.arrayBuffer(), {
@@ -40,6 +42,7 @@ export async function onRequestPost(context) {
     place,
     eventTitle,
     eventId,
+    activity,
     type: file.type,
     uploadedBy: gate.user.email,
     createdAt: new Date().toISOString(),

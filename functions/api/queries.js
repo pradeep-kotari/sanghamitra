@@ -19,7 +19,7 @@ export async function onRequestPost(context) {
   } catch {
     return json({ error: "Send JSON" }, 400);
   }
-  const KINDS = new Set(["enroll", "donate", "volunteer", "talk", "poetry", "contact"]);
+  const KINDS = new Set(["enroll", "donate", "volunteer", "talk", "poetry", "contact", "rsvp"]);
   const name = String(body.name || "").trim().slice(0, 80);
   const email = String(body.email || "").trim().slice(0, 120);
   const phone = String(body.phone || "").trim().slice(0, 40);
