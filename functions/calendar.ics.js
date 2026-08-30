@@ -1,4 +1,4 @@
-import { readOverlay, mergeSite } from "../lib/site-content.js";
+import { readOverlay, mergeSite } from "./lib/site-content.js";
 
 function pad(n) {
   return String(n).padStart(2, "0");
