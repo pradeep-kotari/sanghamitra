@@ -4,6 +4,7 @@ ISA.md
 node_modules/
 .env
 .env.*
+.dev.vars
 __pycache__/
 *.pyc
 .DS_Store

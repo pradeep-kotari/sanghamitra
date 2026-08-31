@@ -73,22 +73,22 @@ export async function sendMail(env, { to, cc, subject, text, html }) {
 
 export async function sendAdminCode(env, to, code) {
   const text = [
-    "Namaste,",
+    "Hi,",
     "",
-    `Your Sanghamitra admin sign-in code is: ${code}`,
+    `Here is the code to sign in to the Sanghamitra site: ${code}`,
     "",
-    "It expires in 10 minutes. Sign in, type your answer, and save. The site only stores that answer.",
+    "It works for ten minutes.",
     "",
-    "Sign in: https://sanghamitra.pages.dev/admin/login",
+    "https://sanghamitra.pages.dev/admin/login",
     "",
-    "If you did not ask for this code, ignore the email.",
+    "If you did not ask for this, you can ignore the email.",
     "",
-    "— Sanghamitra",
+    "Pradeep",
   ].join("\n");
-  const html = `<p>Namaste,</p><p>Your Sanghamitra admin sign-in code is <strong style="font-size:1.4em;letter-spacing:0.08em">${code}</strong></p><p>It expires in 10 minutes. Sign in, type your answer, and save. The site only stores that answer.</p><p><a href="https://sanghamitra.pages.dev/admin/login">Sign in to admin</a></p><p>If you did not ask for this code, ignore the email.</p>`;
+  const html = `<p>Hi,</p><p>Here is the code to sign in to the Sanghamitra site: <strong style="font-size:1.4em;letter-spacing:0.08em">${code}</strong></p><p>It works for ten minutes.</p><p><a href="https://sanghamitra.pages.dev/admin/login">Open the sign-in page</a></p><p>If you did not ask for this, you can ignore the email.</p><p>Pradeep</p>`;
   return sendMail(env, {
     to,
-    subject: "Your Sanghamitra admin code",
+    subject: "Your sign-in code for the Sanghamitra site",
     text,
     html,
   });
@@ -100,7 +100,7 @@ export async function emailOwnerAsk(env, questions) {
   return sendMail(env, {
     to: OWNER_EMAIL,
     cc: BUILDER_EMAIL,
-    subject: "Sanghamitra website — please rank what we build next",
+    subject: "Sanghamitra website — a few choices when you have a minute",
     text: ownerAskText(questions),
     html: ownerAskHtml(questions),
   });

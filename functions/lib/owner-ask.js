@@ -4,7 +4,7 @@ export const BUILDER_EMAIL = "pradeep.kotari@gmail.com";
 export const LOGIN_URL = "https://sanghamitra.pages.dev/admin/login";
 
 export const PRIORITY_ASK = [
-  "Please rank what we should do now. Reply like: 1-A, 2-C, 3-E",
+  "If you have a minute, rank what we should do now. Something like: 1-A, 2-C, 3-E is enough.",
   "Skip anything you do not want this round.",
   "",
   "A. Point sanghamitra.org at the live site (you change DNS; we will send the target)",
@@ -24,19 +24,17 @@ export const PRIORITY_ASK = [
 export function ownerAskText(questions) {
   const body = String(questions || PRIORITY_ASK).trim();
   return [
-    "Namaste Sreenivasa,",
+    "Hi Sreenivas,",
     "",
-    "Pradeep is building the Sanghamitra website. Please answer the questions below. The website only saves your answer — not these questions.",
+    "I am putting the Sanghamitra website together and I need a few choices from you when you have a minute. Sign in, type your answers, and save. I will work from what you saved.",
     "",
-    "How to sign in and answer:",
-    `1. Open ${LOGIN_URL}`,
-    "2. Enter ainapura@yahoo.com",
-    "3. Click “Send the code”",
-    "4. Open the next email in this inbox — it has a 6-digit code (valid 10 minutes)",
-    "5. Enter the code and sign in",
-    "6. Type your answer in the box (example: 1-A, 2-C, 3-E) and click Save answer",
+    "How to sign in:",
+    `Open ${LOGIN_URL}`,
+    "Use ainapura@yahoo.com",
+    "Click Send the code, then check this inbox for six digits (they last ten minutes).",
+    "Sign in, write your answers (for example: 1-A, 2-C, 3-E), and click Save.",
     "",
-    "Then we build from what you saved. When you want a change, sign in again, write the change, and save. We will build that next.",
+    "Later, if something on the site should change, sign in again and leave a note. I will pick it up.",
     "",
     "———",
     "",
@@ -44,9 +42,9 @@ export function ownerAskText(questions) {
     "",
     "———",
     "",
-    "If you did not expect this note, write Pradeep at pradeep.kotari@gmail.com.",
+    "If this landed in the wrong place, write me at pradeep.kotari@gmail.com.",
     "",
-    "— Pradeep",
+    "Pradeep",
   ].join("\n");
 }
 
@@ -54,22 +52,20 @@ export function ownerAskHtml(questions) {
   const body = String(questions || PRIORITY_ASK).trim();
   const esc = (s) => String(s || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
   return `
-    <p>Namaste Sreenivasa,</p>
-    <p>Pradeep is building the Sanghamitra website. Please answer the questions below. The website only saves your answer — not these questions.</p>
-    <p><strong>How to sign in and answer</strong></p>
+    <p>Hi Sreenivas,</p>
+    <p>I am putting the Sanghamitra website together and I need a few choices from you when you have a minute. Sign in, type your answers, and save. I will work from what you saved.</p>
+    <p>How to sign in:</p>
     <ol>
       <li>Open <a href="${LOGIN_URL}">${LOGIN_URL}</a></li>
-      <li>Enter <strong>ainapura@yahoo.com</strong></li>
-      <li>Click “Send the code”</li>
-      <li>Open the next email in this inbox — it has a 6-digit code (valid 10 minutes)</li>
-      <li>Enter the code and sign in</li>
-      <li>Type your answer in the box (example: <code>1-A, 2-C, 3-E</code>) and click <strong>Save answer</strong></li>
+      <li>Use <strong>ainapura@yahoo.com</strong></li>
+      <li>Click Send the code, then check this inbox for six digits (they last ten minutes).</li>
+      <li>Sign in, write your answers (for example: <code>1-A, 2-C, 3-E</code>), and click Save.</li>
     </ol>
-    <p>Then we build from what you saved. When you want a change, sign in again, write the change, and save. We will build that next.</p>
+    <p>Later, if something on the site should change, sign in again and leave a note. I will pick it up.</p>
     <hr>
     <pre style="white-space:pre-wrap;font-family:Georgia,serif;font-size:1rem">${esc(body)}</pre>
     <hr>
-    <p>If you did not expect this note, write Pradeep at pradeep.kotari@gmail.com.</p>
-    <p>— Pradeep</p>
+    <p>If this landed in the wrong place, write me at pradeep.kotari@gmail.com.</p>
+    <p>Pradeep</p>
   `;
 }

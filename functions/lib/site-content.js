@@ -18,6 +18,14 @@ const EMPTY = {
   donateZelle: "",
   donateVenmo: "",
   donatePaypal: "",
+  // Practical facts only Sreenivasa knows. Empty means the public page keeps its
+  // honest "ask him" line rather than showing a blank row.
+  learnAges: "",
+  learnWhen: "",
+  learnWhere: "",
+  learnCost: "",
+  learnFormat: "",
+  giveExamples: [],
   enrollLive: { math: true, sat: true, telugu: true },
   eventPatches: {},
   extraEvents: [],
@@ -50,6 +58,15 @@ export function normalizeOverlay(raw) {
     donateZelle: String(src.donateZelle || "").slice(0, 80),
     donateVenmo: String(src.donateVenmo || "").slice(0, 80),
     donatePaypal: String(src.donatePaypal || "").slice(0, 120),
+    learnAges: String(src.learnAges || "").slice(0, 120),
+    learnWhen: String(src.learnWhen || "").slice(0, 160),
+    learnWhere: String(src.learnWhere || "").slice(0, 160),
+    learnCost: String(src.learnCost || "").slice(0, 160),
+    learnFormat: String(src.learnFormat || "").slice(0, 160),
+    giveExamples: (Array.isArray(src.giveExamples) ? src.giveExamples : [])
+      .map((v) => String(v || "").slice(0, 200))
+      .filter(Boolean)
+      .slice(0, 3),
     enrollLive: {
       math: enroll.math !== false,
       sat: enroll.sat !== false,
@@ -156,6 +173,14 @@ export function mergeSite(base, overlay) {
   if (o.donateZelle) out.copy.donateZelle = o.donateZelle;
   if (o.donateVenmo) out.copy.donateVenmo = o.donateVenmo;
   if (o.donatePaypal) out.copy.donatePaypal = o.donatePaypal;
+  out.copy.learnFacts = {
+    ages: o.learnAges,
+    when: o.learnWhen,
+    where: o.learnWhere,
+    cost: o.learnCost,
+    format: o.learnFormat,
+  };
+  out.copy.giveExamples = o.giveExamples;
   out.copy.enrollLive = o.enrollLive;
 
   const hidden = new Set(o.hiddenEventIds);

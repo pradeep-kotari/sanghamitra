@@ -45,6 +45,16 @@ function mergeSite(base, overlay) {
   if (o.donateVenmo) out.copy.donateVenmo = o.donateVenmo;
   if (o.donatePaypal) out.copy.donatePaypal = o.donatePaypal;
   if (o.enrollLive) out.copy.enrollLive = o.enrollLive;
+  // Mirrors the server merge in functions/lib/site-content.js. These two blocks are
+  // what carry the admin answers onto the Learn and Give pages.
+  out.copy.learnFacts = {
+    ages: o.learnAges || "",
+    when: o.learnWhen || "",
+    where: o.learnWhere || "",
+    cost: o.learnCost || "",
+    format: o.learnFormat || "",
+  };
+  out.copy.giveExamples = Array.isArray(o.giveExamples) ? o.giveExamples.filter(Boolean).slice(0, 3) : [];
 
   const hidden = new Set(o.hiddenEventIds || []);
   const patches = o.eventPatches || {};
@@ -318,11 +328,12 @@ function eventCard(event, { featured = false } = {}) {
     <article class="${cls}" id="${esc(event.id)}" data-event-title="${esc(event.title)}">
       <div>
         <p class="kicker">${esc(kicker)}</p>
-        <h2>${esc(event.titleTe || event.title)}</h2>
+        <h2>${esc(event.title)}${event.titleTe ? ` <span class="te">${esc(event.titleTe)}</span>` : ""}</h2>
         <p class="when">${esc(formatEventWhen(event))}</p>
         ${presenter}
         ${event.inviteTe ? `<p class="invite-te">${esc(event.inviteTe)}</p>` : ""}
-        <p>${esc(event.blurbTe || event.blurb || event.openTo || "")}</p>
+        <p>${esc(event.blurb || event.openTo || "")}</p>
+        ${event.blurbTe ? `<p class="te">${esc(event.blurbTe)}</p>` : ""}
         ${event.hostTe ? `<p>— ${esc(event.hostTe)}</p>` : ""}
         ${actionBar}
         ${convert}
@@ -394,7 +405,117 @@ async function attachActivityPhotos() {
 }
 
 // --- The Satakam and the magazine: whatever Sreenivasa uploads from /admin ---
+function libraryItemActions(item) {
+  const label = item.type === "application/pdf" ? "Open the PDF" : "Open it";
+  return `<div class="actions">
+    <a class="btn btn-dark" href="/media/${esc(item.id)}" target="_blank" rel="noopener">${label}</a>
+    <a class="btn btn-ghost" href="/media/${esc(item.id)}" download>Save a copy</a>
+  </div>`;
+}
+
+function libraryCover(item) {
+  const alt = `Cover preview of ${item.title}`;
+  if (item.type && item.type.startsWith("image/")) {
+    return `<a class="library-cover" href="/media/${esc(item.id)}" target="_blank" rel="noopener">
+      <img src="/media/${esc(item.id)}" alt="${esc(alt)}" loading="lazy">
+    </a>`;
+  }
+  if (item.type !== "application/pdf") return "";
+
+  if (item.hasPreview) {
+    return `<a class="library-cover" href="/media/${esc(item.id)}" target="_blank" rel="noopener">
+      <img src="/media/preview/${esc(item.id)}" alt="${esc(alt)}" loading="lazy">
+    </a>`;
+  }
+
+  return `<a class="library-cover library-cover-pending" href="/media/${esc(item.id)}" target="_blank" rel="noopener" data-pdf-preview="${esc(item.id)}">
+    <span class="library-cover-placeholder">Loading cover…</span>
+  </a>`;
+}
+
+async function fillPdfPreviews(root) {
+  if (!window.SMPdfPreview) return;
+  const pending = [...root.querySelectorAll("[data-pdf-preview]")];
+  for (const link of pending) {
+    const id = link.getAttribute("data-pdf-preview");
+    if (!id) continue;
+    try {
+      const dataUrl = await window.SMPdfPreview.renderFirstPageDataUrl(`/media/${id}`, 520);
+      link.innerHTML = `<img src="${dataUrl}" alt="">`;
+      link.classList.remove("library-cover-pending");
+      link.removeAttribute("data-pdf-preview");
+    } catch {
+      link.innerHTML = `<span class="library-cover-placeholder">Open the PDF</span>`;
+      link.classList.remove("library-cover-pending");
+      link.removeAttribute("data-pdf-preview");
+    }
+  }
+}
+
+function renderLibraryItem(item) {
+  return `<article class="card library-item">
+    ${libraryCover(item)}
+    <div class="library-body">
+      ${item.when ? `<p class="kicker">${esc(item.when)}</p>` : ""}
+      <h2>${esc(item.title)}</h2>
+      ${item.note ? `<p>${esc(item.note)}</p>` : ""}
+      ${libraryItemActions(item)}
+    </div>
+  </article>`;
+}
+
+async function mountMagazineShelf(el) {
+  let items = [];
+  try {
+    const res = await fetch("/api/library");
+    if (res.ok) items = ((await res.json()).items || []).filter((i) => i.shelf === "magazine");
+  } catch {
+    items = [];
+  }
+  if (!items.length) return;
+
+  const empty = document.querySelector('[data-library-empty="magazine"]');
+  if (empty) empty.hidden = true;
+
+  const sorted = [...items].sort((a, b) => {
+    const ay = Number(a.year) || 0;
+    const by = Number(b.year) || 0;
+    if (by !== ay) return by - ay;
+    const am = Number(a.month) || 0;
+    const bm = Number(b.month) || 0;
+    if (bm !== am) return bm - am;
+    return Date.parse(b.createdAt || 0) - Date.parse(a.createdAt || 0);
+  });
+
+  const byYear = new Map();
+  for (const item of sorted) {
+    const year = item.year ? String(item.year) : "Undated";
+    if (!byYear.has(year)) byYear.set(year, []);
+    byYear.get(year).push(item);
+  }
+  const years = [...byYear.entries()].sort(([a], [b]) => {
+    const na = Number(a);
+    const nb = Number(b);
+    if (Number.isFinite(na) && Number.isFinite(nb)) return nb - na;
+    if (Number.isFinite(na)) return -1;
+    if (Number.isFinite(nb)) return 1;
+    return a.localeCompare(b);
+  });
+
+  el.innerHTML = years.map(([year, issues]) => `
+    <section class="magazine-year">
+      <h2>${esc(year)}</h2>
+      <div class="magazine-months">
+        ${issues.map((item) => renderLibraryItem(item)).join("")}
+      </div>
+    </section>`).join("");
+
+  await fillPdfPreviews(el);
+}
+
 async function mountLibrary(shelf, el) {
+  if (shelf === "magazine") return mountMagazineShelf(el);
+
   let items = [];
   try {
     const res = await fetch("/api/library");
@@ -402,18 +523,11 @@ async function mountLibrary(shelf, el) {
   } catch {
     items = [];
   }
-  if (!items.length) return; // the page keeps its own honest empty line
+  if (!items.length) return;
   const empty = document.querySelector(`[data-library-empty="${shelf}"]`);
   if (empty) empty.hidden = true;
-  el.innerHTML = items.map((i) => `
-    <article class="card library-item">
-      ${i.when ? `<p class="kicker">${esc(i.when)}</p>` : ""}
-      <h2>${esc(i.title)}</h2>
-      ${i.note ? `<p>${esc(i.note)}</p>` : ""}
-      <div class="actions">
-        <a class="btn btn-dark" href="/media/${esc(i.id)}" target="_blank" rel="noopener">${i.type === "application/pdf" ? "Open the PDF" : "Open it"}</a>
-      </div>
-    </article>`).join("");
+  el.innerHTML = items.map((i) => renderLibraryItem(i)).join("");
+  await fillPdfPreviews(el);
 }
 
 function eventPhotoRow(photos) {
@@ -557,10 +671,54 @@ function renderSessionCard(session) {
     </article>`;
 }
 
+function renderDemoChapters(data, el, { videoId, limit = 5 } = {}) {
+  const marks = [];
+  for (const session of data.sessions || []) {
+    for (const part of session.parts || [{ youtubeId: session.youtubeId, chapters: session.chapters }]) {
+      if (videoId && part.youtubeId !== videoId) continue;
+      for (const c of part.chapters || []) marks.push({ id: part.youtubeId, ...c });
+    }
+  }
+  if (!marks.length) {
+    const block = el.closest("section");
+    if (block) block.hidden = true;
+    return;
+  }
+  el.innerHTML = marks.slice(0, limit).map((c) => (
+    `<li><a href="${youtubeWatchUrl(c.id, c.t)}" target="_blank" rel="noopener">${esc(c.label)}</a></li>`
+  )).join("");
+}
+
 function renderSessions(data, el) {
   const sessions = (data.sessions || []).filter((s) => !s.featured);
   if (!sessions.length) return;
   el.innerHTML = sessions.map(renderSessionCard).join("");
+}
+
+function renderLearnFacts(data, el) {
+  const f = (data.copy && data.copy.learnFacts) || {};
+  const rows = [
+    ["Ages", f.ages],
+    ["When", f.when],
+    ["Where", f.where],
+    ["Cost", f.cost],
+    ["Online or in person", f.format],
+  ].filter(([, v]) => v && String(v).trim());
+  if (!rows.length) return; // the page keeps its own honest "ask him" line
+  const ask = document.querySelector("[data-facts-empty]");
+  if (ask) ask.hidden = true;
+  el.innerHTML = `<dl class="facts">${rows.map(([k, v]) => (
+    `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`
+  )).join("")}</dl>`;
+}
+
+// --- 6A: what a gift actually covers, in his words ---
+function renderGiveExamples(data, el) {
+  const items = (data.copy && data.copy.giveExamples) || [];
+  if (!items.length) return;
+  const ask = document.querySelector("[data-give-empty]");
+  if (ask) ask.hidden = true;
+  el.innerHTML = `<ul class="covers">${items.map((t) => `<li>${esc(t)}</li>`).join("")}</ul>`;
 }
 
 function composeRequest({ name, email, phone, path, topic, notes }) {
@@ -725,6 +883,13 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (document.getElementById("booking-form")) wireBookingForm(data);
   const archive = document.getElementById("session-archive");
   if (archive) renderSessions(data, archive);
+
+  const demo = document.getElementById("demo-chapters");
+  if (demo) renderDemoChapters(data, demo, { videoId: demo.getAttribute("data-video") || "", limit: Number(demo.getAttribute("data-limit")) || 5 });
+  const facts = document.getElementById("learn-facts");
+  if (facts) renderLearnFacts(data, facts);
+  const covers = document.getElementById("give-covers");
+  if (covers) renderGiveExamples(data, covers);
 
   attachActivityPhotos();
   const satakam = document.getElementById("satakam-shelf");

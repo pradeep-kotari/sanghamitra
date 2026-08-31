@@ -32,14 +32,14 @@
   <main class="section">
     <div class="wrap">
       <p class="kicker">Admin</p>
-      <h1>Edit the site, or tell Pradeep what to build.</h1>
-      <p class="lede">Two doors. Change contact, donate, enroll, or events here and the public pages update. For a new page or a rewrite, write Pradeep a note — he reads it on the next login and builds.</p>
+      <h1>Change the site, or leave me a note.</h1>
+      <p class="lede">Phone, events, photos, and donate details — save here and the public pages update. If you need a new page, write me a note. I will build it.</p>
       <p id="db-note" class="notice hidden"></p>
 
       <section id="earn-back" class="card" style="margin-top:2rem">
         <p class="kicker">Private — not on the public site</p>
         <h2>What this is for</h2>
-        <p>You have run Sanghamitra for years on WhatsApp, the hall, and YouTube. This site does not replace that. It is one link so sanghamitra.org is not a parking page, and so a flyer can point somewhere real.</p>
+        <p>You already keep Sanghamitra going on WhatsApp, at the hall, and on YouTube. This site does not replace that. It is a page you can send people, so sanghamitra.org is not a parking page and a flyer can point somewhere real.</p>
         <ol>
           <li><strong>Edit what changes.</strong> Phone, events, photos — save here. You do not need us for a new sitting.</li>
           <li><strong>Give.</strong> Paste a Zelle name or number, Venmo, or PayPal.me under Donate only if you actually accept gifts that way. Blank means the public page will not invent a method.</li>
@@ -102,6 +102,34 @@
           <label>Extra instructions (checks, India, etc.)
             <textarea name="donateHow" maxlength="800" placeholder="Checks to Sanghamitra, mailed to …"></textarea>
           </label>
+          <h3>The practical answers on the Learn page</h3>
+          <p class="muted">Leave any of these blank and the page keeps its honest "ask him" line instead of showing an empty row.</p>
+          <div class="form-row">
+            <label>Ages
+              <input name="learnAges" maxlength="120" placeholder="Grades 4 to 12">
+            </label>
+            <label>When
+              <input name="learnWhen" maxlength="160" placeholder="Weekends, June to July">
+            </label>
+          </div>
+          <div class="form-row">
+            <label>Where
+              <input name="learnWhere" maxlength="160" placeholder="St. Louis, and on Zoom">
+            </label>
+            <label>Cost
+              <input name="learnCost" maxlength="160" placeholder="What a family pays, or 'no fee'">
+            </label>
+          </div>
+          <label>Online or in person
+            <input name="learnFormat" maxlength="160" placeholder="Both — say which you want">
+          </label>
+
+          <h3>What a gift covers</h3>
+          <p class="muted">Up to three plain lines for the Give page. Blank ones are skipped.</p>
+          <label>First<input name="giveExample1" maxlength="200" placeholder="Books and fees for one student for a year"></label>
+          <label>Second<input name="giveExample2" maxlength="200"></label>
+          <label>Third<input name="giveExample3" maxlength="200"></label>
+
           <h3>Who we enroll this month</h3>
           <label class="opt"><input type="checkbox" name="enrollMath"> Vedic mathematics</label>
           <label class="opt"><input type="checkbox" name="enrollSat"> SAT / ACT / school tutoring</label>
@@ -161,7 +189,7 @@
         <p class="muted">Upload a file here and it appears on the public Poetry or Magazine page straight away. Until you do, those pages say honestly that it is not online yet.</p>
         <form id="library-upload" class="card" style="margin:1.4rem 0">
           <label>Which shelf
-            <select name="shelf" required>
+            <select name="shelf" id="library-shelf" required>
               <option value="satakam">Poetry — a Satakam or a poem</option>
               <option value="magazine">Sanghamitra magazine — an issue</option>
             </select>
@@ -169,15 +197,41 @@
           <label>Title
             <input name="title" maxlength="160" required placeholder="Name of the Satakam, or Issue 4">
           </label>
-          <label>Year or issue, if you want it shown
+          <div id="magazine-issue-fields" hidden>
+            <label>Issue year
+              <input name="year" type="number" min="2003" max="2100" placeholder="2008">
+            </label>
+            <label>Issue month
+              <select name="month">
+                <option value="">Choose a month</option>
+                <option value="1">January</option>
+                <option value="2">February</option>
+                <option value="3">March</option>
+                <option value="4">April</option>
+                <option value="5">May</option>
+                <option value="6">June</option>
+                <option value="7">July</option>
+                <option value="8">August</option>
+                <option value="9">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+              </select>
+            </label>
+          </div>
+          <label id="library-when-wrap">Year or issue, if you want it shown
             <input name="when" maxlength="60" placeholder="2025">
           </label>
           <label>A line about it
             <input name="note" maxlength="400" placeholder="Published last year.">
           </label>
           <label>File — PDF, or a photo of the cover
-            <input name="file" type="file" accept="application/pdf,image/jpeg,image/png,image/webp" required>
+            <input name="file" id="library-file" type="file" accept="application/pdf,image/jpeg,image/png,image/webp" required>
           </label>
+          <div id="library-preview-wrap" class="library-upload-preview" hidden>
+            <p class="muted">Cover preview — taken from the first page of the PDF.</p>
+            <img id="library-preview-img" alt="">
+          </div>
           <button class="btn btn-primary" type="submit">Upload</button>
           <p id="lib-note"></p>
         </form>
@@ -228,6 +282,7 @@
       </section>
     </div>
   </main>
+  <script src="../js/pdf-preview.js"></script>
   <script type="module">
     function esc(s) {
       return String(s || "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -344,6 +399,21 @@
       });
     }
 
+    function syncLibraryForm() {
+      const shelf = document.getElementById("library-shelf").value;
+      const magazineFields = document.getElementById("magazine-issue-fields");
+      const whenWrap = document.getElementById("library-when-wrap");
+      const isMagazine = shelf === "magazine";
+      magazineFields.hidden = !isMagazine;
+      whenWrap.hidden = isMagazine;
+      magazineFields.querySelector('[name="year"]').required = isMagazine;
+      magazineFields.querySelector('[name="month"]').required = isMagazine;
+      whenWrap.querySelector('[name="when"]').required = false;
+    }
+
+    document.getElementById("library-shelf").addEventListener("change", syncLibraryForm);
+    syncLibraryForm();
+
     async function loadLibrary() {
       const box = document.getElementById("library-box");
       const res = await fetch("/api/library");
@@ -355,26 +425,59 @@
       }
       box.innerHTML = "";
       items.forEach((i) => {
-        const card = el(`<article class="card" style="margin-bottom:1rem">
+        const whenField = i.shelf === "magazine"
+          ? `<label>Issue year<input name="year" type="number" min="2003" max="2100" value="${esc(i.year || "")}"></label>
+             <label>Issue month
+               <select name="month">
+                 <option value="">Choose a month</option>
+                 ${[1,2,3,4,5,6,7,8,9,10,11,12].map((m) => `<option value="${m}"${Number(i.month) === m ? " selected" : ""}>${new Date(2000, m - 1, 1).toLocaleString("en", { month: "long" })}</option>`).join("")}
+               </select>
+             </label>`
+          : `<input name="when" maxlength="60" value="${esc(i.when || "")}" placeholder="Year or issue">`;
+        const cover = i.type === "application/pdf"
+          ? (i.hasPreview
+            ? `<img class="library-admin-cover" src="/media/preview/${esc(i.id)}" alt="">`
+            : `<div class="library-admin-cover library-admin-cover-pending" data-cover-for="${esc(i.id)}">No cover yet</div>`)
+          : (i.type && i.type.startsWith("image/")
+            ? `<img class="library-admin-cover" src="/media/${esc(i.id)}" alt="">`
+            : "");
+        const makeCover = i.type === "application/pdf" && !i.hasPreview
+          ? `<button class="btn btn-ghost" type="button" data-make-cover="${esc(i.id)}">Make cover from PDF</button>`
+          : "";
+        const card = el(`<article class="card library-admin-item" style="margin-bottom:1rem">
           <p class="muted">${i.shelf === "satakam" ? "Poetry" : "Magazine"}${i.when ? ` · ${esc(i.when)}` : ""}</p>
-          <form>
-            <input name="title" maxlength="160" value="${esc(i.title)}" placeholder="Title">
-            <input name="when" maxlength="60" value="${esc(i.when || "")}" placeholder="Year or issue">
-            <input name="note" maxlength="400" value="${esc(i.note || "")}" placeholder="A line about it">
-            <div class="actions">
-              <a class="btn btn-ghost" href="/media/${esc(i.id)}" target="_blank" rel="noopener">Open</a>
-              <button class="btn btn-dark" type="submit">Save</button>
-              <button class="btn btn-ghost" type="button" data-remove="${esc(i.id)}">Remove</button>
-            </div>
-          </form>
+          <div class="library-admin-grid">
+            ${cover}
+            <form>
+              <input name="title" maxlength="160" value="${esc(i.title)}" placeholder="Title">
+              ${whenField}
+              <input name="note" maxlength="400" value="${esc(i.note || "")}" placeholder="A line about it">
+              <div class="actions">
+                <a class="btn btn-ghost" href="/media/${esc(i.id)}" target="_blank" rel="noopener">Open</a>
+                ${makeCover}
+                <button class="btn btn-dark" type="submit">Save</button>
+                <button class="btn btn-ghost" type="button" data-remove="${esc(i.id)}">Remove</button>
+              </div>
+            </form>
+          </div>
         </article>`);
         card.querySelector("form").onsubmit = async (ev) => {
           ev.preventDefault();
           const fd = new FormData(ev.target);
+          const payload = {
+            title: fd.get("title"),
+            note: fd.get("note"),
+          };
+          if (i.shelf === "magazine") {
+            payload.year = fd.get("year");
+            payload.month = fd.get("month");
+          } else {
+            payload.when = fd.get("when");
+          }
           const out = await fetch("/api/library/" + i.id, {
             method: "POST",
             headers: { "content-type": "application/json" },
-            body: JSON.stringify({ title: fd.get("title"), when: fd.get("when"), note: fd.get("note") }),
+            body: JSON.stringify(payload),
           });
           const body = await out.json().catch(() => ({}));
           if (!out.ok) return showNote(body.error || "Could not save", false);
@@ -385,6 +488,28 @@
           await fetch("/api/library/" + i.id, { method: "DELETE" });
           loadLibrary();
         };
+        const makeBtn = card.querySelector("[data-make-cover]");
+        if (makeBtn) {
+          makeBtn.onclick = async () => {
+            if (!window.SMPdfPreview) return showNote("PDF preview tool did not load.", false);
+            makeBtn.disabled = true;
+            makeBtn.textContent = "Making cover…";
+            try {
+              const blob = await SMPdfPreview.renderFirstPageBlob(`/media/${i.id}`, 520);
+              const fd = new FormData();
+              fd.append("preview", blob, "cover.jpg");
+              const out = await fetch("/api/library/" + i.id + "/preview", { method: "POST", body: fd });
+              const body = await out.json().catch(() => ({}));
+              if (!out.ok) return showNote(body.error || "Could not save cover", false);
+              showNote("Cover saved.", true);
+              loadLibrary();
+            } catch {
+              showNote("Could not read the PDF for a cover.", false);
+              makeBtn.disabled = false;
+              makeBtn.textContent = "Make cover from PDF";
+            }
+          };
+        }
         box.append(card);
       });
     }
@@ -554,17 +679,56 @@
       }
     };
 
+    document.getElementById("library-file").addEventListener("change", async (ev) => {
+      const wrap = document.getElementById("library-preview-wrap");
+      const img = document.getElementById("library-preview-img");
+      const file = ev.target.files && ev.target.files[0];
+      if (!file) {
+        wrap.hidden = true;
+        return;
+      }
+      if (file.type.startsWith("image/")) {
+        img.src = URL.createObjectURL(file);
+        wrap.hidden = false;
+        return;
+      }
+      if (file.type !== "application/pdf" || !window.SMPdfPreview) {
+        wrap.hidden = true;
+        return;
+      }
+      wrap.hidden = false;
+      img.alt = "Preview of the first PDF page";
+      img.src = "";
+      try {
+        img.src = await SMPdfPreview.renderFirstPageDataUrl(file, 520);
+      } catch {
+        wrap.hidden = true;
+      }
+    });
+
     document.getElementById("library-upload").onsubmit = async (ev) => {
       ev.preventDefault();
       const note = document.getElementById("lib-note");
       note.textContent = "Uploading…";
-      const res = await fetch("/api/library", { method: "POST", body: new FormData(ev.target) });
+      const fd = new FormData(ev.target);
+      const file = fd.get("file");
+      if (file && typeof file !== "string" && file.type === "application/pdf" && window.SMPdfPreview) {
+        try {
+          const preview = await SMPdfPreview.renderFirstPageBlob(file, 520);
+          if (preview) fd.set("preview", preview, "cover.jpg");
+        } catch {
+          // Public page can still lazy-render the cover later.
+        }
+      }
+      const res = await fetch("/api/library", { method: "POST", body: fd });
       const data = await res.json().catch(() => ({}));
       note.textContent = res.ok ? "Uploaded. It is on the public page now." : (data.error || "Upload failed");
       if (res.ok) {
         const shelf = ev.target.shelf.value;
         ev.target.reset();
         ev.target.shelf.value = shelf;
+        syncLibraryForm();
+        document.getElementById("library-preview-wrap").hidden = true;
         loadLibrary();
       }
     };
@@ -637,6 +801,12 @@
       donateMode: "ask",
       donateHow: "",
       donateZelle: "",
+      learnAges: "",
+      learnWhen: "",
+      learnWhere: "",
+      learnCost: "",
+      learnFormat: "",
+      giveExamples: [],
       donateVenmo: "",
       donatePaypal: "",
       enrollLive: { math: true, sat: true, telugu: true },
@@ -660,6 +830,15 @@
       f.donateMode.value = o.donateMode || "ask";
       f.donateHow.value = o.donateHow || "";
       f.donateZelle.value = o.donateZelle || "";
+      f.learnAges.value = o.learnAges || "";
+      f.learnWhen.value = o.learnWhen || "";
+      f.learnWhere.value = o.learnWhere || "";
+      f.learnCost.value = o.learnCost || "";
+      f.learnFormat.value = o.learnFormat || "";
+      const ex = Array.isArray(o.giveExamples) ? o.giveExamples : [];
+      f.giveExample1.value = ex[0] || "";
+      f.giveExample2.value = ex[1] || "";
+      f.giveExample3.value = ex[2] || "";
       f.donateVenmo.value = o.donateVenmo || "";
       f.donatePaypal.value = o.donatePaypal || "";
       const live = o.enrollLive || {};
@@ -778,6 +957,13 @@
       siteOverlay.donateMode = f.donateMode.value;
       siteOverlay.donateHow = f.donateHow.value.trim();
       siteOverlay.donateZelle = f.donateZelle.value.trim();
+      siteOverlay.learnAges = f.learnAges.value.trim();
+      siteOverlay.learnWhen = f.learnWhen.value.trim();
+      siteOverlay.learnWhere = f.learnWhere.value.trim();
+      siteOverlay.learnCost = f.learnCost.value.trim();
+      siteOverlay.learnFormat = f.learnFormat.value.trim();
+      siteOverlay.giveExamples = [f.giveExample1.value, f.giveExample2.value, f.giveExample3.value]
+        .map((v) => v.trim()).filter(Boolean);
       siteOverlay.donateVenmo = f.donateVenmo.value.trim();
       siteOverlay.donatePaypal = f.donatePaypal.value.trim();
       siteOverlay.enrollLive = {
