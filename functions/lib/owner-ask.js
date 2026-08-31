@@ -31,7 +31,7 @@ export function ownerAskText(questions) {
     "How to sign in:",
     `Open ${LOGIN_URL}`,
     "Use ainapura@yahoo.com",
-    "Click Send the code, then check this inbox for six digits (they last ten minutes).",
+    "Click Send the code, then check Yahoo Mail for the six-digit code — use the latest one (they last ten minutes).",
     "Sign in, write your answers (for example: 1-A, 2-C, 3-E), and click Save.",
     "",
     "Later, if something on the site should change, sign in again and leave a note. I will pick it up.",
@@ -58,7 +58,7 @@ export function ownerAskHtml(questions) {
     <ol>
       <li>Open <a href="${LOGIN_URL}">${LOGIN_URL}</a></li>
       <li>Use <strong>ainapura@yahoo.com</strong></li>
-      <li>Click Send the code, then check this inbox for six digits (they last ten minutes).</li>
+      <li>Click Send the code, then check Yahoo Mail for the six-digit code — use the latest one (they last ten minutes).</li>
       <li>Sign in, write your answers (for example: <code>1-A, 2-C, 3-E</code>), and click Save.</li>
     </ol>
     <p>Later, if something on the site should change, sign in again and leave a note. I will pick it up.</p>
