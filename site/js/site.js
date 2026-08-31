@@ -45,8 +45,7 @@ function mergeSite(base, overlay) {
   if (o.donateVenmo) out.copy.donateVenmo = o.donateVenmo;
   if (o.donatePaypal) out.copy.donatePaypal = o.donatePaypal;
   if (o.enrollLive) out.copy.enrollLive = o.enrollLive;
-  // Mirrors the server merge in functions/lib/site-content.js. These two blocks are
-  // what carry the admin answers onto the Learn and Give pages.
+  // Learn and Give pages read live answers saved from the owner console.
   out.copy.learnFacts = {
     ages: o.learnAges || "",
     when: o.learnWhen || "",
@@ -415,7 +414,7 @@ async function attachActivityPhotos() {
   }
 }
 
-// --- The Satakam and the magazine: whatever Sreenivasa uploads from /admin ---
+// --- Poetry shelf and magazine archive (published from owner console) ---
 function libraryItemActions(item) {
   const label = item.type === "application/pdf" ? "Open the PDF" : "Open it";
   return `<div class="actions">
@@ -619,7 +618,7 @@ function renderEventList(data, el) {
   el.innerHTML = [
     upcoming.length ? upcoming.map((e) => eventCard(e, { featured: true })).join("") : "<p>No upcoming group sessions are listed. Request a 1:1 or watch the WhatsApp group.</p>",
     `<div id="earlier-sessions"><h2>Earlier sessions</h2>${
-      past.length ? past.map((e) => eventCard(e)).join("") : "<p class=\"muted\" id=\"earlier-empty\">No earlier flyers yet. Photos from past sittings appear here when they are added.</p>"
+      past.length ? past.map((e) => eventCard(e)).join("") : "<p class=\"muted\" id=\"earlier-empty\">No earlier sessions are listed yet.</p>"
     }</div>`,
   ].join("");
   attachEventPhotos(el).then(() => {
