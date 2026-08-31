@@ -1,0 +1,27 @@
+# Bypass edge cache while the site is changing often. Remove or soften before long-term production.
+/
+  Cache-Control: no-cache, must-revalidate
+
+/*.html
+  Cache-Control: no-cache, must-revalidate
+
+/js/*
+  Cache-Control: no-cache, must-revalidate
+
+/css/*
+  Cache-Control: no-cache, must-revalidate
+
+/data/*
+  Cache-Control: no-cache, must-revalidate
+
+/api/*
+  Cache-Control: no-store
+
+/media/*
+  Cache-Control: public, max-age=86400
+
+/images/*
+  Cache-Control: public, max-age=604800
+
+/announcements/*
+  Cache-Control: public, max-age=86400
