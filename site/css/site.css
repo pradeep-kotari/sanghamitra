@@ -353,7 +353,19 @@ h2 { font-size: clamp(1.6rem, 3vw, 2.4rem); margin: 0 0 0.8rem; }
 .admin-orient summary::-webkit-details-marker { display: none; }
 .admin-orient summary::before { content: "▸ "; color: var(--saffron-deep); }
 .admin-orient[open] summary::before { content: "▾ "; }
-.admin-header-actions { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
+.build-pick-group { margin-bottom: 1.4rem; }
+.build-pick-group h3 { font-size: 1.05rem; margin: 0 0 0.6rem; color: var(--ink-soft); }
+label.build-pick {
+  display: flex;
+  gap: 0.65rem;
+  align-items: flex-start;
+  margin: 0.65rem 0;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+label.build-pick input { margin-top: 0.25rem; flex-shrink: 0; }
+label.build-pick span { flex: 1; }
 .photo-meta { display: grid; gap: 0.45rem; margin: 0; }
 .photo-meta .btn { width: fit-content; }
 

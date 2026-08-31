@@ -197,3 +197,15 @@ export async function notifyBuilderOwnerUpload(env, { authorName, kind, title, d
     html,
   });
 }
+
+/** Owner checked items on the build menu. */
+export async function notifyBuilderBuildPicks(env, { authorName, picks, note }) {
+  const { formatBuildPicksText, formatBuildPicksHtml } = await import("./build-catalog.js");
+  const payload = { picks, note, authorName };
+  return sendMail(env, {
+    to: BUILDER_EMAIL,
+    subject: `Sanghamitra — build list from ${authorName}`,
+    text: formatBuildPicksText(payload),
+    html: formatBuildPicksHtml(payload),
+  });
+}

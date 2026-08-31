@@ -21,6 +21,7 @@
         <span class="admin-header-actions">
           <a class="btn btn-ghost" href="../index.html" target="_blank" rel="noopener">View live site</a>
           <a href="#edit">Your details &amp; sittings</a>
+          <a href="#build-next">What to build next</a>
           <a href="#inbox">Ask Pradeep to build</a>
           <a href="#questions">Messages from visitors</a>
           <a href="#decisions" id="nav-decisions" hidden>Design choices</a>
@@ -159,6 +160,20 @@
           <button class="btn btn-dark" type="button" id="add-event">Add a sitting</button>
           <button class="btn btn-primary" type="button" id="save-events">Save sittings</button>
         </p>
+      </section>
+
+      <section id="build-next" style="margin-top:2.8rem">
+        <p class="kicker">Your choice</p>
+        <h2>What should we build next?</h2>
+        <p class="muted">Check anything that would save you time. Skip the rest. When you save, Pradeep gets an email — nothing here goes live until he builds it.</p>
+        <form id="build-picks-form" class="card">
+          <div id="build-picks-list"></div>
+          <label>Anything else, or what to do first
+            <textarea name="note" maxlength="2000" placeholder="Example: Do the WhatsApp invite button first. Skip Telugu for now."></textarea>
+          </label>
+          <button class="btn btn-primary" type="submit">Save my choices</button>
+        </form>
+        <p id="build-picks-saved" class="muted" style="margin-top:0.8rem"></p>
       </section>
 
       <section id="inbox" style="margin-top:2.8rem">
@@ -1143,6 +1158,52 @@
       }
     }
 
+    async function loadBuildPicks() {
+      const list = document.getElementById("build-picks-list");
+      const savedEl = document.getElementById("build-picks-saved");
+      const form = document.getElementById("build-picks-form");
+      const res = await fetch("/api/build-picks");
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        list.innerHTML = `<p class="notice">${esc(data.error || "Could not load the build list.")}</p>`;
+        return;
+      }
+      const picked = new Set(data.picks || []);
+      list.innerHTML = (data.groups || []).map((group) => {
+        const items = (group.items || []).map((item) =>
+          `<label class="opt build-pick">
+            <input type="checkbox" name="pick" value="${esc(item.id)}"${picked.has(item.id) ? " checked" : ""}>
+            <span><strong>${esc(item.title)}</strong><br><span class="muted">${esc(item.why)}</span></span>
+          </label>`
+        ).join("");
+        return `<div class="build-pick-group"><h3>${esc(group.title)}</h3>${items}</div>`;
+      }).join("");
+      form.note.value = data.note || "";
+      if (data.updatedAt) {
+        savedEl.textContent = `Last saved${data.updatedBy ? ` by ${data.updatedBy}` : ""} · ${new Date(data.updatedAt).toLocaleString()}`;
+      } else {
+        savedEl.textContent = "Nothing saved yet — check what you want and save once.";
+      }
+    }
+
+    document.getElementById("build-picks-form").onsubmit = async (ev) => {
+      ev.preventDefault();
+      const form = ev.target;
+      const picks = [...form.querySelectorAll('input[name="pick"]:checked')].map((i) => i.value);
+      const out = await fetch("/api/build-picks", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ picks, note: form.note.value }),
+      });
+      const data = await out.json().catch(() => ({}));
+      if (!out.ok) return showNote(data.error || "Could not save choices", false);
+      const msg = isBuilder
+        ? "Build choices saved."
+        : "Saved. Pradeep got an email with your choices.";
+      showNote(msg, true);
+      loadBuildPicks();
+    };
+
     document.getElementById("answer-form").onsubmit = async (ev) => {
       ev.preventDefault();
       const out = await fetch("/api/conversation", {
@@ -1158,6 +1219,7 @@
     };
 
     loadSiteEditor();
+    loadBuildPicks();
     loadAnswers();
     loadEventTitles();
     loadPhotos();
