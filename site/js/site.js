@@ -619,7 +619,7 @@ function renderEventList(data, el) {
   el.innerHTML = [
     upcoming.length ? upcoming.map((e) => eventCard(e, { featured: true })).join("") : "<p>No upcoming group sessions are listed. Request a 1:1 or watch the WhatsApp group.</p>",
     `<div id="earlier-sessions"><h2>Earlier sessions</h2>${
-      past.length ? past.map((e) => eventCard(e)).join("") : "<p class=\"muted\" id=\"earlier-empty\">No earlier flyers yet. Photos uploaded from admin for earlier events land here.</p>"
+      past.length ? past.map((e) => eventCard(e)).join("") : "<p class=\"muted\" id=\"earlier-empty\">No earlier flyers yet. Photos from past sittings appear here when they are added.</p>"
     }</div>`,
   ].join("");
   attachEventPhotos(el).then(() => {
@@ -790,7 +790,7 @@ const INTENT_OK = {
   volunteer: "Received. He will write back about where help is needed.",
   talk: "Received. He will write back about the sitting.",
   poetry: "Received. He will send what is already public, or a time to hear it.",
-  contact: "Received. Sreenivasa will reply from the admin page.",
+  contact: "Received. Sreenivasa will reply by email.",
   rsvp: "Your name is saved. Add the sitting to your calendar, then join on Zoom at the hour.",
 };
 
