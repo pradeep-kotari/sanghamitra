@@ -299,6 +299,15 @@ function rsvpAndShare(event) {
     </div>`;
 }
 
+function shortEventDate(event) {
+  if (!event.startsAt) return "";
+  try {
+    return new Date(event.startsAt).toLocaleDateString("en", { day: "numeric", month: "short" });
+  } catch {
+    return "";
+  }
+}
+
 function eventCard(event, { featured = false } = {}) {
   const upcoming = isUpcoming(event);
   const cls = `event-card${featured ? " featured" : ""}${event.flyer ? " event-with-flyer" : ""}`;
@@ -311,7 +320,9 @@ function eventCard(event, { featured = false } = {}) {
   const kicker = event.kicker || (event.kind === "group" ? "Group session" : "Session");
   const actions = [];
   if (upcoming && event.joinUrl) {
-    actions.push(`<a class="btn btn-primary" href="${esc(event.joinUrl)}">Click to join</a>`);
+    const whenShort = shortEventDate(event);
+    const joinLabel = whenShort ? `Join on Zoom · ${whenShort}` : "Join on Zoom";
+    actions.push(`<a class="btn btn-primary" href="${esc(event.joinUrl)}">${joinLabel}</a>`);
   }
   if (upcoming && event.ics) {
     actions.push(`<a class="btn btn-ghost" href="${esc(event.ics)}">Add to calendar</a>`);
@@ -335,10 +346,10 @@ function eventCard(event, { featured = false } = {}) {
         <p>${esc(event.blurb || event.openTo || "")}</p>
         ${event.blurbTe ? `<p class="te">${esc(event.blurbTe)}</p>` : ""}
         ${event.hostTe ? `<p>— ${esc(event.hostTe)}</p>` : ""}
+        ${flyer}
         ${actionBar}
         ${convert}
       </div>
-      ${flyer}
     </article>
   `;
 }
@@ -363,13 +374,13 @@ function renderNextEvent(data, el) {
         <h2>${last ? `The last sitting was ${esc(last.title)}` : "The next sitting is being arranged"}</h2>
         <p class="when">${last ? esc(formatEventWhen(last)) : ""}</p>
         <p>Dates for the next one go out on WhatsApp first. Recordings of past sittings stay on the channel.</p>
+        ${last && last.flyer ? `<a class="flyer-link" href="${esc(last.pdf || last.flyer)}"><img class="flyer" src="${esc(last.flyer)}" alt="${esc(last.title)} invitation"></a>` : ""}
         <div class="actions">
           <a class="btn btn-primary" href="${esc(group)}">Join the WhatsApp group</a>
           <a class="btn btn-dark" href="${esc(channel)}">Watch on YouTube</a>
           <a class="btn btn-ghost" href="events.html">All events</a>
         </div>
       </div>
-      ${last && last.flyer ? `<a class="flyer-link" href="${esc(last.pdf || last.flyer)}"><img class="flyer" src="${esc(last.flyer)}" alt="${esc(last.title)} invitation"></a>` : ""}
     </article>`;
 }
 
