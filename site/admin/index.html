@@ -18,40 +18,55 @@
       </a>
       <nav>
         <span id="who"></span>
-        <a href="#edit">Edit the site</a>
-        <a href="#inbox">Tell Pradeep</a>
-        <a href="#questions">From the site</a>
-        <a href="#decisions">Design choices</a>
-        <a href="#library">Poetry &amp; magazine</a>
-        <a href="#photos">Photos</a>
-        <a href="../gallery.html">Gallery</a>
-        <button class="btn btn-ghost" type="button" id="logout">Sign out</button>
+        <span class="admin-header-actions">
+          <a class="btn btn-ghost" href="../index.html" target="_blank" rel="noopener">View live site</a>
+          <a href="#edit">Your details &amp; sittings</a>
+          <a href="#inbox">Ask Pradeep to build</a>
+          <a href="#questions">Messages from visitors</a>
+          <a href="#decisions" id="nav-decisions" hidden>Design choices</a>
+          <a href="#library">Poetry &amp; magazine</a>
+          <a href="#photos">Photos</a>
+          <a href="../gallery.html">Gallery</a>
+          <button class="btn btn-ghost" type="button" id="logout">Sign out</button>
+        </span>
       </nav>
     </div>
   </header>
   <main class="section">
     <div class="wrap">
-      <p class="kicker">Admin</p>
+      <p class="kicker">Your Sanghamitra page</p>
       <h1>Change the site, or leave me a note.</h1>
-      <p class="lede">Phone, events, photos, and donate details — save here and the public pages update. If you need a new page, write me a note. I will build it.</p>
+      <p class="lede">Phone, sittings, photos, magazine issues, and donate details — save here and the public pages update straight away. If you need a new page, write me a note and I will build it.</p>
+      <div class="card" style="margin-top:1.4rem">
+        <p class="kicker">How it works</p>
+        <ol style="margin:0;padding-left:1.2em">
+          <li><strong>Save your details or a sitting</strong> — the live site updates immediately. Pradeep gets an email so he knows what changed.</li>
+          <li><strong>Upload poetry, a magazine issue, or a photo</strong> — it appears on the public page straight away. Pradeep gets an email.</li>
+          <li><strong>Messages from visitors</strong> — you and Pradeep both get email when someone fills a form. Reply here or on WhatsApp.</li>
+          <li><strong>Ask Pradeep to build something</strong> — for a new page or a bigger change. That does <em>not</em> go live until he builds it. He gets an email with your note.</li>
+        </ol>
+        <p class="muted" style="margin:0.8rem 0 0">WhatsApp is still the fastest door for day-to-day questions.</p>
+      </div>
       <p id="db-note" class="notice hidden"></p>
 
-      <section id="earn-back" class="card" style="margin-top:2rem">
-        <p class="kicker">Private — not on the public site</p>
-        <h2>What this is for</h2>
+      <details id="earn-back" class="card admin-orient" style="margin-top:2rem">
+        <summary>What this login is for</summary>
+        <div style="margin-top:0.8rem">
+        <p class="muted">Private — not on the public site.</p>
         <p>You already keep Sanghamitra going on WhatsApp, at the hall, and on YouTube. This site does not replace that. It is a page you can send people, so sanghamitra.org is not a parking page and a flyer can point somewhere real.</p>
         <ol>
-          <li><strong>Edit what changes.</strong> Phone, events, photos — save here. You do not need us for a new sitting.</li>
+          <li><strong>Edit what changes.</strong> Phone, sittings, photos — save here. You do not need us for a new sitting.</li>
           <li><strong>Give.</strong> Paste a Zelle name or number, Venmo, or PayPal.me under Donate only if you actually accept gifts that way. Blank means the public page will not invent a method.</li>
           <li><strong>5 September.</strong> Copy invite / WhatsApp friends if you want a second channel besides the group you already have. I’m coming is optional — a name list, not a gate.</li>
-          <li><strong>Notes from the site</strong> land under From the site. WhatsApp is still the faster door, as it always was.</li>
+          <li><strong>Messages from visitors</strong> land under Messages from visitors. WhatsApp is still the faster door, as it always was.</li>
         </ol>
-      </section>
+        </div>
+      </details>
 
       <section id="edit" style="margin-top:2rem">
         <p class="kicker">Live</p>
-        <h2>Edit the public site</h2>
-        <p class="muted">These fields publish as soon as you save. Pradeep still reads them so he knows what you changed.</p>
+        <h2>Your details and sittings</h2>
+        <p class="muted">Changes go live as soon as you save.</p>
         <form id="site-form" class="card">
           <h3>Who people reach</h3>
           <div class="form-row">
@@ -74,14 +89,14 @@
           <label>Years line
             <input name="yearsLine" maxlength="240" placeholder="Named in 2004, after earlier service">
           </label>
-          <label>Who-line under the title
+          <label>Line under the big title
             <textarea name="whoLine" maxlength="400"></textarea>
           </label>
-          <label>Homepage lede
+          <label>Opening paragraph on the homepage
             <textarea name="homepageLede" maxlength="800"></textarea>
           </label>
           <h3>Donate</h3>
-          <label>Donate button
+          <label>How people can give
             <select name="donateMode">
               <option value="ask">Show the donate form. Add Zelle / Venmo / PayPal only if you paste them below</option>
               <option value="how">Same, and also show the extra instructions below</option>
@@ -137,18 +152,19 @@
           <button class="btn btn-primary" type="submit">Save public details</button>
         </form>
 
-        <h3 style="margin-top:2rem">Events</h3>
-        <p class="muted">Change a sitting or add one. Photos for older events still upload below.</p>
+        <h3 style="margin-top:2rem">Sittings and events</h3>
+        <p class="muted">Change a sitting or add one. Pick the date and time — you do not need to type a technical timestamp. Upload a flyer picture if you have one.</p>
         <div id="event-editor"></div>
         <p style="margin-top:1rem">
-          <button class="btn btn-dark" type="button" id="add-event">Add an event</button>
-          <button class="btn btn-primary" type="button" id="save-events">Save events</button>
+          <button class="btn btn-dark" type="button" id="add-event">Add a sitting</button>
+          <button class="btn btn-primary" type="button" id="save-events">Save sittings</button>
         </p>
       </section>
 
       <section id="inbox" style="margin-top:2.8rem">
         <p class="kicker">For Pradeep</p>
-        <h2>Tell Pradeep what to build</h2>
+        <h2>Ask Pradeep to build something</h2>
+        <p class="muted">Use this when you need a new page, a layout change, or anything you cannot fix with the fields above. Pradeep gets an email with your note. It does not go live until he builds it.</p>
         <form id="answer-form" class="card">
           <label>A ranking, a yes/no, or a change that needs building
             <textarea name="body" required placeholder="Example: 1-A, 2-C, 3-E — or “rewrite About in Telugu.”"></textarea>
@@ -171,8 +187,8 @@
 
       <section id="questions" style="margin-top:2.8rem">
         <p class="kicker">From the site</p>
-        <h2>Notes people sent</h2>
-        <p>Enroll, donate, volunteer, talks, poetry, I’m-coming names, and the contact form. Your reply is stored here and emailed if they left an address.</p>
+        <h2>Messages from visitors</h2>
+        <p>Enroll, donate, volunteer, talks, poetry, I’m-coming names, and the contact form. Your reply is stored here and emailed if they left an address. WhatsApp is still fastest when you have their number.</p>
         <div id="queries"></div>
       </section>
 
@@ -186,9 +202,9 @@
       <section id="library" style="margin-top:2.8rem">
         <p class="kicker">Your poetry and the magazine</p>
         <h2>The Satakam and the old issues</h2>
-        <p class="muted">Upload a file here and it appears on the public Poetry or Magazine page straight away. Until you do, those pages say honestly that it is not online yet.</p>
+        <p class="muted">Upload a file here and it appears on the public Poetry or Magazine page straight away. The May and August 2008 PDFs you emailed are ready to upload here when you have a minute.</p>
         <form id="library-upload" class="card" style="margin:1.4rem 0">
-          <label>Which shelf
+          <label>Poetry or magazine issue?
             <select name="shelf" id="library-shelf" required>
               <option value="satakam">Poetry — a Satakam or a poem</option>
               <option value="magazine">Sanghamitra magazine — an issue</option>
@@ -243,7 +259,7 @@
         <h2>Photos</h2>
         <form id="upload" class="card" style="margin:1.4rem 0">
           <h3>Upload a photo</h3>
-          <p class="muted">For an older sitting, choose Earlier events or Both and name the event. It will show on the Events page under Earlier sessions.</p>
+          <p class="muted">For an older sitting, choose Earlier events or Both and name the event. It will show on the Events page under Earlier sessions. Please avoid children’s full names in captions.</p>
           <label>Photo
             <input name="file" type="file" accept="image/jpeg,image/png,image/webp,image/gif" required>
           </label>
@@ -261,7 +277,7 @@
             <input name="eventTitle" list="event-titles" maxlength="120" placeholder="Summer Program 2026">
           </label>
           <datalist id="event-titles"></datalist>
-          <label>Which of the eight, if this shows one of them
+          <label>Show on homepage under…
             <select name="activity">
               <option value="">Not about one in particular</option>
               <option value="sharing">Sharing and caring</option>
@@ -298,6 +314,50 @@
       ["arts", "Ancient art forms"],
       ["magazine", "Sanghamitra magazine"],
     ];
+    const BUILDER_EMAIL = "pradeep.kotari@gmail.com";
+    const QUERY_KIND = {
+      enroll: "Enrollment",
+      donate: "Donation",
+      volunteer: "Volunteer",
+      talk: "Talk invitation",
+      poetry: "Poetry",
+      contact: "Contact",
+      rsvp: "Coming to a sitting",
+    };
+    const TZ_PRESETS = [
+      ["Asia/Kolkata", "India (IST)"],
+      ["America/Chicago", "US Central"],
+      ["America/New_York", "US Eastern"],
+    ];
+    const TZ_OFFSET = {
+      "Asia/Kolkata": "+05:30",
+      "America/Chicago": "-06:00",
+      "America/New_York": "-05:00",
+    };
+    function phoneToWa(phone) {
+      const digits = String(phone || "").replace(/\D/g, "");
+      return digits ? `https://wa.me/${digits}` : "";
+    }
+    function splitStartsAt(iso) {
+      if (!iso) return { date: "", time: "", tz: "Asia/Kolkata" };
+      const m = String(iso).match(/^(\d{4}-\d{2}-\d{2})T(\d{2}:\d{2})/);
+      if (!m) return { date: "", time: "", tz: "Asia/Kolkata" };
+      let tz = "Asia/Kolkata";
+      if (iso.includes("+05:30")) tz = "Asia/Kolkata";
+      else if (iso.includes("-06:00")) tz = "America/Chicago";
+      else if (iso.includes("-05:00") || iso.includes("-04:00")) tz = "America/New_York";
+      return { date: m[1], time: m[2], tz };
+    }
+    function buildStartsAt(date, time, tz) {
+      if (!date || !time) return "";
+      const off = TZ_OFFSET[tz] || "+05:30";
+      return `${date}T${time}:00${off}`;
+    }
+    function flyerSrc(path) {
+      if (!path) return "";
+      if (path.startsWith("/media/") || path.startsWith("http")) return path;
+      return `../${path.replace(/^\//, "")}`;
+    }
     function showNote(msg, ok) {
       const note = document.getElementById("db-note");
       note.classList.remove("hidden");
@@ -321,7 +381,13 @@
 
     const user = await me();
     if (!user) throw new Error("redirect");
-    document.getElementById("who").textContent = user.name + " · " + user.email;
+    const isBuilder = user.email === BUILDER_EMAIL;
+    document.getElementById("who").textContent = user.name + " · signed in";
+    if (isBuilder) {
+      document.getElementById("nav-decisions").hidden = false;
+    } else {
+      document.getElementById("decisions")?.remove();
+    }
 
     document.getElementById("logout").onclick = async () => {
       await fetch("/api/auth/logout", { method: "POST" });
@@ -420,7 +486,7 @@
       const data = await res.json().catch(() => ({}));
       const items = data.items || [];
       if (!items.length) {
-        box.innerHTML = "<p class=\"muted\">Nothing uploaded yet. The Poetry and Magazine pages are waiting for the first file.</p>";
+        box.innerHTML = "<p class=\"muted\">Nothing here yet. Upload a PDF and it appears on the public page.</p>";
         return;
       }
       box.innerHTML = "";
@@ -442,7 +508,7 @@
             ? `<img class="library-admin-cover" src="/media/${esc(i.id)}" alt="">`
             : "");
         const makeCover = i.type === "application/pdf" && !i.hasPreview
-          ? `<button class="btn btn-ghost" type="button" data-make-cover="${esc(i.id)}">Make cover from PDF</button>`
+          ? `<button class="btn btn-ghost" type="button" data-make-cover="${esc(i.id)}">Create cover picture from PDF</button>`
           : "";
         const card = el(`<article class="card library-admin-item" style="margin-bottom:1rem">
           <p class="muted">${i.shelf === "satakam" ? "Poetry" : "Magazine"}${i.when ? ` · ${esc(i.when)}` : ""}</p>
@@ -501,12 +567,12 @@
               const out = await fetch("/api/library/" + i.id + "/preview", { method: "POST", body: fd });
               const body = await out.json().catch(() => ({}));
               if (!out.ok) return showNote(body.error || "Could not save cover", false);
-              showNote("Cover saved.", true);
+              showNote("Cover added.", true);
               loadLibrary();
             } catch {
               showNote("Could not read the PDF for a cover.", false);
               makeBtn.disabled = false;
-              makeBtn.textContent = "Make cover from PDF";
+              makeBtn.textContent = "Create cover picture from PDF";
             }
           };
         }
@@ -529,11 +595,13 @@
       }
       box.innerHTML = "";
       queries.forEach((q) => {
+        const kindLabel = QUERY_KIND[q.kind] || q.kind || "Contact";
         const replies = (q.replies || []).map((r) =>
           `<p class="reply"><strong>${esc(r.name)}:</strong> ${esc(r.text)} <span class="muted">${esc(new Date(r.createdAt).toLocaleString())}</span></p>`
         ).join("");
+        const wa = phoneToWa(q.phone);
         const card = el(`<article class="card qa-card">
-          <p class="kicker">${esc(q.kind || "contact")}</p>
+          <p class="kicker">${esc(kindLabel)}</p>
           <p><strong>${esc(q.name)}</strong> · ${esc(q.email || "no email")}${q.phone ? ` · ${esc(q.phone)}` : ""} · ${esc(new Date(q.createdAt).toLocaleString())}</p>
           <p>${esc(q.message)}</p>
           ${replies || "<p class=\"muted\">No reply yet.</p>"}
@@ -541,9 +609,22 @@
             <label>Reply
               <textarea name="reply" required></textarea>
             </label>
-            <button class="btn btn-dark" type="submit">Save reply</button>
+            <div class="actions">
+              <button class="btn btn-dark" type="submit">Save reply</button>
+              ${wa ? `<a class="btn btn-ghost wa-reply" href="#" target="_blank" rel="noopener">Reply on WhatsApp</a>` : ""}
+            </div>
           </form>
         </article>`);
+        const replyArea = card.querySelector("[name=reply]");
+        const waBtn = card.querySelector(".wa-reply");
+        if (waBtn) {
+          const syncWa = () => {
+            const text = replyArea.value.trim() || `Namaste ${q.name}, thank you for writing through the Sanghamitra site.`;
+            waBtn.href = `${wa}?text=${encodeURIComponent(`Namaste ${q.name},\n\n${text}`)}`;
+          };
+          replyArea.addEventListener("input", syncWa);
+          syncWa();
+        }
         card.querySelector("form").onsubmit = async (ev) => {
           ev.preventDefault();
           const reply = new FormData(ev.target).get("reply");
@@ -554,7 +635,7 @@
           });
           const body = await out.json().catch(() => ({}));
           if (!out.ok) return showNote(body.error || "Reply did not save", false);
-          showNote("Reply saved in D1.", true);
+          showNote("Reply saved. They get an email if they left an address.", true);
           loadQueries();
         };
         box.append(card);
@@ -655,7 +736,7 @@
             });
             const body = await out.json().catch(() => ({}));
             if (!out.ok) return showNote(body.error || "Answer did not save", false);
-            showNote("Answer saved in D1.", true);
+            showNote("Answer saved.", true);
             loadDecisions();
           };
         });
@@ -668,7 +749,7 @@
       const note = document.getElementById("up-note");
       const res = await fetch("/api/photos", { method: "POST", body: new FormData(ev.target) });
       const data = await res.json();
-      note.textContent = res.ok ? "Uploaded." : (data.error || "Upload failed");
+      note.textContent = res.ok ? "On the Gallery now. Pradeep got an email." : (data.error || "Upload failed");
       if (res.ok) {
         const place = ev.target.place.value;
         const eventTitle = ev.target.eventTitle.value;
@@ -722,7 +803,7 @@
       }
       const res = await fetch("/api/library", { method: "POST", body: fd });
       const data = await res.json().catch(() => ({}));
-      note.textContent = res.ok ? "Uploaded. It is on the public page now." : (data.error || "Upload failed");
+      note.textContent = res.ok ? "Uploaded — on the public page now. Pradeep got an email." : (data.error || "Upload failed");
       if (res.ok) {
         const shelf = ev.target.shelf.value;
         ev.target.reset();
@@ -869,32 +950,77 @@
       const box = document.getElementById("event-editor");
       const events = visibleEvents();
       if (!events.length) {
-        box.innerHTML = "<p class=\"muted\">No events on the public site. Add one.</p>";
+        box.innerHTML = "<p class=\"muted\">No sittings on the public site yet. Add one.</p>";
         return;
       }
-      box.innerHTML = events.map((e) => `
+      box.innerHTML = events.map((e) => {
+        const start = splitStartsAt(e.startsAt);
+        const tzOpts = TZ_PRESETS.map(([id, label]) =>
+          `<option value="${id}"${start.tz === id ? " selected" : ""}>${label}</option>`
+        ).join("");
+        const preview = e.flyer
+          ? `<div class="flyer-preview"><img src="${esc(flyerSrc(e.flyer))}" alt="Flyer preview"></div>`
+          : "";
+        return `
         <article class="card event-edit" data-id="${esc(e.id)}" data-extra="${e._extra ? "1" : "0"}">
           <div class="form-row">
             <label>Title <input name="title" value="${esc(e.title || "")}"></label>
-            <label>When label <input name="whenLabel" value="${esc(e.whenLabel || e.timezoneLabel || "")}"></label>
+            <label>When people see on the site
+              <input name="whenLabel" value="${esc(e.whenLabel || e.timezoneLabel || "")}" placeholder="Saturday 5 Sept · 6 PM IST / 7:30 AM Central">
+            </label>
           </div>
           <div class="form-row">
-            <label>Start (upcoming vs earlier)
-              <input name="startsAt" value="${esc(e.startsAt || "")}" placeholder="2026-09-05T18:00:00+05:30">
+            <label>Date
+              <input name="eventDate" type="date" value="${esc(start.date)}">
             </label>
-            <label>Join URL
-              <input name="joinUrl" value="${esc(e.joinUrl || "")}">
+            <label>Start time
+              <input name="eventTime" type="time" value="${esc(start.time)}">
+            </label>
+            <label>Time zone
+              <select name="eventTz">${tzOpts}</select>
             </label>
           </div>
-          <label>Flyer image URL
-            <input name="flyer" value="${esc(e.flyer || "")}" placeholder="announcements/…/flyer.jpg or /media/…">
+          <label>Zoom or join link
+            <input name="joinUrl" value="${esc(e.joinUrl || "")}" placeholder="https://…">
           </label>
+          <label>Flyer picture
+            <input type="file" accept="image/jpeg,image/png,image/webp" data-flyer-upload>
+          </label>
+          <input type="hidden" name="flyer" value="${esc(e.flyer || "")}">
+          ${preview}
           <label>What it is
             <textarea name="blurb">${esc(e.blurb || "")}</textarea>
           </label>
-          <button class="btn btn-ghost" type="button" data-hide="${esc(e.id)}">Remove from the public site</button>
-        </article>
-      `).join("");
+          <button class="btn btn-ghost" type="button" data-hide="${esc(e.id)}">Hide this sitting</button>
+        </article>`;
+      }).join("");
+      box.querySelectorAll("[data-flyer-upload]").forEach((input) => {
+        input.addEventListener("change", async () => {
+          const file = input.files && input.files[0];
+          if (!file) return;
+          const card = input.closest(".event-edit");
+          const fd = new FormData();
+          fd.append("file", file);
+          input.disabled = true;
+          try {
+            const res = await fetch("/api/flyers", { method: "POST", body: fd });
+            const data = await res.json().catch(() => ({}));
+            if (!res.ok) return showNote(data.error || "Flyer upload failed", false);
+            card.querySelector("[name=flyer]").value = data.url || "";
+            let preview = card.querySelector(".flyer-preview");
+            if (!preview) {
+              preview = document.createElement("div");
+              preview.className = "flyer-preview";
+              input.parentElement.after(preview);
+            }
+            preview.innerHTML = `<img src="${esc(data.url)}" alt="Flyer preview">`;
+            showNote("Flyer uploaded. Save sittings when you are done editing.", true);
+          } finally {
+            input.disabled = false;
+            input.value = "";
+          }
+        });
+      });
       box.querySelectorAll("[data-hide]").forEach((btn) => {
         btn.onclick = () => {
           const id = btn.getAttribute("data-hide");
@@ -917,7 +1043,11 @@
           id,
           title: card.querySelector("[name=title]").value.trim(),
           whenLabel: card.querySelector("[name=whenLabel]").value.trim(),
-          startsAt: card.querySelector("[name=startsAt]").value.trim(),
+          startsAt: buildStartsAt(
+            card.querySelector("[name=eventDate]").value,
+            card.querySelector("[name=eventTime]").value,
+            card.querySelector("[name=eventTz]").value
+          ),
           joinUrl: card.querySelector("[name=joinUrl]").value.trim(),
           flyer: card.querySelector("[name=flyer]").value.trim(),
           blurb: card.querySelector("[name=blurb]").value.trim(),
@@ -929,11 +1059,11 @@
       siteOverlay.extraEvents = extras;
     }
 
-    async function saveOverlay() {
+    async function saveOverlay(notifyLabel) {
       const out = await fetch("/api/site", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ overlay: siteOverlay }),
+        body: JSON.stringify({ overlay: siteOverlay, notifyLabel }),
       });
       const data = await out.json().catch(() => ({}));
       if (!out.ok) {
@@ -971,17 +1101,19 @@
         sat: f.enrollSat.checked,
         telugu: f.enrollTelugu.checked,
       };
-      if (await saveOverlay()) showNote("Public details are live. Open the homepage to see them.", true);
+      if (await saveOverlay("phone, homepage, donate, and learn details")) showNote("Saved. The live site updated and Pradeep got an email.", true);
     };
 
     document.getElementById("add-event").onclick = () => {
       collectEventEdits();
       siteOverlay.extraEvents = siteOverlay.extraEvents || [];
+      const now = new Date();
+      const pad = (n) => String(n).padStart(2, "0");
       siteOverlay.extraEvents.push({
         id: "admin-" + Date.now(),
         title: "New sitting",
         kind: "group",
-        startsAt: new Date().toISOString(),
+        startsAt: `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}T18:00:00+05:30`,
         whenLabel: "",
         blurb: "",
         joinUrl: "",
@@ -992,7 +1124,7 @@
 
     document.getElementById("save-events").onclick = async () => {
       collectEventEdits();
-      if (await saveOverlay()) showNote("Events are live on the Events page.", true);
+      if (await saveOverlay("sittings")) showNote("Sittings saved on the live site. Pradeep got an email.", true);
     };
 
     async function loadSiteEditor() {
@@ -1020,7 +1152,7 @@
       });
       const data = await out.json().catch(() => ({}));
       if (!out.ok) return showNote(data.error || "Did not save", false);
-      showNote("Saved for Pradeep. He will build from this.", true);
+      showNote("Saved. Pradeep got an email and will build from this.", true);
       ev.target.reset();
       loadAnswers();
     };
@@ -1031,7 +1163,7 @@
     loadPhotos();
     loadLibrary();
     loadQueries();
-    loadDecisions();
+    if (isBuilder) loadDecisions();
   </script>
 </body>
 </html>

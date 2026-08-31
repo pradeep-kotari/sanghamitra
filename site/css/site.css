@@ -337,6 +337,23 @@ h2 { font-size: clamp(1.6rem, 3vw, 2.4rem); margin: 0 0 0.8rem; }
   object-fit: cover;
 }
 .event-edit { margin: 1rem 0; }
+.event-edit .flyer-preview {
+  max-width: 14rem;
+  margin: 0.5rem 0;
+  border: 1px solid var(--line);
+}
+.event-edit .flyer-preview img { width: 100%; height: auto; display: block; }
+.admin-orient summary {
+  cursor: pointer;
+  font-family: var(--display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  list-style: none;
+}
+.admin-orient summary::-webkit-details-marker { display: none; }
+.admin-orient summary::before { content: "▸ "; color: var(--saffron-deep); }
+.admin-orient[open] summary::before { content: "▾ "; }
+.admin-header-actions { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
 .photo-meta { display: grid; gap: 0.45rem; margin: 0; }
 .photo-meta .btn { width: fit-content; }
 

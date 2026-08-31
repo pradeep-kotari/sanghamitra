@@ -1,5 +1,6 @@
 import { json, requireAdmin } from "../lib/auth.js";
 import { addAnswer, listAnswers } from "../lib/conversation.js";
+import { isOwnerEmail, notifyBuilderOwnerNote } from "../lib/email.js";
 
 export async function onRequestGet(context) {
   const gate = await requireAdmin(context);
@@ -30,6 +31,14 @@ export async function onRequestPost(context) {
   }
   try {
     const item = await addAnswer(context.env, { body: body.body, user: gate.user });
+    if (isOwnerEmail(gate.user.email)) {
+      context.waitUntil(
+        notifyBuilderOwnerNote(context.env, {
+          authorName: gate.user.name,
+          body: item.body,
+        }).catch(() => null),
+      );
+    }
     const data = await listAnswers(context.env);
     return json({ ok: true, item, ...data });
   } catch (err) {

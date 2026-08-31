@@ -1,5 +1,6 @@
 import { json, requireAdmin } from "../lib/auth.js";
 import { normalizeActivity } from "../lib/activities.js";
+import { isOwnerEmail, notifyBuilderOwnerUpload } from "../lib/email.js";
 
 const ALLOWED = new Set(["image/jpeg", "image/png", "image/webp", "image/gif"]);
 const MAX_BYTES = 8 * 1024 * 1024;
@@ -49,5 +50,15 @@ export async function onRequestPost(context) {
   };
   photos.unshift(item);
   await context.env.ADMIN.put("photos", JSON.stringify(photos.slice(0, 200)));
+  if (isOwnerEmail(gate.user.email)) {
+    context.waitUntil(
+      notifyBuilderOwnerUpload(context.env, {
+        authorName: gate.user.name,
+        kind: "a photo",
+        title: caption || "Gallery photo",
+        detail: eventTitle ? `Event: ${eventTitle}` : "",
+      }).catch(() => null),
+    );
+  }
   return json({ ok: true, photo: item });
 }

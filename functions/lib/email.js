@@ -124,3 +124,76 @@ export async function notifyAdminsOfQuery(env, item) {
     html: `<p><strong>${item.name}</strong> · ${label}${item.email ? ` · ${item.email}` : ""}${item.phone ? ` · ${item.phone}` : ""}</p><p>${String(item.message).replace(/</g, "&lt;")}</p><p><a href="https://sanghamitra.pages.dev/admin/">Reply in admin</a></p>`,
   });
 }
+
+const ADMIN_URL = "https://sanghamitra.pages.dev/admin/";
+const LIVE_URL = "https://sanghamitra.pages.dev/";
+
+export function isOwnerEmail(email) {
+  return normalizeOwnerEmail(email) === normalizeOwnerEmail(OWNER_EMAIL);
+}
+
+function normalizeOwnerEmail(email) {
+  return String(email || "").trim().toLowerCase();
+}
+
+function escHtml(s) {
+  return String(s || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+/** Sreenivasa saved live site fields — builder gets a heads-up, not an approval gate. */
+export async function notifyBuilderOwnerSiteSave(env, { authorName, label }) {
+  const what = label || "the public site";
+  const text = [
+    `${authorName} saved ${what} on Sanghamitra.`,
+    "",
+    "It is already live on the public pages.",
+    "",
+    `Live site: ${LIVE_URL}`,
+    `Admin: ${ADMIN_URL}`,
+  ].join("\n");
+  const html = `<p><strong>${escHtml(authorName)}</strong> saved ${escHtml(what)} on Sanghamitra.</p><p>It is already live on the public pages.</p><p><a href="${LIVE_URL}">Open the live site</a> · <a href="${ADMIN_URL}">Open admin</a></p>`;
+  return sendMail(env, {
+    to: BUILDER_EMAIL,
+    subject: `Sanghamitra — ${authorName} updated ${what}`,
+    text,
+    html,
+  });
+}
+
+/** Note under Ask Pradeep — needs building; not live until Pradeep ships it. */
+export async function notifyBuilderOwnerNote(env, { authorName, body }) {
+  const text = [
+    `${authorName} left a note that needs building:`,
+    "",
+    body,
+    "",
+    `Open admin: ${ADMIN_URL}#inbox`,
+  ].join("\n");
+  const html = `<p><strong>${escHtml(authorName)}</strong> left a note that needs building:</p><pre style="white-space:pre-wrap;font-family:Georgia,serif">${escHtml(body)}</pre><p><a href="${ADMIN_URL}#inbox">Open in admin</a></p>`;
+  return sendMail(env, {
+    to: BUILDER_EMAIL,
+    subject: `Sanghamitra — build request from ${authorName}`,
+    text,
+    html,
+  });
+}
+
+/** Owner uploaded poetry, magazine, or a photo — live immediately. */
+export async function notifyBuilderOwnerUpload(env, { authorName, kind, title, detail }) {
+  const text = [
+    `${authorName} uploaded ${kind}: ${title}`,
+    detail ? detail : "",
+    "",
+    "It is already on the public site.",
+    "",
+    `Live site: ${LIVE_URL}`,
+    `Admin: ${ADMIN_URL}`,
+  ].filter(Boolean).join("\n");
+  const html = `<p><strong>${escHtml(authorName)}</strong> uploaded ${escHtml(kind)}: <strong>${escHtml(title)}</strong></p>${detail ? `<p>${escHtml(detail)}</p>` : ""}<p>It is already on the public site.</p><p><a href="${LIVE_URL}">Open the live site</a> · <a href="${ADMIN_URL}">Open admin</a></p>`;
+  return sendMail(env, {
+    to: BUILDER_EMAIL,
+    subject: `Sanghamitra — ${authorName} uploaded ${kind}`,
+    text,
+    html,
+  });
+}

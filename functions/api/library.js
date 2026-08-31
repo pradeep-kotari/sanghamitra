@@ -1,4 +1,5 @@
 import { json, requireAdmin } from "../lib/auth.js";
+import { isOwnerEmail, notifyBuilderOwnerUpload } from "../lib/email.js";
 import {
   formatIssueWhen,
   normalizeMagazineIssue,
@@ -98,5 +99,17 @@ export async function onRequestPost(context) {
   });
   items.unshift(item);
   await context.env.ADMIN.put("library", JSON.stringify(items.slice(0, 200)));
+  if (isOwnerEmail(gate.user.email)) {
+    const kind = shelfRaw === "magazine" ? "a magazine issue" : "poetry";
+    const detail = shelfRaw === "magazine" && when ? `Issue: ${when}` : "";
+    context.waitUntil(
+      notifyBuilderOwnerUpload(context.env, {
+        authorName: gate.user.name,
+        kind,
+        title,
+        detail,
+      }).catch(() => null),
+    );
+  }
   return json({ ok: true, item });
 }
