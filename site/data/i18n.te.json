@@ -1,0 +1,52 @@
+{
+  "meta": {
+    "language": "te",
+    "note": "Empty value = not translated yet; the page keeps the English. Nothing here is machine translated.",
+    "needsConfirmation": [
+      "brand.mottoEn"
+    ],
+    "confirmationNote": "brand.mottoEn is Sreenivasa's own motto written in Telugu script. Please confirm the spelling.",
+    "source": "Sreenivasa Ainapurapu"
+  },
+  "strings": {
+    "brand.name": "",
+    "brand.nameTe": "సంఘమిత్ర",
+    "brand.mottoEn": "విజ్ఞానము, వినోదము, వికాసము",
+    "brand.mottoTe": "",
+    "nav.about": "",
+    "nav.learn": "",
+    "nav.knowledge": "",
+    "nav.give": "",
+    "nav.literature": "",
+    "nav.workshops": "",
+    "nav.events": "",
+    "nav.contact": "",
+    "nav.enroll": "",
+    "home.h1": "",
+    "home.whoLine": "",
+    "home.platformLine": "",
+    "home.lede": "",
+    "home.yearsLine": "",
+    "work.kicker": "",
+    "work.h2": "",
+    "work.lede": "",
+    "work.math.h": "",
+    "work.math.p": "",
+    "work.knowledge.h": "",
+    "work.knowledge.p": "",
+    "work.vedic.h": "",
+    "work.vedic.p": "",
+    "work.service.h": "",
+    "work.service.p": "",
+    "work.literature.h": "",
+    "work.literature.p": "",
+    "work.workshops.h": "",
+    "work.workshops.p": "",
+    "work.more": "",
+    "work.more.telugu": "",
+    "work.more.arts": "",
+    "work.more.magazine": "",
+    "work.more.about": "",
+    "ui.langNote": ""
+  }
+}

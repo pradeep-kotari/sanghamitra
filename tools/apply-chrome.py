@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
-"""Rewrite public-page nav + footer to the org chrome. Admin/intake left alone."""
+"""Rewrite public-page nav + footer to the org chrome. Admin/intake left alone.
+
+WARNING (2026-09-08): the live pages carry data-i18n attributes on every nav link
+and a brand block with the motto tooltip; this script does not reproduce either,
+and Sreenivasa Garu has asked that the footer be left exactly as it is. Running
+this will strip the language switch wiring and rewrite the footer. Bring the
+constants below up to date before you run it, or do not run it.
+"""
 from pathlib import Path
 import re
 
@@ -11,12 +18,15 @@ ROOT = Path(__file__).resolve().parents[1] / "site"
 NAV = """      <nav>
         <a href="about.html" class="on-wide"{about}>About</a>
         <a href="learn.html"{learn}>Learn</a>
-        <a href="poetry.html" class="on-wide"{poetry}>Poetry</a>
-        <a href="talks.html"{talks}>Invite</a>
+        <a href="watch.html" class="on-wide"{knowledge}>Knowledge</a>
         <a href="give.html"{give}>Give</a>
+        <a href="poetry.html" class="on-wide"{literature}>Literature</a>
+        <a href="talks.html" class="on-wide"{workshops}>Workshops</a>
         <a href="events.html" class="on-wide"{events}>Events</a>
         <a href="contact.html"{contact}>Contact</a>
         <a href="learn.html#enroll" class="cta"{enroll}>Enroll</a>
+        <button type="button" class="lang-toggle" data-lang-toggle aria-pressed="false"
+          title="Switch between English and Telugu"><span data-lang-label lang="te">తెలుగు</span></button>
       </nav>"""
 
 FOOTER = """  <footer class="site-footer">
@@ -38,7 +48,6 @@ FOOTER = """  <footer class="site-footer">
         <a href="watch.html">Watch</a>
         <a href="gallery.html">Gallery</a>
         <a href="traditions.html">Traditions</a>
-        <a href="admin/login.html">Admin</a>
       </p>
       <p class="social channels">
         <a href="https://wa.me/13146015309">WhatsApp Sreenivasa</a>
@@ -52,8 +61,9 @@ FOOTER = """  <footer class="site-footer">
 CURRENT = {
     "about.html": "about",
     "learn.html": "learn",
-    "poetry.html": "poetry",
-    "talks.html": "talks",
+    "watch.html": "knowledge",
+    "poetry.html": "literature",
+    "talks.html": "workshops",
     "give.html": "give",
     "events.html": "events",
     "contact.html": "contact",
@@ -63,7 +73,7 @@ CURRENT = {
 
 def nav_for(name):
     page = CURRENT.get(name, "")
-    flags = {k: "" for k in ("about", "learn", "poetry", "talks", "give", "events", "contact", "enroll")}
+    flags = {k: "" for k in ("about", "learn", "knowledge", "give", "literature", "workshops", "events", "contact", "enroll")}
     if page in flags:
         flags[page] = ' aria-current="page"'
     if name == "index.html":

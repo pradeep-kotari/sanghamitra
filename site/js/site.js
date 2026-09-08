@@ -869,6 +869,109 @@ function wireIntentForms() {
   });
 }
 
+// --- English / Telugu display -------------------------------------------------
+// Sreeni asked for the site to be readable in Telugu. The dictionary lives in
+// data/i18n.te.json and starts almost empty on purpose: nothing here is machine
+// translated. A key with an empty value keeps the English, so a half-translated
+// site reads as English-with-some-Telugu rather than as blanks. Fill the file in
+// and the page picks it up with no code change.
+const LANG_KEY = "sanghamitra.lang";
+const LANGS = ["en", "te"];
+let teDict = null;
+
+function readLang() {
+  const q = new URLSearchParams(location.search).get("lang");
+  if (LANGS.includes(q)) return q;
+  try {
+    const saved = localStorage.getItem(LANG_KEY);
+    if (LANGS.includes(saved)) return saved;
+  } catch { /* private mode */ }
+  return "en";
+}
+
+function saveLang(lang) {
+  try { localStorage.setItem(LANG_KEY, lang); } catch { /* private mode */ }
+}
+
+async function loadTeluguDict() {
+  if (teDict) return teDict;
+  try {
+    const res = await fetch("data/i18n.te.json", { cache: "no-cache" });
+    const body = res.ok ? await res.json() : {};
+    teDict = body.strings || {};
+  } catch {
+    teDict = {};
+  }
+  return teDict;
+}
+
+// The English is read off the page itself, after the owner's overlay has been
+// applied — so an admin edit to whoLine is what English mode shows, not a copy
+// of it frozen in this file.
+function captureEnglish() {
+  document.querySelectorAll("[data-i18n]").forEach((el) => {
+    if (el.dataset.i18nEn === undefined) el.dataset.i18nEn = el.textContent;
+  });
+}
+
+function langNoteEl() {
+  let note = document.querySelector(".lang-note");
+  if (note) return note;
+  const main = document.querySelector("main");
+  if (!main) return null;
+  note = document.createElement("div");
+  note.className = "lang-note";
+  note.hidden = true;
+  note.innerHTML = '<div class="wrap"><span data-i18n="ui.langNote"></span></div>';
+  main.insertBefore(note, main.firstChild);
+  return note;
+}
+
+async function applyLanguage(lang) {
+  const use = LANGS.includes(lang) ? lang : "en";
+  captureEnglish();
+  const dict = use === "te" ? await loadTeluguDict() : {};
+  const note = langNoteEl();
+  const span = note && note.querySelector("[data-i18n='ui.langNote']");
+  if (span && span.dataset.i18nEn === undefined) {
+    span.dataset.i18nEn = "Telugu is being added page by page. Anything not yet translated is shown in English.";
+  }
+
+  document.querySelectorAll("[data-i18n]").forEach((el) => {
+    const key = el.getAttribute("data-i18n");
+    const te = use === "te" ? (dict[key] || "") : "";
+    if (te) {
+      el.textContent = te;
+      el.setAttribute("lang", "te");
+    } else {
+      if (el.dataset.i18nEn !== undefined) el.textContent = el.dataset.i18nEn;
+      if (el.getAttribute("lang") === "te" && !el.hasAttribute("data-lang-fixed")) el.removeAttribute("lang");
+    }
+  });
+
+  document.documentElement.lang = use;
+  if (note) note.hidden = use !== "te";
+
+  document.querySelectorAll("[data-lang-toggle]").forEach((btn) => {
+    btn.setAttribute("aria-pressed", use === "te" ? "true" : "false");
+    const label = btn.querySelector("[data-lang-label]");
+    if (!label) return;
+    label.textContent = use === "te" ? "English" : "\u0c24\u0c46\u0c32\u0c41\u0c17\u0c41";
+    label.setAttribute("lang", use === "te" ? "en" : "te");
+  });
+}
+
+function wireLanguageToggle() {
+  document.addEventListener("click", (ev) => {
+    const btn = ev.target.closest && ev.target.closest("[data-lang-toggle]");
+    if (!btn) return;
+    ev.preventDefault();
+    const next = document.documentElement.lang === "te" ? "en" : "te";
+    saveLang(next);
+    applyLanguage(next);
+  });
+}
+
 document.addEventListener("DOMContentLoaded", async () => {
   const year = document.getElementById("year");
   if (year) year.textContent = new Date().getFullYear();
@@ -885,6 +988,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     data = { events: [], booking: {}, links: {}, copy: {}, person: {} };
   }
   applyPublicSite(data);
+
+  wireLanguageToggle();
+  applyLanguage(readLang());
 
   const next = document.getElementById("next-event");
   if (next) renderNextEvent(data, next);

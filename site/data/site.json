@@ -4,6 +4,8 @@
     "nameTe": "సంఘమిత్ర",
     "meaning": "Friend of society",
     "meaningTe": "సమాజ మిత్రుడు",
+    "motto": "Knowledge, Entertainment and Progress",
+    "mottoTe": "Vijnanamu, Vinodamu, Vikasamu",
     "domain": "https://sanghamitra.org"
   },
   "person": {
@@ -98,7 +100,7 @@
     "note": "Paste a Cal.com or Google Appointment Schedule URL into embedUrl when his calendar is connected. Until then, 1:1 requests go to WhatsApp +1 314 601 5309."
   },
   "copy": {
-    "whoLine": "Sanghamitra is the organization. Sreenivasa Ainapurapu founded it and still teaches, hosts, and answers on WhatsApp.",
+    "whoLine": "Sanghamitra is a not for profit organization led by Sreenivasa Ainapurapu founded in 2003 based on Values, Love, Sharing and Caring. Education for Progress.",
     "homepageLede": "Enroll a student in Vedic math, SAT or ACT coaching, or Telugu. Join a public sitting on Zoom. Donate, volunteer, or invite a talk — then write or WhatsApp him. He replies.",
     "yearsLine": "Named Sanghamitra in 2003 · first public Medhavadhanam in 2007",
     "donateMode": "ask",
