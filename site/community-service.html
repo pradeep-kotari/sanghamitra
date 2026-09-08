@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Magazine · Sanghamitra</title>
-  <meta name="description" content="Sanghamitra’s online quarterly magazine for knowledge, wisdom, and fun ran from 2003 to 2011, with a final issue in 2015.">
+  <title>Community Service · Sanghamitra</title>
+  <meta name="description" content="Community Service at Sanghamitra — the Vedic tenth returned to society, school fees paid directly to schools, food, book and clothing drives, and Telugu classes with SiliconAndhra Manabadi.">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Sanghamitra">
-  <meta property="og:title" content="Magazine · Sanghamitra">
-  <meta property="og:description" content="Sanghamitra’s online quarterly magazine for knowledge, wisdom, and fun ran from 2003 to 2011, with a final issue in 2015.">
-  <meta property="og:url" content="https://sanghamitra.pages.dev/magazine.html">
+  <meta property="og:title" content="Community Service · Sanghamitra">
+  <meta property="og:description" content="Community Service at Sanghamitra — the Vedic tenth returned to society, school fees paid directly to schools, food, book and clothing drives, and Telugu classes with SiliconAndhra Manabadi.">
+  <meta property="og:url" content="https://sanghamitra.pages.dev/community-service.html">
   <meta property="og:image" content="https://sanghamitra.pages.dev/img/medhavadhanam-2026-st-louis-group.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
@@ -33,7 +33,7 @@
                               <nav>
         <a href="learn.html" data-i18n="nav.math">Math Tutoring</a>
         <a href="learn.html#math" class="on-wide" data-i18n="nav.vedic">Vedic Math</a>
-        <a href="community-service.html" data-i18n="nav.service">Community Service</a>
+        <a href="community-service.html" aria-current="page" data-i18n="nav.service">Community Service</a>
         <a href="watch.html" class="on-wide" data-i18n="nav.knowledge">Knowledge Sharing</a>
         <a href="poetry.html" class="on-wide" data-i18n="nav.literature">Literature</a>
         <a href="talks.html" class="on-wide" data-i18n="nav.workshops">Workshops</a>
@@ -49,19 +49,48 @@
 
   <main class="section">
     <div class="wrap">
-      <p class="kicker">2003–2015</p>
-      <h1>Sanghamitra’s online quarterly.</h1>
-      <p class="lede">An online magazine for knowledge, wisdom, and fun. It came out as a quarterly from 2003 to 2011, and the last issue was published in 2015. Issues are grouped by year and month — newest first.</p>
-      <div id="magazine-shelf"></div>
-      <p data-library-empty="magazine">No issues are listed yet. Past issues from 2003 to 2015 will appear here as they are published.</p>
+      <p class="kicker" data-i18n="cs.kicker">Sharing and caring</p>
+      <h1 data-i18n="cs.h1">Community Service</h1>
+      <p class="lede" data-i18n="cs.lede">Vedic culture asks each of us to return a tenth of what we earn to society. Sanghamitra itself takes no donations — Sreenivasa will point you to organizations he has personally verified, and he runs drives of his own.</p>
+
+      <div class="doors">
+        <article class="door">
+          <span data-i18n="cs.drives.k">Drives</span>
+          <h3 data-i18n="cs.drives.h">Food, books and clothing</h3>
+          <p data-i18n="cs.drives.p">Collections for families who need them, gathered and given locally.</p>
+        </article>
+        <article class="door">
+          <span data-i18n="cs.fees.k">School fees</span>
+          <h3 data-i18n="cs.fees.h">Paid to the school, never to the family</h3>
+          <p data-i18n="cs.fees.p">Fees for children in India go directly to the school, so the money cannot be misused. A network of people he trusts there checks each case.</p>
+        </article>
+        <article class="door" id="telugu">
+          <span data-i18n="cs.telugu.k">Telugu classes</span>
+          <h3 data-i18n="cs.telugu.h">With SiliconAndhra Manabadi</h3>
+          <p data-i18n="cs.telugu.p">The Telugu classes are run by SiliconAndhra Manabadi, a separate organization — Sanghamitra hosts and helps. Ask and he will show you the way in.</p>
+        </article>
+        <article class="door">
+          <span data-i18n="cs.talks.k">Presentations</span>
+          <h3 data-i18n="cs.talks.h">Talks for the community</h3>
+          <p data-i18n="cs.talks.p">Presentations on Vedic mathematics and the older arts, for temples, libraries and schools.</p>
+        </article>
+      </div>
+
+      <section>
+        <p class="kicker" data-i18n="cs.gallery.k">Photographs</p>
+        <div class="photo-strip" data-gallery-activities="sharing telugu"></div>
+        <p class="empty-note" data-gallery-empty data-i18n="cs.gallery.empty">Photographs of the drives are on their way. Sreenivasa asks everyone's permission before any photograph is published here.</p>
+      </section>
+
       <div class="actions">
-        <a class="btn btn-ghost" href="contact.html">Something wrong on this page?</a>
-        <a class="btn btn-ghost" href="about.html#work">What Sanghamitra does</a>
-        <a class="btn btn-ghost" href="https://wa.me/13146015309">WhatsApp Sreenivasa</a>
+        <a class="btn btn-primary" href="give.html#donate">Give toward the work</a>
+        <a class="btn btn-ghost" href="give.html#volunteer">Volunteer</a>
+        <a class="btn btn-ghost" href="learn.html#telugu">Ask about Telugu classes</a>
       </div>
     </div>
   </main>
-        <footer class="site-footer">
+
+          <footer class="site-footer">
     <div class="wrap footer-grid">
       <div>
         <p>© <span data-year>2026</span> Sanghamitra · సంఘమిత్ర</p>
@@ -89,7 +118,6 @@
       </p>
     </div>
   </footer>
-  <script src="js/pdf-preview.js"></script>
   <script src="js/site.js"></script>
 </body>
 </html>

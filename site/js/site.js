@@ -287,6 +287,7 @@ function rsvpAndShare(event) {
       </div>
       <label class="opt"><input type="checkbox" name="alsoEnroll" value="yes"> Also enroll a student for math or SAT</label>
       <button class="btn btn-primary" type="submit">Save my name</button>
+      <p class="form-trust muted" data-i18n="form.privacy">This goes straight to Sreenivasa's email. Nothing you type is stored on this site.</p>
       <p class="intent-note" data-note></p>
     </form>
     <div class="share-pack">
@@ -307,6 +308,28 @@ function shortEventDate(event) {
   }
 }
 
+// One click puts the sitting into the visitor's own Google Calendar. It is a
+// plain link — no script, no embed, nothing third-party loads on our page.
+function gcalUrl(event) {
+  const start = new Date(event.startsAt);
+  if (isNaN(start)) return "";
+  const end = new Date(start.getTime() + (event.durationMinutes || 90) * 60000);
+  const fmt = (d) => d.toISOString().replace(/[-:]|\.\d{3}/g, "");
+  const details = [
+    event.blurb || "",
+    event.joinUrl ? `Join on Zoom: ${event.joinUrl}` : "",
+    "From sanghamitra.org — everyone is welcome.",
+  ].filter(Boolean).join("\n");
+  const params = new URLSearchParams({
+    action: "TEMPLATE",
+    text: `Sanghamitra: ${event.title}`,
+    dates: `${fmt(start)}/${fmt(end)}`,
+    details,
+  });
+  if (event.joinUrl) params.set("location", "Zoom (link in the notes)");
+  return `https://calendar.google.com/calendar/render?${params}`;
+}
+
 function eventCard(event, { featured = false } = {}) {
   const upcoming = isUpcoming(event);
   const cls = `event-card${featured ? " featured" : ""}${event.flyer ? " event-with-flyer" : ""}`;
@@ -325,6 +348,10 @@ function eventCard(event, { featured = false } = {}) {
   }
   if (upcoming && event.ics) {
     actions.push(`<a class="btn btn-ghost" href="${esc(event.ics)}">Add to calendar</a>`);
+  }
+  const gcal = upcoming ? gcalUrl(event) : "";
+  if (gcal) {
+    actions.push(`<a class="btn btn-ghost" href="${esc(gcal)}" target="_blank" rel="noopener">Add to Google Calendar</a>`);
   }
   if (event.pdf) {
     actions.push(`<a class="btn btn-ghost" href="${esc(event.pdf)}">Open the PDF</a>`);
@@ -611,21 +638,195 @@ async function attachEventPhotos(el) {
   }
 }
 
-function renderEventList(data, el) {
-  const upcoming = (data.events || []).filter(isUpcoming);
-  const past = (data.events || []).filter((e) => !isUpcoming(e))
+// --- Events page: Upcoming with a calendar, Past grouped by year -------------
+// Sreeni's split from the 7 September meeting: the two kinds never mix, and a
+// visitor can drop a sitting into Google Calendar in one click.
+function localDayKey(date) {
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+}
+
+function mountEventsCalendar(el, upcoming) {
+  if (!el) return;
+  const byDay = new Map();
+  for (const e of upcoming) {
+    const d = new Date(e.startsAt);
+    if (isNaN(d)) continue;
+    const key = localDayKey(d);
+    if (!byDay.has(key)) byDay.set(key, []);
+    byDay.get(key).push(e);
+  }
+  // Open on the month of the next sitting, or the current month between gatherings.
+  const first = upcoming
+    .map((e) => new Date(e.startsAt))
+    .filter((d) => !isNaN(d))
+    .sort((a, b) => a - b)[0];
+  let cursor = first ? new Date(first.getFullYear(), first.getMonth(), 1)
+                     : new Date(new Date().getFullYear(), new Date().getMonth(), 1);
+  const todayKey = localDayKey(new Date());
+  const monthFmt = new Intl.DateTimeFormat("en", { month: "long", year: "numeric" });
+
+  function render() {
+    const year = cursor.getFullYear();
+    const month = cursor.getMonth();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const leadPad = new Date(year, month, 1).getDay(); // weeks start on Sunday
+    const cells = [];
+    for (let i = 0; i < leadPad; i++) cells.push(`<span class="cal-day pad" aria-hidden="true"></span>`);
+    for (let day = 1; day <= daysInMonth; day++) {
+      const key = localDayKey(new Date(year, month, day));
+      const hits = byDay.get(key);
+      const cls = `cal-day${hits ? " has-event" : ""}${key === todayKey ? " today" : ""}`;
+      if (hits) {
+        const names = hits.map((e) => e.title).join("; ");
+        cells.push(`<a class="${cls}" href="#${esc(hits[0].id)}" title="${esc(names)}">${day}</a>`);
+      } else {
+        cells.push(`<span class="${cls}">${day}</span>`);
+      }
+    }
+    el.innerHTML = `
+      <div class="cal">
+        <div class="cal-head">
+          <button type="button" class="cal-nav" data-cal-prev aria-label="Previous month">‹</button>
+          <p class="cal-month">${esc(monthFmt.format(cursor))}</p>
+          <button type="button" class="cal-nav" data-cal-next aria-label="Next month">›</button>
+        </div>
+        <div class="cal-grid">
+          ${["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((d) => `<span class="cal-dow">${d}</span>`).join("")}
+          ${cells.join("")}
+        </div>
+        <p class="cal-note" data-i18n="events.calendar.note">Marked days have a sitting. Tap the day to jump to its invitation.</p>
+      </div>`;
+    el.querySelector("[data-cal-prev]").addEventListener("click", () => {
+      cursor = new Date(year, month - 1, 1);
+      render();
+    });
+    el.querySelector("[data-cal-next]").addEventListener("click", () => {
+      cursor = new Date(year, month + 1, 1);
+      render();
+    });
+  }
+  render();
+}
+
+function renderEventsPage(data, wrap) {
+  const events = data.events || [];
+  // With no data at all (a failed fetch), keep the page's own written content
+  // rather than wiping it for an empty state.
+  if (!events.length) return;
+  const upEl = wrap.querySelector("#events-upcoming");
+  const pastEl = wrap.querySelector("#events-past");
+  const calEl = wrap.querySelector("#events-calendar");
+  const upcoming = events.filter(isUpcoming)
+    .sort((a, b) => new Date(a.startsAt) - new Date(b.startsAt));
+  const past = events.filter((e) => !isUpcoming(e))
     .sort((a, b) => new Date(b.startsAt) - new Date(a.startsAt));
-  el.innerHTML = [
-    upcoming.length ? upcoming.map((e) => eventCard(e, { featured: true })).join("") : "<p>No upcoming group sessions are listed. Request a 1:1 or watch the WhatsApp group.</p>",
-    `<div id="earlier-sessions"><h2>Earlier sessions</h2>${
-      past.length ? past.map((e) => eventCard(e)).join("") : "<p class=\"muted\" id=\"earlier-empty\">No earlier sessions are listed yet.</p>"
-    }</div>`,
-  ].join("");
-  attachEventPhotos(el).then(() => {
-    if (el.querySelector("#earlier-sessions .event-card") && el.querySelector("#earlier-empty")) {
-      el.querySelector("#earlier-empty").remove();
+
+  if (upEl) {
+    upEl.innerHTML = upcoming.length
+      ? upcoming.map((e) => eventCard(e, { featured: true })).join("")
+      : `<p>No upcoming group sessions are listed. Dates go out on the WhatsApp group first — <a href="${esc(SITE.whatsappGroup)}">join it here</a>.</p>`;
+  }
+  mountEventsCalendar(calEl, upcoming);
+  if (pastEl) {
+    const byYear = new Map();
+    for (const e of past) {
+      const d = new Date(e.startsAt);
+      const year = isNaN(d) ? "Undated" : String(d.getFullYear());
+      if (!byYear.has(year)) byYear.set(year, []);
+      byYear.get(year).push(e);
+    }
+    const years = [...byYear.entries()].sort(([a], [b]) => Number(b) - Number(a));
+    pastEl.innerHTML = years.length
+      ? years.map(([year, list]) => `
+          <section class="year-group">
+            <h2>${esc(year)}</h2>
+            ${list.map((e) => eventCard(e)).join("")}
+          </section>`).join("")
+      : `<p class="muted" id="earlier-empty">No earlier sessions are listed yet.</p>`;
+  }
+  attachEventPhotos(wrap).then(() => {
+    const empty = wrap.querySelector("#earlier-empty");
+    if (empty && wrap.querySelector(".year-group .event-card, #earlier-sessions .event-card")) {
+      empty.remove();
     }
   });
+}
+
+// The owner's uploaded photographs, tagged by activity, replace the fallback
+// image on each homepage topic card without any code change.
+async function fillTopicThumbs() {
+  const slots = [...document.querySelectorAll(".topic-thumb[data-activity]")];
+  if (!slots.length) return;
+  const photos = await loadPhotosOnce();
+  const byActivity = new Map();
+  for (const p of photos) {
+    if (p.activity && !byActivity.has(p.activity)) byActivity.set(p.activity, p);
+  }
+  for (const slot of slots) {
+    const photo = byActivity.get(slot.getAttribute("data-activity"));
+    if (!photo) continue;
+    slot.classList.remove("no-photo");
+    slot.innerHTML = `<img src="/media/${esc(photo.id)}" alt="${esc(photo.caption || "Sanghamitra")}" loading="lazy">`;
+  }
+}
+
+// A category page's gallery: every owner photograph tagged with one of the
+// page's activities, in one scrolling strip. The honest note stays until then.
+async function fillPageGallery() {
+  const strip = document.querySelector("[data-gallery-activities]");
+  if (!strip) return;
+  const wanted = new Set(strip.getAttribute("data-gallery-activities").split(/\s+/).filter(Boolean));
+  const photos = (await loadPhotosOnce()).filter((p) => p.activity && wanted.has(p.activity));
+  if (!photos.length) return;
+  strip.innerHTML = photos.map((p) => `
+    <figure>
+      <img src="/media/${esc(p.id)}" alt="${esc(p.caption || "Sanghamitra")}" loading="lazy">
+      ${p.caption ? `<figcaption>${esc(p.caption)}</figcaption>` : ""}
+    </figure>`).join("");
+  const empty = document.querySelector("[data-gallery-empty]");
+  if (empty) empty.hidden = true;
+}
+
+// Every photo strip gets edge fades (CSS) and large prev/next buttons. The
+// buttons hide themselves at the ends, and both hide when the strip fits on
+// screen — no overflow, no clutter.
+function wireStripNav() {
+  for (const strip of document.querySelectorAll(".photo-strip")) {
+    if (strip.parentElement.classList.contains("strip-wrap")) continue;
+    const wrap = document.createElement("div");
+    wrap.className = "strip-wrap";
+    strip.parentNode.insertBefore(wrap, strip);
+    wrap.appendChild(strip);
+    const prev = document.createElement("button");
+    prev.type = "button";
+    prev.className = "strip-nav prev";
+    prev.setAttribute("aria-label", "Scroll photos back");
+    prev.textContent = "‹";
+    const next = document.createElement("button");
+    next.type = "button";
+    next.className = "strip-nav next";
+    next.setAttribute("aria-label", "Scroll photos forward");
+    next.textContent = "›";
+    wrap.append(prev, next);
+    const step = () => Math.max(strip.clientWidth * 0.8, 200);
+    prev.addEventListener("click", () => strip.scrollBy({ left: -step(), behavior: "smooth" }));
+    next.addEventListener("click", () => strip.scrollBy({ left: step(), behavior: "smooth" }));
+    const sync = () => {
+      const overflow = strip.scrollWidth > strip.clientWidth + 8;
+      const atStart = strip.scrollLeft <= 4;
+      const atEnd = strip.scrollLeft + strip.clientWidth >= strip.scrollWidth - 4;
+      prev.hidden = !overflow || atStart;
+      next.hidden = !overflow || atEnd;
+    };
+    strip.addEventListener("scroll", sync, { passive: true });
+    new ResizeObserver(sync).observe(strip);
+    // Images load after the first paint — re-measure once they do, or the
+    // buttons stay hidden forever on a strip that only overflows after load.
+    for (const img of strip.querySelectorAll("img")) {
+      if (!img.complete) img.addEventListener("load", sync, { once: true });
+    }
+    sync();
+  }
 }
 
 function fillBookingChoices(data, select) {
@@ -994,8 +1195,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const next = document.getElementById("next-event");
   if (next) renderNextEvent(data, next);
-  const list = document.getElementById("event-list");
-  if (list) renderEventList(data, list);
+  const eventsPage = document.getElementById("events-all");
+  if (eventsPage) renderEventsPage(data, eventsPage);
   if (document.getElementById("booking-form")) wireBookingForm(data);
   const archive = document.getElementById("session-archive");
   if (archive) renderSessions(data, archive);
@@ -1008,6 +1209,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (covers) renderGiveExamples(data, covers);
 
   attachActivityPhotos();
+  fillTopicThumbs();
+  fillPageGallery();
+  wireStripNav();
   const satakam = document.getElementById("satakam-shelf");
   if (satakam) mountLibrary("satakam", satakam);
   const issues = document.getElementById("magazine-shelf");

@@ -4,6 +4,16 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Events · Sanghamitra</title>
+  <meta name="description" content="Sanghamitra sittings, upcoming and past — a month calendar with Google Calendar save, and earlier years grouped year by year.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Sanghamitra">
+  <meta property="og:title" content="Events · Sanghamitra">
+  <meta property="og:description" content="Sanghamitra sittings, upcoming and past — a month calendar with Google Calendar save, and earlier years grouped year by year.">
+  <meta property="og:url" content="https://sanghamitra.pages.dev/events.html">
+  <meta property="og:image" content="https://sanghamitra.pages.dev/img/medhavadhanam-2026-st-louis-group.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,700&family=Noto+Serif+Telugu:wght@500;700&family=Source+Serif+4:opsz,wght@8..60,480;8..60,600&display=swap" rel="stylesheet">
@@ -21,13 +31,14 @@
         </span>
       </a>
                               <nav>
-        <a href="about.html" class="on-wide" data-i18n="nav.about">About</a>
-        <a href="learn.html" data-i18n="nav.learn">Learn</a>
-        <a href="watch.html" class="on-wide" data-i18n="nav.knowledge">Knowledge</a>
-        <a href="give.html" data-i18n="nav.give">Give</a>
+        <a href="learn.html" data-i18n="nav.math">Math Tutoring</a>
+        <a href="learn.html#math" class="on-wide" data-i18n="nav.vedic">Vedic Math</a>
+        <a href="community-service.html" data-i18n="nav.service">Community Service</a>
+        <a href="watch.html" class="on-wide" data-i18n="nav.knowledge">Knowledge Sharing</a>
         <a href="poetry.html" class="on-wide" data-i18n="nav.literature">Literature</a>
         <a href="talks.html" class="on-wide" data-i18n="nav.workshops">Workshops</a>
-        <a href="events.html" class="on-wide" aria-current="page" data-i18n="nav.events">Events</a>
+        <a href="events.html" aria-current="page" data-i18n="nav.events">Events</a>
+        <a href="about.html" class="on-wide" data-i18n="nav.about">About</a>
         <a href="contact.html" data-i18n="nav.contact">Contact</a>
         <a href="learn.html#enroll" class="cta" data-i18n="nav.enroll">Enroll</a>
         <button type="button" class="lang-toggle" data-lang-toggle aria-pressed="false"
@@ -38,41 +49,59 @@
 
   <main class="section">
     <div class="wrap">
-      <p class="kicker">Group sessions</p>
-      <h1>Come to one that already exists.</h1>
-      <p class="lede">The next sitting is on the flyer below. Tap I'm coming so he has your name, or join on Zoom at the hour.</p>
-      <div id="event-list">
-        <article class="event-card featured event-with-flyer" id="2026-09-05-sundara-kanda">
-          <div>
-            <p class="kicker">Group session</p>
-            <h2>Sundara Kanda Harikatha</h2>
-            <p class="when">Saturday, 5 September 2026 · 6:00 PM IST / 7:30 AM US Central</p>
-            <p class="invite-te">అందరికీ ఇదే ఆహ్వానము</p>
-            <p>By Srimati Jayanti Savitri, from the Kanda Ramayanam.</p>
-            <a class="flyer-link" href="announcements/2026-09-05/SundaraKanda_From_KandaRamayanam_09052026.pdf"><img class="flyer" src="announcements/2026-09-05/flyer.jpg" alt="Sundara Kanda Harikatha invitation"></a>
-            <div class="actions">
-              <a class="btn btn-primary" href="https://us02web.zoom.us/j/86386435256">Join on Zoom · 5 Sept</a>
-              <a class="btn btn-ghost" href="events/sanghamitra-2026-09-05.ics">Add to calendar</a>
-              <a class="btn btn-ghost" href="announcements/2026-09-05/SundaraKanda_From_KandaRamayanam_09052026.pdf">Open the PDF</a>
-            </div>
+      <p class="kicker" data-i18n="events.kicker">Events</p>
+      <h1 data-i18n="events.h1">Sittings, upcoming and past.</h1>
+      <p class="lede" data-i18n="events.lede">Join the next one from your home — one tap puts it in your calendar. Earlier years sit below, year by year.</p>
+
+      <div id="events-all">
+        <section id="upcoming">
+          <h2 data-i18n="events.upcoming.h">Upcoming</h2>
+          <div id="events-calendar">
+            <p class="empty-note" data-i18n="events.calendar.empty">A calendar appears here as soon as the next date is published.</p>
           </div>
-        </article>
-        <h2>Earlier sessions</h2>
-        <article class="event-card event-with-flyer" id="2026-summer-mathematricks">
-          <div>
-            <p class="kicker">Earlier · the club</p>
-            <h2>Summer Program 2026</h2>
-            <p class="when">Weekends, 6 June – 25 July 2026</p>
-            <p class="presenter">Sreenivasa Ainapurapu</p>
-            <p>Srinivasa Ramanujan Mathematricks Club. Vedic mathematics, problem-solving, and algorithms. The club has run this summer sitting since 2005. Medhavadhanam followed in August at the Hindu Temple of St. Louis.</p>
-            <a class="flyer-link" href="announcements/2026-summer/flyer.jpg"><img class="flyer" src="announcements/2026-summer/flyer.jpg" alt="Summer Program 2026 invitation"></a>
-            <div class="actions">
-              <a class="btn btn-ghost" href="learn.html#enroll">Ask about the next summer</a>
-            </div>
+          <div id="events-upcoming">
+            <article class="event-card featured event-with-flyer" id="2026-09-05-sundara-kanda">
+              <div>
+                <p class="kicker">Group session</p>
+                <h2>Sundara Kanda Harikatha</h2>
+                <p class="when">Saturday, 5 September 2026 · 6:00 PM IST / 7:30 AM US Central</p>
+                <p class="invite-te">అందరికీ ఇదే ఆహ్వానము</p>
+                <p>By Srimati Jayanti Savitri, from the Kanda Ramayanam.</p>
+                <a class="flyer-link" href="announcements/2026-09-05/SundaraKanda_From_KandaRamayanam_09052026.pdf"><img class="flyer" src="announcements/2026-09-05/flyer.jpg" alt="Sundara Kanda Harikatha invitation"></a>
+                <div class="actions">
+                  <a class="btn btn-primary" href="https://us02web.zoom.us/j/86386435256">Join on Zoom · 5 Sept</a>
+                  <a class="btn btn-ghost" href="events/sanghamitra-2026-09-05.ics">Add to calendar</a>
+                  <a class="btn btn-ghost" href="announcements/2026-09-05/SundaraKanda_From_KandaRamayanam_09052026.pdf">Open the PDF</a>
+                </div>
+              </div>
+            </article>
           </div>
-        </article>
+        </section>
+
+        <section id="past">
+          <h2 data-i18n="events.past.h">Past events</h2>
+          <div id="events-past">
+            <section class="year-group">
+              <h2>2026</h2>
+              <article class="event-card event-with-flyer" id="2026-summer-mathematricks">
+                <div>
+                  <p class="kicker">Earlier · the club</p>
+                  <h2>Summer Program 2026</h2>
+                  <p class="when">Weekends, 6 June – 25 July 2026</p>
+                  <p class="presenter">Sreenivasa Ainapurapu</p>
+                  <p>Srinivasa Ramanujan Mathematricks Club. Vedic mathematics, problem-solving, and algorithms. The club has run this summer sitting since 2005. Medhavadhanam followed in August at the Hindu Temple of St. Louis.</p>
+                  <a class="flyer-link" href="announcements/2026-summer/flyer.jpg"><img class="flyer" src="announcements/2026-summer/flyer.jpg" alt="Summer Program 2026 invitation"></a>
+                  <div class="actions">
+                    <a class="btn btn-ghost" href="learn.html#enroll">Ask about the next summer</a>
+                  </div>
+                </div>
+              </article>
+            </section>
+          </div>
+        </section>
       </div>
-      <p style="margin-top:1.5rem">Want a private hour instead? <a href="contact.html">Write to Sreenivasa</a>.</p>
+
+      <p style="margin-top:1.5rem"><span data-i18n="events.private">Want a private hour instead?</span> <a href="contact.html">Write to Sreenivasa</a>.</p>
     </div>
   </main>
 

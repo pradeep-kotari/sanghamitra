@@ -5,6 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Sanghamitra · సంఘమిత్ర</title>
   <meta name="description" content="Sanghamitra — enroll in Vedic math, SAT or ACT coaching, or Telugu. Join public sittings on Zoom. Donate, volunteer, or invite Sreenivasa Ainapurapu to speak.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Sanghamitra">
+  <meta property="og:title" content="Sanghamitra · సంఘమిత్ర">
+  <meta property="og:description" content="Sanghamitra — enroll in Vedic math, SAT or ACT coaching, or Telugu. Join public sittings on Zoom. Donate, volunteer, or invite Sreenivasa Ainapurapu to speak.">
+  <meta property="og:url" content="https://sanghamitra.pages.dev/">
+  <meta property="og:image" content="https://sanghamitra.pages.dev/img/medhavadhanam-2026-st-louis-group.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,700&family=Noto+Serif+Telugu:wght@500;700&family=Source+Serif+4:opsz,wght@8..60,480;8..60,600&display=swap" rel="stylesheet">
@@ -22,13 +31,14 @@
         </span>
       </a>
                               <nav>
-        <a href="about.html" class="on-wide" data-i18n="nav.about">About</a>
-        <a href="learn.html" data-i18n="nav.learn">Learn</a>
-        <a href="watch.html" class="on-wide" data-i18n="nav.knowledge">Knowledge</a>
-        <a href="give.html" data-i18n="nav.give">Give</a>
+        <a href="learn.html" data-i18n="nav.math">Math Tutoring</a>
+        <a href="learn.html#math" class="on-wide" data-i18n="nav.vedic">Vedic Math</a>
+        <a href="community-service.html" data-i18n="nav.service">Community Service</a>
+        <a href="watch.html" class="on-wide" data-i18n="nav.knowledge">Knowledge Sharing</a>
         <a href="poetry.html" class="on-wide" data-i18n="nav.literature">Literature</a>
         <a href="talks.html" class="on-wide" data-i18n="nav.workshops">Workshops</a>
-        <a href="events.html" class="on-wide" data-i18n="nav.events">Events</a>
+        <a href="events.html" data-i18n="nav.events">Events</a>
+        <a href="about.html" class="on-wide" data-i18n="nav.about">About</a>
         <a href="contact.html" data-i18n="nav.contact">Contact</a>
         <a href="learn.html#enroll" class="cta" data-i18n="nav.enroll">Enroll</a>
         <button type="button" class="lang-toggle" data-lang-toggle aria-pressed="false"
@@ -42,10 +52,11 @@
       <div class="wrap hero-grid">
         <div>
           <p class="kicker motto-line">Knowledge, Entertainment and Progress <em lang="te-Latn">Vijnanamu, Vinodamu, Vikasamu</em></p>
-          <h1 data-i18n="home.h1">Math, Telugu, and sittings from home.</h1>
-          <p class="who-line" data-bind="copy.whoLine" data-i18n="home.whoLine">Sanghamitra is a not for profit organization led by Sreenivasa Ainapurapu founded in 2003 based on Values, Love, Sharing and Caring. Education for Progress.</p>
-          <p class="platform-line" data-i18n="home.platformLine">Platform to Learn, share and progress.</p>
-          <p class="lede" data-bind="copy.homepageLede" data-i18n="home.lede">Enroll a student in Vedic math, SAT or ACT coaching, or Telugu. Join a public sitting on Zoom. Donate, volunteer, or invite a talk — then write or WhatsApp him. He replies.</p>
+          <h1 class="hero-title">
+            <span class="name" data-i18n="brand.name">Sanghamitra</span>
+            <span class="name-te" data-i18n="brand.nameTe" lang="te">సంఘమిత్ర</span>
+          </h1>
+          <p class="mission" data-i18n="home.mission">Sanghamitra is an organization founded in 2003 based on values, love, sharing and caring. Education for progress. It's a platform to learn, share and progress.</p>
           <p class="muted" data-bind="copy.yearsLine" data-i18n="home.yearsLine">Named Sanghamitra in 2003 · first public Medhavadhanam in 2007</p>
           <div class="actions">
             <a class="btn btn-primary" href="learn.html#enroll">Enroll</a>
@@ -65,6 +76,132 @@
           <img src="img/medhavadhanam-2026-st-louis-students.jpg" width="768" height="1024" alt="Sreenivasa Ainapurapu with students after Medhavadhanam 2026 at the Hindu Temple of St. Louis">
           <figcaption>Sreenivasa with students of the Ramanujan Mathematricks Club. St. Louis, 2026.</figcaption>
         </figure>
+      </div>
+    </section>
+
+    <section class="section" id="work">
+      <div class="wrap">
+        <p class="kicker" data-i18n="work.kicker">What we do</p>
+        <h2 data-i18n="work.h2">Every area of the work, one organization.</h2>
+        <p class="lede" data-i18n="work.lede">Pick the door that matches why you came. Each opens its own page.</p>
+        <ol class="work-list topics">
+          <li>
+            <a class="work-card" href="learn.html">
+              <span class="topic-thumb" data-activity="math-club">
+                <img src="img/medhavadhanam-2026-st-louis-group.jpg" alt="Students on stage at Medhavadhanam 2026, the club's annual showcase" loading="lazy">
+              </span>
+              <h3 data-i18n="work.math.h">Math Tutoring</h3>
+              <p data-i18n="work.math.p">Arithmetic, Algebra, Geometry, Trigonometry and more.</p>
+            </a>
+          </li>
+          <li>
+            <a class="work-card" href="learn.html#math">
+              <span class="topic-thumb" data-activity="vedic">
+                <img src="img/summer-program-math-pi-certificates.jpg" alt="Sreenivasa Ainapurapu with summer-program students holding their Math Pi certificates" loading="lazy">
+              </span>
+              <h3 data-i18n="work.vedic.h">Vedic Mathematics</h3>
+              <p data-i18n="work.vedic.p">Summer program for ages 9 and above.</p>
+            </a>
+          </li>
+          <li>
+            <a class="work-card" href="community-service.html">
+              <span class="topic-thumb no-photo" data-activity="sharing">
+                <span class="thumb-glyph" lang="te" aria-hidden="true">సేవ</span>
+                <span class="thumb-note" aria-hidden="true">Photograph on its way</span>
+              </span>
+              <h3 data-i18n="work.service.h">Community Service</h3>
+              <p data-i18n="work.service.p">Donations for food, books and clothing. Teaching Telugu. Presentations.</p>
+            </a>
+          </li>
+          <li>
+            <a class="work-card" href="watch.html">
+              <span class="topic-thumb" data-activity="knowledge">
+                <img src="img/yt-channel.jpg" alt="The Sanghamitra YouTube channel, where recorded sittings live" loading="lazy">
+              </span>
+              <h3 data-i18n="work.knowledge.h">Knowledge Sharing</h3>
+              <p data-i18n="work.knowledge.p">Sittings on YouTube, Facebook and WhatsApp.</p>
+            </a>
+          </li>
+          <li>
+            <a class="work-card" href="poetry.html">
+              <span class="topic-thumb" data-activity="poetry">
+                <img src="img/sreenivasa-yt.jpg" alt="The Sanghamitra emblem from the magazine years" loading="lazy">
+              </span>
+              <h3 data-i18n="work.literature.h">Works of Literature</h3>
+              <p data-i18n="work.literature.p">Friend messages, poetry and articles.</p>
+            </a>
+          </li>
+          <li>
+            <a class="work-card" href="talks.html">
+              <span class="topic-thumb no-photo" data-activity="meditation">
+                <span class="thumb-glyph" lang="te" aria-hidden="true">ధ్యానము</span>
+                <span class="thumb-note" aria-hidden="true">Photograph on its way</span>
+              </span>
+              <h3 data-i18n="work.workshops.h">Workshops</h3>
+              <p data-i18n="work.workshops.p">Meditation, anger and stress management.</p>
+            </a>
+          </li>
+          <li>
+            <a class="work-card" href="events.html">
+              <span class="topic-thumb">
+                <img src="announcements/2026-09-05/flyer.jpg" alt="Invitation to the Sundara Kanda Harikatha, September 2026" loading="lazy">
+              </span>
+              <h3 data-i18n="work.events.h">Events</h3>
+              <p data-i18n="work.events.p">Sittings past and upcoming, with a calendar.</p>
+            </a>
+          </li>
+        </ol>
+        <p class="muted more-work">
+          <span data-i18n="work.more">Also here:</span>
+          <a href="community-service.html#telugu" data-i18n="work.more.telugu">Telugu classes</a> ·
+          <a href="traditions.html" data-i18n="work.more.arts">Harikatha and the older arts</a> ·
+          <a href="magazine.html" data-i18n="work.more.magazine">The magazine, 2003 to 2015</a> ·
+          <a href="about.html#work" data-i18n="work.more.about">What each one means</a>
+        </p>
+      </div>
+    </section>
+
+    <section class="section" id="pictures">
+      <div class="wrap">
+        <p class="kicker" data-i18n="home.stripKicker">In pictures</p>
+        <div class="photo-strip">
+          <figure>
+            <img src="img/medhavadhanam-2026-st-louis-students.jpg" alt="Students with their medals after Medhavadhanam 2026" loading="lazy">
+            <figcaption>Medals after Medhavadhanam 2026, St. Louis.</figcaption>
+          </figure>
+          <figure>
+            <img src="img/medhavadhanam-2026-st-louis-group.jpg" alt="Students and families on stage at the Hindu Temple of St. Louis" loading="lazy">
+            <figcaption>On stage at the Hindu Temple of St. Louis, 2026.</figcaption>
+          </figure>
+          <figure>
+            <img src="img/summer-program-math-pi-certificates.jpg" alt="Sreenivasa Ainapurapu with students holding their Math Pi certificates" loading="lazy">
+            <figcaption>With students and their Math Pi certificates.</figcaption>
+          </figure>
+          <figure>
+            <img src="images/press/medhavadhanam-st-louis.jpg" alt="Children participating in Medhavadhanam, from the India Post story" loading="lazy">
+            <figcaption>From the India Post story on Medhavadhanam.</figcaption>
+          </figure>
+          <figure>
+            <img src="images/press/kids-amaze-talent.jpg" alt="The club's children with the organizer, from the India Post story" loading="lazy">
+            <figcaption>From the India Post story on the summer program.</figcaption>
+          </figure>
+          <figure>
+            <img src="announcements/2026-09-05/flyer.jpg" alt="The Sundara Kanda Harikatha invitation" loading="lazy">
+            <figcaption>The Sundara Kanda Harikatha invitation, 2026.</figcaption>
+          </figure>
+          <figure>
+            <img src="img/ram-darbar.jpg" alt="The Sri Seetha Ramula Kalyanam invitation" loading="lazy">
+            <figcaption>The Sri Seetha Ramula Kalyanam invitation, 2025.</figcaption>
+          </figure>
+          <figure>
+            <img src="img/yt-channel.jpg" alt="The Sanghamitra YouTube channel page" loading="lazy">
+            <figcaption>The YouTube channel, where sittings live.</figcaption>
+          </figure>
+          <figure>
+            <img src="img/sreenivasa-yt.jpg" alt="The Sanghamitra emblem: music, literature and dance" loading="lazy">
+            <figcaption>The Sanghamitra emblem from the magazine years.</figcaption>
+          </figure>
+        </div>
       </div>
     </section>
 
@@ -97,115 +234,6 @@
           <li><strong>90</strong><span>students in the 2020 summer school</span></li>
           <li><strong>2</strong><span>India Post articles on the club</span></li>
         </ul>
-      </div>
-    </section>
-
-    <section class="section" id="see-it">
-      <div class="wrap">
-        <p class="kicker">See it, don't read about it</p>
-        <h2>No paper. No calculator.</h2>
-        <div class="demo-grid">
-          <div class="video">
-            <iframe
-              src="https://www.youtube-nocookie.com/embed/9f60lg0Ku8M"
-              title="Students of the Ramanujan Mathematricks Club at Medhavadhanam"
-              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen
-              loading="lazy"></iframe>
-          </div>
-          <div>
-            <p>Jump to a moment:</p>
-            <ol class="chapters" id="demo-chapters" data-video="9f60lg0Ku8M" data-limit="6"></ol>
-            <p class="muted">These marks point into the video. They are not a transcript. <a href="watch.html">More sittings</a> · <a href="gallery.html">Photographs</a></p>
-            <div class="actions">
-              <a class="btn btn-primary" href="learn.html#enroll">Enroll a student</a>
-              <a class="btn btn-ghost" href="watch.html">More sittings</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="work">
-      <div class="wrap">
-        <p class="kicker" data-i18n="work.kicker">What we do</p>
-        <h2 data-i18n="work.h2">Six kinds of work, one organization.</h2>
-        <p class="lede" data-i18n="work.lede">Pick the door that matches why you came.</p>
-        <ol class="work-list topics">
-          <li>
-            <a class="work-card" data-activity="math-club" href="learn.html">
-              <h3 data-i18n="work.math.h">Math Tutoring</h3>
-              <p data-i18n="work.math.p">Arithmetic, Algebra, Geometry, Trigonometry and more.</p>
-            </a>
-          </li>
-          <li>
-            <a class="work-card" data-activity="knowledge" href="watch.html">
-              <h3 data-i18n="work.knowledge.h">Knowledge Sharing</h3>
-              <p data-i18n="work.knowledge.p">Sittings on YouTube, Facebook and WhatsApp.</p>
-            </a>
-          </li>
-          <li>
-            <a class="work-card" href="learn.html#math">
-              <h3 data-i18n="work.vedic.h">Vedic Mathematics</h3>
-              <p data-i18n="work.vedic.p">Summer program for ages 9 and above.</p>
-            </a>
-          </li>
-          <li>
-            <a class="work-card" data-activity="sharing" href="give.html">
-              <h3 data-i18n="work.service.h">Community Service</h3>
-              <p data-i18n="work.service.p">Donations for food, books and clothing. Teaching Telugu. Presentations.</p>
-            </a>
-          </li>
-          <li>
-            <a class="work-card" data-activity="poetry" href="poetry.html">
-              <h3 data-i18n="work.literature.h">Works of Literature</h3>
-              <p data-i18n="work.literature.p">Friend messages, poetry and articles.</p>
-            </a>
-          </li>
-          <li>
-            <a class="work-card" data-activity="meditation" href="talks.html">
-              <h3 data-i18n="work.workshops.h">Workshops</h3>
-              <p data-i18n="work.workshops.p">Meditation, anger and stress management.</p>
-            </a>
-          </li>
-        </ol>
-        <p class="muted more-work">
-          <span data-i18n="work.more">Also here:</span>
-          <a href="learn.html#telugu" data-i18n="work.more.telugu">Telugu classes</a> ·
-          <a href="traditions.html" data-i18n="work.more.arts">Harikatha and the older arts</a> ·
-          <a href="magazine.html" data-i18n="work.more.magazine">The magazine, 2003 to 2011</a> ·
-          <a href="about.html#work" data-i18n="work.more.about">What each one means</a>
-        </p>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="wrap">
-        <p class="kicker">In the press</p>
-        <h2>India Post covered the club at the Hindu Temple of St. Louis.</h2>
-        <p class="lede">Photographs from two sittings — Vedic math, the summer program, and parents on school grades.</p>
-        <div class="press-list press-list-home">
-          <a class="card press-card" href="https://indiapost.com/ramanujan-club-hosts-medhavadhanam/" rel="noopener" target="_blank">
-            <img class="press-thumb" src="images/press/medhavadhanam-st-louis.jpg" alt="Kids participating in Medhavadhanam at the Hindu Temple of St. Louis" loading="lazy">
-            <div class="press-body">
-              <p class="source">India Post</p>
-              <h3>Ramanujan Club hosts Medhavadhanam</h3>
-              <p>Ashwin Patel, from the Hindu Temple of St. Louis. Vedic computation, algebra and geometry with visuals, then triples, roots, calendars, recurring decimals.</p>
-            </div>
-          </a>
-          <a class="card press-card" href="https://indiapost.com/ramanujan-club-kids-amaze-with-their-talent/" rel="noopener" target="_blank">
-            <img class="press-thumb" src="images/press/kids-amaze-talent.jpg" alt="Srinivasa Ramanujan Mathematricks Club children with organizer at the Hindu Temple of St. Louis" loading="lazy">
-            <div class="press-body">
-              <p class="source">India Post</p>
-              <h3>Ramanujan Club kids amaze with their talent</h3>
-              <p>The basement summer program, Vedic mathematics, Manabadi and Balavikas, and Sanghamitra around Sreenivasa Ainapurapu. Parents say school grades moved.</p>
-            </div>
-          </a>
-        </div>
-        <div class="actions">
-          <a class="btn btn-ghost" href="press.html">All coverage</a>
-          <a class="btn btn-ghost" href="gallery.html">Photographs from the hall</a>
-        </div>
       </div>
     </section>
   </main>
