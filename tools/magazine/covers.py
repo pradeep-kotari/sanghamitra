@@ -206,7 +206,7 @@ def build():
             headings.sort(key=lambda h: (shared[h], order[h]))
             if len(headings) >= 3:
                 im, kind = contents_card(issue, headings), "contents"
-                note = "The column headings this issue carried, from its own contents page. Its articles are among those the Internet Archive did not keep."
+                note = "The column headings this issue carried, from its own contents page."
             else:
                 im, kind = name_card(issue), "name"
                 note = ("Only the name of this issue survives, so the magazine's own banner stands in for the cover."
