@@ -1265,3 +1265,79 @@ a.cal-day.has-event:hover { background: var(--paper-2); border-color: var(--line
 .drill-result { min-height: 1.4em; color: var(--ink-soft); }
 /* His hand-made Telugu column headings from the magazine years, shown above the column title. */
 .column-heading { display: block; max-height: 3.2rem; width: auto; max-width: 100%; margin: 0.2rem 0 0.6rem; }
+
+/* ── Homepage: one button treatment ─────────────────────────────────────────
+   Founder-directed 2026-09-09: on the front page every button reads the same
+   outline pill, so nothing looks like the odd one out. Before this, the page
+   carried three treatments at once — a solid indigo nav pill, a solid saffron
+   button in the gathering card, and outline pills everywhere else.
+
+   Scoped to the homepage on purpose. Forms and the admin panel keep their
+   filled submit buttons: a low-contrast Save or Send is the kind of button
+   people miss, and missing it costs an enrollment or a saved edit. Widen this
+   only after checking those pages in a browser. */
+body.home nav .cta {
+  background: transparent;
+  color: var(--indigo) !important;
+  border: 1px solid var(--line);
+}
+body.home nav .cta:hover {
+  color: var(--indigo) !important;
+  border-color: var(--indigo);
+}
+
+body.home .btn-primary,
+body.home .btn-dark {
+  background: transparent;
+  color: var(--indigo);
+  border: 1px solid var(--line);
+}
+body.home .btn-primary:hover,
+body.home .btn-dark:hover {
+  background: transparent;
+  color: var(--indigo);
+  border-color: var(--indigo);
+}
+
+/* The gathering card is a dark panel, so its outline inverts to stay readable
+   — same treatment .btn-ghost already gets there. */
+body.home .event-card.featured .btn-primary,
+body.home .event-card.featured .btn-dark {
+  background: transparent;
+  color: var(--on-dark);
+  border-color: rgba(247, 239, 224, 0.55);
+}
+body.home .event-card.featured .btn-primary:hover,
+body.home .event-card.featured .btn-dark:hover {
+  background: rgba(247, 239, 224, 0.08);
+  color: var(--on-dark);
+  border-color: var(--on-dark);
+}
+
+/* The RSVP and share panels sit on cream INSIDE that dark card, so they go
+   back to the light-ground outline. */
+body.home .event-card.featured .rsvp-form .btn-primary,
+body.home .event-card.featured .rsvp-form .btn-dark,
+body.home .event-card.featured .share-pack .btn-primary,
+body.home .event-card.featured .share-pack .btn-dark {
+  background: transparent;
+  color: var(--indigo);
+  border-color: var(--line);
+}
+body.home .event-card.featured .rsvp-form .btn-primary:hover,
+body.home .event-card.featured .rsvp-form .btn-dark:hover,
+body.home .event-card.featured .share-pack .btn-primary:hover,
+body.home .event-card.featured .share-pack .btn-dark:hover {
+  background: transparent;
+  color: var(--indigo);
+  border-color: var(--indigo);
+}
+/* The writer's name as he set it in Telugu. A byline was an image on his pages, because the font could not render it. */
+.byline { display: flex; align-items: center; gap: .6rem; margin: .1rem 0 .8rem; }
+.byline img { height: 1.35rem; width: auto; }
+.byline span { color: var(--ink-soft); font-size: .95rem; }
+/* The question of the week, in the tradition of his Question Gallery column. */
+.quiz-card { border-left: 4px solid var(--saffron); }
+.quiz-q { font-family: Fraunces, Georgia, serif; font-size: clamp(1.25rem, 1rem + 1.1vw, 1.75rem); line-height: 1.45; margin: .4rem 0 .6rem; border: 0; padding: 0; }
+.quiz-year { margin: 1.2rem 0 0; }
+.quiz-year h3 { margin: 0 0 .4rem; font-size: 1.05rem; color: var(--indigo); }
