@@ -153,12 +153,13 @@ nav a {
 }
 nav a[aria-current="page"],
 nav a:hover { color: var(--indigo); }
-nav .cta {
-  background: var(--indigo);
-  color: #fff8eb !important;
-  padding: 0.5rem 1rem;
-  border-radius: 999px;
-}
+/* Enroll carries .cta as a marker of what the header's main action IS, but it
+   deliberately renders as a plain nav link, identical to About and Contact.
+   Pradeep, 9 Sep 2026: it must not look like a button in the header. It was a
+   solid indigo pill before, the one coloured thing in the bar. Do not give this
+   a background, a border or a radius; if the header ever needs an emphasised
+   action again, that is a design decision to take with him, not a style to
+   quietly restore here. */
 
 /* A row of channels under the hero buttons, and in every footer. */
 .channels {
@@ -1276,16 +1277,6 @@ a.cal-day.has-event:hover { background: var(--paper-2); border-color: var(--line
    filled submit buttons: a low-contrast Save or Send is the kind of button
    people miss, and missing it costs an enrollment or a saved edit. Widen this
    only after checking those pages in a browser. */
-body.home nav .cta {
-  background: transparent;
-  color: var(--indigo) !important;
-  border: 1px solid var(--line);
-}
-body.home nav .cta:hover {
-  color: var(--indigo) !important;
-  border-color: var(--indigo);
-}
-
 body.home .btn-primary,
 body.home .btn-dark {
   background: transparent;
