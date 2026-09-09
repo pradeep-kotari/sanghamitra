@@ -453,3 +453,37 @@ old site. If any of these are on the flash drive, they drop straight into the ar
 ## Vijaya Dasami 2004 · October 2004 · folder `src` · 2 missing, 8 recovered
 - `crossword.html` — Crossword
 - `tudipaluku.pdf` — Final word
+
+---
+
+## Re-attempted 9 September 2026 — nothing more exists online
+
+Pradeep asked for a second run at the Internet Archive. Everything below was checked; the
+result is that the 8 September download already had **every file any public archive holds**.
+
+- **Wayback, whole domain** (`matchType=domain`, all statuses, not just `www.`): 665 capture
+  rows, 224 unique URLs, 82 PDFs and 81 images. All but ten are on disk, and those ten are the
+  ten the Wayback crawler itself got a 404 on (`Events/Medhavadhanam2007_Flyer.pdf`,
+  `favicon.ico`, `index2007.html`, `robots.txt`, `sitemap.xml` and four MathQuiz assets).
+  Nothing was left unfetched.
+- **Which folders it ever crawled.** Eleven of the twenty-three issue folders, and nothing at
+  all from `src107 src407 src707 src108 src708 src1008 src109 src709 src1009 src0110 src0411
+  src0416`. The pieces in those issues were never captured by anyone, so no download can
+  produce them.
+- **Direct playback probe.** Six missing files requested straight from Wayback
+  (`web/2010id_/…`) rather than through the index: all 404. The index is not hiding anything.
+- **The old host is gone.** `sanghamitra.org` now serves a Network Solutions parking page and
+  404s every old path, so the live site is no longer a source either.
+- **Common Crawl**: only ever captured the homepage, in 2013, 2014 and 2016. No inner page,
+  no PDF.
+- **archive.today**: `TimeMap does not exists. The archive has no Mementos for the requested URI.`
+- **Look-alike domains** (`samghamitra.org`, `sanghamithra.org`, `sanghamitra.net/.info/.com/.us`):
+  none carries the `src*/` or `indexNN.html` pattern. Different organisations.
+- **Two files on disk that cannot be published**: `src/crossword.html` and `crosswordp.html`
+  were recovered, but both are shells around `images/crossword-block.gif` and
+  `crosswordclues.gif`, which the archive never kept. Publishing them would show two broken
+  images, so the 2004 crossword stays marked not recovered.
+
+**The remaining source is the flash drive.** In the 7 September meeting Sreenivas Garu said his
+copies are "copied somewhere on a flash drive." That drive is now the only route to the 402
+missing pieces.

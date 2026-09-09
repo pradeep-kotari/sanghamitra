@@ -123,7 +123,10 @@ def name_card(issue):
     y += paste_art(card, "new_title.jpg", y, int(W * 0.84), scale_cap=1.2) + 40
     rule(card, y); y += 34
     y += draw_line(card, date_line(issue), y, 44, HIS_GREEN) + 26
-    draw_line(card, "no copy survives", y, 26, (110, 96, 78))
+    # Two different silences: an issue known only by name, and one whose contents page survives
+    # but carried no headings of its own. Say which, rather than one line that is wrong for one.
+    draw_line(card, "no copy survives" if issue.get("nameOnly") else "contents only",
+              y, 26, (110, 96, 78))
     return card
 
 
@@ -163,7 +166,7 @@ def build():
         iid = issue["id"]
         if issue.get("cover"):
             built[iid] = {"src": f"magazine/img/{issue['cover']}", "kind": "cover",
-                          "note": "The cover of this issue, as the Internet Archive kept it."}
+                          "note": "The cover of this issue."}
             continue
 
         avail = [it for it in issue["items"] if it.get("available")]
@@ -186,9 +189,9 @@ def build():
             if hit:
                 redacted.append(os.path.relpath(src_pdf, ROOT))
             if piece is None:
-                note = "The first page of this issue, from the printable copy he kept."
+                note = "The first page of this issue, from the printable copy of the whole issue."
             else:
-                note = f"A page of this issue: the first page of {os.path.basename(piece['file']).replace('_eng', '').replace('.pdf', '').replace('_', ' ')}, one of the pieces that survived."
+                note = f"A page of this issue: the first page of {os.path.basename(piece['file']).replace('_eng', '').replace('.pdf', '').replace('_', ' ')}."
             kind = "page"
         else:
             headings, seen = [], set()
@@ -203,10 +206,12 @@ def build():
             headings.sort(key=lambda h: (shared[h], order[h]))
             if len(headings) >= 3:
                 im, kind = contents_card(issue, headings), "contents"
-                note = "The column headings from this issue's own contents page. Its articles were never captured."
+                note = "The column headings this issue carried, from its own contents page. Its articles are among those the Internet Archive did not keep."
             else:
                 im, kind = name_card(issue), "name"
-                note = "Nothing of this issue survives but its name, so the magazine's own title block stands in."
+                note = ("Only the name of this issue survives, so the magazine's own banner stands in for the cover."
+                        if issue.get("nameOnly") else
+                        "Its contents page survives but carried no pictures of its own, so the magazine's banner stands in.")
         im.save(dst, quality=80, optimize=True, progressive=True)
         built[iid] = {"src": rel, "kind": kind, "note": note}
         print(f"  {iid}  {kind:8s} {os.path.getsize(dst)//1024:3d}KB  {note[:64]}")

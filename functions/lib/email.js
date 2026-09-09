@@ -33,9 +33,35 @@ async function postJson(url, headers, body) {
   return true;
 }
 
+async function sendViaBrevo(env, { recipients, copies, subject, text, html }) {
+  const payload = {
+    sender: { name: "Sanghamitra", email: senderAddress(env) },
+    to: recipients.map((email) => ({ email })),
+    subject,
+    textContent: text,
+    htmlContent: html || `<pre>${text}</pre>`,
+  };
+  if (copies.length) payload.cc = copies.map((email) => ({ email }));
+  return postJson(
+    "https://api.brevo.com/v3/smtp/email",
+    { "api-key": env.BREVO_API_KEY, "content-type": "application/json" },
+    payload,
+  );
+}
+
 export async function sendMail(env, { to, cc, subject, text, html }) {
   const recipients = Array.isArray(to) ? to : [to];
   const copies = cc ? (Array.isArray(cc) ? cc : [cc]) : [];
+
+  // Which provider is tried first. Resend accepted every message from 30 August 2026 onward and
+  // delivered none of them, with a valid message id each time, so the order has to be changeable
+  // without a deploy. MAIL_PROVIDER=brevo puts Brevo first; anything else keeps Resend first.
+  const brevoFirst = String(env.MAIL_PROVIDER || "").trim().toLowerCase() === "brevo";
+
+  if (env.BREVO_API_KEY && brevoFirst) {
+    const sent = await sendViaBrevo(env, { recipients, copies, subject, text, html });
+    if (sent) return { ok: true, via: "brevo" };
+  }
 
   if (env.RESEND_API_KEY) {
     // One sender, and it is a Sanghamitra one. The old fallback chain reached for
@@ -57,28 +83,9 @@ export async function sendMail(env, { to, cc, subject, text, html }) {
     }
   }
 
-  if (env.BREVO_API_KEY) {
-    {
-      const sender = { name: "Sanghamitra", email: senderAddress(env) };
-      const payload = {
-        sender,
-        to: recipients.map((email) => ({ email })),
-        subject,
-        textContent: text,
-        htmlContent: html || `<pre>${text}</pre>`,
-      };
-      if (copies.length) payload.cc = copies.map((email) => ({ email }));
-      const ok = await postJson(
-        "https://api.brevo.com/v3/smtp/email",
-        {
-          "api-key": env.BREVO_API_KEY,
-          "content-type": "application/json",
-          accept: "application/json",
-        },
-        payload,
-      );
-      if (ok) return { ok: true, via: "brevo" };
-    }
+  if (env.BREVO_API_KEY && !brevoFirst) {
+    const sent = await sendViaBrevo(env, { recipients, copies, subject, text, html });
+    if (sent) return { ok: true, via: "brevo" };
   }
 
   return { ok: false };

@@ -340,7 +340,7 @@ main_new = f"""<main class="section">
       </ul></details>
 
       <h2 id="issues">By issue</h2>
-      <p class="muted">Named the way he named them: Sankranti in January, Ugadi in spring, July, and Vijaya Dasami in October. Four covers survive. For the rest the picture is a page of that issue, or, where only the contents page was captured, the column headings he set for it.</p>
+      <p class="muted">Named the way he named them: Sankranti in January, Ugadi in spring, July, and Vijaya Dasami in October. Four covers survive. Where one does not, the picture is a page of that issue, or the column headings its contents page carried.</p>
       {"".join(year_blocks)}
 
       <h2>Issues published since</h2>
