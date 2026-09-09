@@ -13,6 +13,9 @@ Public site for Sanghamitra (సంఘమిత్ర) — community sessions, H
 - Live files: `site/`
 - Event source of truth: `site/data/site.json`
 - Next flyer: `.venv-whisper/bin/python tools/ingest-flyer.py /path/to.pdf`
+- Issue pictures: `.venv-whisper/bin/python tools/magazine/covers.py` then `tools/magazine/generate.py`
+  — every issue card gets a picture from that issue (its cover, a page of it, or its own column
+  headings). Re-run both after recovering more of an issue: a real page beats a contents card.
 
 Deploy the public folder only:
 

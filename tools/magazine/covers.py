@@ -1,0 +1,194 @@
+#!/usr/bin/env python3
+"""Give every issue on the magazine page a picture, taken from that issue itself.
+
+Four archived covers survive (2016 Ugadi, July 2011, Sankranti 2007, Vijaya Dasami 2006).
+For the other 21 issues nothing that could be called a cover was ever captured, so this
+builds one out of what that issue does still have, in this order:
+
+  page     the first page of the issue's own fullbook.pdf — for two issues that IS his cover
+  page     otherwise the first page of the first piece of that issue that was recovered
+  contents his own column headings from that issue's contents page, set the way he set them
+  name     the magazine's title block alone, for the issues where nothing but the name survives
+
+Nothing is invented and nothing is borrowed from another issue except in the last case,
+which is stated in the caption on the issue page. Personal details are boxed out of every
+rendered page before it becomes an image, the same list redact.py works from.
+
+  .venv-whisper/bin/python tools/magazine/covers.py [--force]
+
+Writes site/magazine/img/covers/<issue-id>.jpg and site/data/magazine-covers.json, which
+generate.py reads. Re-run it after recovering more of an issue: a page beats a contents card.
+"""
+import json, os, re, sys, io
+import pymupdf
+from PIL import Image, ImageChops
+
+ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+SITE = os.path.join(ROOT, "site")
+MAG = os.path.join(SITE, "magazine")
+IMG = os.path.join(MAG, "img")
+OUT = os.path.join(IMG, "covers")
+
+W, H = 600, 800          # 3:4, the shape the cards are cut to
+PAPER = (255, 248, 235)  # --card, so a built cover sits on the same paper as the page
+RULE = (212, 196, 164)   # --line
+
+# His own street addresses, landlines and old mailboxes, plus the bare ZIP that survives
+# redaction because it sits on its own line. The WhatsApp number stays: it is public.
+KEEP = {"(314) 601-5306", "(314)601-5306", "314-601-5306"}
+PRIVATE = re.compile(
+    r"12450\s+Lyric\s+Ct\.?|Lyric\s+Ct\.?|1620\s+Strecker\s+Ridge\s+Ct\.?|Strecker\s+Ridge"
+    r"|Saint\s+Louis,\s*MO\s*63146|St\.?\s*Louis,\s*MO\s*63146|Wildwood,\s*MO\s*63011"
+    r"|63146|63011|\(?314\)?[\s-]*(?:395|878)[\s-]*9516"
+    r"|[\w.+-]+@(?:sanghamitra\.org|yahoo\.com|gmail\.com)", re.I)
+
+# Which piece stands in for an issue when its cover is gone: the pieces that opened the issue
+# first, then the columns that carry a drawing or a diagram, then whatever else was recovered.
+PREFER = ["cover_story", "mundumaata", "tolipaluku", "veekshanam", "sambaraalu", "toranam",
+          "mathematrix", "charitardulu", "charitardhulu", "ramanujan", "balamitra", "chuddam",
+          "vemana", "acharamulu", "smruti", "padam", "telusa", "jokes", "crossword",
+          "sameta_kathalu", "tudipaluku", "vidupu"]
+
+
+def paste_art(card, name, y, max_w, scale_cap=1.9):
+    """Drop one piece of his line art onto the card, centred at y. His headings are dark ink on
+    white; multiply keeps the ink and lets the paper show through, so nothing sits in a box."""
+    path = os.path.join(IMG, name)
+    if not os.path.exists(path):
+        return 0
+    im = Image.open(path).convert("RGB")
+    s = min(max_w / im.width, scale_cap)
+    im = im.resize((max(1, int(im.width * s)), max(1, int(im.height * s))), Image.LANCZOS)
+    x = (card.width - im.width) // 2
+    card.paste(ImageChops.multiply(card.crop((x, y, x + im.width, y + im.height)), im), (x, y))
+    return im.height
+
+
+def rule(card, y, inset=110):
+    for xx in range(inset, card.width - inset):
+        card.putpixel((xx, y), RULE)
+
+
+def contents_card(issue, headings):
+    """His contents page, rebuilt from its own parts: the title block, 'in this issue', and the
+    column headings that issue actually carried, in the order his page listed them."""
+    card = Image.new("RGB", (W, H), PAPER)
+    y = 54
+    y += paste_art(card, "samghamitra_title.jpg", y, int(W * 0.60)) + 12
+    y += paste_art(card, "samghamitra_motto.jpg", y, int(W * 0.70)) + 26
+    rule(card, y); y += 26
+    y += paste_art(card, "indexlist.jpg", y, int(W * 0.46)) + 26
+    # Fill the page the way his did: as many of that issue's headings as fit, in his order.
+    # The later entries are where issues differ from each other, so err on the side of more.
+    room = H - 52 - y
+    n = min(len(headings), max(4, room // 56))
+    gap = max(6, (room - n * 44) // max(1, n))
+    for h in headings[:n]:
+        h_px = paste_art(card, h, y, int(W * 0.76))
+        if not h_px:
+            continue
+        y += h_px + gap
+        if y > H - 70:
+            break
+    return card
+
+
+def name_card():
+    """Nothing of these issues survives but the name. The magazine's own title block stands for
+    it — borrowed from the masthead every issue carried, which the caption says out loud."""
+    card = Image.new("RGB", (W, H), PAPER)
+    y = H // 2 - 130
+    y += paste_art(card, "samghamitra_title.jpg", y, int(W * 0.74), scale_cap=2.4) + 18
+    y += paste_art(card, "samghamitra_motto.jpg", y, int(W * 0.80), scale_cap=2.4) + 34
+    rule(card, y)
+    return card
+
+
+def page_card(pdf_path, page_no=0):
+    """One real page of the issue, with anything private boxed out before it becomes pixels."""
+    doc = pymupdf.open(pdf_path)
+    page = doc[page_no]
+    hits = {m.group(0) for m in PRIVATE.finditer(page.get_text())} - KEEP
+    for needle in hits:
+        for r in page.search_for(needle) or []:
+            page.draw_rect(r, color=None, fill=(1, 1, 1), overlay=True)
+    zoom = max(W / page.rect.width, H / page.rect.height) * 1.35
+    pix = page.get_pixmap(matrix=pymupdf.Matrix(zoom, zoom))
+    im = Image.frombytes("RGB", (pix.width, pix.height), pix.samples)
+    doc.close()
+    # Cut to 3:4 from the top, the way the card itself crops, so what we ship is what shows.
+    target = W / H
+    if im.width / im.height > target:
+        w = int(im.height * target)
+        im = im.crop(((im.width - w) // 2, 0, (im.width - w) // 2 + w, im.height))
+    else:
+        im = im.crop((0, 0, im.width, int(im.width / target)))
+    return im.resize((W, H), Image.LANCZOS), bool(hits)
+
+
+def build():
+    data = json.load(open(os.path.join(SITE, "data/magazine.json"), encoding="utf-8"))
+    os.makedirs(OUT, exist_ok=True)
+    have_img = set(os.listdir(IMG))
+    built, redacted = {}, []
+
+    for issue in data["issues"]:
+        iid = issue["id"]
+        if issue.get("cover"):
+            built[iid] = {"src": f"magazine/img/{issue['cover']}", "kind": "cover",
+                          "note": "The cover of this issue, as the Internet Archive kept it."}
+            continue
+
+        avail = [it for it in issue["items"] if it.get("available")]
+        fullbook = os.path.join(MAG, issue["folder"], "fullbook.pdf")
+        src_pdf = piece = None
+        if os.path.exists(fullbook):
+            src_pdf, piece = fullbook, None
+        elif avail:
+            def rank(it):
+                c = it["column"]
+                return (PREFER.index(c) if c in PREFER else 99, 0 if it["lang"] == "te" else 1, it["file"])
+            piece = sorted(avail, key=rank)[0]
+            src_pdf = os.path.join(MAG, piece["file"])
+
+        rel = f"magazine/img/covers/{iid}.jpg"
+        dst = os.path.join(OUT, f"{iid}.jpg")
+
+        if src_pdf:
+            im, hit = page_card(src_pdf)
+            if hit:
+                redacted.append(os.path.relpath(src_pdf, ROOT))
+            if piece is None:
+                note = "The first page of this issue, from the printable copy he kept."
+            else:
+                note = f"A page of this issue: the first page of {os.path.basename(piece['file']).replace('_eng', '').replace('.pdf', '').replace('_', ' ')}, one of the pieces that survived."
+            kind = "page"
+        else:
+            headings, seen = [], set()
+            for it in issue["items"]:
+                h = it.get("heading_img")
+                if h and h not in seen and h in have_img:
+                    seen.add(h); headings.append(h)
+            if len(headings) >= 3:
+                im, kind = contents_card(issue, headings), "contents"
+                note = "The column headings from this issue's own contents page. Its articles were never captured."
+            else:
+                im, kind = name_card(), "name"
+                note = "Nothing of this issue survives but its name, so the magazine's own title block stands in."
+        im.save(dst, quality=80, optimize=True, progressive=True)
+        built[iid] = {"src": rel, "kind": kind, "note": note}
+        print(f"  {iid}  {kind:8s} {os.path.getsize(dst)//1024:3d}KB  {note[:64]}")
+
+    json.dump(built, open(os.path.join(SITE, "data/magazine-covers.json"), "w", encoding="utf-8"),
+              ensure_ascii=False, indent=1)
+    kinds = {}
+    for v in built.values():
+        kinds[v["kind"]] = kinds.get(v["kind"], 0) + 1
+    print(f"\n{len(built)} issues: " + ", ".join(f"{n} {k}" for k, n in sorted(kinds.items())))
+    if redacted:
+        print("personal details boxed out of the rendered page for: " + ", ".join(sorted(set(redacted))))
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(build())

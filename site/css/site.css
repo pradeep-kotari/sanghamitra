@@ -233,6 +233,8 @@ nav a:hover { color: var(--indigo); }
   object-position: top center;
   background: #fff;
 }
+/* What the picture beside an issue's contents actually is: a cover, a page, or his headings. */
+.cover-note { margin: 0.55rem 0 0; font-size: 0.82rem; line-height: 1.45; }
 .library-cover-pending {
   min-height: 220px;
   display: flex;

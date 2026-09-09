@@ -22,64 +22,57 @@
     <div class="wrap" style="max-width:32rem">
       <p style="margin-bottom:1.2rem"><a class="btn btn-ghost" href="../index.html" target="_blank" rel="noopener">View the live site</a></p>
       <p class="kicker">Sign in</p>
-      <h1>Update Sanghamitra</h1>
-      <p class="lede">After you sign in you can approve the Telugu from your old magazine, set this week's question, update phone and WhatsApp, sittings, photographs, magazine issues and poetry, or leave Pradeep a note if something needs building.</p>
-      <ol>
-        <li>Enter <strong>ainapura@yahoo.com</strong></li>
-        <li>Click Send the code</li>
-        <li>Check Yahoo Mail for the six-digit code — use the latest one (valid 10 minutes)</li>
-        <li>Enter the code and make your changes</li>
-      </ol>
-      <form id="ask">
-        <label>Email
-          <input name="email" type="email" required autocomplete="username">
-        </label>
-        <button class="btn btn-primary" type="submit">Send the code</button>
-      </form>
-      <form id="verify" class="hidden" style="margin-top:1rem">
-        <label>Six-digit code
-          <input name="code" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" required autocomplete="one-time-code">
-        </label>
-        <button class="btn btn-dark" type="submit">Sign in</button>
-      </form>
-      <p id="note" class="notice hidden"></p>
+        <h1>Update Sanghamitra</h1>
+        <p class="lede">After you sign in you can approve the Telugu from your old magazine, set this week's question, update phone and WhatsApp, sittings, photographs, magazine issues and poetry, or leave Pradeep a note if something needs building.</p>
+        <form id="signin">
+          <label>Email
+            <input name="email" type="email" required autocomplete="username" placeholder="ainapura@yahoo.com">
+          </label>
+          <label>Your code
+            <input name="code" type="password" required autocomplete="current-password" minlength="6" maxlength="64">
+          </label>
+          <button class="btn btn-primary" type="submit">Sign in</button>
+        </form>
+        <p class="muted" style="margin-top:1.2rem">Your code does not change and does not expire. Keep it somewhere safe. If you lose it, write to Pradeep and he will set a new one.</p>
+        <p class="muted"><a href="#" id="email-code">Send a one-time code to my email instead</a></p>
+        <p id="note" class="notice hidden"></p>
     </div>
   </main>
   <script>
-    const ask = document.getElementById("ask");
-    const verify = document.getElementById("verify");
+    const form = document.getElementById("signin");
     const note = document.getElementById("note");
-    let email = "";
     function show(msg, ok) {
       note.classList.remove("hidden");
       note.className = "notice " + (ok ? "ok" : "");
       note.textContent = msg;
     }
     fetch("/api/auth/me").then((r) => { if (r.ok) location.href = "/admin/#edit"; });
-    ask.addEventListener("submit", async (ev) => {
+
+    form.addEventListener("submit", async (ev) => {
       ev.preventDefault();
-      email = new FormData(ask).get("email");
+      const fd = new FormData(form);
+      const res = await fetch("/api/auth/verify", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ email: fd.get("email"), code: fd.get("code") }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) return show(data.error || "That code did not work");
+      location.href = "/admin/#edit";
+    });
+
+    // Kept for the day mail is repaired, and as the way to recover a lost code.
+    document.getElementById("email-code").addEventListener("click", async (ev) => {
+      ev.preventDefault();
+      const email = new FormData(form).get("email");
+      if (!email) return show("Type your email address first");
       const res = await fetch("/api/auth/request", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify({ email }),
       });
-      const data = await res.json();
-      if (!res.ok) return show(data.error || "Could not send");
-      verify.classList.remove("hidden");
-      show(data.message || "Check that inbox.", true);
-    });
-    verify.addEventListener("submit", async (ev) => {
-      ev.preventDefault();
-      const code = new FormData(verify).get("code");
-      const res = await fetch("/api/auth/verify", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ email, code }),
-      });
-      const data = await res.json();
-      if (!res.ok) return show(data.error || "That code did not work");
-      location.href = "/admin/#edit";
+      const data = await res.json().catch(() => ({}));
+      show(res.ok ? (data.message || "Check that inbox.") : (data.error || "Could not send"), res.ok);
     });
   </script>
 </body>

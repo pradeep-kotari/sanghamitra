@@ -10,6 +10,11 @@ ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 SITE = os.path.join(ROOT, "site"); MAG = os.path.join(SITE, "magazine"); TEXT = os.path.join(ROOT, "research/old-site/text")
 data = json.load(open(os.path.join(SITE, "data/magazine.json"), encoding="utf-8"))
 PEOPLE = json.load(open(os.path.join(SITE, "data/magazine-people.json"), encoding="utf-8"))
+# Built by tools/magazine/covers.py: a picture for every issue, taken from that issue. Four are
+# the archived covers; the rest are a page of the issue, or its own contents-page headings.
+COVERS_PATH = os.path.join(SITE, "data/magazine-covers.json")
+COVERS = json.load(open(COVERS_PATH, encoding="utf-8")) if os.path.exists(COVERS_PATH) else {}
+def cover_of(i): return COVERS.get(i["id"]) or ({"src": f"magazine/img/{i['cover']}", "kind": "cover", "note": ""} if i.get("cover") else None)
 issues = data["issues"]; MASTHEAD = data["masthead"]
 MONTH = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 esc = lambda s: H.escape(str(s or ""), quote=True)
@@ -182,7 +187,9 @@ for idx, i in enumerate(issues):
     te = [x for x in i["items"] if x["lang"] == "te"]; en = [x for x in i["items"] if x["lang"] == "en"]
     avail = sum(1 for x in i["items"] if x["available"])
     newer = issues[idx - 1] if idx > 0 else None; older = issues[idx + 1] if idx + 1 < len(issues) else None
-    cover = f'<a class="library-cover" href="magazine/img/{esc(i["cover"])}"><img src="magazine/img/{esc(i["cover"])}" alt="Cover of the {esc(label)} issue" loading="lazy"></a>' if i["cover"] else ""
+    c = cover_of(i)
+    cover = (f'<a class="library-cover" href="{esc(c["src"])}"><img src="{esc(c["src"])}" alt="{esc(c["note"] or ("Cover of the " + label + " issue"))}" loading="lazy"></a>'
+             f'<p class="muted cover-note">{esc(c["note"])}</p>') if c else ""
     if i.get("nameOnly"):
         state = "<p class=\"notice\">Only the name of this issue survives, from the 2007 year listing. Neither its contents page nor its articles were ever captured by the Internet Archive. If you have a copy, Sreenivasa would like to hear from you.</p>"
     else:
@@ -293,7 +300,8 @@ for y in sorted(years, reverse=True):
     cards = []
     for i in years[y]:
         avail = sum(1 for x in i["items"] if x["available"]); label = issue_label(i)
-        cov = f'<img src="magazine/img/{esc(i["cover"])}" alt="" loading="lazy">' if i["cover"] else f'<span class="cover-word" lang="te" aria-hidden="true">సంఘమిత్ర</span>'
+        c = cover_of(i)
+        cov = f'<img src="{esc(c["src"])}" alt="" loading="lazy">' if c else f'<span class="cover-word" lang="te" aria-hidden="true">సంఘమిత్ర</span>'
         cards.append(f"""<a class="issue-card{'' if avail else ' issue-contents-only'}" href="magazine/issue-{i['id']}.html">
           <span class="issue-cover">{cov}</span>
           <strong>{esc(label)}</strong>
@@ -332,7 +340,7 @@ main_new = f"""<main class="section">
       </ul></details>
 
       <h2 id="issues">By issue</h2>
-      <p class="muted">Named the way he named them: Sankranti in January, Ugadi in spring, July, and Vijaya Dasami in October.</p>
+      <p class="muted">Named the way he named them: Sankranti in January, Ugadi in spring, July, and Vijaya Dasami in October. Four covers survive. For the rest the picture is a page of that issue, or, where only the contents page was captured, the column headings he set for it.</p>
       {"".join(year_blocks)}
 
       <h2>Issues published since</h2>
