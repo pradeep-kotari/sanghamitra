@@ -1,9 +1,23 @@
 name: Deploy to Cloudflare Pages
 
+# Deploys only when someone runs it by hand, from the Actions tab.
+#
+# It is NOT on push, deliberately. The site already deploys on every push to
+# main through Cloudflare Pages' own git integration — proven 9 Sep 2026:
+# commit f63f091 was live on sanghamitra.pages.dev, Pages Functions included,
+# minutes after the push, while this workflow's own run for that same commit
+# had failed. So on push this is a second, redundant deploy of the same files.
+#
+# It also cannot work yet: it needs a CLOUDFLARE_API_TOKEN repository secret,
+# and the repo has no secrets at all. Without one, wrangler stops with
+# "necessary to set a CLOUDFLARE_API_TOKEN environment variable" and the run
+# fails in about 20 seconds. Between 04:45 and 09:17 on 9 Sep that emailed
+# Pradeep a failure for every push, for a deploy that was already succeeding.
+#
+# To make this the real deploy path: add the secret (steps in README.md), turn
+# the Pages git integration off in the Cloudflare dashboard so the two do not
+# both deploy, then restore the push trigger below.
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
 
 concurrency:

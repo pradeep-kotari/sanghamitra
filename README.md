@@ -14,11 +14,22 @@ Deploy the public folder only:
 npx wrangler pages deploy ./site --project-name sanghamitra
 ```
 
-Pushes to `main` also deploy via GitHub Actions (`.github/workflows/deploy-pages.yml`) once the repo secret is set:
+Pushes to `main` deploy on their own, through Cloudflare Pages' git integration.
+Nothing in this repo has to run for that to happen.
+
+The GitHub Actions workflow (`.github/workflows/deploy-pages.yml`) is a second,
+optional path and is **manual-only** — run it from the Actions tab. It is off on
+push on purpose: it would deploy the same files a second time, and it has no
+`CLOUDFLARE_API_TOKEN` secret, so every run fails in about 20 seconds and emails
+a failure for a deploy that already succeeded.
+
+To make Actions the real deploy path instead:
 
 1. [Create a Cloudflare API token](https://dash.cloudflare.com/profile/api-tokens) with **Account → Cloudflare Pages → Edit**.
 2. In GitHub: **Settings → Secrets and variables → Actions → New repository secret**
 3. Name: `CLOUDFLARE_API_TOKEN` · Value: the token from step 1.
+4. Turn the Pages git integration off in the Cloudflare dashboard, so the two do not both deploy.
+5. Restore the `push` trigger at the top of the workflow.
 
 Do not deploy the repo root. Research notes and the intake form stay out of the production upload if you keep using `./site` — except `site/intake.html`, which is currently in that folder.
 
