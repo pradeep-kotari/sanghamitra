@@ -230,9 +230,12 @@ for key, rows in cols.items():
         else: link = f'<a class="muted" href="magazine/issue-{i["id"]}.html">{esc(lbl)}</a> <span class="tag tag-missing">not recovered</span>'
         lis.append(f'<li><span class="lang-mark" title="{lang}">{lang[:2]}</span> {link}{(" <span class=\"muted\">· " + esc(it["contributor"]) + "</span>") if it.get("contributor") else ""}</li>')
     n_av = sum(1 for _, it in rows if it["available"])
+    heads = [it.get("heading_img") for _, it in rows if it.get("heading_img") and os.path.exists(os.path.join(MAG, "img", it["heading_img"]))]
+    heading = f'<img class="column-heading" src="magazine/img/{esc(heads[0])}" alt="{esc(t)}, the heading as he set it in the magazine" loading="lazy">' if heads else ""
     body = f"""<main class="section">
     <div class="wrap">
       <p class="kicker"><a href="magazine.html">Sanghamitra magazine</a> · by column</p>
+      {heading}
       <h1>{esc(t)}</h1>
       <p class="lede">{esc(note) if note else ''}</p>
       <p class="muted">{len(rows)} instalment{'s' if len(rows) != 1 else ''} across the issues, {n_av} recovered.</p>
@@ -245,6 +248,32 @@ for key, rows in cols.items():
 """
     open(os.path.join(MAG, name), "w", encoding="utf-8").write(page(1, f"{t} · Sanghamitra magazine", f"Every instalment of {t} from the Sanghamitra online magazine, 2004 to 2016.", f"https://sanghamitra.pages.dev/magazine/{name}", body))
     col_pages[key] = (name, t, len(rows), n_av); written.append(f"magazine/{name}")
+
+
+# --- The two doors his old homepage had: Telugu Magazine and English Magazine ---
+for lang, fname, title, intro in (
+    ("te", "telugu.html", "తెలుగు సంచికలు · The Telugu edition", "Every issue's Telugu pieces, newest first. The magazine began bilingual in 2004 and from October 2007 ran a separate Telugu edition, because a joke in Telugu does not survive translation."),
+    ("en", "english.html", "The English edition", "Every issue's English pieces, newest first. The English edition began as Volume 1, Issue 1 in October 2007, when the two languages were split."),
+):
+    secs = []
+    for i in issues:
+        its = [x for x in i["items"] if x["lang"] == lang]
+        if not its: continue
+        rows_html = "\n".join(item_row(i, x) for x in its)
+        av = sum(1 for x in its if x["available"])
+        secs.append(f'<section class="year-group"><h2><a href="magazine/issue-{i["id"]}.html">{esc(issue_label(i))}</a> <span class="muted">· {len(its)} pieces{(" · " + str(av) + " recovered") if av else " · not recovered"}</span></h2><ol class="contents">{rows_html}</ol></section>')
+    body = f"""<main class="section">
+    <div class="wrap">
+      <p class="kicker"><a href="magazine.html">Sanghamitra magazine</a> · by edition</p>
+      <h1{' lang="te"' if lang == 'te' else ''}>{esc(title)}</h1>
+      <p class="lede">{esc(intro)}</p>
+      <div class="actions"><a class="btn btn-ghost" href="magazine/{'english.html' if lang == 'te' else 'telugu.html'}">{'The English edition' if lang == 'te' else 'The Telugu edition'}</a><a class="btn btn-ghost" href="magazine.html#columns">By column</a></div>
+      {"".join(secs)}
+    </div>
+  </main>
+"""
+    open(os.path.join(MAG, fname), "w", encoding="utf-8").write(page(1, f"{title} · Sanghamitra magazine", intro, f"https://sanghamitra.pages.dev/magazine/{fname}", body))
+    written.append(f"magazine/{fname}")
 
 # --- the front door: rewrite magazine.html's <main> only; header and footer untouched ---
 years = {}
@@ -277,8 +306,10 @@ main_new = f"""<main class="section">
       <p class="lede">{esc(MASTHEAD).capitalize()} — that was the line on every masthead. It ran from October 2004 to April 2016, at first with Telugu and English side by side, then from October 2007 as separate Telugu and English editions, because a joke in Telugu does not survive translation.</p>
       <p>{n_iss} issues, two of them known only by name. {n_items} pieces listed in his own tables of contents, of which {n_avail} have been recovered from the Internet Archive and can be read here. The rest are named honestly and marked as not recovered.</p>
       <div class="actions">
-        <a class="btn btn-primary" href="#issues">Browse by issue</a>
-        <a class="btn btn-dark" href="#columns">Browse by column</a>
+        <a class="btn btn-primary" href="magazine/telugu.html" lang="te">తెలుగు సంచికలు</a>
+        <a class="btn btn-primary" href="magazine/english.html">English edition</a>
+        <a class="btn btn-dark" href="#issues">By issue</a>
+        <a class="btn btn-dark" href="#columns">By column</a>
       </div>
 
       <h2 id="columns">By column</h2>

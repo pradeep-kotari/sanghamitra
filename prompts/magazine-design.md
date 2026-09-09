@@ -190,6 +190,85 @@ Telugu pipeline below.
 
 ---
 
+## Completeness ledger — every piece of the old site, and where it lives now
+
+The rule Pradeep set on 9 September: **nothing from the old site is lost.** This table is the proof, kept
+current. "In" means it is on the new site today. "Held" means it is on disk and waits for one word from
+Sreenivas Garu. "Lost" means the Internet Archive never captured it, so only his own backup can supply it.
+
+| Old-site element | Count | Where it lives in the new site | Status |
+|---|---|---|---|
+| Magazine issues, contents pages | 23 (+2 by name only) | `magazine/issue-*.html`, front door by year | **In** |
+| Magazine articles, PDF | 81 recovered of ~485 | linked from issue and column pages; `Print this article` | **In**; 404 pieces **Lost** (see `MISSING.md`) |
+| English articles as readable text | 14 | `magazine/read-*.html` | **In** |
+| Telugu articles as readable text | 1 drafted of 66 | `/admin` proofreading → `magazine/read-*.html` when approved | **Held** for his approval; the rest one command away |
+| Full-issue printable books (`fullbook.pdf`) | 2 | "Print the whole issue" on those issue pages | **In** |
+| Issue covers | 5 | issue pages and the front-door cards | **In** |
+| Hand-made Telugu column headings | 24 captured of 42 referenced | column pages, above the title, on 31 of 52 columns (added 9 Sep) | **In**; 18 headings **Lost**, never archived |
+| Masthead and motto graphics | 2 | archive front door | **In** |
+| Contributor portraits | 12 | on disk in `research/old-site/files/images/` | **Held** — names appear, faces wait for his yes |
+| Homepage slideshow photographs, with captions | 19 | homepage crossfade, four topic cards, Learn and Events galleries, Community Service and Workshops galleries | **In**; one caption neutralised, original **Held** |
+| Homepage versions 2006–2025 | 7 | `research/old-site/files-versions/` — source, not pages | Preserved, not republished by design |
+| The three doors: Telugu Magazine · English Magazine · Events | 3 | front door: `magazine/telugu.html`, `magazine/english.html` (added 9 Sep), Events is its own page | **In** |
+| Event flyers | 4 of 5 | Events page, "Invitations that survived" | **In**; 2007 flyer **Lost** |
+| Cube-root and squaring drills | 2 | Learn `#drills`, rebuilt without a server | **In** |
+| MathQuiz: rules, 2014 and 2016 rounds, winners | 1 rules page, 2 rounds, 1 scoreboard | on disk; rules text known (first five correct answers score 5–1; 25 points wins a cycle; new cycle from 18 April 2015) | **Held** — the scoreboard names players; reviving the quiz is his call |
+| Crossword pages (`src/crossword*.html`) | 2 | stubs pointing at images the archive never kept | **Lost** (the crossword PDFs in the issues are **In**) |
+| "Release updates" sign-up form | 1 | not rebuilt; the site's contact form reaches him | **Ask him** whether the subscriber list survives |
+| Print-help page | 1 | superseded by one-click "Print the whole issue" | Retired by design |
+| Feedback form (`feedback_in.html`) | 1 | not republished | Excluded by design (it was attacked) |
+| Mailing address, landlines, old emails | in 27 PDFs and the pages | redacted in served copies; originals untouched | Excluded by design; current WhatsApp number stays |
+| Favicon, `Image001.jpg`, `robots.txt`, `sitemap.xml` | 4 | never captured; the new site has its own | **Lost**, nothing of substance |
+
+Anything not in this table is a gap in the ledger, not a decision. Add it.
+
+---
+
+## Filling the gaps from his backup
+
+He said the old issues are on a flash drive somewhere. When it turns up, or when he shares a folder,
+the intake below takes it from "a folder of files" to "the gaps on the site are closed" without anyone
+placing files by hand.
+
+**The tool:** `tools/magazine/fill.py` — built and tested 9 September against a synthetic backup folder: a
+file whose folder said `2008-04` was placed in the April 2008 issue, one in a folder named `Ugadi 2007` was
+placed in the name-only 2007 issue, a bare `toranam.pdf` with no folder hint was reported ambiguous with its
+candidate issues, and a photograph was reported unknown. `--apply` placed exactly the matches.
+
+```
+fill.py --from /path/to/folder            # report: what matches, what is ambiguous, what is unknown
+fill.py --gdrive <shared folder link>     # same, after downloading the folder (needs `pip install gdown`)
+fill.py --from /path --apply              # copy the matches in, redact, regenerate, report what is still missing
+```
+
+**What it wants.** The "wanted" list is derived, never typed: every piece in `site/data/magazine.json`
+marked not recovered, plus the name-only 2007 issues, plus the handful of files the archive never kept
+(the 2007 flyer, the 2007 Telugu contents pages). `MISSING.md` is the human-readable form of the same list.
+
+**How it matches.** By file name, case-insensitive, because his files were named consistently for twelve
+years (`toranam.pdf`, `mathematrix_eng.pdf`). A name that occurs in only one missing issue matches at
+once. A name that occurs in several (`toranam.pdf` is missing from twelve issues) is placed only if the
+folder it sits in says which issue — an old `srcMMYY` folder name, or a year and month in the path such as
+`2008-04`, `April 2008`, `Ugadi 2008`. Otherwise it is listed as **ambiguous**, with the candidate issues,
+for a human to place. Nothing is guessed into the wrong issue. Files that match nothing are listed as
+**unknown** and left alone; they may be photographs, which have their own captions and their own gate.
+
+**What `--apply` does, in order.** Copy each match into `research/old-site/files/<issue folder>/`, the
+same tree the archive copy uses. Run `extract.py`, which copies into `site/magazine/` and **redacts
+addresses and phone numbers on the way**, so a file from his drive gets exactly the treatment the archived
+ones got. Run `generate.py`, so the "not recovered" marks become links. Print the count filled and the
+count still missing. Telugu articles among them go through the same proofreading gate as everything else;
+English ones become readable pages on the next run of the text extraction.
+
+**Contents pages count too.** If his backup holds `index42.html`-style pages for the name-only issues, the
+same intake places them and the extractor reads them, so those issues gain their tables of contents.
+
+**Photographs are a separate door, on purpose.** New photographs need captions in his words and his
+permission per face; they go through the owner console's photo upload, tagged by activity, and land on the
+cards and galleries automatically. The intake does not try to caption them.
+
+---
+
 ## Recovering the Telugu — the pipeline, and the gate
 
 **The problem, precisely.** The 25 English PDFs extract as clean text today. The 55 Telugu ones
@@ -242,9 +321,14 @@ again. Proven locally end to end: draft → save → approve → text renders on
 → text gone. One slip already visible in the draft, the column name మేధామాత్రికలు missing a letter twice,
 is left for him to correct: that is the demonstration. **His verdict on this one page decides the other 65.**
 
-**Then — the rest, at his pace.** Bulk recovery through his queue; the cube-root and squaring drills
-rebuilt in plain JavaScript on the Vedic Mathematics page; Mathematricks surfaced on the Math Tutoring
-page; the release-updates mailing list, if it exists, told first.
+**Then — the rest, at his pace. Two of four done, 9 September; the same evening the two edition doors and the donation correction below.** The cube-root and squaring drills are
+rebuilt in plain JavaScript on Learn (`#drills`): three cubes of whole numbers up to 100 and five numbers
+to square, scored on the page, "Try another set", no server — the old srmathclub pages, alive again.
+*Mathematricks* is surfaced on Learn (`#mathematricks`): the five recovered instalments linked, the
+column page for all 24, framed as the answer to a parent asking whether he can teach. **Bulk Telugu
+recovery is one command away and deliberately not run**: `tools/magazine/recover.py <folder/file.pdf …>`
+renders, reads, writes the draft and the index, and regenerates; it publishes nothing. It waits on his
+verdict for the one page. The release-updates mailing list waits on him too.
 
 **Later, only if he wants it.** The weekly maths question. The archive shows real rules — first five
 correct answers score 5, 4, 3, 2, 1, and 25 points takes the cycle — and a real scoreboard through
@@ -270,3 +354,16 @@ his constraint. Offer it; do not assume it.
 - Reproduce the old visual design. Take its structure and its names; leave its 2004 HTML behind.
 - Present a contents-only issue as though the articles are available.
 - Republish the old feedback form. It is the one that was attacked.
+
+
+## The donation correction, 9 September
+
+The site had asked for money to Sanghamitra: a hero button reading Donate, suggested gift amounts, a
+"Money, or time. Both keep the sittings open" page. He said the opposite in the meeting: he has never
+accepted a donation (15:16), gifts pressed on performers go entirely to the performers, school fees are
+paid to the school, and what he does for people who want to give is point them to organizations he has
+personally checked (19:11). The Give page now says exactly that, with three doors: give where he is sure,
+sponsor a child's school fees paid direct, volunteer. The hero button reads Give. The suggested-amount and
+payment-method blocks are gone from the page; the owner-console plumbing behind them is left intact and
+unrendered in case he ever changes his mind. The footer's Donate link is untouched by rule and still
+lands on the page, which now explains itself.
