@@ -24,8 +24,8 @@ Do not deploy the repo root. Research notes and the intake form stay out of the 
 
 ## Local preview — http://localhost:8788
 
-"Railway for localhost": a background server on this machine serves the **last commit** on `main` (whichever of local `main` / `origin/main` is newer) and redeploys on every commit — git hooks fire it instantly, a 2-minute cron catches commits made in the cloud, and it comes up at Windows login. It serves a separate git worktree (`~/code/sanghamitra-deploy`), never this working tree, so half-finished edits do not show there. Local D1/KV data is shared with `.wrangler/state` here; pending migrations are applied on every deploy.
+"Railway for localhost": a background server on this machine serves **this working tree** at `http://localhost:8788` — every saved edit and every commit is live there at once. It comes up at Windows login, is restarted by the health watchdog if it dies, and a deploy engine (`~/wsl-startup/deploy-sanghamitra-local.sh`) runs on every commit plus every 2 minutes to pull commits made elsewhere (cloud, GitHub web) into this clone, apply pending D1 migrations to the local database, and prove the port serves the bytes on disk.
 
-- `bash ~/wsl-startup/deploy-sanghamitra-local.sh --status` — what is served, what is stamped, is the server up
-- `bash ~/wsl-startup/deploy-sanghamitra-local.sh --now` — deploy right now
-- Never start or kill wrangler on :8788 by hand. To preview **uncommitted** work use another port: `npx wrangler pages dev ./site --port 8790 --ip 127.0.0.1 --persist-to $PWD/.wrangler/state`
+- `bash ~/wsl-startup/deploy-sanghamitra-local.sh --status` — what is served, how many uncommitted files, is the clone behind origin
+- `bash ~/wsl-startup/deploy-sanghamitra-local.sh --now` — pull + migrate + verify right now
+- Never start or kill wrangler on :8788 by hand; the launcher owns it. Cloud commits are pulled with rebase + autostash, so keep your uncommitted work committable.

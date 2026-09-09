@@ -31,5 +31,5 @@ That rule has `alwaysApply: true` but treat this link as mandatory — especiall
 - **resend / review / draft** → email **Pradeep only**, never the owner unless the user says **send** or names `ainapura@yahoo.com`.
 - **push** → git only, not email.
 - Do not commit unless asked.
-- `http://localhost:8788` is the managed local deploy of the **last commit** (see README → Local preview). Never start or kill wrangler on :8788; preview uncommitted work on :8790.
+- `http://localhost:8788` serves this working tree live (see README → Local preview): saved edits and commits show at once. Never start or kill wrangler on :8788 yourself.
 - Do not invent poetry, magazine issues, photos, or claims — honest empty states until the owner uploads.
