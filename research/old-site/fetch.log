@@ -1,0 +1,224 @@
+OK   index.html
+OK   cgi-bin/cuberoots.cgi
+OK   cgi-bin/feedback_in.html
+OK   cgi-bin/square.cgi
+OK   Events/FlierOnIntro.pdf
+FAIL Events/Medhavadhanam2007_Flyer.pdf (404)
+OK   Events/Medhavadhanam2009_Flyer.pdf
+OK   Events/MedhavadhanamInvitation.pdf
+OK   Events/SrinivasaRamanujanMathematricksClub2011.pdf
+FAIL favicon.ico (404)
+OK   feedback_in.html
+OK   help.html
+FAIL Image001.jpg (404)
+OK   images/acharamulu.jpg
+OK   images/ankitam.jpg
+OK   images/April2016_cover.jpg
+OK   images/balamitra.jpg
+OK   images/bk_eng_poster.jpg
+OK   images/bk_poster.jpg
+FAIL images/charitardhulu.jpg (000)
+FAIL images/chuddam.jpg (000)
+FAIL images/chuddam_eng.jpg (000)
+FAIL images/cover0711.JPG (000)
+FAIL images/cover1006.jpg (000)
+FAIL images/editor.jpg (000)
+FAIL images/event_title.jpg (000)
+FAIL images/ganapati_master.jpg (000)
+FAIL images/indexlist.jpg (000)
+FAIL images/jokes.jpg (000)
+FAIL images/letters.jpg (000)
+FAIL images/mathematrics.jpg (000)
+OK   images/mathematrix_eng.jpg
+FAIL images/mlgb.jpg (000)
+OK   images/motto.jpg
+OK   images/naamaata.jpg
+OK   images/new_grows.gif
+FAIL images/new_title.jpg (000)
+OK   images/nityanand.jpg
+OK   images/padachadaramgam.jpg
+OK   images/padam.jpg
+FAIL images/podupu.jpg (000)
+OK   images/priyaj.jpg
+FAIL images/ramarao.jpg (000)
+OK   images/salaha.jpg
+OK   images/samchika1.jpg
+OK   images/sametakathalu.jpg
+OK   images/sametalu.jpg
+OK   images/samghamitra_motto.jpg
+OK   images/samghamitra_title.jpg
+OK   images/samputi3.jpg
+FAIL images/sanchika4.jpg (000)
+OK   images/sankranti07_cover.jpg
+OK   images/SIUE201103301.JPG
+OK   images/smruti.jpg
+FAIL images/srini.jpg (000)
+FAIL images/srini_eng.jpg (000)
+FAIL images/sudhakar.jpg (000)
+FAIL images/sudhakar_eng.jpg (000)
+FAIL images/susri.jpg (000)
+OK   images/telusa.jpg
+FAIL images/title.jpg (000)
+FAIL images/toranam.jpg (000)
+FAIL images/toranam_eng.jpg (000)
+FAIL images/tudipaluku.jpg (000)
+FAIL images/vaasanti.jpg (000)
+FAIL images/vaibhavam.jpg (000)
+OK   images/veekshanam.jpg
+FAIL images/vemana.jpg (000)
+OK   images/vidupu_img.jpg
+OK   index11.html
+OK   index2004.html
+OK   index2005.html
+OK   index2006.html
+FAIL index2007.html (404)
+FAIL index2008.html (000)
+OK   index21.html
+FAIL index22.html (000)
+FAIL index23.html (000)
+OK   index24.html
+OK   index31.html
+OK   index32.html
+OK   index33.html
+OK   index34.html
+OK   index41.html
+FAIL index44e.html (000)
+OK   index51.html
+FAIL index51e.html (000)
+OK   index52.html
+FAIL index52e.html (000)
+FAIL index53.html (000)
+OK   index53e.html
+OK   index54e.html
+OK   index61.html
+OK   index61e.html
+OK   index62.html
+OK   index62e.html
+OK   index63.html
+OK   index63e.html
+OK   index64.html
+OK   index64e.html
+OK   index71.html
+OK   index71e.html
+OK   index82.html
+OK   index82e.html
+OK   index83.html
+OK   index83e.html
+OK   index92.html
+OK   index92e.html
+OK   indexE.html
+OK   indexP.html
+FAIL indexT.html (000)
+FAIL MathQuiz/2014 (000)
+FAIL MathQuiz/2016 (000)
+FAIL MathQuiz/Images/ans.jpg (000)
+FAIL MathQuiz/images/bk_poster.jpg (000)
+FAIL MathQuiz/Images/MQlogo.jpg (000)
+FAIL MathQuiz/Images/next.jpg (000)
+FAIL MathQuiz/Images/prev.jpg (000)
+FAIL MathQuiz/NewRules.html (000)
+OK   MathQuiz/WinnerList.php
+FAIL robots.txt (000)
+FAIL sitemap.xml (404)
+OK   slideshow/225.JPG
+OK   slideshow/IMG_0062.JPG
+OK   slideshow/IMG_0065.JPG
+OK   slideshow/KAL_8008-1.jpg
+OK   slideshow/MathClub_Participants.JPG
+FAIL slideshow/Mathematricks_Club_2010_participants.JPG (000)
+OK   slideshow/Medhavadhanam2007.jpg
+OK   slideshow/Medhavadhanam2007_audience.JPG
+OK   slideshow/Medhavadhanam2008_participants.jpg
+OK   slideshow/Medhavadhanam2009_audience.JPG
+OK   slideshow/Medhavadhanam2009_participants.JPG
+OK   slideshow/P1020184.JPG
+OK   slideshow/SIUE201103301.JPG
+OK   slideshow/STL2014_audience.jpg
+OK   slideshow/STL2014_participants.jpg
+OK   slideshow/STL2014_SummerProgram.jpg
+OK   slideshow/STL2015_participants.jpg
+OK   slideshow/VA2014_audience.jpg
+OK   slideshow/VA2014_participants.jpg
+OK   src/balabashanam.pdf
+OK   src/cheppukondi.pdf
+OK   src/crossword.html
+OK   src/crosswordp.html
+OK   src/dasara_padyam.pdf
+OK   src/fullbook.pdf
+OK   src/podupu.pdf
+FAIL src/ramanujan.pdf (000)
+OK   src/sameta_kathalu.pdf
+FAIL src/sametalu.pdf (000)
+FAIL src/tolipaluku.pdf (000)
+OK   src0711/toranam_eng.pdf
+FAIL src0711/tudipaluku.pdf (000)
+FAIL src0711/tudipaluku_eng.pdf (000)
+FAIL src0711/vemana.pdf (000)
+OK   src0711/vidupu.pdf
+OK   src0711/vidupu_eng.pdf
+OK   src1005/mathematrix_eng.pdf
+FAIL src1006/acharamulu.pdf (000)
+OK   src1006/balamitra.pdf
+FAIL src1006/charitardulu.pdf (000)
+OK   src1006/chuddam.pdf
+OK   src1006/chuddam_eng.pdf
+FAIL src1006/crossword.pdf (000)
+OK   src1006/fullbook.pdf
+OK   src1006/jokes.pdf
+OK   src1006/mathematrix.pdf
+OK   src1006/mathematrix_eng.pdf
+OK   src1006/mundumaata.pdf
+OK   src1006/padam.pdf
+OK   src1006/sameta_kathalu.pdf
+OK   src1006/smruti.pdf
+OK   src1006/telusa.pdf
+OK   src1006/toranam.pdf
+OK   src1006/toranam_eng.pdf
+OK   src1006/tudipaluku.pdf
+OK   src1006/vaibhavam.pdf
+FAIL src1006/veekshanam.pdf (000)
+FAIL src1006/vemana.pdf (000)
+FAIL src1006/vidupu.pdf (000)
+OK   src1007/balamitra_eng.pdf
+OK   src1007/chuddam_eng.pdf
+FAIL src105/samkranti-viluvalu.pdf (000)
+OK   src106/annamayya.pdf
+FAIL src106/charitardulu.pdf (000)
+OK   src106/chuddam_eng.pdf
+FAIL src106/crossword.pdf (000)
+OK   src106/sambaraalu.pdf
+OK   src106/sameta_kathalu.pdf
+FAIL src106/vemana.pdf (000)
+OK   src106/vidupu.pdf
+OK   src306/jokes.pdf
+OK   src306/toranam.pdf
+FAIL src306/toranam_eng.pdf (000)
+OK   src306/tudipaluku.pdf
+OK   src306/tyagayya.pdf
+OK   src306/vinnapam.pdf
+OK   src408/toranam_eng.pdf
+OK   src408/tudipaluku_eng.pdf
+OK   src408/vidupu_eng.pdf
+OK   src409/acharamulu.pdf
+OK   src409/balamitra.pdf
+OK   src409/balamitra_eng.pdf
+OK   src409/chuddam.pdf
+FAIL src409/chuddam_eng.pdf (000)
+OK   src409/cover_story_eng.pdf
+OK   src706/charitardulu.pdf
+FAIL src706/crossword.pdf (000)
+OK   src706/jaabu-javaabu.pdf
+FAIL src706/jokes.pdf (000)
+OK   src706/mathematrix.pdf
+FAIL src706/mathematrix_eng.pdf (000)
+FAIL src706/padam.pdf (000)
+OK   src706/sameta_kathalu.pdf
+OK   src706/toranam_eng.pdf
+FAIL src706/tudipaluku.pdf (000)
+OK   src706/veechika.pdf
+OK   src706/vemana.pdf
+OK   src706/vidupu.pdf
+FAIL srmathclub/cuberoot.html (000)
+OK   srmathclub/square.html
+
+DONE ok=146 fail=76 skip=0

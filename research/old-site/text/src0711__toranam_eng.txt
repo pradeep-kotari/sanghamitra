@@ -1,0 +1,37 @@
+ 
+Sanghamitra                   Salutation to your solution!                       July 2011 Issue 
+ 
+Salutation to your solution! 
+- Sudhakar Attili. 
+ 
+1. There are 5 cities A, B, C, D and O. Each city is connected to the other four cities by 
+highways in a shortest path. A is equidistant from B and C. Similarly D is also 
+equidistant from B and C. Cities A and D are on either side of hwy BC. O is the 
+intersection point of AD and BC. If AB=AC=50; BO=40; BD=CD=85, what is the 
+distance between A and D? 
+ 
+2. As shown in figure below three identical circles are intersecting each other. Radius of 
+each circle is 14 cm. The distance between the centers of first and third circle is 38 
+cm. Find the value of ‘x’? 
+ 
+ 
+3. A 1000m lengthy train is passing a tunnel of length 1250m. If the train is going at a 
+constant speed of 54 km/h, how long will it take to pass the tunnel? 
+ 
+4. A tent is placed for a circus in such a way that 4 cables from the top are tied at 4 
+different points on the ground forming a square with side 120√2 meters. Each cable 
+length from top to the ground is 125 meters? What is the vertical height of the tent? 
+ 
+5. What is the next three number in the following sequence? 
+    0, 7, 26, 63, 124, …, …, …, … 
+ 
+You can send your answers either by post or by e-mail to the below address on or before 
+September 15th. 
+ 
+Mailing Address: 
+Editor, Sanghamitra, 
+1620 Strecker Ridge Ct. 
+Wildwood, MO 63011. 
+ 
+e-mail : susri@sanghamitra.org  
+ 

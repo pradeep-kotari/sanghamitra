@@ -1217,3 +1217,52 @@ document.addEventListener("DOMContentLoaded", async () => {
   const issues = document.getElementById("magazine-shelf");
   if (issues) mountLibrary("magazine", issues);
 });
+
+// --- The old homepage slideshow, rebuilt (8 Sep 2026) ---
+// His 2013–2025 site crossfaded event photographs every 8 seconds with a 3-second fade. The strip in
+// the HTML is the no-JS fallback (a sideways scroll); with JS it becomes that slideshow. Hover or
+// focus pauses it; reduced-motion users keep the scrolling strip.
+function mountCrossfade() {
+  const strip = document.querySelector(".photo-strip[data-crossfade]");
+  if (!strip) return;
+  if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const frames = [...strip.querySelectorAll("figure")];
+  if (frames.length < 2) return;
+  const every = Math.max(2000, parseInt(strip.getAttribute("data-crossfade"), 10) || 8000);
+  const fade = Math.max(200, parseInt(strip.getAttribute("data-fade"), 10) || 3000);
+  strip.style.setProperty("--fade", `${fade}ms`);
+  strip.classList.add("is-crossfade");
+  strip.setAttribute("aria-live", "off");
+  let i = 0; frames[0].classList.add("is-active");
+  frames.forEach((f, n) => { f.querySelector("img")?.setAttribute("loading", n < 2 ? "eager" : "lazy"); });
+  let paused = false;
+  strip.addEventListener("mouseenter", () => { paused = true; });
+  strip.addEventListener("mouseleave", () => { paused = false; });
+  strip.addEventListener("focusin", () => { paused = true; });
+  strip.addEventListener("focusout", () => { paused = false; });
+  setInterval(() => {
+    if (paused || document.hidden) return;
+    frames[i].classList.remove("is-active");
+    i = (i + 1) % frames.length;
+    frames[i].classList.add("is-active");
+  }, every);
+}
+document.addEventListener("DOMContentLoaded", mountCrossfade);
+
+// --- Recovered Telugu articles: show text only when the owner has approved it (9 Sep 2026) ---
+// The API returns text for anonymous readers only when status is "approved"; this just renders what it gets.
+async function mountTeluguArticle() {
+  const wrap = document.querySelector("[data-telugu]");
+  if (!wrap) return;
+  try {
+    const res = await fetch(`/api/telugu/${encodeURIComponent(wrap.getAttribute("data-telugu"))}`, { cache: "no-store" });
+    const data = await res.json();
+    if (data && data.status === "approved" && data.text) {
+      const art = wrap.querySelector("[data-telugu-text]");
+      art.textContent = data.text; art.hidden = false;
+      const pending = wrap.querySelector("[data-telugu-pending]"); if (pending) pending.hidden = true;
+      wrap.setAttribute("data-approved", "true");
+    }
+  } catch { /* the pending note and the printed page stay; nothing invented */ }
+}
+document.addEventListener("DOMContentLoaded", mountTeluguArticle);

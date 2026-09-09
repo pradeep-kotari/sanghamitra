@@ -134,9 +134,17 @@ protect the character.
 
 **From the material:**
 
-- **Every photograph you have is low resolution and three are screenshots** of Word documents
-  and PowerPoint slides. Better ones are coming, but the design must look finished with what
-  exists today. A layout that needs a 2000-pixel hero photograph is the wrong layout right now.
+- **Photographs: 19 camera-original event photographs now exist**, 2007–2015, each with his own
+  caption, recovered from his old homepage slideshow: `research/old-site/files/slideshow/`, captions
+  in `research/old-site/slideshow-captions.json`. Resize to about 1,600 px and 200–300 KB before
+  placing; never copy the 1–4 MB originals into `site/`. They cover Math Tutoring, Vedic
+  Mathematics, Knowledge Sharing, Events and the photo strip. **Community Service and Workshops
+  still have no photograph**; keep their honest placeholders. Caption 8 names three children and
+  is held until he has read it. The six images in his Word document are low resolution and three
+  are screenshots; they are no longer needed.
+- **The "scrolling pictures" he asked for are now known exactly.** From 2013 to 2025 his homepage
+  ran a crossfade slideshow over those 19 photographs: 8 seconds a frame, 3-second fade, one
+  caption each. Match that pacing. A fast carousel is not what he built or what his readers knew.
 - **Telugu text runs 20 to 30 percent longer than English** and needs more line height. Any
   component with a fixed height or a tight character count will break when the page is switched.
   Check every one in both languages.
@@ -211,7 +219,7 @@ page as the pattern, and hand him the photo shot list so the real photographs st
 **What is still blocked afterwards, and should be reported as such**
 
 - The final category names and section text. He is emailing them.
-- Real photographs. Everything in the tree today is low resolution or a screenshot.
+- Photographs for Community Service and Workshops only; the other cards are now covered by the recovered slideshow.
 - All Telugu copy. The dictionary keys will exist; only he can fill them.
 - The donation destination, which has no decision behind it yet.
 

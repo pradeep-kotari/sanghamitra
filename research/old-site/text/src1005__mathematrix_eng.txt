@@ -1,0 +1,109 @@
+ 
+ 
+ 
+Sanghamitra                                   Mathematrix                                              Sanghamitra 
+ 
+                                                  Mathematrix 
+ 
+                                                       
+ 
+ 
+           In this issue of Mathematrix, we are trying to explain how much time we can save by using 
+simple formulas in mathematics. We are trying to share our experiences of  'Srinivasa Ramanujan 
+Mathematics Club' conducted by 'Sanghamitra' during June and July of this year (2005).  You 
+might ask 'who is Srinivasa Ramanujan?'  Ramanujan became member for Royal Society and 
+Trinity College at an early age and earned worldwide fame. For more details, refer 'Noted people 
+in History' article in Sanghamitra October 2004 issue. The motto of this club is to accelerate the 
+students math skills, increase their confidence. To achieve this, we discussed problem solving 
+techniques, techniques to sharpen the brain capability, some vedic mathematics tips. Hope you 
+enjoy these tipsand encourage this kind of articles in future. 
+ 
+           Do we spend a single day without using mathematics? No surprise, if we say starting from 
+the time we wakeup to the time we go to bed, we use mathematics (directly or indirectly) each 
+and every minute. In the morning when we wakeup, we think about the date, day, month. If we 
+plan to go to a friend’s place, we check time, we think how long will it take to reach friend’s house, 
+then we calculate the probable time we can reach friend’s place automatically.  
+ 
+Now if we think about a park having a slide,swing 
+etc., mathematics is necessary to construct those 
+utilities. If  you construct a swing like the one in 
+picture A, what happens? It swings unevenly. But, if 
+you construct a swing like the one in picture B, it 
+swings properly. This way mathematics 
+takes part in every step and It is important for us to 
+learn some tips. In the below few examples, check 
+the ways to do addition, subtraction, multiplication 
+and division quickly. 
+Q. Can you find the sum of numbers from 1 to 100? 
+A. If you know the formula n(n+1)/2, you multiply 
+100 by 101 and divide it by 2 to get the answer. 
+But I do not know multiplication. What should I do? 
+Simple! 
+Arrange 1 + 2 + 3 + … + 97 + 98 + 99+ 100 in a 
+different way like (1 + 99) + (2 + 98) + (3 + 97) + … + 
+(49 + 51) + 50 + 100.  Any problem? Now add 1 and 99 
+to get 100, 2 and 98 to get 100, 3 and 97 to get 100, 
+…, 49 and 51 to get 100, 50 and a 100. So the sum of 
+numbers is nothing but 49 hundreds + 50 + 100, which 
+is equal to 4900 + 50 + 100 = 5050. You can see the 
+solution in picture beside this. 
+ 
+ 
+ 
+
+ 
+ 
+Sanghamitra                                   Mathematrix                                              Sanghamitra 
+ 
+ 
+Q. I am looking for sum of numbers from 51 to 100. Can you find it? 
+A. You know the sum of numbers from 1 to 100. Now find the sum of numbers from 1 to 50 and 
+deduct it from sum of 100 numbers. Now the sum of numbers 1 through 50 is (1 + 49) + (2 + 48) 
++ (3 + 47) + … + (24 + 26) + 25 + 50 = 24 Fifties + 25 + 50 = 1200 + 25 + 50 = 1275. So the sum 
+of numbers from 51 to 100 is 5050 – 1275 = 3775. 
+ 
+      Vedic mathematics is brought into this world by Sri. Bharati Krishna Teertha (1884 – 1960). 
+The 16 volumes written by him explaining the 16 formulas were lost. Later he wrote one volume 
+covering all the 16 formula. We are trying to bring up those formulas along with other different 
+techniques. 
+ 
+By one more than the one before : Using this formula we can find the squares of a number 
+ending with 5. 
+ 
+The square of a number ending with 5, 
+consists 2, 5 in tens and units place 
+respectively. Now the number leaving five is 
+to be multiplied by the next number and 
+should be written in hundreds and other 
+positions. 
+ 
+For example, to find 85 square, (8 x 9) = 72 
+should be placed in thousands’ and 
+hundreds’ place, and 25 should be placed in 
+tens and units place. So the square of 85 is 
+7225. 
+ 
+Similarly, for 115 square, (11 x 12) = 132 
+fills ten thousands’, thousands’ and 
+hundreds’ place and 25 fills tens’ and units’ 
+place. So the square of 115 is 13225. For 
+detail explanation see adjacent figure. 
+ 
+Are you thinking that easy? Yes. It is so simple. Try to find squares for some more number ending 
+with 5. Try, try and try, you will learn at last. 
+ 
+       Let’s try to keep calculators aside for a moment 
+               and sharpen our brains 
+     Let’s use the above formula 
+     Achieve the result in no time. 
+              2                                                                                 2  
+       105  = ?                                    205    = ? 
+              2                                                                                  2 
+         75  = ?                                       45   = ? 
+ 
+  
+                  ( to be continued in the Sankranti issue. Let us meet again. ) 
+ 
+                   The real danger of computer age is 
+                   not that computer will think like people, 
+                   but that people will think like computer. 

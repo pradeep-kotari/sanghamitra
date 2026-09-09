@@ -196,7 +196,8 @@
           <button class="btn btn-dark" type="submit">Email him these questions</button>
         </form>
 
-        <h2 style="margin-top:2rem">Saved answers</h2>
+        <h2 style="margin-top:2rem">Saved notes</h2>
+        <p class="muted">Edit or remove a note here. Changes stay in this list; they do not go on the public site.</p>
         <div id="answers"></div>
       </section>
 
@@ -269,6 +270,13 @@
         <div id="library-box"></div>
       </section>
 
+
+      <section id="telugu" style="margin-top:2.8rem">
+        <p class="kicker">The old magazine, in Telugu</p>
+        <h2>Read this once, fix anything wrong, then approve it.</h2>
+        <p class="muted">The Internet Archive kept your old issues. The Telugu in them was set in the Telugu Lipi font, so a machine read each page and typed it out in modern Telugu. It will have made mistakes. Nothing here appears on the public site until you press <strong>Approve</strong>; until then the public page shows only the original PDF. Your original page is on the left, the typed text on the right — correct the text and save as often as you like.</p>
+        <div id="telugu-box"></div>
+      </section>
       <section id="photos" style="margin-top:2.8rem">
         <p class="kicker">Gallery</p>
         <h2>Photos</h2>
@@ -595,6 +603,57 @@
       });
     }
 
+
+    // --- Recovered Telugu: page image beside editable text; Approve is the only door to the public page ---
+    async function loadTelugu() {
+      const box = document.getElementById("telugu-box");
+      if (!box) return;
+      let index = { items: [] };
+      try { index = await (await fetch("../data/telugu/index.json", { cache: "no-store" })).json(); } catch {}
+      if (!index.items.length) { box.innerHTML = "<p class=\"muted\">No recovered Telugu articles yet.</p>"; return; }
+      box.innerHTML = "";
+      for (const item of index.items) {
+        const [draft, state] = await Promise.all([
+          fetch(`../data/telugu/${item.id}.json`, { cache: "no-store" }).then((r) => r.json()).catch(() => null),
+          fetch(`/api/telugu/${item.id}`, { cache: "no-store" }).then((r) => r.json()).catch(() => ({})),
+        ]);
+        const text = (state && state.text) || (draft && draft.draft) || "";
+        const status = (state && state.status) || "draft";
+        const label = status === "approved" ? "Approved — live on the public page" : status === "edited" ? "Edited since approval — approve again to publish the new text" : "Draft — not on the public site";
+        const card = el(`<article class="card" style="margin-bottom:1.2rem">
+          <p class="muted">${esc(item.issueLabel)} · ${esc(item.titleEn)}${draft && draft.recovered ? ` · machine-read ${esc(draft.recovered.on)}` : ""}</p>
+          <h3 lang="te" style="font-family:'Noto Serif Telugu',serif;margin:0.2rem 0 0.8rem">${esc(item.titleTe)}</h3>
+          <div class="library-admin-grid" style="grid-template-columns:minmax(220px,1fr) minmax(280px,1.4fr);align-items:start">
+            <div>
+              ${item.pages.map((pg) => `<a href="../${esc(pg)}" target="_blank" rel="noopener"><img src="../${esc(pg)}" alt="The original printed page" style="width:100%;border:1px solid var(--line);border-radius:12px"></a>`).join("")}
+              <p class="muted" style="font-size:.9rem">Click the page to open it large. <a href="../magazine/${esc(item.file)}" target="_blank" rel="noopener">Original PDF</a></p>
+            </div>
+            <form>
+              <textarea name="text" lang="te" dir="auto" rows="22" style="width:100%;font-family:'Noto Serif Telugu',serif;font-size:1.1rem;line-height:1.9;padding:.8rem;border:1px solid var(--line);border-radius:12px;background:#fffdf7">${esc(text)}</textarea>
+              <p class="muted" data-status>${esc(label)}</p>
+              <div class="actions">
+                <button class="btn btn-dark" type="submit">Save my corrections</button>
+                <button class="btn btn-primary" type="button" data-approve>Approve — put it on the site</button>
+                ${status === "approved" ? `<button class="btn btn-ghost" type="button" data-unapprove>Take it off the site</button>` : ""}
+              </div>
+            </form>
+          </div>
+        </article>`);
+        const post = async (action) => {
+          const out = await fetch(`/api/telugu/${item.id}`, { method: "POST", headers: { "content-type": "application/json" },
+            body: JSON.stringify({ action, text: card.querySelector("textarea").value }) });
+          const body = await out.json().catch(() => ({}));
+          if (!out.ok) return showNote(body.error || "Could not save", false);
+          showNote(action === "approve" ? "Approved. It is on the public page now." : action === "unapprove" ? "Taken off the public page." : "Saved.", true);
+          loadTelugu();
+        };
+        card.querySelector("form").onsubmit = (ev) => { ev.preventDefault(); post("save"); };
+        card.querySelector("[data-approve]").onclick = () => post("approve");
+        const un = card.querySelector("[data-unapprove]"); if (un) un.onclick = () => post("unapprove");
+        box.append(card);
+      }
+    }
+
     async function loadQueries() {
       const box = document.getElementById("queries");
       const res = await fetch("/api/queries");
@@ -869,21 +928,50 @@
       const res = await fetch("/api/conversation");
       const data = await res.json().catch(() => ({}));
       if (!res.ok) {
-        box.innerHTML = `<p class="notice">${esc(data.error || "Could not load answers.")}</p>`;
+        box.innerHTML = `<p class="notice">${esc(data.error || "Could not load notes.")}</p>`;
         return;
       }
       const answers = data.answers || [];
       if (!answers.length) {
-        box.innerHTML = "<p>No answers saved yet.</p>";
+        box.innerHTML = "<p>No notes saved yet.</p>";
         return;
       }
-      box.innerHTML = answers.map((m) =>
-        `<article class="thread-item kind-answer">
-          <p class="kicker">Answer</p>
-          <p>${esc(m.body)}</p>
-          <p class="muted">${esc(m.authorName)} · ${esc(new Date(m.createdAt).toLocaleString())}</p>
-        </article>`
-      ).join("");
+      box.innerHTML = "";
+      answers.forEach((m) => {
+        const card = el(`<article class="thread-item kind-answer">
+          <p class="kicker">Note for Pradeep</p>
+          <form>
+            <label>Note
+              <textarea name="body" required maxlength="8000">${esc(m.body)}</textarea>
+            </label>
+            <p class="muted">${esc(m.authorName)} · ${esc(new Date(m.createdAt).toLocaleString())}</p>
+            <div class="actions">
+              <button class="btn btn-dark" type="submit">Save changes</button>
+              <button class="btn btn-ghost" type="button" data-remove>Remove</button>
+            </div>
+          </form>
+        </article>`);
+        card.querySelector("form").onsubmit = async (ev) => {
+          ev.preventDefault();
+          const out = await fetch("/api/conversation/" + m.id, {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify({ body: new FormData(ev.target).get("body") }),
+          });
+          const body = await out.json().catch(() => ({}));
+          if (!out.ok) return showNote(body.error || "Could not update note", false);
+          showNote("Note updated.", true);
+          loadAnswers();
+        };
+        card.querySelector("[data-remove]").onclick = async () => {
+          const out = await fetch("/api/conversation/" + m.id, { method: "DELETE" });
+          const body = await out.json().catch(() => ({}));
+          if (!out.ok) return showNote(body.error || "Could not remove note", false);
+          showNote("Note removed.", true);
+          loadAnswers();
+        };
+        box.append(card);
+      });
     }
 
     let siteOverlay = {
@@ -1224,6 +1312,7 @@
     loadEventTitles();
     loadPhotos();
     loadLibrary();
+    loadTelugu();
     loadQueries();
     if (isBuilder) loadDecisions();
   </script>

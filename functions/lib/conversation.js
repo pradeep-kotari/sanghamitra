@@ -60,3 +60,39 @@ export async function addAnswer(env, { body, user }) {
   ).bind(item.id, item.kind, item.parentId, item.authorEmail, item.authorName, item.body, item.createdAt).run();
   return item;
 }
+
+export async function updateAnswer(env, id, { body }) {
+  const db = await ensureDb(env);
+  const text = String(body || "").trim().slice(0, 8000);
+  if (!text) {
+    const err = new Error("Write something first");
+    err.status = 400;
+    throw err;
+  }
+  const row = await db.prepare(
+    `SELECT id, kind, parent_id, author_email, author_name, body, emailed_at, created_at
+     FROM conversation
+     WHERE id = ? AND kind IN ('answer', 'thought')`,
+  ).bind(id).first();
+  if (!row) {
+    const err = new Error("Note not found");
+    err.status = 404;
+    throw err;
+  }
+  await db.prepare("UPDATE conversation SET body = ? WHERE id = ?").bind(text, id).run();
+  return rowToMessage({ ...row, body: text });
+}
+
+export async function deleteAnswer(env, id) {
+  const db = await ensureDb(env);
+  const row = await db.prepare(
+    `SELECT id FROM conversation WHERE id = ? AND kind IN ('answer', 'thought')`,
+  ).bind(id).first();
+  if (!row) {
+    const err = new Error("Note not found");
+    err.status = 404;
+    throw err;
+  }
+  await db.prepare("DELETE FROM conversation WHERE id = ?").bind(id).run();
+  return { ok: true };
+}

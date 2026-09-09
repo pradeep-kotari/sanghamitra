@@ -1,0 +1,54 @@
+---
+description: Sanghamitra owner comms — Sreenivas Garu, email/WhatsApp, resend vs send. Linked from AGENTS.md — read before owner-facing work.
+alwaysApply: true
+---
+
+# Sanghamitra — Sreenivas (owner) communications
+
+## North star
+
+Save **Sreenivas Garu**'s time. Make the site and admin easier for him — not more email, not builder noise, not duplicate messages to untangle.
+
+Principal: **Pradeep Kotari** builds; **ainapura@yahoo.com** is the owner who fills admin and reviews the public site.
+
+## External messages — hard stops
+
+| User says | Meaning | Do NOT |
+|-----------|---------|--------|
+| **resend**, **review**, **draft** | Send **review to Pradeep only** (`pradeep.kotari@gmail.com`) | Send to `ainapura@yahoo.com` |
+| **send** (or names Sreeni explicitly) | Send to **ainapura@yahoo.com**, Cc Pradeep | Assume consent from resend/review |
+| **push** | Git commit + push only | Email anyone |
+
+- Never send email, WhatsApp, or other external messages unless the principal explicitly approves the recipient.
+- Prefer **one** clear letter over several same-subject emails the same day.
+- Test mail to owner is forbidden (ISA A4); use Pradeep sign-in code path to prove mail.
+
+## Address and voice
+
+- Greeting: **Hi Sreenivas Garu** (not "Namaste Sreenivas" unless he prefers otherwise).
+- Drafts **to** him: second person **you/your** throughout. Never "he/him" when explaining what the letter says to him.
+- Pradeep signing: **Ask me to build something** — not "Ask Pradeep to build" in body copy.
+- No builder jargon in owner-facing copy: D1, deploy, GitHub, Cloudflare, cache, admin tab, ISO timestamps, "goes live" without explaining **visitors see it within seconds; Pradeep gets a heads-up only**.
+
+## What "save in admin" means (owner-facing explanation)
+
+**A — On the website within seconds:** phone, homepage, donate, learn, enroll, sittings, uploads. He can use **View live site**. Pradeep gets informational email only.
+
+**B — Not on the website until Pradeep builds:** Ask me to build something, What to build next.
+
+**C — Visitor forms:** both get email; reply in login or WhatsApp; does not change public pages by itself.
+
+WhatsApp remains the fastest door for day-to-day questions.
+
+## Sign-in copy (consistent)
+
+1. Enter **ainapura@yahoo.com**
+2. Send the code
+3. Check **Yahoo Mail** for the six-digit code — **use the latest one**
+4. Sign in
+
+## Product defaults for Sreeni
+
+- Hide **Design choices** from owner; builder-only.
+- Owner saves notify **Pradeep only**, not Sreeni.
+- `/admin/#build-next` is the structured build menu; freeform notes stay under Ask me to build.

@@ -1,0 +1,5203 @@
+{
+ "generated": "from research/old-site (Internet Archive), tools/magazine/extract.py",
+ "masthead": "a quarterly online magazine meant for knowledge, entertainment and progress",
+ "issues": [
+  {
+   "id": "2016-04",
+   "folder": "src0416",
+   "year": 2016,
+   "month": 4,
+   "season": "Ugadi",
+   "volume": 7,
+   "issueNo": 2,
+   "pages": {
+    "te": "index92.html",
+    "en": "index92e.html"
+   },
+   "items": [
+    {
+     "file": "src0416/WOW.pdf",
+     "lang": "en",
+     "title": "Words of Wisdom",
+     "title_alt": "",
+     "contributor": "Didiji",
+     "heading_img": null,
+     "column": "wow",
+     "available": false
+    },
+    {
+     "file": "src0416/balamitra_eng.pdf",
+     "lang": "en",
+     "title": "Kids pages",
+     "title_alt": "",
+     "contributor": "Sudhakar Attili",
+     "heading_img": null,
+     "column": "balamitra",
+     "available": false
+    },
+    {
+     "file": "src0416/chuddam_eng.pdf",
+     "lang": "en",
+     "title": "Question Gallery",
+     "title_alt": "",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": null,
+     "column": "chuddam",
+     "available": false
+    },
+    {
+     "file": "src0416/cover_story_eng.pdf",
+     "lang": "en",
+     "title": "Cover Story",
+     "title_alt": "",
+     "contributor": "SuSri",
+     "heading_img": null,
+     "column": "cover_story",
+     "available": false
+    },
+    {
+     "file": "src0416/jokes_eng.pdf",
+     "lang": "en",
+     "title": "Smile if you wish",
+     "title_alt": "",
+     "contributor": "Vaasanti Maghapu",
+     "heading_img": null,
+     "column": "jokes",
+     "available": false
+    },
+    {
+     "file": "src0416/mathematrix_eng.pdf",
+     "lang": "en",
+     "title": "Mathematricks",
+     "title_alt": "",
+     "contributor": "Sreenivasa Rao Ainapurapu",
+     "heading_img": null,
+     "column": "mathematrix",
+     "available": false
+    },
+    {
+     "file": "src0416/mundumaata_eng.pdf",
+     "lang": "en",
+     "title": "Foreword",
+     "title_alt": "",
+     "contributor": "Editor",
+     "heading_img": null,
+     "column": "mundumaata",
+     "available": false
+    },
+    {
+     "file": "src0416/toranam_eng.pdf",
+     "lang": "en",
+     "title": "Salutation to your solution",
+     "title_alt": "",
+     "contributor": "Sudhakar Attili",
+     "heading_img": null,
+     "column": "toranam",
+     "available": false
+    },
+    {
+     "file": "src0416/tudipaluku_eng.pdf",
+     "lang": "en",
+     "title": "Final word",
+     "title_alt": "",
+     "contributor": "Editor",
+     "heading_img": null,
+     "column": "tudipaluku",
+     "available": false
+    },
+    {
+     "file": "src0416/vidupu_eng.pdf",
+     "lang": "en",
+     "title": "Answers & Winners",
+     "title_alt": "",
+     "contributor": "Editor",
+     "heading_img": null,
+     "column": "vidupu",
+     "available": false
+    },
+    {
+     "file": "src0416/balamitra.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "kids pages",
+     "contributor": "Vaasanti Maghapu",
+     "heading_img": "balamitra.jpg",
+     "column": "balamitra",
+     "available": false
+    },
+    {
+     "file": "src0416/chuddam.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Quiz",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "chuddam.jpg",
+     "column": "chuddam",
+     "available": false
+    },
+    {
+     "file": "src0416/cover_story.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Cover Story",
+     "contributor": null,
+     "heading_img": "cover_desc.jpg",
+     "column": "cover_story",
+     "available": false
+    },
+    {
+     "file": "src0416/crossword.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Crossword",
+     "contributor": null,
+     "heading_img": "padachadaramgam.jpg",
+     "column": "crossword",
+     "available": false
+    },
+    {
+     "file": "src0416/jokes.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Jokes",
+     "contributor": "Vaasanti Maghapu",
+     "heading_img": "jokes.jpg",
+     "column": "jokes",
+     "available": false
+    },
+    {
+     "file": "src0416/mathematrix.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Mathematricks",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "mathematrics.jpg",
+     "column": "mathematrix",
+     "available": false
+    },
+    {
+     "file": "src0416/mundumaata.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "A word with you",
+     "contributor": "Editor",
+     "heading_img": "naamaata.jpg",
+     "column": "mundumaata",
+     "available": false
+    },
+    {
+     "file": "src0416/sameta_kathalu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Derivation of proverbs",
+     "contributor": null,
+     "heading_img": "sametakathalu.jpg",
+     "column": "sameta_kathalu",
+     "available": false
+    },
+    {
+     "file": "src0416/toranam.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "brain teasers",
+     "contributor": null,
+     "heading_img": "toranam.jpg",
+     "column": "toranam",
+     "available": false
+    },
+    {
+     "file": "src0416/tudipaluku.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Final word",
+     "contributor": "Editor",
+     "heading_img": "tudipaluku.jpg",
+     "column": "tudipaluku",
+     "available": false
+    },
+    {
+     "file": "src0416/vemana.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Our Vemana's poems",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "vemana.jpg",
+     "column": "vemana",
+     "available": false
+    },
+    {
+     "file": "src0416/vidupu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Answers & Winners",
+     "contributor": "Editor",
+     "heading_img": "vidupu_img.jpg",
+     "column": "vidupu",
+     "available": false
+    }
+   ],
+   "fullbook": false,
+   "cover": "April2016_cover.jpg"
+  },
+  {
+   "id": "2011-07",
+   "folder": "src0711",
+   "year": 2011,
+   "month": 7,
+   "season": "July",
+   "volume": 5,
+   "issueNo": 3,
+   "pages": {
+    "te": "index83.html",
+    "en": "index83e.html"
+   },
+   "items": [
+    {
+     "file": "src0711/WOW.pdf",
+     "lang": "en",
+     "title": "Words of Wisdom",
+     "title_alt": "",
+     "contributor": "Didiji",
+     "heading_img": null,
+     "column": "wow",
+     "available": false
+    },
+    {
+     "file": "src0711/balamitra_eng.pdf",
+     "lang": "en",
+     "title": "Kids pages",
+     "title_alt": "",
+     "contributor": "Sudhakar Attili",
+     "heading_img": null,
+     "column": "balamitra",
+     "available": false
+    },
+    {
+     "file": "src0711/chuddam_eng.pdf",
+     "lang": "en",
+     "title": "Question Gallery",
+     "title_alt": "",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": null,
+     "column": "chuddam",
+     "available": false
+    },
+    {
+     "file": "src0711/cover_story_eng.pdf",
+     "lang": "en",
+     "title": "Cover Story",
+     "title_alt": "",
+     "contributor": "SuSri",
+     "heading_img": null,
+     "column": "cover_story",
+     "available": false
+    },
+    {
+     "file": "src0711/jokes_eng.pdf",
+     "lang": "en",
+     "title": "Smile if you wish",
+     "title_alt": "",
+     "contributor": "Vaasanti Maghapu",
+     "heading_img": null,
+     "column": "jokes",
+     "available": false
+    },
+    {
+     "file": "src0711/mathematrix_eng.pdf",
+     "lang": "en",
+     "title": "Mathematricks",
+     "title_alt": "",
+     "contributor": "Sreenivasa Rao Ainapurapu",
+     "heading_img": null,
+     "column": "mathematrix",
+     "available": false
+    },
+    {
+     "file": "src0711/mundumaata_eng.pdf",
+     "lang": "en",
+     "title": "Foreword",
+     "title_alt": "",
+     "contributor": "Editor",
+     "heading_img": null,
+     "column": "mundumaata",
+     "available": false
+    },
+    {
+     "file": "src0711/toranam_eng.pdf",
+     "lang": "en",
+     "title": "Salutation to your solution",
+     "title_alt": "",
+     "contributor": "Sudhakar Attili",
+     "heading_img": null,
+     "column": "toranam",
+     "available": true
+    },
+    {
+     "file": "src0711/tudipaluku_eng.pdf",
+     "lang": "en",
+     "title": "Final word",
+     "title_alt": "",
+     "contributor": "Editor",
+     "heading_img": null,
+     "column": "tudipaluku",
+     "available": true
+    },
+    {
+     "file": "src0711/vidupu_eng.pdf",
+     "lang": "en",
+     "title": "Answers & Winners",
+     "title_alt": "",
+     "contributor": "Editor",
+     "heading_img": null,
+     "column": "vidupu",
+     "available": true
+    },
+    {
+     "file": "src0711/balamitra.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "kids pages",
+     "contributor": "Vaasanti Maghapu",
+     "heading_img": "balamitra.jpg",
+     "column": "balamitra",
+     "available": false
+    },
+    {
+     "file": "src0711/chuddam.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Quiz",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "chuddam.jpg",
+     "column": "chuddam",
+     "available": false
+    },
+    {
+     "file": "src0711/cover_story.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Cover Story",
+     "contributor": null,
+     "heading_img": "cover_desc.jpg",
+     "column": "cover_story",
+     "available": false
+    },
+    {
+     "file": "src0711/jokes.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Jokes",
+     "contributor": "Vaasanti Maghapu",
+     "heading_img": "jokes.jpg",
+     "column": "jokes",
+     "available": false
+    },
+    {
+     "file": "src0711/mathematrix.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Mathematricks",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "mathematrics.jpg",
+     "column": "mathematrix",
+     "available": false
+    },
+    {
+     "file": "src0711/mundumaata.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "A word with you",
+     "contributor": "Editor",
+     "heading_img": "naamaata.jpg",
+     "column": "mundumaata",
+     "available": false
+    },
+    {
+     "file": "src0711/padam.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "People's Path & Word",
+     "contributor": null,
+     "heading_img": "padam.jpg",
+     "column": "padam",
+     "available": false
+    },
+    {
+     "file": "src0711/sameta_kathalu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Derivation of proverbs",
+     "contributor": null,
+     "heading_img": "sametakathalu.jpg",
+     "column": "sameta_kathalu",
+     "available": false
+    },
+    {
+     "file": "src0711/toranam.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "brain teasers",
+     "contributor": null,
+     "heading_img": "toranam.jpg",
+     "column": "toranam",
+     "available": false
+    },
+    {
+     "file": "src0711/tudipaluku.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Final word",
+     "contributor": "Editor",
+     "heading_img": "tudipaluku.jpg",
+     "column": "tudipaluku",
+     "available": true
+    },
+    {
+     "file": "src0711/vemana.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Our Vemana's poems",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "vemana.jpg",
+     "column": "vemana",
+     "available": true
+    },
+    {
+     "file": "src0711/vidupu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Answers & Winners",
+     "contributor": "Editor",
+     "heading_img": "vidupu_img.jpg",
+     "column": "vidupu",
+     "available": true
+    }
+   ],
+   "fullbook": false,
+   "cover": "cover0711.JPG"
+  },
+  {
+   "id": "2011-04",
+   "folder": "src0411",
+   "year": 2011,
+   "month": 4,
+   "season": "Ugadi",
+   "volume": 5,
+   "issueNo": 2,
+   "pages": {
+    "te": "index82.html",
+    "en": "index82e.html"
+   },
+   "items": [
+    {
+     "file": "src0411/WOW.pdf",
+     "lang": "en",
+     "title": "Words of Wisdom",
+     "title_alt": "",
+     "contributor": "Didiji",
+     "heading_img": null,
+     "column": "wow",
+     "available": false
+    },
+    {
+     "file": "src0411/balamitra_eng.pdf",
+     "lang": "en",
+     "title": "Kids pages",
+     "title_alt": "",
+     "contributor": "Sudhakar Attili",
+     "heading_img": null,
+     "column": "balamitra",
+     "available": false
+    },
+    {
+     "file": "src0411/chuddam_eng.pdf",
+     "lang": "en",
+     "title": "Question Gallery",
+     "title_alt": "",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": null,
+     "column": "chuddam",
+     "available": false
+    },
+    {
+     "file": "src0411/cover_story_eng.pdf",
+     "lang": "en",
+     "title": "Cover Story",
+     "title_alt": "",
+     "contributor": "SuSri",
+     "heading_img": null,
+     "column": "cover_story",
+     "available": false
+    },
+    {
+     "file": "src0411/jokes_eng.pdf",
+     "lang": "en",
+     "title": "Smile if you wish",
+     "title_alt": "",
+     "contributor": "Vaasanti Maghapu",
+     "heading_img": null,
+     "column": "jokes",
+     "available": false
+    },
+    {
+     "file": "src0411/mathematrix_eng.pdf",
+     "lang": "en",
+     "title": "Mathematricks",
+     "title_alt": "",
+     "contributor": "Sreenivasa Rao Ainapurapu",
+     "heading_img": null,
+     "column": "mathematrix",
+     "available": false
+    },
+    {
+     "file": "src0411/mundumaata_eng.pdf",
+     "lang": "en",
+     "title": "Foreword",
+     "title_alt": "",
+     "contributor": "Editor",
+     "heading_img": null,
+     "column": "mundumaata",
+     "available": false
+    },
+    {
+     "file": "src0411/toranam_eng.pdf",
+     "lang": "en",
+     "title": "Salutation to your solution",
+     "title_alt": "",
+     "contributor": "Sudhakar Attili",
+     "heading_img": null,
+     "column": "toranam",
+     "available": false
+    },
+    {
+     "file": "src0411/tudipaluku_eng.pdf",
+     "lang": "en",
+     "title": "Final word",
+     "title_alt": "",
+     "contributor": "Editor",
+     "heading_img": null,
+     "column": "tudipaluku",
+     "available": false
+    },
+    {
+     "file": "src0411/vidupu_eng.pdf",
+     "lang": "en",
+     "title": "Answers & Winners",
+     "title_alt": "",
+     "contributor": "Editor",
+     "heading_img": null,
+     "column": "vidupu",
+     "available": false
+    },
+    {
+     "file": "src0411/balamitra.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "kids pages",
+     "contributor": "Vaasanti Maghapu",
+     "heading_img": "balamitra.jpg",
+     "column": "balamitra",
+     "available": false
+    },
+    {
+     "file": "src0411/chuddam.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Quiz",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "chuddam.jpg",
+     "column": "chuddam",
+     "available": false
+    },
+    {
+     "file": "src0411/cover_story.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Cover Story",
+     "contributor": null,
+     "heading_img": "cover_desc.jpg",
+     "column": "cover_story",
+     "available": false
+    },
+    {
+     "file": "src0411/crossword.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Crossword",
+     "contributor": null,
+     "heading_img": "padachadaramgam.jpg",
+     "column": "crossword",
+     "available": false
+    },
+    {
+     "file": "src0411/jokes.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Jokes",
+     "contributor": "Vaasanti Maghapu",
+     "heading_img": "jokes.jpg",
+     "column": "jokes",
+     "available": false
+    },
+    {
+     "file": "src0411/mathematrix.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Mathematricks",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "mathematrics.jpg",
+     "column": "mathematrix",
+     "available": false
+    },
+    {
+     "file": "src0411/mundumaata.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "A word with you",
+     "contributor": "Editor",
+     "heading_img": "naamaata.jpg",
+     "column": "mundumaata",
+     "available": false
+    },
+    {
+     "file": "src0411/padam.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "People's Path & Word",
+     "contributor": null,
+     "heading_img": "padam.jpg",
+     "column": "padam",
+     "available": false
+    },
+    {
+     "file": "src0411/sameta_kathalu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Derivation of proverbs",
+     "contributor": null,
+     "heading_img": "sametakathalu.jpg",
+     "column": "sameta_kathalu",
+     "available": false
+    },
+    {
+     "file": "src0411/toranam.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "brain teasers",
+     "contributor": null,
+     "heading_img": "toranam.jpg",
+     "column": "toranam",
+     "available": false
+    },
+    {
+     "file": "src0411/tudipaluku.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Final word",
+     "contributor": "Editor",
+     "heading_img": "tudipaluku.jpg",
+     "column": "tudipaluku",
+     "available": false
+    },
+    {
+     "file": "src0411/veechika.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Thought Waves",
+     "contributor": null,
+     "heading_img": "veechika.jpg",
+     "column": "veechika",
+     "available": false
+    },
+    {
+     "file": "src0411/vemana.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Our Vemana's poems",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "vemana.jpg",
+     "column": "vemana",
+     "available": false
+    },
+    {
+     "file": "src0411/vidupu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Answers & Winners",
+     "contributor": "Editor",
+     "heading_img": "vidupu_img.jpg",
+     "column": "vidupu",
+     "available": false
+    }
+   ],
+   "fullbook": false,
+   "cover": null
+  },
+  {
+   "id": "2010-01",
+   "folder": "src0110",
+   "year": 2010,
+   "month": 1,
+   "season": "Sankranti",
+   "volume": 4,
+   "issueNo": 1,
+   "pages": {
+    "te": "index71.html",
+    "en": "index71e.html"
+   },
+   "items": [
+    {
+     "file": "src0110/WOW.pdf",
+     "lang": "en",
+     "title": "Words of Wisdom",
+     "title_alt": "",
+     "contributor": "Didiji",
+     "heading_img": null,
+     "column": "wow",
+     "available": false
+    },
+    {
+     "file": "src0110/balamitra_eng.pdf",
+     "lang": "en",
+     "title": "Kids pages",
+     "title_alt": "",
+     "contributor": "Sudhakar Attili",
+     "heading_img": null,
+     "column": "balamitra",
+     "available": false
+    },
+    {
+     "file": "src0110/chuddam_eng.pdf",
+     "lang": "en",
+     "title": "Question Gallery",
+     "title_alt": "",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": null,
+     "column": "chuddam",
+     "available": false
+    },
+    {
+     "file": "src0110/cover_story_eng.pdf",
+     "lang": "en",
+     "title": "Cover Story",
+     "title_alt": "",
+     "contributor": "SuSri",
+     "heading_img": null,
+     "column": "cover_story",
+     "available": false
+    },
+    {
+     "file": "src0110/jokes_eng.pdf",
+     "lang": "en",
+     "title": "Smile if you wish",
+     "title_alt": "",
+     "contributor": "Vaasanti Maghapu",
+     "heading_img": null,
+     "column": "jokes",
+     "available": false
+    },
+    {
+     "file": "src0110/mathematrix_eng.pdf",
+     "lang": "en",
+     "title": "Mathematricks",
+     "title_alt": "",
+     "contributor": "Sreenivasa Rao Ainapurapu",
+     "heading_img": null,
+     "column": "mathematrix",
+     "available": false
+    },
+    {
+     "file": "src0110/mundumaata_eng.pdf",
+     "lang": "en",
+     "title": "Foreword",
+     "title_alt": "",
+     "contributor": "Editor",
+     "heading_img": null,
+     "column": "mundumaata",
+     "available": false
+    },
+    {
+     "file": "src0110/toranam_eng.pdf",
+     "lang": "en",
+     "title": "Salutation to your solution",
+     "title_alt": "",
+     "contributor": "Sudhakar Attili",
+     "heading_img": null,
+     "column": "toranam",
+     "available": false
+    },
+    {
+     "file": "src0110/tudipaluku_eng.pdf",
+     "lang": "en",
+     "title": "Final word",
+     "title_alt": "",
+     "contributor": "Editor",
+     "heading_img": null,
+     "column": "tudipaluku",
+     "available": false
+    },
+    {
+     "file": "src0110/vidupu_eng.pdf",
+     "lang": "en",
+     "title": "Answers & Winners",
+     "title_alt": "",
+     "contributor": "Editor",
+     "heading_img": null,
+     "column": "vidupu",
+     "available": false
+    },
+    {
+     "file": "src0110/acharamulu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Our customs and their meaning behind",
+     "contributor": null,
+     "heading_img": "acharamulu.jpg",
+     "column": "acharamulu",
+     "available": false
+    },
+    {
+     "file": "src0110/balamitra.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "kids pages",
+     "contributor": "Vaasanti Maghapu",
+     "heading_img": "balamitra.jpg",
+     "column": "balamitra",
+     "available": false
+    },
+    {
+     "file": "src0110/chuddam.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Quiz",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "chuddam.jpg",
+     "column": "chuddam",
+     "available": false
+    },
+    {
+     "file": "src0110/cover_story.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Cover Story",
+     "contributor": null,
+     "heading_img": "cover_desc.jpg",
+     "column": "cover_story",
+     "available": false
+    },
+    {
+     "file": "src0110/crossword.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Crossword",
+     "contributor": null,
+     "heading_img": "padachadaramgam.jpg",
+     "column": "crossword",
+     "available": false
+    },
+    {
+     "file": "src0110/jokes.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Jokes",
+     "contributor": "Vaasanti Maghapu",
+     "heading_img": "jokes.jpg",
+     "column": "jokes",
+     "available": false
+    },
+    {
+     "file": "src0110/mathematrix.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Mathematricks",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "mathematrics.jpg",
+     "column": "mathematrix",
+     "available": false
+    },
+    {
+     "file": "src0110/mundumaata.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "A word with you",
+     "contributor": "Editor",
+     "heading_img": "naamaata.jpg",
+     "column": "mundumaata",
+     "available": false
+    },
+    {
+     "file": "src0110/sameta_kathalu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Derivation of proverbs",
+     "contributor": null,
+     "heading_img": "sametakathalu.jpg",
+     "column": "sameta_kathalu",
+     "available": false
+    },
+    {
+     "file": "src0110/toranam.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "brain teasers",
+     "contributor": null,
+     "heading_img": "toranam.jpg",
+     "column": "toranam",
+     "available": false
+    },
+    {
+     "file": "src0110/tudipaluku.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Final word",
+     "contributor": "Editor",
+     "heading_img": "tudipaluku.jpg",
+     "column": "tudipaluku",
+     "available": false
+    },
+    {
+     "file": "src0110/veechika.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Thought Waves",
+     "contributor": null,
+     "heading_img": "veechika.jpg",
+     "column": "veechika",
+     "available": false
+    },
+    {
+     "file": "src0110/vemana.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Our Vemana's poems",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "vemana.jpg",
+     "column": "vemana",
+     "available": false
+    },
+    {
+     "file": "src0110/vidupu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Answers & Winners",
+     "contributor": "Editor",
+     "heading_img": "vidupu_img.jpg",
+     "column": "vidupu",
+     "available": false
+    }
+   ],
+   "fullbook": false,
+   "cover": null
+  },
+  {
+   "id": "2009-10",
+   "folder": "src1009",
+   "year": 2009,
+   "month": 10,
+   "season": "Vijaya Dasami",
+   "volume": 3,
+   "issueNo": 4,
+   "pages": {
+    "te": "index64.html",
+    "en": "index64e.html"
+   },
+   "items": [
+    {
+     "file": "src1009/balamitra_eng.pdf",
+     "lang": "en",
+     "title": "Kids pages",
+     "title_alt": "",
+     "contributor": "Sudhakar Attili",
+     "heading_img": null,
+     "column": "balamitra",
+     "available": false
+    },
+    {
+     "file": "src1009/chuddam_eng.pdf",
+     "lang": "en",
+     "title": "Question Gallery",
+     "title_alt": "",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": null,
+     "column": "chuddam",
+     "available": false
+    },
+    {
+     "file": "src1009/cover_story_eng.pdf",
+     "lang": "en",
+     "title": "Cover Story",
+     "title_alt": "",
+     "contributor": "SuSri",
+     "heading_img": null,
+     "column": "cover_story",
+     "available": false
+    },
+    {
+     "file": "src1009/jokes_eng.pdf",
+     "lang": "en",
+     "title": "Smile if you wish",
+     "title_alt": "",
+     "contributor": "Vaasanti Maghapu",
+     "heading_img": null,
+     "column": "jokes",
+     "available": false
+    },
+    {
+     "file": "src1009/mathematrix_eng.pdf",
+     "lang": "en",
+     "title": "Mathematricks",
+     "title_alt": "",
+     "contributor": "Sreenivasa Rao Ainapurapu",
+     "heading_img": null,
+     "column": "mathematrix",
+     "available": false
+    },
+    {
+     "file": "src1009/mundumaata_eng.pdf",
+     "lang": "en",
+     "title": "Foreword",
+     "title_alt": "",
+     "contributor": "Editor",
+     "heading_img": null,
+     "column": "mundumaata",
+     "available": false
+    },
+    {
+     "file": "src1009/toranam_eng.pdf",
+     "lang": "en",
+     "title": "Salutation to your solution",
+     "title_alt": "",
+     "contributor": "Sudhakar Attili",
+     "heading_img": null,
+     "column": "toranam",
+     "available": false
+    },
+    {
+     "file": "src1009/tudipaluku_eng.pdf",
+     "lang": "en",
+     "title": "Final word",
+     "title_alt": "",
+     "contributor": "Editor",
+     "heading_img": null,
+     "column": "tudipaluku",
+     "available": false
+    },
+    {
+     "file": "src1009/vidupu_eng.pdf",
+     "lang": "en",
+     "title": "Answers & Winners",
+     "title_alt": "",
+     "contributor": "Editor",
+     "heading_img": null,
+     "column": "vidupu",
+     "available": false
+    },
+    {
+     "file": "src1009/balamitra.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "kids pages",
+     "contributor": "Vaasanti Maghapu",
+     "heading_img": "balamitra.jpg",
+     "column": "balamitra",
+     "available": false
+    },
+    {
+     "file": "src1009/chuddam.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Quiz",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "chuddam.jpg",
+     "column": "chuddam",
+     "available": false
+    },
+    {
+     "file": "src1009/cover_story.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Cover Story",
+     "contributor": null,
+     "heading_img": "cover_desc.jpg",
+     "column": "cover_story",
+     "available": false
+    },
+    {
+     "file": "src1009/crossword.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Crossword",
+     "contributor": null,
+     "heading_img": "padachadaramgam.jpg",
+     "column": "crossword",
+     "available": false
+    },
+    {
+     "file": "src1009/jokes.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Jokes",
+     "contributor": "Vaasanti Maghapu",
+     "heading_img": "jokes.jpg",
+     "column": "jokes",
+     "available": false
+    },
+    {
+     "file": "src1009/mathematrix.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Mathematricks",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "mathematrics.jpg",
+     "column": "mathematrix",
+     "available": false
+    },
+    {
+     "file": "src1009/mundumaata.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "A word with you",
+     "contributor": "Editor",
+     "heading_img": "naamaata.jpg",
+     "column": "mundumaata",
+     "available": false
+    },
+    {
+     "file": "src1009/sameta_kathalu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Derivation of proverbs",
+     "contributor": null,
+     "heading_img": "sametakathalu.jpg",
+     "column": "sameta_kathalu",
+     "available": false
+    },
+    {
+     "file": "src1009/toranam.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "brain teasers",
+     "contributor": null,
+     "heading_img": "toranam.jpg",
+     "column": "toranam",
+     "available": false
+    },
+    {
+     "file": "src1009/tudipaluku.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Final word",
+     "contributor": "Editor",
+     "heading_img": "tudipaluku.jpg",
+     "column": "tudipaluku",
+     "available": false
+    },
+    {
+     "file": "src1009/vemana.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Our Vemana's poems",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "vemana.jpg",
+     "column": "vemana",
+     "available": false
+    },
+    {
+     "file": "src1009/vidupu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Answers & Winners",
+     "contributor": "Editor",
+     "heading_img": "vidupu_img.jpg",
+     "column": "vidupu",
+     "available": false
+    },
+    {
+     "file": "src1009/wow.pdf",
+     "lang": "te",
+     "title": "Words of Wisdom",
+     "title_alt": "",
+     "contributor": "Didiji",
+     "heading_img": null,
+     "column": "wow",
+     "available": false
+    }
+   ],
+   "fullbook": false,
+   "cover": null
+  },
+  {
+   "id": "2009-07",
+   "folder": "src709",
+   "year": 2009,
+   "month": 7,
+   "season": "July",
+   "volume": 3,
+   "issueNo": 3,
+   "pages": {
+    "te": "index63.html",
+    "en": "index63e.html"
+   },
+   "items": [
+    {
+     "file": "src709/balamitra_eng.pdf",
+     "lang": "en",
+     "title": "Kids pages",
+     "title_alt": "",
+     "contributor": "Sudhakar Attili",
+     "heading_img": null,
+     "column": "balamitra",
+     "available": false
+    },
+    {
+     "file": "src709/chuddam_eng.pdf",
+     "lang": "en",
+     "title": "Question Gallery",
+     "title_alt": "",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": null,
+     "column": "chuddam",
+     "available": false
+    },
+    {
+     "file": "src709/cover_story_eng.pdf",
+     "lang": "en",
+     "title": "Cover Story",
+     "title_alt": "",
+     "contributor": "SuSri",
+     "heading_img": null,
+     "column": "cover_story",
+     "available": false
+    },
+    {
+     "file": "src709/jokes_eng.pdf",
+     "lang": "en",
+     "title": "Smile if you wish",
+     "title_alt": "",
+     "contributor": "Vaasanti Maghapu",
+     "heading_img": null,
+     "column": "jokes",
+     "available": false
+    },
+    {
+     "file": "src709/mathematrix_eng.pdf",
+     "lang": "en",
+     "title": "Mathematricks",
+     "title_alt": "",
+     "contributor": "Sreenivasa Rao Ainapurapu",
+     "heading_img": null,
+     "column": "mathematrix",
+     "available": false
+    },
+    {
+     "file": "src709/mundumaata_eng.pdf",
+     "lang": "en",
+     "title": "Foreword",
+     "title_alt": "",
+     "contributor": "Editor",
+     "heading_img": null,
+     "column": "mundumaata",
+     "available": false
+    },
+    {
+     "file": "src709/toranam_eng.pdf",
+     "lang": "en",
+     "title": "Salutation to your solution",
+     "title_alt": "",
+     "contributor": "Sudhakar Attili",
+     "heading_img": null,
+     "column": "toranam",
+     "available": false
+    },
+    {
+     "file": "src709/tudipaluku_eng.pdf",
+     "lang": "en",
+     "title": "Final word",
+     "title_alt": "",
+     "contributor": "Editor",
+     "heading_img": null,
+     "column": "tudipaluku",
+     "available": false
+    },
+    {
+     "file": "src709/vidupu_eng.pdf",
+     "lang": "en",
+     "title": "Answers & Winners",
+     "title_alt": "",
+     "contributor": "Editor",
+     "heading_img": null,
+     "column": "vidupu",
+     "available": false
+    },
+    {
+     "file": "src709/balamitra.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "kids pages",
+     "contributor": "Vaasanti Maghapu",
+     "heading_img": "balamitra.jpg",
+     "column": "balamitra",
+     "available": false
+    },
+    {
+     "file": "src709/chuddam.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Quiz",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "chuddam.jpg",
+     "column": "chuddam",
+     "available": false
+    },
+    {
+     "file": "src709/cover_story.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Cover Story",
+     "contributor": null,
+     "heading_img": "cover_desc.jpg",
+     "column": "cover_story",
+     "available": false
+    },
+    {
+     "file": "src709/crossword.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Crossword",
+     "contributor": null,
+     "heading_img": "padachadaramgam.jpg",
+     "column": "crossword",
+     "available": false
+    },
+    {
+     "file": "src709/jokes.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Jokes",
+     "contributor": "Vaasanti Maghapu",
+     "heading_img": "jokes.jpg",
+     "column": "jokes",
+     "available": false
+    },
+    {
+     "file": "src709/mathematrix.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Mathematricks",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "mathematrics.jpg",
+     "column": "mathematrix",
+     "available": false
+    },
+    {
+     "file": "src709/mundumaata.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "A word with you",
+     "contributor": "Editor",
+     "heading_img": "naamaata.jpg",
+     "column": "mundumaata",
+     "available": false
+    },
+    {
+     "file": "src709/sameta_kathalu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Derivation of proverbs",
+     "contributor": null,
+     "heading_img": "sametakathalu.jpg",
+     "column": "sameta_kathalu",
+     "available": false
+    },
+    {
+     "file": "src709/toranam.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "brain teasers",
+     "contributor": null,
+     "heading_img": "toranam.jpg",
+     "column": "toranam",
+     "available": false
+    },
+    {
+     "file": "src709/tudipaluku.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Final word",
+     "contributor": "Editor",
+     "heading_img": "tudipaluku.jpg",
+     "column": "tudipaluku",
+     "available": false
+    },
+    {
+     "file": "src709/vemana.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Our Vemana's poems",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "vemana.jpg",
+     "column": "vemana",
+     "available": false
+    },
+    {
+     "file": "src709/vidupu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Answers & Winners",
+     "contributor": "Editor",
+     "heading_img": "vidupu_img.jpg",
+     "column": "vidupu",
+     "available": false
+    },
+    {
+     "file": "src709/wow.pdf",
+     "lang": "te",
+     "title": "Words of Wisdom",
+     "title_alt": "",
+     "contributor": "Didiji",
+     "heading_img": null,
+     "column": "wow",
+     "available": false
+    }
+   ],
+   "fullbook": false,
+   "cover": null
+  },
+  {
+   "id": "2009-04",
+   "folder": "src409",
+   "year": 2009,
+   "month": 4,
+   "season": "Ugadi",
+   "volume": 3,
+   "issueNo": 2,
+   "pages": {
+    "te": "index62.html",
+    "en": "index62e.html"
+   },
+   "items": [
+    {
+     "file": "src409/balamitra_eng.pdf",
+     "lang": "en",
+     "title": "Kids pages",
+     "title_alt": "",
+     "contributor": "Sudhakar Attili",
+     "heading_img": null,
+     "column": "balamitra",
+     "available": true
+    },
+    {
+     "file": "src409/chuddam_eng.pdf",
+     "lang": "en",
+     "title": "Question Gallery",
+     "title_alt": "",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": null,
+     "column": "chuddam",
+     "available": true
+    },
+    {
+     "file": "src409/cover_story_eng.pdf",
+     "lang": "en",
+     "title": "Cover Story",
+     "title_alt": "",
+     "contributor": "SuSri",
+     "heading_img": null,
+     "column": "cover_story",
+     "available": true
+    },
+    {
+     "file": "src409/jaabu-javaabu_eng.pdf",
+     "lang": "en",
+     "title": "Your Letters - Our Responses",
+     "title_alt": "",
+     "contributor": "Editor",
+     "heading_img": null,
+     "column": "jaabu-javaabu",
+     "available": false
+    },
+    {
+     "file": "src409/jokes_eng.pdf",
+     "lang": "en",
+     "title": "Smile if you wish",
+     "title_alt": "",
+     "contributor": "Vaasanti Maghapu",
+     "heading_img": null,
+     "column": "jokes",
+     "available": false
+    },
+    {
+     "file": "src409/mathematrix_eng.pdf",
+     "lang": "en",
+     "title": "Mathematricks",
+     "title_alt": "",
+     "contributor": "Sreenivasa Rao Ainapurapu",
+     "heading_img": null,
+     "column": "mathematrix",
+     "available": false
+    },
+    {
+     "file": "src409/mundumaata_eng.pdf",
+     "lang": "en",
+     "title": "Foreword",
+     "title_alt": "",
+     "contributor": "Editor",
+     "heading_img": null,
+     "column": "mundumaata",
+     "available": false
+    },
+    {
+     "file": "src409/telusa_eng.pdf",
+     "lang": "en",
+     "title": "Did you know?",
+     "title_alt": "",
+     "contributor": "SuSri",
+     "heading_img": null,
+     "column": "telusa",
+     "available": false
+    },
+    {
+     "file": "src409/toranam_eng.pdf",
+     "lang": "en",
+     "title": "Salutation to your solution",
+     "title_alt": "",
+     "contributor": "Sudhakar Attili",
+     "heading_img": null,
+     "column": "toranam",
+     "available": false
+    },
+    {
+     "file": "src409/tudipaluku_eng.pdf",
+     "lang": "en",
+     "title": "Final word",
+     "title_alt": "",
+     "contributor": "Editor",
+     "heading_img": null,
+     "column": "tudipaluku",
+     "available": false
+    },
+    {
+     "file": "src409/vidupu_eng.pdf",
+     "lang": "en",
+     "title": "Answers & Winners",
+     "title_alt": "",
+     "contributor": "Editor",
+     "heading_img": null,
+     "column": "vidupu",
+     "available": false
+    },
+    {
+     "file": "src409/acharamulu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Our customs and their meaning behind",
+     "contributor": null,
+     "heading_img": "acharamulu.jpg",
+     "column": "acharamulu",
+     "available": true
+    },
+    {
+     "file": "src409/balamitra.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "kids pages",
+     "contributor": "Vaasanti Maghapu",
+     "heading_img": "balamitra.jpg",
+     "column": "balamitra",
+     "available": true
+    },
+    {
+     "file": "src409/chuddam.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Quiz",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "chuddam.jpg",
+     "column": "chuddam",
+     "available": true
+    },
+    {
+     "file": "src409/cover_story.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Cover Story",
+     "contributor": null,
+     "heading_img": "cover_desc.jpg",
+     "column": "cover_story",
+     "available": false
+    },
+    {
+     "file": "src409/crossword.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Crossword",
+     "contributor": null,
+     "heading_img": "padachadaramgam.jpg",
+     "column": "crossword",
+     "available": false
+    },
+    {
+     "file": "src409/jaabu-javaabu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Your feedback",
+     "contributor": "Editor",
+     "heading_img": "letters.jpg",
+     "column": "jaabu-javaabu",
+     "available": false
+    },
+    {
+     "file": "src409/jokes.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Jokes",
+     "contributor": "Vaasanti Maghapu",
+     "heading_img": "jokes.jpg",
+     "column": "jokes",
+     "available": false
+    },
+    {
+     "file": "src409/mathematrix.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Mathematricks",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "mathematrics.jpg",
+     "column": "mathematrix",
+     "available": false
+    },
+    {
+     "file": "src409/mundumaata.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "A word with you",
+     "contributor": "Editor",
+     "heading_img": "naamaata.jpg",
+     "column": "mundumaata",
+     "available": false
+    },
+    {
+     "file": "src409/padam.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "People's Path & Word",
+     "contributor": null,
+     "heading_img": "padam.jpg",
+     "column": "padam",
+     "available": false
+    },
+    {
+     "file": "src409/sameta_kathalu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Derivation of proverbs",
+     "contributor": null,
+     "heading_img": "sametakathalu.jpg",
+     "column": "sameta_kathalu",
+     "available": false
+    },
+    {
+     "file": "src409/sametalu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "proverbs from Ramayan",
+     "contributor": "Editor",
+     "heading_img": "ramayanam_sametalu.jpg",
+     "column": "sametalu",
+     "available": false
+    },
+    {
+     "file": "src409/telusa.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Do you know",
+     "contributor": null,
+     "heading_img": "telusa.jpg",
+     "column": "telusa",
+     "available": false
+    },
+    {
+     "file": "src409/toranam.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "brain teasers",
+     "contributor": null,
+     "heading_img": "toranam.jpg",
+     "column": "toranam",
+     "available": false
+    },
+    {
+     "file": "src409/tudipaluku.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Final word",
+     "contributor": "Editor",
+     "heading_img": "tudipaluku.jpg",
+     "column": "tudipaluku",
+     "available": false
+    },
+    {
+     "file": "src409/veechika.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Thought Waves",
+     "contributor": null,
+     "heading_img": "veechika.jpg",
+     "column": "veechika",
+     "available": false
+    },
+    {
+     "file": "src409/vemana.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Our Vemana's poems",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "vemana.jpg",
+     "column": "vemana",
+     "available": false
+    },
+    {
+     "file": "src409/vidupu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Answers & Winners",
+     "contributor": "Editor",
+     "heading_img": "vidupu_img.jpg",
+     "column": "vidupu",
+     "available": false
+    },
+    {
+     "file": "src409/wow.pdf",
+     "lang": "te",
+     "title": "Words of Wisdom",
+     "title_alt": "",
+     "contributor": "Didiji",
+     "heading_img": null,
+     "column": "wow",
+     "available": false
+    }
+   ],
+   "fullbook": false,
+   "cover": null
+  },
+  {
+   "id": "2009-01",
+   "folder": "src109",
+   "year": 2009,
+   "month": 1,
+   "season": "Sankranti",
+   "volume": 3,
+   "issueNo": 1,
+   "pages": {
+    "te": "index61.html",
+    "en": "index61e.html"
+   },
+   "items": [
+    {
+     "file": "src109/balamitra_eng.pdf",
+     "lang": "en",
+     "title": "Kids pages",
+     "title_alt": "",
+     "contributor": "Sudhakar Attili",
+     "heading_img": null,
+     "column": "balamitra",
+     "available": false
+    },
+    {
+     "file": "src109/chuddam_eng.pdf",
+     "lang": "en",
+     "title": "Question Gallery",
+     "title_alt": "",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": null,
+     "column": "chuddam",
+     "available": false
+    },
+    {
+     "file": "src109/cover_story_eng.pdf",
+     "lang": "en",
+     "title": "Cover Story",
+     "title_alt": "",
+     "contributor": "SuSri",
+     "heading_img": null,
+     "column": "cover_story",
+     "available": false
+    },
+    {
+     "file": "src109/jaabu-javaabu_eng.pdf",
+     "lang": "en",
+     "title": "Your Letters - Our Responses",
+     "title_alt": "",
+     "contributor": "Editor",
+     "heading_img": null,
+     "column": "jaabu-javaabu",
+     "available": false
+    },
+    {
+     "file": "src109/jokes_eng.pdf",
+     "lang": "en",
+     "title": "Smile if you wish",
+     "title_alt": "",
+     "contributor": "Vaasanti Maghapu",
+     "heading_img": null,
+     "column": "jokes",
+     "available": false
+    },
+    {
+     "file": "src109/mundumaata_eng.pdf",
+     "lang": "en",
+     "title": "Foreword",
+     "title_alt": "",
+     "contributor": "Editor",
+     "heading_img": null,
+     "column": "mundumaata",
+     "available": false
+    },
+    {
+     "file": "src109/telusa_eng.pdf",
+     "lang": "en",
+     "title": "Did you know?",
+     "title_alt": "",
+     "contributor": "Sravya Ainapurapu",
+     "heading_img": null,
+     "column": "telusa",
+     "available": false
+    },
+    {
+     "file": "src109/toranam_eng.pdf",
+     "lang": "en",
+     "title": "Salutation to your solution",
+     "title_alt": "",
+     "contributor": "Sudhakar Attili",
+     "heading_img": null,
+     "column": "toranam",
+     "available": false
+    },
+    {
+     "file": "src109/tudipaluku_eng.pdf",
+     "lang": "en",
+     "title": "Final word",
+     "title_alt": "",
+     "contributor": "Editor",
+     "heading_img": null,
+     "column": "tudipaluku",
+     "available": false
+    },
+    {
+     "file": "src109/vidupu_eng.pdf",
+     "lang": "en",
+     "title": "Answers & Winners",
+     "title_alt": "",
+     "contributor": "Editor",
+     "heading_img": null,
+     "column": "vidupu",
+     "available": false
+    },
+    {
+     "file": "src109/acharamulu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Our customs and their meaning behind",
+     "contributor": null,
+     "heading_img": "acharamulu.jpg",
+     "column": "acharamulu",
+     "available": false
+    },
+    {
+     "file": "src109/august15.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "NRA Page",
+     "contributor": null,
+     "heading_img": "veechika.jpg",
+     "column": "august15",
+     "available": false
+    },
+    {
+     "file": "src109/balamitra.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "kids pages",
+     "contributor": "Vaasanti Maghapu",
+     "heading_img": "balamitra.jpg",
+     "column": "balamitra",
+     "available": false
+    },
+    {
+     "file": "src109/charitardulu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Noted people in history",
+     "contributor": "Vaasanti Maghapu",
+     "heading_img": "charitardhulu.jpg",
+     "column": "charitardulu",
+     "available": false
+    },
+    {
+     "file": "src109/chuddam.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Quiz",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "chuddam.jpg",
+     "column": "chuddam",
+     "available": false
+    },
+    {
+     "file": "src109/cover_story.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Cover Story",
+     "contributor": null,
+     "heading_img": "cover_desc.jpg",
+     "column": "cover_story",
+     "available": false
+    },
+    {
+     "file": "src109/crossword.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Crossword",
+     "contributor": null,
+     "heading_img": "padachadaramgam.jpg",
+     "column": "crossword",
+     "available": false
+    },
+    {
+     "file": "src109/jaabu-javaabu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Your feedback",
+     "contributor": "Editor",
+     "heading_img": "letters.jpg",
+     "column": "jaabu-javaabu",
+     "available": false
+    },
+    {
+     "file": "src109/jokes.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Jokes",
+     "contributor": "Vaasanti Maghapu",
+     "heading_img": "jokes.jpg",
+     "column": "jokes",
+     "available": false
+    },
+    {
+     "file": "src109/mundumaata.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "A word with you",
+     "contributor": "Editor",
+     "heading_img": "naamaata.jpg",
+     "column": "mundumaata",
+     "available": false
+    },
+    {
+     "file": "src109/padam.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "People's Path & Word",
+     "contributor": null,
+     "heading_img": "padam.jpg",
+     "column": "padam",
+     "available": false
+    },
+    {
+     "file": "src109/sameta_kathalu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Derivation of proverbs",
+     "contributor": null,
+     "heading_img": "sametakathalu.jpg",
+     "column": "sameta_kathalu",
+     "available": false
+    },
+    {
+     "file": "src109/smruti.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "A page in my Diary",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "smruti.jpg",
+     "column": "smruti",
+     "available": false
+    },
+    {
+     "file": "src109/special2009.pdf",
+     "lang": "te",
+     "title": "Special 2009",
+     "title_alt": "",
+     "contributor": "Sreenivasa Rao Ainapurapu",
+     "heading_img": null,
+     "column": "special2009",
+     "available": false
+    },
+    {
+     "file": "src109/telusa.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Do you know",
+     "contributor": null,
+     "heading_img": "telusa.jpg",
+     "column": "telusa",
+     "available": false
+    },
+    {
+     "file": "src109/toranam.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "brain teasers",
+     "contributor": null,
+     "heading_img": "toranam.jpg",
+     "column": "toranam",
+     "available": false
+    },
+    {
+     "file": "src109/tudipaluku.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Final word",
+     "contributor": "Editor",
+     "heading_img": "tudipaluku.jpg",
+     "column": "tudipaluku",
+     "available": false
+    },
+    {
+     "file": "src109/vemana.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Our Vemana's poems",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "vemana.jpg",
+     "column": "vemana",
+     "available": false
+    },
+    {
+     "file": "src109/vidupu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Answers & Winners",
+     "contributor": "Editor",
+     "heading_img": "vidupu_img.jpg",
+     "column": "vidupu",
+     "available": false
+    },
+    {
+     "file": "src109/wow.pdf",
+     "lang": "te",
+     "title": "Words of Wisdom",
+     "title_alt": "",
+     "contributor": "Didiji",
+     "heading_img": null,
+     "column": "wow",
+     "available": false
+    }
+   ],
+   "fullbook": false,
+   "cover": null
+  },
+  {
+   "id": "2008-10",
+   "folder": "src1008",
+   "year": 2008,
+   "month": 10,
+   "season": "Vijaya Dasami",
+   "volume": 2,
+   "issueNo": 4,
+   "pages": {
+    "en": "index54e.html"
+   },
+   "items": [
+    {
+     "file": "src1008/balamitra_eng.pdf",
+     "lang": "en",
+     "title": "Kids pages",
+     "title_alt": "",
+     "contributor": "Sudhakar Attili",
+     "heading_img": null,
+     "column": "balamitra",
+     "available": false
+    },
+    {
+     "file": "src1008/chuddam_eng.pdf",
+     "lang": "en",
+     "title": "Question Gallery",
+     "title_alt": "",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": null,
+     "column": "chuddam",
+     "available": false
+    },
+    {
+     "file": "src1008/cover_story_eng.pdf",
+     "lang": "en",
+     "title": "Cover Story",
+     "title_alt": "",
+     "contributor": "SuSri",
+     "heading_img": null,
+     "column": "cover_story",
+     "available": false
+    },
+    {
+     "file": "src1008/jokes_eng.pdf",
+     "lang": "en",
+     "title": "Smile if you wish",
+     "title_alt": "",
+     "contributor": "Vaasanti Maghapu",
+     "heading_img": null,
+     "column": "jokes",
+     "available": false
+    },
+    {
+     "file": "src1008/mundumaata_eng.pdf",
+     "lang": "en",
+     "title": "Foreword",
+     "title_alt": "",
+     "contributor": "Editor",
+     "heading_img": null,
+     "column": "mundumaata",
+     "available": false
+    },
+    {
+     "file": "src1008/nripage_eng.pdf",
+     "lang": "en",
+     "title": "NRI Page",
+     "title_alt": "",
+     "contributor": "Saakshi",
+     "heading_img": null,
+     "column": "nripage",
+     "available": false
+    },
+    {
+     "file": "src1008/telusa_eng.pdf",
+     "lang": "en",
+     "title": "Did you know?",
+     "title_alt": "",
+     "contributor": "Ateeth",
+     "heading_img": null,
+     "column": "telusa",
+     "available": false
+    },
+    {
+     "file": "src1008/toranam_eng.pdf",
+     "lang": "en",
+     "title": "Salutation to your solution",
+     "title_alt": "",
+     "contributor": "Sudhakar Attili",
+     "heading_img": null,
+     "column": "toranam",
+     "available": false
+    },
+    {
+     "file": "src1008/tudipaluku_eng.pdf",
+     "lang": "en",
+     "title": "Final word",
+     "title_alt": "",
+     "contributor": "Editor",
+     "heading_img": null,
+     "column": "tudipaluku",
+     "available": false
+    },
+    {
+     "file": "src1008/vidupu_eng.pdf",
+     "lang": "en",
+     "title": "Answers & Winners",
+     "title_alt": "",
+     "contributor": "Editor",
+     "heading_img": null,
+     "column": "vidupu",
+     "available": false
+    }
+   ],
+   "fullbook": false,
+   "cover": null
+  },
+  {
+   "id": "2008-07",
+   "folder": "src708",
+   "year": 2008,
+   "month": 7,
+   "season": "July",
+   "volume": 2,
+   "issueNo": 3,
+   "pages": {
+    "te": "index53.html",
+    "en": "index53e.html"
+   },
+   "items": [
+    {
+     "file": "src708/balamitra_eng.pdf",
+     "lang": "en",
+     "title": "Kids pages",
+     "title_alt": "",
+     "contributor": "Sudhakar Attili",
+     "heading_img": null,
+     "column": "balamitra",
+     "available": false
+    },
+    {
+     "file": "src708/chuddam_eng.pdf",
+     "lang": "en",
+     "title": "Question Gallery",
+     "title_alt": "",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": null,
+     "column": "chuddam",
+     "available": false
+    },
+    {
+     "file": "src708/cover_story_eng.pdf",
+     "lang": "en",
+     "title": "Cover Story",
+     "title_alt": "",
+     "contributor": "SuSri",
+     "heading_img": null,
+     "column": "cover_story",
+     "available": false
+    },
+    {
+     "file": "src708/jaabu-javaabu_eng.pdf",
+     "lang": "en",
+     "title": "Your Letters - Our Responses",
+     "title_alt": "",
+     "contributor": "Editor",
+     "heading_img": null,
+     "column": "jaabu-javaabu",
+     "available": false
+    },
+    {
+     "file": "src708/jokes_eng.pdf",
+     "lang": "en",
+     "title": "Smile if you wish",
+     "title_alt": "",
+     "contributor": "Vaasanti Maghapu",
+     "heading_img": null,
+     "column": "jokes",
+     "available": false
+    },
+    {
+     "file": "src708/mundumaata_eng.pdf",
+     "lang": "en",
+     "title": "Foreword",
+     "title_alt": "",
+     "contributor": "Editor",
+     "heading_img": null,
+     "column": "mundumaata",
+     "available": false
+    },
+    {
+     "file": "src708/nripage_eng.pdf",
+     "lang": "en",
+     "title": "NRI Page",
+     "title_alt": "",
+     "contributor": "Saakshi",
+     "heading_img": null,
+     "column": "nripage",
+     "available": false
+    },
+    {
+     "file": "src708/toranam_eng.pdf",
+     "lang": "en",
+     "title": "Salutation to your solution",
+     "title_alt": "",
+     "contributor": "Sudhakar Attili",
+     "heading_img": null,
+     "column": "toranam",
+     "available": false
+    },
+    {
+     "file": "src708/tudipaluku_eng.pdf",
+     "lang": "en",
+     "title": "Final word",
+     "title_alt": "",
+     "contributor": "Editor",
+     "heading_img": null,
+     "column": "tudipaluku",
+     "available": false
+    },
+    {
+     "file": "src708/vidupu_eng.pdf",
+     "lang": "en",
+     "title": "Answers & Winners",
+     "title_alt": "",
+     "contributor": "Editor",
+     "heading_img": null,
+     "column": "vidupu",
+     "available": false
+    },
+    {
+     "file": "src708/acharamulu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Our customs and their meaning behind",
+     "contributor": null,
+     "heading_img": "acharamulu.jpg",
+     "column": "acharamulu",
+     "available": false
+    },
+    {
+     "file": "src708/balamitra.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "kids pages",
+     "contributor": "Vaasanti Maghapu",
+     "heading_img": "balamitra.jpg",
+     "column": "balamitra",
+     "available": false
+    },
+    {
+     "file": "src708/chuddam.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Quiz",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "chuddam.jpg",
+     "column": "chuddam",
+     "available": false
+    },
+    {
+     "file": "src708/cover_story.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Cover Story",
+     "contributor": null,
+     "heading_img": "cover_desc.jpg",
+     "column": "cover_story",
+     "available": false
+    },
+    {
+     "file": "src708/crossword.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Crossword",
+     "contributor": null,
+     "heading_img": "padachadaramgam.jpg",
+     "column": "crossword",
+     "available": false
+    },
+    {
+     "file": "src708/jaabu-javaabu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Your feedback",
+     "contributor": "Editor",
+     "heading_img": "letters.jpg",
+     "column": "jaabu-javaabu",
+     "available": false
+    },
+    {
+     "file": "src708/jokes.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Jokes",
+     "contributor": "Vaasanti Maghapu",
+     "heading_img": "jokes.jpg",
+     "column": "jokes",
+     "available": false
+    },
+    {
+     "file": "src708/mundumaata.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "A word with you",
+     "contributor": "Editor",
+     "heading_img": "naamaata.jpg",
+     "column": "mundumaata",
+     "available": false
+    },
+    {
+     "file": "src708/nripage.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "NRA Page",
+     "contributor": null,
+     "heading_img": "nripage.jpg",
+     "column": "nripage",
+     "available": false
+    },
+    {
+     "file": "src708/padam.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "People's Path & Word",
+     "contributor": null,
+     "heading_img": "padam.jpg",
+     "column": "padam",
+     "available": false
+    },
+    {
+     "file": "src708/sameta_kathalu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Derivation of proverbs",
+     "contributor": null,
+     "heading_img": "sametakathalu.jpg",
+     "column": "sameta_kathalu",
+     "available": false
+    },
+    {
+     "file": "src708/smruti.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "A page in my Diary",
+     "contributor": null,
+     "heading_img": "smruti.jpg",
+     "column": "smruti",
+     "available": false
+    },
+    {
+     "file": "src708/toranam.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "brain teasers",
+     "contributor": null,
+     "heading_img": "toranam.jpg",
+     "column": "toranam",
+     "available": false
+    },
+    {
+     "file": "src708/tudipaluku.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Final word",
+     "contributor": "Editor",
+     "heading_img": "tudipaluku.jpg",
+     "column": "tudipaluku",
+     "available": false
+    },
+    {
+     "file": "src708/vemana.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Our Vemana's poems",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "vemana.jpg",
+     "column": "vemana",
+     "available": false
+    },
+    {
+     "file": "src708/vidupu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Answers & Winners",
+     "contributor": "Editor",
+     "heading_img": "vidupu_img.jpg",
+     "column": "vidupu",
+     "available": false
+    }
+   ],
+   "fullbook": false,
+   "cover": null
+  },
+  {
+   "id": "2008-04",
+   "folder": "src408",
+   "year": 2008,
+   "month": 4,
+   "season": "Ugadi",
+   "volume": 2,
+   "issueNo": 2,
+   "pages": {
+    "te": "index52.html",
+    "en": "index52e.html"
+   },
+   "items": [
+    {
+     "file": "src408/balamitra_eng.pdf",
+     "lang": "en",
+     "title": "Kids pages",
+     "title_alt": "",
+     "contributor": "Sudhakar Attili",
+     "heading_img": null,
+     "column": "balamitra",
+     "available": false
+    },
+    {
+     "file": "src408/chuddam_eng.pdf",
+     "lang": "en",
+     "title": "Question Gallery",
+     "title_alt": "",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": null,
+     "column": "chuddam",
+     "available": false
+    },
+    {
+     "file": "src408/cover_story_eng.pdf",
+     "lang": "en",
+     "title": "Cover Story",
+     "title_alt": "",
+     "contributor": "SuSri",
+     "heading_img": null,
+     "column": "cover_story",
+     "available": false
+    },
+    {
+     "file": "src408/jaabu-javaabu_eng.pdf",
+     "lang": "en",
+     "title": "Your Letters - Our Responses",
+     "title_alt": "",
+     "contributor": "Editor",
+     "heading_img": null,
+     "column": "jaabu-javaabu",
+     "available": false
+    },
+    {
+     "file": "src408/jokes_eng.pdf",
+     "lang": "en",
+     "title": "Smile if you wish",
+     "title_alt": "",
+     "contributor": "Vaasanti Maghapu",
+     "heading_img": null,
+     "column": "jokes",
+     "available": false
+    },
+    {
+     "file": "src408/mundumaata_eng.pdf",
+     "lang": "en",
+     "title": "Foreword",
+     "title_alt": "",
+     "contributor": "Editor",
+     "heading_img": null,
+     "column": "mundumaata",
+     "available": false
+    },
+    {
+     "file": "src408/nripage_eng.pdf",
+     "lang": "en",
+     "title": "NRI Page",
+     "title_alt": "",
+     "contributor": "Saakshi",
+     "heading_img": null,
+     "column": "nripage",
+     "available": false
+    },
+    {
+     "file": "src408/telusa_eng.pdf",
+     "lang": "en",
+     "title": "Did you know?",
+     "title_alt": "",
+     "contributor": "Sudhakar Attili",
+     "heading_img": null,
+     "column": "telusa",
+     "available": false
+    },
+    {
+     "file": "src408/toranam_eng.pdf",
+     "lang": "en",
+     "title": "Salutation to your solution",
+     "title_alt": "",
+     "contributor": "Sudhakar Attili",
+     "heading_img": null,
+     "column": "toranam",
+     "available": true
+    },
+    {
+     "file": "src408/tudipaluku_eng.pdf",
+     "lang": "en",
+     "title": "Final word",
+     "title_alt": "",
+     "contributor": "Editor",
+     "heading_img": null,
+     "column": "tudipaluku",
+     "available": true
+    },
+    {
+     "file": "src408/vidupu_eng.pdf",
+     "lang": "en",
+     "title": "Answers & Winners",
+     "title_alt": "",
+     "contributor": "Editor",
+     "heading_img": null,
+     "column": "vidupu",
+     "available": true
+    },
+    {
+     "file": "src408/balamitra.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "kids pages",
+     "contributor": "Vaasanti Maghapu",
+     "heading_img": "balamitra.jpg",
+     "column": "balamitra",
+     "available": false
+    },
+    {
+     "file": "src408/chuddam.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Quiz",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "chuddam.jpg",
+     "column": "chuddam",
+     "available": false
+    },
+    {
+     "file": "src408/cover_story.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Cover Story",
+     "contributor": null,
+     "heading_img": "cover_desc.jpg",
+     "column": "cover_story",
+     "available": false
+    },
+    {
+     "file": "src408/crossword.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Crossword",
+     "contributor": null,
+     "heading_img": "padachadaramgam.jpg",
+     "column": "crossword",
+     "available": false
+    },
+    {
+     "file": "src408/jaabu-javaabu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Your feedback",
+     "contributor": "Editor",
+     "heading_img": "letters.jpg",
+     "column": "jaabu-javaabu",
+     "available": false
+    },
+    {
+     "file": "src408/jokes.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Jokes",
+     "contributor": "Vaasanti Maghapu",
+     "heading_img": "jokes.jpg",
+     "column": "jokes",
+     "available": false
+    },
+    {
+     "file": "src408/mundumaata.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "A word with you",
+     "contributor": "Editor",
+     "heading_img": "naamaata.jpg",
+     "column": "mundumaata",
+     "available": false
+    },
+    {
+     "file": "src408/nripage.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "NRA Page",
+     "contributor": null,
+     "heading_img": "nripage.jpg",
+     "column": "nripage",
+     "available": false
+    },
+    {
+     "file": "src408/padam.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "People's Path & Word",
+     "contributor": null,
+     "heading_img": "padam.jpg",
+     "column": "padam",
+     "available": false
+    },
+    {
+     "file": "src408/sameta_kathalu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Derivation of proverbs",
+     "contributor": null,
+     "heading_img": "sametakathalu.jpg",
+     "column": "sameta_kathalu",
+     "available": false
+    },
+    {
+     "file": "src408/smruti.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "A page in my Diary",
+     "contributor": null,
+     "heading_img": "smruti.jpg",
+     "column": "smruti",
+     "available": false
+    },
+    {
+     "file": "src408/telusa.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Do you know",
+     "contributor": "Vaasanti Maghapu",
+     "heading_img": "telusa.jpg",
+     "column": "telusa",
+     "available": false
+    },
+    {
+     "file": "src408/toranam.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "brain teasers",
+     "contributor": null,
+     "heading_img": "toranam.jpg",
+     "column": "toranam",
+     "available": false
+    },
+    {
+     "file": "src408/tudipaluku.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Final word",
+     "contributor": "Editor",
+     "heading_img": "tudipaluku.jpg",
+     "column": "tudipaluku",
+     "available": false
+    },
+    {
+     "file": "src408/vemana.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Our Vemana's poems",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "vemana.jpg",
+     "column": "vemana",
+     "available": false
+    },
+    {
+     "file": "src408/vidupu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Answers & Winners",
+     "contributor": "Editor",
+     "heading_img": "vidupu_img.jpg",
+     "column": "vidupu",
+     "available": false
+    }
+   ],
+   "fullbook": false,
+   "cover": null
+  },
+  {
+   "id": "2008-01",
+   "folder": "src108",
+   "year": 2008,
+   "month": 1,
+   "season": "Sankranti",
+   "volume": 2,
+   "issueNo": 1,
+   "pages": {
+    "te": "index51.html",
+    "en": "index51e.html"
+   },
+   "items": [
+    {
+     "file": "src108/balamitra_eng.pdf",
+     "lang": "en",
+     "title": "Kids pages",
+     "title_alt": "",
+     "contributor": "Vaasanti Maghapu",
+     "heading_img": null,
+     "column": "balamitra",
+     "available": false
+    },
+    {
+     "file": "src108/chuddam_eng.pdf",
+     "lang": "en",
+     "title": "Question Gallery",
+     "title_alt": "",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": null,
+     "column": "chuddam",
+     "available": false
+    },
+    {
+     "file": "src108/cover_story_eng.pdf",
+     "lang": "en",
+     "title": "Cover Story",
+     "title_alt": "",
+     "contributor": "SuSri",
+     "heading_img": null,
+     "column": "cover_story",
+     "available": false
+    },
+    {
+     "file": "src108/jokes_eng.pdf",
+     "lang": "en",
+     "title": "Smile if you wish",
+     "title_alt": "",
+     "contributor": "Vaasanti Maghapu",
+     "heading_img": null,
+     "column": "jokes",
+     "available": false
+    },
+    {
+     "file": "src108/mundumaata_eng.pdf",
+     "lang": "en",
+     "title": "Foreword",
+     "title_alt": "",
+     "contributor": "Editor",
+     "heading_img": null,
+     "column": "mundumaata",
+     "available": false
+    },
+    {
+     "file": "src108/nripage_eng.pdf",
+     "lang": "en",
+     "title": "NRI Page",
+     "title_alt": "",
+     "contributor": "Saakshi",
+     "heading_img": null,
+     "column": "nripage",
+     "available": false
+    },
+    {
+     "file": "src108/telusa_eng.pdf",
+     "lang": "en",
+     "title": "Did you know?",
+     "title_alt": "",
+     "contributor": "Sudhakar Attili",
+     "heading_img": null,
+     "column": "telusa",
+     "available": false
+    },
+    {
+     "file": "src108/toranam_eng.pdf",
+     "lang": "en",
+     "title": "Salutation to your solution",
+     "title_alt": "",
+     "contributor": "Sudhakar Attili",
+     "heading_img": null,
+     "column": "toranam",
+     "available": false
+    },
+    {
+     "file": "src108/tudipaluku_eng.pdf",
+     "lang": "en",
+     "title": "Final word",
+     "title_alt": "",
+     "contributor": "Editor",
+     "heading_img": null,
+     "column": "tudipaluku",
+     "available": false
+    },
+    {
+     "file": "src108/vidupu_eng.pdf",
+     "lang": "en",
+     "title": "Answers & Winners",
+     "title_alt": "",
+     "contributor": "Editor",
+     "heading_img": null,
+     "column": "vidupu",
+     "available": false
+    },
+    {
+     "file": "src108/acharamulu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Our customs and their meaning behind",
+     "contributor": null,
+     "heading_img": "acharamulu.jpg",
+     "column": "acharamulu",
+     "available": false
+    },
+    {
+     "file": "src108/balamitra.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "kids pages",
+     "contributor": "Vaasanti Maghapu",
+     "heading_img": "balamitra.jpg",
+     "column": "balamitra",
+     "available": false
+    },
+    {
+     "file": "src108/charitardulu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Noted people in history",
+     "contributor": "Vaasanti Maghapu",
+     "heading_img": "charitardhulu.jpg",
+     "column": "charitardulu",
+     "available": false
+    },
+    {
+     "file": "src108/chuddam.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Quiz",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "chuddam.jpg",
+     "column": "chuddam",
+     "available": false
+    },
+    {
+     "file": "src108/cover_story.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Cover Story",
+     "contributor": null,
+     "heading_img": "cover_desc.jpg",
+     "column": "cover_story",
+     "available": false
+    },
+    {
+     "file": "src108/crossword.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Crossword",
+     "contributor": null,
+     "heading_img": "padachadaramgam.jpg",
+     "column": "crossword",
+     "available": false
+    },
+    {
+     "file": "src108/jaabu-javaabu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Your feedback",
+     "contributor": "Editor",
+     "heading_img": "letters.jpg",
+     "column": "jaabu-javaabu",
+     "available": false
+    },
+    {
+     "file": "src108/jokes.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Jokes",
+     "contributor": "Vaasanti Maghapu",
+     "heading_img": "jokes.jpg",
+     "column": "jokes",
+     "available": false
+    },
+    {
+     "file": "src108/mundumaata.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "A word with you",
+     "contributor": "Editor",
+     "heading_img": "naamaata.jpg",
+     "column": "mundumaata",
+     "available": false
+    },
+    {
+     "file": "src108/nripage.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "NRA Page",
+     "contributor": null,
+     "heading_img": "nripage.jpg",
+     "column": "nripage",
+     "available": false
+    },
+    {
+     "file": "src108/padam.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "People's Path & Word",
+     "contributor": null,
+     "heading_img": "padam.jpg",
+     "column": "padam",
+     "available": false
+    },
+    {
+     "file": "src108/sameta_kathalu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Derivation of proverbs",
+     "contributor": null,
+     "heading_img": "sametakathalu.jpg",
+     "column": "sameta_kathalu",
+     "available": false
+    },
+    {
+     "file": "src108/smruti.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "A page in my Diary",
+     "contributor": null,
+     "heading_img": "smruti.jpg",
+     "column": "smruti",
+     "available": false
+    },
+    {
+     "file": "src108/srivaru.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Madhuri's Husband",
+     "contributor": null,
+     "heading_img": "srivaru.jpg",
+     "column": "srivaru",
+     "available": false
+    },
+    {
+     "file": "src108/telusa.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Do you know",
+     "contributor": "Vaasanti Maghapu",
+     "heading_img": "telusa.jpg",
+     "column": "telusa",
+     "available": false
+    },
+    {
+     "file": "src108/toranam.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "brain teasers",
+     "contributor": null,
+     "heading_img": "toranam.jpg",
+     "column": "toranam",
+     "available": false
+    },
+    {
+     "file": "src108/tudipaluku.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Final word",
+     "contributor": "Editor",
+     "heading_img": "tudipaluku.jpg",
+     "column": "tudipaluku",
+     "available": false
+    },
+    {
+     "file": "src108/veechika.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Thought Waves",
+     "contributor": null,
+     "heading_img": "veechika.jpg",
+     "column": "veechika",
+     "available": false
+    },
+    {
+     "file": "src108/vemana.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Our Vemana's poems",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "vemana.jpg",
+     "column": "vemana",
+     "available": false
+    },
+    {
+     "file": "src108/vidupu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Answers & Winners",
+     "contributor": "Editor",
+     "heading_img": "vidupu_img.jpg",
+     "column": "vidupu",
+     "available": false
+    }
+   ],
+   "fullbook": false,
+   "cover": null
+  },
+  {
+   "id": "2007-10",
+   "folder": "src1007",
+   "year": 2007,
+   "month": 10,
+   "season": "Vijaya Dasami",
+   "volume": 1,
+   "issueNo": 1,
+   "pages": {
+    "en": "index44e.html"
+   },
+   "items": [
+    {
+     "file": "src1007/balamitra_eng.pdf",
+     "lang": "en",
+     "title": "Kids pages",
+     "title_alt": "",
+     "contributor": "Vaasanti Maghapu",
+     "heading_img": null,
+     "column": "balamitra",
+     "available": true
+    },
+    {
+     "file": "src1007/chuddam_eng.pdf",
+     "lang": "en",
+     "title": "Question Gallery",
+     "title_alt": "",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": null,
+     "column": "chuddam",
+     "available": true
+    },
+    {
+     "file": "src1007/cover_story_eng.pdf",
+     "lang": "en",
+     "title": "Cover Story",
+     "title_alt": "",
+     "contributor": "SuSri",
+     "heading_img": null,
+     "column": "cover_story",
+     "available": false
+    },
+    {
+     "file": "src1007/mundumaata_eng.pdf",
+     "lang": "en",
+     "title": "Foreword",
+     "title_alt": "",
+     "contributor": "Editor",
+     "heading_img": null,
+     "column": "mundumaata",
+     "available": false
+    },
+    {
+     "file": "src1007/nripage_eng.pdf",
+     "lang": "en",
+     "title": "NRI Page",
+     "title_alt": "",
+     "contributor": "Saakshi",
+     "heading_img": null,
+     "column": "nripage",
+     "available": false
+    },
+    {
+     "file": "src1007/telusa_eng.pdf",
+     "lang": "en",
+     "title": "Do you know?",
+     "title_alt": "",
+     "contributor": "Sudhakar Attili",
+     "heading_img": null,
+     "column": "telusa",
+     "available": false
+    },
+    {
+     "file": "src1007/toranam_eng.pdf",
+     "lang": "en",
+     "title": "Salutation to your solution",
+     "title_alt": "",
+     "contributor": "Sudhakar Attili",
+     "heading_img": null,
+     "column": "toranam",
+     "available": false
+    },
+    {
+     "file": "src1007/tudipaluku_eng.pdf",
+     "lang": "en",
+     "title": "Final word",
+     "title_alt": "",
+     "contributor": "Editor",
+     "heading_img": null,
+     "column": "tudipaluku",
+     "available": false
+    },
+    {
+     "file": "src1007/vidupu_eng.pdf",
+     "lang": "en",
+     "title": "Answers & Winners",
+     "title_alt": "",
+     "contributor": "Editor",
+     "heading_img": null,
+     "column": "vidupu",
+     "available": false
+    },
+    {
+     "file": "src1007/veechika.pdf",
+     "lang": "te",
+     "title": "Expressions of Experience",
+     "title_alt": "",
+     "contributor": "Divya & Upagya",
+     "heading_img": null,
+     "column": "veechika",
+     "available": false
+    }
+   ],
+   "fullbook": false,
+   "cover": null
+  },
+  {
+   "id": "2007-07",
+   "folder": "src707",
+   "year": 2007,
+   "month": 7,
+   "season": "July",
+   "volume": null,
+   "issueNo": null,
+   "pages": {},
+   "items": [],
+   "nameOnly": true,
+   "fullbook": false,
+   "cover": null
+  },
+  {
+   "id": "2007-04",
+   "folder": "src407",
+   "year": 2007,
+   "month": 4,
+   "season": "Ugadi",
+   "volume": null,
+   "issueNo": null,
+   "pages": {},
+   "items": [],
+   "nameOnly": true,
+   "fullbook": false,
+   "cover": null
+  },
+  {
+   "id": "2007-01",
+   "folder": "src107",
+   "year": 2007,
+   "month": 1,
+   "season": "Sankranti",
+   "volume": null,
+   "issueNo": null,
+   "pages": {
+    "te": "index41.html"
+   },
+   "items": [
+    {
+     "file": "src107/chuddam_eng.pdf",
+     "lang": "en",
+     "title": "",
+     "title_alt": "Quiz",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "chuddam_eng.jpg",
+     "column": "chuddam",
+     "available": false
+    },
+    {
+     "file": "src107/toranam_eng.pdf",
+     "lang": "en",
+     "title": "",
+     "title_alt": "brain teasers",
+     "contributor": null,
+     "heading_img": "toranam_eng.jpg",
+     "column": "toranam",
+     "available": false
+    },
+    {
+     "file": "src107/acharamulu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Our customs and their meaning behind",
+     "contributor": null,
+     "heading_img": "acharamulu.jpg",
+     "column": "acharamulu",
+     "available": false
+    },
+    {
+     "file": "src107/balamitra.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "kids pages",
+     "contributor": "Vaasanti Maghapu",
+     "heading_img": "balamitra.jpg",
+     "column": "balamitra",
+     "available": false
+    },
+    {
+     "file": "src107/charitardulu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Noted people in history",
+     "contributor": "Vaasanti Maghapu",
+     "heading_img": "charitardhulu.jpg",
+     "column": "charitardulu",
+     "available": false
+    },
+    {
+     "file": "src107/chuddam.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Quiz",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "chuddam.jpg",
+     "column": "chuddam",
+     "available": false
+    },
+    {
+     "file": "src107/crossword.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Crossword",
+     "contributor": null,
+     "heading_img": "padachadaramgam.jpg",
+     "column": "crossword",
+     "available": false
+    },
+    {
+     "file": "src107/jaabu-javaabu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Your feedback",
+     "contributor": "Editor",
+     "heading_img": "letters.jpg",
+     "column": "jaabu-javaabu",
+     "available": false
+    },
+    {
+     "file": "src107/jokes.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Jokes",
+     "contributor": "Vaasanti Maghapu",
+     "heading_img": "jokes.jpg",
+     "column": "jokes",
+     "available": false
+    },
+    {
+     "file": "src107/mundumaata.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "A word with you",
+     "contributor": "Editor",
+     "heading_img": "naamaata.jpg",
+     "column": "mundumaata",
+     "available": false
+    },
+    {
+     "file": "src107/padam.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "People's Path & Word",
+     "contributor": null,
+     "heading_img": "padam.jpg",
+     "column": "padam",
+     "available": false
+    },
+    {
+     "file": "src107/sameta_kathalu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Derivation of proverbs",
+     "contributor": null,
+     "heading_img": "sametakathalu.jpg",
+     "column": "sameta_kathalu",
+     "available": false
+    },
+    {
+     "file": "src107/smruti.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "A page in my Diary",
+     "contributor": null,
+     "heading_img": "smruti.jpg",
+     "column": "smruti",
+     "available": false
+    },
+    {
+     "file": "src107/telusa.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Do you know",
+     "contributor": null,
+     "heading_img": "telusa.jpg",
+     "column": "telusa",
+     "available": false
+    },
+    {
+     "file": "src107/toranam.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "brain teasers",
+     "contributor": null,
+     "heading_img": "toranam.jpg",
+     "column": "toranam",
+     "available": false
+    },
+    {
+     "file": "src107/tudipaluku.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Final word",
+     "contributor": "Editor",
+     "heading_img": "tudipaluku.jpg",
+     "column": "tudipaluku",
+     "available": false
+    },
+    {
+     "file": "src107/vaibhavam.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Glory of Andhrapradesh",
+     "contributor": null,
+     "heading_img": "vaibhavam.jpg",
+     "column": "vaibhavam",
+     "available": false
+    },
+    {
+     "file": "src107/vemana.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Our Vemana's poems",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "vemana.jpg",
+     "column": "vemana",
+     "available": false
+    },
+    {
+     "file": "src107/vidupu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Answers & Winners",
+     "contributor": "Editor",
+     "heading_img": "vidupu_img.jpg",
+     "column": "vidupu",
+     "available": false
+    }
+   ],
+   "fullbook": false,
+   "cover": "sankranti07_cover.jpg"
+  },
+  {
+   "id": "2006-10",
+   "folder": "src1006",
+   "year": 2006,
+   "month": 10,
+   "season": "Vijaya Dasami",
+   "volume": null,
+   "issueNo": null,
+   "pages": {
+    "te": "index34.html"
+   },
+   "items": [
+    {
+     "file": "src1006/chuddam_eng.pdf",
+     "lang": "en",
+     "title": "",
+     "title_alt": "Quiz",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "chuddam_eng.jpg",
+     "column": "chuddam",
+     "available": true
+    },
+    {
+     "file": "src1006/mathematrix_eng.pdf",
+     "lang": "en",
+     "title": "",
+     "title_alt": "mathematrix",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "mathematrix_eng.jpg",
+     "column": "mathematrix",
+     "available": true
+    },
+    {
+     "file": "src1006/toranam_eng.pdf",
+     "lang": "en",
+     "title": "",
+     "title_alt": "brain teasers",
+     "contributor": null,
+     "heading_img": "toranam_eng.jpg",
+     "column": "toranam",
+     "available": true
+    },
+    {
+     "file": "src1006/acharamulu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Our customs and their meaning behind",
+     "contributor": null,
+     "heading_img": "acharamulu.jpg",
+     "column": "acharamulu",
+     "available": true
+    },
+    {
+     "file": "src1006/balamitra.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "kids pages",
+     "contributor": "Vaasanti Maghapu",
+     "heading_img": "balamitra.jpg",
+     "column": "balamitra",
+     "available": true
+    },
+    {
+     "file": "src1006/charitardulu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Noted people in history",
+     "contributor": "Vaasanti Maghapu",
+     "heading_img": "charitardhulu.jpg",
+     "column": "charitardulu",
+     "available": true
+    },
+    {
+     "file": "src1006/chuddam.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Quiz",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "chuddam.jpg",
+     "column": "chuddam",
+     "available": true
+    },
+    {
+     "file": "src1006/crossword.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Crossword",
+     "contributor": null,
+     "heading_img": "padachadaramgam.jpg",
+     "column": "crossword",
+     "available": true
+    },
+    {
+     "file": "src1006/jokes.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Jokes",
+     "contributor": "Vaasanti Maghapu",
+     "heading_img": "jokes.jpg",
+     "column": "jokes",
+     "available": true
+    },
+    {
+     "file": "src1006/mathematrix.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "mathematrix",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "mathematrics.jpg",
+     "column": "mathematrix",
+     "available": true
+    },
+    {
+     "file": "src1006/mundumaata.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "A word with you",
+     "contributor": "Editor",
+     "heading_img": "naamaata.jpg",
+     "column": "mundumaata",
+     "available": true
+    },
+    {
+     "file": "src1006/padam.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "People's Path & Word",
+     "contributor": null,
+     "heading_img": "padam.jpg",
+     "column": "padam",
+     "available": true
+    },
+    {
+     "file": "src1006/sameta_kathalu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Derivation of proverbs",
+     "contributor": null,
+     "heading_img": "sametakathalu.jpg",
+     "column": "sameta_kathalu",
+     "available": true
+    },
+    {
+     "file": "src1006/smruti.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "A page in my Diary",
+     "contributor": null,
+     "heading_img": "smruti.jpg",
+     "column": "smruti",
+     "available": true
+    },
+    {
+     "file": "src1006/telusa.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Do you know",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "telusa.jpg",
+     "column": "telusa",
+     "available": true
+    },
+    {
+     "file": "src1006/toranam.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "brain teasers",
+     "contributor": null,
+     "heading_img": "toranam.jpg",
+     "column": "toranam",
+     "available": true
+    },
+    {
+     "file": "src1006/tudipaluku.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Final word",
+     "contributor": "Editor",
+     "heading_img": "tudipaluku.jpg",
+     "column": "tudipaluku",
+     "available": true
+    },
+    {
+     "file": "src1006/vaibhavam.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Glory of Andhrapradesh",
+     "contributor": null,
+     "heading_img": "vaibhavam.jpg",
+     "column": "vaibhavam",
+     "available": true
+    },
+    {
+     "file": "src1006/veekshanam.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Overview",
+     "contributor": "Editor",
+     "heading_img": "veekshanam.jpg",
+     "column": "veekshanam",
+     "available": true
+    },
+    {
+     "file": "src1006/vemana.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Our Vemana's poems",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "vemana.jpg",
+     "column": "vemana",
+     "available": true
+    },
+    {
+     "file": "src1006/vidupu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Answers & Winners",
+     "contributor": "Editor",
+     "heading_img": "vidupu_img.jpg",
+     "column": "vidupu",
+     "available": true
+    }
+   ],
+   "fullbook": true,
+   "cover": "cover1006.jpg"
+  },
+  {
+   "id": "2006-07",
+   "folder": "src706",
+   "year": 2006,
+   "month": 7,
+   "season": "July",
+   "volume": null,
+   "issueNo": null,
+   "pages": {
+    "te": "index33.html"
+   },
+   "items": [
+    {
+     "file": "src706/chuddam_eng.pdf",
+     "lang": "en",
+     "title": "",
+     "title_alt": "Quiz",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "chuddam_eng.jpg",
+     "column": "chuddam",
+     "available": false
+    },
+    {
+     "file": "src706/mathematrix_eng.pdf",
+     "lang": "en",
+     "title": "",
+     "title_alt": "mathematrix",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "mathematrix_eng.jpg",
+     "column": "mathematrix",
+     "available": true
+    },
+    {
+     "file": "src706/toranam_eng.pdf",
+     "lang": "en",
+     "title": "",
+     "title_alt": "brain teasers",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "toranam_eng.jpg",
+     "column": "toranam",
+     "available": true
+    },
+    {
+     "file": "src706/balamitra.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "kids pages",
+     "contributor": "Vaasanti Maghapu",
+     "heading_img": "balamitra.jpg",
+     "column": "balamitra",
+     "available": false
+    },
+    {
+     "file": "src706/charitardulu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Noted people in history",
+     "contributor": "Vaasanti Maghapu",
+     "heading_img": "charitardhulu.jpg",
+     "column": "charitardulu",
+     "available": true
+    },
+    {
+     "file": "src706/chuddam.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Quiz",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "chuddam.jpg",
+     "column": "chuddam",
+     "available": false
+    },
+    {
+     "file": "src706/crossword.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Crossword",
+     "contributor": null,
+     "heading_img": "padachadaramgam.jpg",
+     "column": "crossword",
+     "available": true
+    },
+    {
+     "file": "src706/jaabu-javaabu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Your feedback",
+     "contributor": "Editor",
+     "heading_img": "letters.jpg",
+     "column": "jaabu-javaabu",
+     "available": true
+    },
+    {
+     "file": "src706/jokes.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Jokes",
+     "contributor": "Vaasanti Maghapu",
+     "heading_img": "jokes.jpg",
+     "column": "jokes",
+     "available": true
+    },
+    {
+     "file": "src706/mathematrix.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "mathematrix",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "mathematrics.jpg",
+     "column": "mathematrix",
+     "available": true
+    },
+    {
+     "file": "src706/mundumaata.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "A word with you",
+     "contributor": "Editor",
+     "heading_img": "naamaata.jpg",
+     "column": "mundumaata",
+     "available": false
+    },
+    {
+     "file": "src706/padam.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "People's Path & Word",
+     "contributor": null,
+     "heading_img": "padam.jpg",
+     "column": "padam",
+     "available": true
+    },
+    {
+     "file": "src706/sameta_kathalu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Derivation of proverbs",
+     "contributor": null,
+     "heading_img": "sametakathalu.jpg",
+     "column": "sameta_kathalu",
+     "available": true
+    },
+    {
+     "file": "src706/smruti.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "A page in my Diary",
+     "contributor": null,
+     "heading_img": "smruti.jpg",
+     "column": "smruti",
+     "available": false
+    },
+    {
+     "file": "src706/telusa.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Do you know",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "telusa.jpg",
+     "column": "telusa",
+     "available": false
+    },
+    {
+     "file": "src706/toranam.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "brain teasers",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "toranam.jpg",
+     "column": "toranam",
+     "available": false
+    },
+    {
+     "file": "src706/tudipaluku.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Final word",
+     "contributor": "Editor",
+     "heading_img": "tudipaluku.jpg",
+     "column": "tudipaluku",
+     "available": true
+    },
+    {
+     "file": "src706/veechika.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Thought Waves",
+     "contributor": null,
+     "heading_img": "veechika.jpg",
+     "column": "veechika",
+     "available": true
+    },
+    {
+     "file": "src706/vemana.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Our Vemana's poems",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "vemana.jpg",
+     "column": "vemana",
+     "available": true
+    },
+    {
+     "file": "src706/vidupu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Answers & Winners",
+     "contributor": "Editor",
+     "heading_img": "vidupu_img.jpg",
+     "column": "vidupu",
+     "available": true
+    }
+   ],
+   "fullbook": false,
+   "cover": null
+  },
+  {
+   "id": "2006-03",
+   "folder": "src306",
+   "year": 2006,
+   "month": 3,
+   "season": "Ugadi",
+   "volume": null,
+   "issueNo": null,
+   "pages": {
+    "te": "index32.html"
+   },
+   "items": [
+    {
+     "file": "src306/chuddam_eng.pdf",
+     "lang": "en",
+     "title": "",
+     "title_alt": "Quiz",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "chuddam_eng.jpg",
+     "column": "chuddam",
+     "available": false
+    },
+    {
+     "file": "src306/mathematrix_eng.pdf",
+     "lang": "en",
+     "title": "",
+     "title_alt": "mathematrix",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "mathematrix_eng.jpg",
+     "column": "mathematrix",
+     "available": false
+    },
+    {
+     "file": "src306/toranam_eng.pdf",
+     "lang": "en",
+     "title": "",
+     "title_alt": "brain teasers SRC=",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "toranam_eng.jpg",
+     "column": "toranam",
+     "available": true
+    },
+    {
+     "file": "src306/balamitra.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "kids pages",
+     "contributor": "Vaasanti Maghapu",
+     "heading_img": "balamitra.jpg",
+     "column": "balamitra",
+     "available": false
+    },
+    {
+     "file": "src306/charitardulu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Noted people in history",
+     "contributor": null,
+     "heading_img": "charitardhulu.jpg",
+     "column": "charitardulu",
+     "available": false
+    },
+    {
+     "file": "src306/chuddam.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Quiz",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "chuddam.jpg",
+     "column": "chuddam",
+     "available": false
+    },
+    {
+     "file": "src306/crossword.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Crossword",
+     "contributor": null,
+     "heading_img": "padachadaramgam.jpg",
+     "column": "crossword",
+     "available": false
+    },
+    {
+     "file": "src306/jaabu-javaabu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Your feedback",
+     "contributor": "Editor",
+     "heading_img": "letters.jpg",
+     "column": "jaabu-javaabu",
+     "available": false
+    },
+    {
+     "file": "src306/jokes.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Jokes",
+     "contributor": "Vaasanti Maghapu",
+     "heading_img": "jokes.jpg",
+     "column": "jokes",
+     "available": true
+    },
+    {
+     "file": "src306/mathematrix.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "mathematrix",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "mathematrics.jpg",
+     "column": "mathematrix",
+     "available": false
+    },
+    {
+     "file": "src306/mundumaata.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "A word with you",
+     "contributor": "Editor",
+     "heading_img": "naamaata.jpg",
+     "column": "mundumaata",
+     "available": false
+    },
+    {
+     "file": "src306/padam.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "People's Path & Word",
+     "contributor": null,
+     "heading_img": "padam.jpg",
+     "column": "padam",
+     "available": false
+    },
+    {
+     "file": "src306/podupu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "riddles",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "podupu.jpg",
+     "column": "podupu",
+     "available": false
+    },
+    {
+     "file": "src306/sameta_kathalu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Derivation of proverbs",
+     "contributor": null,
+     "heading_img": "sametakathalu.jpg",
+     "column": "sameta_kathalu",
+     "available": false
+    },
+    {
+     "file": "src306/toranam.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "brain teasers",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "toranam.jpg",
+     "column": "toranam",
+     "available": true
+    },
+    {
+     "file": "src306/tudipaluku.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Final word",
+     "contributor": "Editor",
+     "heading_img": "tudipaluku.jpg",
+     "column": "tudipaluku",
+     "available": true
+    },
+    {
+     "file": "src306/tyagayya.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Thought Waves",
+     "contributor": null,
+     "heading_img": "veechika.jpg",
+     "column": "tyagayya",
+     "available": true
+    },
+    {
+     "file": "src306/vemana.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Our Vemana's poems",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "vemana.jpg",
+     "column": "vemana",
+     "available": false
+    },
+    {
+     "file": "src306/vidupu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Answers & Winners",
+     "contributor": "Editor",
+     "heading_img": "vidupu_img.jpg",
+     "column": "vidupu",
+     "available": false
+    },
+    {
+     "file": "src306/vinnapam.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "request",
+     "contributor": null,
+     "heading_img": "vinnapam.jpg",
+     "column": "vinnapam",
+     "available": true
+    }
+   ],
+   "fullbook": false,
+   "cover": null
+  },
+  {
+   "id": "2006-01",
+   "folder": "src106",
+   "year": 2006,
+   "month": 1,
+   "season": "Sankranti",
+   "volume": null,
+   "issueNo": null,
+   "pages": {
+    "te": "index31.html"
+   },
+   "items": [
+    {
+     "file": "src106/chuddam_eng.pdf",
+     "lang": "en",
+     "title": "[Salutation to your solution?]",
+     "title_alt": "",
+     "contributor": null,
+     "heading_img": null,
+     "column": "chuddam",
+     "available": true
+    },
+    {
+     "file": "src106/mathematrix_eng.pdf",
+     "lang": "en",
+     "title": "[Mathematrix]",
+     "title_alt": "",
+     "contributor": null,
+     "heading_img": null,
+     "column": "mathematrix",
+     "available": false
+    },
+    {
+     "file": "src106/annamayya.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "poem",
+     "contributor": null,
+     "heading_img": "annamayya.jpg",
+     "column": "annamayya",
+     "available": true
+    },
+    {
+     "file": "src106/balamitra.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "kids page",
+     "contributor": "Vaasanti Maghapu",
+     "heading_img": "balamitra.jpg",
+     "column": "balamitra",
+     "available": false
+    },
+    {
+     "file": "src106/charitardulu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Noted people in history",
+     "contributor": null,
+     "heading_img": "charitardhulu.jpg",
+     "column": "charitardulu",
+     "available": true
+    },
+    {
+     "file": "src106/chuddam.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "brain teasers",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "chuddam.jpg",
+     "column": "chuddam",
+     "available": false
+    },
+    {
+     "file": "src106/crossword.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Crossword",
+     "contributor": null,
+     "heading_img": "padachadaramgam.jpg",
+     "column": "crossword",
+     "available": true
+    },
+    {
+     "file": "src106/jaabu-javaabu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Your feedback",
+     "contributor": "Editor",
+     "heading_img": "letters.jpg",
+     "column": "jaabu-javaabu",
+     "available": false
+    },
+    {
+     "file": "src106/mathematrix.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "mathematrix",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "mathematrics.jpg",
+     "column": "mathematrix",
+     "available": false
+    },
+    {
+     "file": "src106/mundumaata.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "A word with you",
+     "contributor": "Editor",
+     "heading_img": "naamaata.jpg",
+     "column": "mundumaata",
+     "available": false
+    },
+    {
+     "file": "src106/padam.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "People's Path & Word",
+     "contributor": null,
+     "heading_img": "padam.jpg",
+     "column": "padam",
+     "available": false
+    },
+    {
+     "file": "src106/podupu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "riddles",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "podupu.jpg",
+     "column": "podupu",
+     "available": false
+    },
+    {
+     "file": "src106/sambaraalu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Happy moments of Sankranti",
+     "contributor": null,
+     "heading_img": "sambaraalu.jpg",
+     "column": "sambaraalu",
+     "available": true
+    },
+    {
+     "file": "src106/sameta_kathalu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Derivation of proverbs",
+     "contributor": null,
+     "heading_img": "sametakathalu.jpg",
+     "column": "sameta_kathalu",
+     "available": true
+    },
+    {
+     "file": "src106/toranam.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Quiz",
+     "contributor": null,
+     "heading_img": "toranam.jpg",
+     "column": "toranam",
+     "available": false
+    },
+    {
+     "file": "src106/tudipaluku.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Final word",
+     "contributor": "Editor",
+     "heading_img": "tudipaluku.jpg",
+     "column": "tudipaluku",
+     "available": false
+    },
+    {
+     "file": "src106/vemana.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Our Vemana's poems",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "vemana.jpg",
+     "column": "vemana",
+     "available": true
+    },
+    {
+     "file": "src106/vidupu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Answers & Winners",
+     "contributor": "Editor",
+     "heading_img": "vidupu_img.jpg",
+     "column": "vidupu",
+     "available": true
+    }
+   ],
+   "fullbook": false,
+   "cover": null
+  },
+  {
+   "id": "2005-10",
+   "folder": "src1005",
+   "year": 2005,
+   "month": 10,
+   "season": "Vijaya Dasami",
+   "volume": null,
+   "issueNo": null,
+   "pages": {
+    "te": "index24.html"
+   },
+   "items": [
+    {
+     "file": "src1005/mathematrix_eng.pdf",
+     "lang": "en",
+     "title": "[English]",
+     "title_alt": "",
+     "contributor": null,
+     "heading_img": null,
+     "column": "mathematrix",
+     "available": true
+    },
+    {
+     "file": "src1005/andhra_lakshmi.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Prosperity of State Andhra",
+     "contributor": null,
+     "heading_img": "andhra_lakshmi.jpg",
+     "column": "andhra_lakshmi",
+     "available": false
+    },
+    {
+     "file": "src1005/balamitra.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "kids page",
+     "contributor": "Vaasanti Maghapu",
+     "heading_img": "balamitra.jpg",
+     "column": "balamitra",
+     "available": false
+    },
+    {
+     "file": "src1005/charitardulu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Noted people in history",
+     "contributor": null,
+     "heading_img": "charitardhulu.jpg",
+     "column": "charitardulu",
+     "available": false
+    },
+    {
+     "file": "src1005/chuddam.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "brain teasers",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "chuddam.jpg",
+     "column": "chuddam",
+     "available": false
+    },
+    {
+     "file": "src1005/crossword.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Crossword",
+     "contributor": null,
+     "heading_img": "padachadaramgam.jpg",
+     "column": "crossword",
+     "available": false
+    },
+    {
+     "file": "src1005/dasara.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Dasara special",
+     "contributor": null,
+     "heading_img": "dasara-vyasam.jpg",
+     "column": "dasara",
+     "available": false
+    },
+    {
+     "file": "src1005/jaabu-javaabu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Your feedback",
+     "contributor": "Editor",
+     "heading_img": "letters.jpg",
+     "column": "jaabu-javaabu",
+     "available": false
+    },
+    {
+     "file": "src1005/kavita.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "poem",
+     "contributor": null,
+     "heading_img": "kavita.jpg",
+     "column": "kavita",
+     "available": false
+    },
+    {
+     "file": "src1005/mathematrix.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "mathematrix",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "mathematrics.jpg",
+     "column": "mathematrix",
+     "available": false
+    },
+    {
+     "file": "src1005/mundumaata.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "A word with you",
+     "contributor": "Editor",
+     "heading_img": "naamaata.jpg",
+     "column": "mundumaata",
+     "available": false
+    },
+    {
+     "file": "src1005/padam.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Old proverb and new proverb <plugged in here and there",
+     "contributor": null,
+     "heading_img": "padam.jpg",
+     "column": "padam",
+     "available": false
+    },
+    {
+     "file": "src1005/podupu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "riddles",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "podupu.jpg",
+     "column": "podupu",
+     "available": false
+    },
+    {
+     "file": "src1005/prasnavali.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Quiz",
+     "contributor": null,
+     "heading_img": "prasnavali.jpg",
+     "column": "prasnavali",
+     "available": false
+    },
+    {
+     "file": "src1005/sameta_kathalu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Derivation of proverbs",
+     "contributor": null,
+     "heading_img": "sametakathalu.jpg",
+     "column": "sameta_kathalu",
+     "available": false
+    },
+    {
+     "file": "src1005/sametalu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Proverbs",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "sametalu.jpg",
+     "column": "sametalu",
+     "available": false
+    },
+    {
+     "file": "src1005/shobharaju.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Once on a bright evening",
+     "contributor": null,
+     "heading_img": "shobharaju.jpg",
+     "column": "shobharaju",
+     "available": false
+    },
+    {
+     "file": "src1005/telusa.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Do you know",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "telusa.jpg",
+     "column": "telusa",
+     "available": false
+    },
+    {
+     "file": "src1005/tudipaluku.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Final word",
+     "contributor": "Editor",
+     "heading_img": "tudipaluku.jpg",
+     "column": "tudipaluku",
+     "available": false
+    },
+    {
+     "file": "src1005/veechika.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Thought waves",
+     "contributor": null,
+     "heading_img": "veechika.jpg",
+     "column": "veechika",
+     "available": false
+    },
+    {
+     "file": "src1005/vemana.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Our Vemana's poems",
+     "contributor": "Sreenivasa Ainapurapu",
+     "heading_img": "vemana.jpg",
+     "column": "vemana",
+     "available": false
+    },
+    {
+     "file": "src1005/vidupu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Answers & Winners",
+     "contributor": "Editor",
+     "heading_img": "vidupu_img.jpg",
+     "column": "vidupu",
+     "available": false
+    }
+   ],
+   "fullbook": false,
+   "cover": null
+  },
+  {
+   "id": "2005-07",
+   "folder": "src705",
+   "year": 2005,
+   "month": 7,
+   "season": "July",
+   "volume": null,
+   "issueNo": null,
+   "pages": {
+    "te": "index23.html"
+   },
+   "items": [
+    {
+     "file": "src705/balamitra.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "kids page",
+     "contributor": null,
+     "heading_img": "balamitra.jpg",
+     "column": "balamitra",
+     "available": false
+    },
+    {
+     "file": "src705/charitardulu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Noted people in history",
+     "contributor": null,
+     "heading_img": "charitardhulu.jpg",
+     "column": "charitardulu",
+     "available": false
+    },
+    {
+     "file": "src705/chuddam.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "brain teasers",
+     "contributor": null,
+     "heading_img": "chuddam.jpg",
+     "column": "chuddam",
+     "available": false
+    },
+    {
+     "file": "src705/crossword.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Crossword",
+     "contributor": null,
+     "heading_img": "padachadaramgam.jpg",
+     "column": "crossword",
+     "available": false
+    },
+    {
+     "file": "src705/jaabu-javaabu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Your feedback",
+     "contributor": null,
+     "heading_img": "letters.jpg",
+     "column": "jaabu-javaabu",
+     "available": false
+    },
+    {
+     "file": "src705/katha.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Story",
+     "contributor": null,
+     "heading_img": "katha.jpg",
+     "column": "katha",
+     "available": false
+    },
+    {
+     "file": "src705/kavita.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "poem",
+     "contributor": null,
+     "heading_img": "kavita.jpg",
+     "column": "kavita",
+     "available": false
+    },
+    {
+     "file": "src705/mundumaata.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "A word with you",
+     "contributor": null,
+     "heading_img": "naamaata.jpg",
+     "column": "mundumaata",
+     "available": false
+    },
+    {
+     "file": "src705/padam.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "People's Path & Word",
+     "contributor": null,
+     "heading_img": "padam.jpg",
+     "column": "padam",
+     "available": false
+    },
+    {
+     "file": "src705/podupu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "riddles",
+     "contributor": null,
+     "heading_img": "podupu.jpg",
+     "column": "podupu",
+     "available": false
+    },
+    {
+     "file": "src705/puzzle3.html",
+     "lang": "te",
+     "title": "",
+     "title_alt": "mathematrix",
+     "contributor": null,
+     "heading_img": "mathematrics.jpg",
+     "column": "puzzle3",
+     "available": false
+    },
+    {
+     "file": "src705/sameta_kathalu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Derivation of proverbs",
+     "contributor": null,
+     "heading_img": "sametakathalu.jpg",
+     "column": "sameta_kathalu",
+     "available": false
+    },
+    {
+     "file": "src705/sametalu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Proverbs",
+     "contributor": null,
+     "heading_img": "sametalu.jpg",
+     "column": "sametalu",
+     "available": false
+    },
+    {
+     "file": "src705/telusaa.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Do you know",
+     "contributor": null,
+     "heading_img": "telusa.jpg",
+     "column": "telusaa",
+     "available": false
+    },
+    {
+     "file": "src705/toranam.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Quiz",
+     "contributor": null,
+     "heading_img": "toranam.jpg",
+     "column": "toranam",
+     "available": false
+    },
+    {
+     "file": "src705/tudipaluku.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Final word",
+     "contributor": null,
+     "heading_img": "tudipaluku.jpg",
+     "column": "tudipaluku",
+     "available": false
+    },
+    {
+     "file": "src705/vemana.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Our Vemana's poems",
+     "contributor": null,
+     "heading_img": "vemana.jpg",
+     "column": "vemana",
+     "available": false
+    },
+    {
+     "file": "src705/vidupu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Answers & Winners",
+     "contributor": null,
+     "heading_img": "vidupu_img.jpg",
+     "column": "vidupu",
+     "available": false
+    }
+   ],
+   "fullbook": false,
+   "cover": null
+  },
+  {
+   "id": "2005-04",
+   "folder": "src405",
+   "year": 2005,
+   "month": 4,
+   "season": "Ugadi",
+   "volume": null,
+   "issueNo": null,
+   "pages": {
+    "te": "index22.html"
+   },
+   "items": [
+    {
+     "file": "src405/balamitra.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "kids page",
+     "contributor": null,
+     "heading_img": "balamitra.jpg",
+     "column": "balamitra",
+     "available": false
+    },
+    {
+     "file": "src405/charitardhulu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Noted people in history",
+     "contributor": null,
+     "heading_img": "charitardhulu.jpg",
+     "column": "charitardhulu",
+     "available": false
+    },
+    {
+     "file": "src405/chuddam.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "brain teasers",
+     "contributor": null,
+     "heading_img": "chuddam.jpg",
+     "column": "chuddam",
+     "available": false
+    },
+    {
+     "file": "src405/crossword.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Crossword",
+     "contributor": null,
+     "heading_img": "padachadaramgam.jpg",
+     "column": "crossword",
+     "available": false
+    },
+    {
+     "file": "src405/jaabu-javaabu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Your feedback",
+     "contributor": null,
+     "heading_img": "letters.jpg",
+     "column": "jaabu-javaabu",
+     "available": false
+    },
+    {
+     "file": "src405/kathanika.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Story",
+     "contributor": null,
+     "heading_img": "kathanika.jpg",
+     "column": "kathanika",
+     "available": false
+    },
+    {
+     "file": "src405/mundumaata.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "A word with you",
+     "contributor": null,
+     "heading_img": "naamaata.jpg",
+     "column": "mundumaata",
+     "available": false
+    },
+    {
+     "file": "src405/padam.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "People's Path & Word",
+     "contributor": null,
+     "heading_img": "padam.jpg",
+     "column": "padam",
+     "available": false
+    },
+    {
+     "file": "src405/podupu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "riddles",
+     "contributor": null,
+     "heading_img": "podupu.jpg",
+     "column": "podupu",
+     "available": false
+    },
+    {
+     "file": "src405/puzzle2.html",
+     "lang": "te",
+     "title": "",
+     "title_alt": "mathematrix",
+     "contributor": null,
+     "heading_img": "mathematrics.jpg",
+     "column": "puzzle2",
+     "available": false
+    },
+    {
+     "file": "src405/sameta_kathalu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Derivation of proverbs",
+     "contributor": null,
+     "heading_img": "sametakathalu.jpg",
+     "column": "sameta_kathalu",
+     "available": false
+    },
+    {
+     "file": "src405/sametalu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Proverbs",
+     "contributor": null,
+     "heading_img": "sametalu.jpg",
+     "column": "sametalu",
+     "available": false
+    },
+    {
+     "file": "src405/telusa.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Do you know",
+     "contributor": null,
+     "heading_img": "telusa.jpg",
+     "column": "telusa",
+     "available": false
+    },
+    {
+     "file": "src405/toranam.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Quiz",
+     "contributor": null,
+     "heading_img": "toranam.jpg",
+     "column": "toranam",
+     "available": false
+    },
+    {
+     "file": "src405/tudipaluku.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Final word",
+     "contributor": null,
+     "heading_img": "tudipaluku.jpg",
+     "column": "tudipaluku",
+     "available": false
+    },
+    {
+     "file": "src405/ugaadi.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Why do we celebrate Ugadi?",
+     "contributor": null,
+     "heading_img": "ugadi_special.jpg",
+     "column": "ugaadi",
+     "available": false
+    },
+    {
+     "file": "src405/vemana.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Our Vemana's poems",
+     "contributor": null,
+     "heading_img": "vemana.jpg",
+     "column": "vemana",
+     "available": false
+    },
+    {
+     "file": "src405/vidupu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Answers & Winners",
+     "contributor": null,
+     "heading_img": "vidupu_img.jpg",
+     "column": "vidupu",
+     "available": false
+    }
+   ],
+   "fullbook": false,
+   "cover": null
+  },
+  {
+   "id": "2005-01",
+   "folder": "src105",
+   "year": 2005,
+   "month": 1,
+   "season": "Sankranti",
+   "volume": null,
+   "issueNo": null,
+   "pages": {
+    "te": "index21.html"
+   },
+   "items": [
+    {
+     "file": "src105/balamitra.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "kids page",
+     "contributor": null,
+     "heading_img": "balamitra.jpg",
+     "column": "balamitra",
+     "available": false
+    },
+    {
+     "file": "src105/charitardulu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Noted people in history",
+     "contributor": null,
+     "heading_img": "charitardhulu.jpg",
+     "column": "charitardulu",
+     "available": false
+    },
+    {
+     "file": "src105/chuddam.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "brain teasers",
+     "contributor": null,
+     "heading_img": "chuddam.jpg",
+     "column": "chuddam",
+     "available": false
+    },
+    {
+     "file": "src105/crossword.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Crossword",
+     "contributor": null,
+     "heading_img": "padachadaramgam.jpg",
+     "column": "crossword",
+     "available": false
+    },
+    {
+     "file": "src105/jaabu-javaabu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Your feedback",
+     "contributor": null,
+     "heading_img": "letters.jpg",
+     "column": "jaabu-javaabu",
+     "available": false
+    },
+    {
+     "file": "src105/mundumaata.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "A word with you",
+     "contributor": null,
+     "heading_img": "naamaata.jpg",
+     "column": "mundumaata",
+     "available": false
+    },
+    {
+     "file": "src105/podupu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "riddles",
+     "contributor": null,
+     "heading_img": "podupu.jpg",
+     "column": "podupu",
+     "available": false
+    },
+    {
+     "file": "src105/puzzle1.html",
+     "lang": "te",
+     "title": "",
+     "title_alt": "mathematrix",
+     "contributor": null,
+     "heading_img": "mathematrics.jpg",
+     "column": "puzzle1",
+     "available": false
+    },
+    {
+     "file": "src105/sameta_katha.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Derivation of proverbs",
+     "contributor": null,
+     "heading_img": "sametakathalu.jpg",
+     "column": "sameta_katha",
+     "available": false
+    },
+    {
+     "file": "src105/sametalu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Proverbs",
+     "contributor": null,
+     "heading_img": "sametalu.jpg",
+     "column": "sametalu",
+     "available": false
+    },
+    {
+     "file": "src105/samkranti-viluvalu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Values of Sankranti celebration",
+     "contributor": null,
+     "heading_img": "samkranti-viluvalu.jpg",
+     "column": "samkranti-viluvalu",
+     "available": true
+    },
+    {
+     "file": "src105/telusa.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Do you know",
+     "contributor": null,
+     "heading_img": "telusa.jpg",
+     "column": "telusa",
+     "available": false
+    },
+    {
+     "file": "src105/tudipaluku.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Final word",
+     "contributor": null,
+     "heading_img": "tudipaluku.jpg",
+     "column": "tudipaluku",
+     "available": false
+    },
+    {
+     "file": "src105/vidupu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Answers & Winners",
+     "contributor": null,
+     "heading_img": "vidupu_img.jpg",
+     "column": "vidupu",
+     "available": false
+    }
+   ],
+   "fullbook": false,
+   "cover": null
+  },
+  {
+   "id": "2004-10",
+   "folder": "src",
+   "year": 2004,
+   "month": 10,
+   "season": "Vijaya Dasami",
+   "volume": null,
+   "issueNo": null,
+   "pages": {
+    "te": "index11.html"
+   },
+   "items": [
+    {
+     "file": "src/balabashanam.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "kids page",
+     "contributor": null,
+     "heading_img": "balamitra.jpg",
+     "column": "balabashanam",
+     "available": true
+    },
+    {
+     "file": "src/cheppukondi.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "brain teasers",
+     "contributor": null,
+     "heading_img": "chuddam.jpg",
+     "column": "cheppukondi",
+     "available": true
+    },
+    {
+     "file": "src/crossword.html",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Crossword",
+     "contributor": null,
+     "heading_img": "padachadaramgam.jpg",
+     "column": "crossword",
+     "available": false
+    },
+    {
+     "file": "src/dasara_padyam.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Dasara poems",
+     "contributor": null,
+     "heading_img": "dasara-padyam.jpg",
+     "column": "dasara_padyam",
+     "available": true
+    },
+    {
+     "file": "src/podupu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "riddles",
+     "contributor": null,
+     "heading_img": "podupu.jpg",
+     "column": "podupu",
+     "available": true
+    },
+    {
+     "file": "src/ramanujan.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Noted people in history",
+     "contributor": null,
+     "heading_img": "charitardhulu.jpg",
+     "column": "ramanujan",
+     "available": true
+    },
+    {
+     "file": "src/sameta_kathalu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Derivation of proverbs",
+     "contributor": null,
+     "heading_img": "sametakathalu.jpg",
+     "column": "sameta_kathalu",
+     "available": true
+    },
+    {
+     "file": "src/sametalu.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Proverbs",
+     "contributor": null,
+     "heading_img": "sametalu.jpg",
+     "column": "sametalu",
+     "available": true
+    },
+    {
+     "file": "src/tolipaluku.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "A word with you",
+     "contributor": null,
+     "heading_img": "naamaata.jpg",
+     "column": "tolipaluku",
+     "available": true
+    },
+    {
+     "file": "src/tudipaluku.pdf",
+     "lang": "te",
+     "title": "",
+     "title_alt": "Final word",
+     "contributor": null,
+     "heading_img": "tudipaluku.jpg",
+     "column": "tudipaluku",
+     "available": false
+    }
+   ],
+   "fullbook": true,
+   "cover": null
+  }
+ ]
+}

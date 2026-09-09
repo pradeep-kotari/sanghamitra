@@ -33,3 +33,13 @@ and sits in the homepage photo strip. The small clip-art pictures in that
 document were left out on purpose — they read as placeholders next to real
 photographs. The old logo from the outline can join the header once you send a
 clean scan or a higher-resolution copy.
+
+---
+
+## Update, 8 September evening — most of this list is already filled
+
+The Internet Archive kept his old homepage slideshow: **19 photographs with his own captions**, in
+`research/old-site/files/slideshow/` (captions: `research/old-site/slideshow-captions.json`).
+They cover the Math Tutoring, Vedic Mathematics, Knowledge Sharing and Events cards, the photo strip,
+and both galleries. **Still needed from him: Community Service and Workshops only** — a drive, a class,
+a meditation or stress-management session. Everything else above can be struck.

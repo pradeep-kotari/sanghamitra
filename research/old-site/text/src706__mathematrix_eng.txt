@@ -1,0 +1,140 @@
+ 
+Sanghamitra                             Mathematrix                            July 2006 Issue 
+ 
+Mathematrix 
+ 
+- Sreenivasa Rao Ainapurapu. 
+ 
+     Hope the tips given in previous three editions boosted the kids interest in 
+mathemat(r)ics. A small request for those who suggested us to increase the 
+number of pages for this article. Either it may be food or medicine, you need 
+to take in right quantity. You are all aware that increase in quantity might 
+cause in-digestion or health disorder. Still we appreciate your interest in 
+learning techniques quickly. This time we will discuss about : Why we 
+usually fail to remember the numbers we see, incidents we face and the 
+names of persons we meet? What needs to be done to overcome this? some 
+tips to do some complex calculations in easy way, problem solving 
+techniques and many more. 
+ 
+               Note : You should teach these techniques to kids only after they 
+          learn ordinary methods. Then only they can appreciate these tips 
+          and the concepts behind. It is always better to use normal methods 
+          to verify till you are comfortable. 
+ 
+Concentration : Concentration plays major role in our day to day work. If 
+we want to remember something, we can remember. Did we forget our 
+names? Our Date of birth? Our phone numbers? (There is possibility that we 
+might forget phone numbers as we are feeding those numbers either in 
+organizer or cell phone once and that’s all.) We do not remember the names 
+and phone numbers of  new friends because we do not pay much attention to 
+them. So how to remember those? We can remember a number in so many 
+different ways. You can remember them by repeatedly memorizing the 
+number, by recognizing any specific pattern and many more. For example 
+try to remember 13524, car number 3XSD927. At the end of this article, lets 
+see whether you remember the numbers. 
+ 
+ 
+        For previous multiplication tip, we received many queries asking about 
+multiplications like 52 x 57 etc. This kind of multiplications also can be 
+done taking 50 as base. You can check the procedure below. 
+ 
+Extension to previous multiplication tip: Let us see two multiplications  
+48 x 43 and 52 x 57. Notice the difference base 100 to base 50 keenly. 
+
+ 
+ 
+Sanghamitra                             Mathematrix                            July 2006 Issue 
+ 
+ 
+      We should be grateful to our 
+ancestors who have given us 
+valuable treasure. We thank our 
+teachers, because of whom we 
+developed interest in mathematics, 
+friends and brothers, who shared 
+their knowledge. In fact, they 
+deserve the complements sent by 
+you. We are just presenting what 
+we heard from them. 
+ 
+          In the above examples, we took 50 as base and wrote the difference 
+adjacent to the numbers (48 is 2 short of 50, thus 48 -2 is given. Similarly, 
+52 is 2 more than 50, thus 52 +2 is given). Now, when we multiply, the units 
+and tens place in answer is decided by multiplying the differences (-2 x -7 
+and 2 x 7 respectively). Now to figure out the hundreds and thousands place, 
+we need to add the actual number and difference crosswise (48-7 or 43-2 and 
+57+2 or 52+7 respectively) and divide by 2 (As base 50 is half of 100, which 
+is square of 10). The decimal part is to be added to the previous tens place 
+number (In 20.5 and 29.5, 5 (decimal part) is to be added to tens place). So 
+we got 20(5+1)4 and 29(5+1)4, which is equal to 2064 and 2964 
+respectively. 
+ 
+        In the same way, we can find 
+the product of 23 x 22 and 32 x 28 
+taking 
+25 
+as 
+base. 
+While 
+calculating 
+hundreds 
+and 
+thousands place, slight difference 
+apply. For more details check the 
+adjacent figure. In the second case 
+(32 x 28), the decimal part is 75. 
+So 75 is to be added to 21, which is 
+equal to 96. 
+ 
+Try the following multiplications using formula and verify your answer. 
+93 x 88 =?   58 x 53 =?   27 x 29 =?   44 x 47 =?  34 x 31 =?   107 x 104 =? 
+
+ 
+Sanghamitra                             Mathematrix                            July 2006 Issue 
+ 
+   
+ 
+      See the adjacent picture. The equation 
+looks incorrect, but it is not. Can you 
+justify it? Take few minutes … Think … 
+Do not give up! We discuss about this later. 
+Now, do you remember the 5 digit number 
+and car number we discussed in the 
+beginning?  Try to recollect it. You 
+remembered! 
+Good. 
+You 
+could 
+not 
+recollect it. No worries. We will tell you.  
+ 
+         The 5 digit number is 13524. It can be remembered in two ways. 
+Within 5 (including 5) 1,3,5 are the only odd numbers. 2 and 4 are even 
+numbers. If you write odd and even numbers in order, you get the 5 digit 
+number. Second way is to remember : 13 in the beginning, 4 at the end, then 
+the product goes in the middle. 
+ 
+        Now the car number 3XSD927. We can read it as 3 times (X stands for 
+multiplication) Single Digit (SD stands for single digit) 9 is 27. Do you 
+agree? 
+ 
+        Now coming to earlier equation : if we 
+see that in a mirror, we can find the equation 
+as shown in the adjacent figure. There are 
+many more interesting things like this. We 
+will go through them in next issue. 
+ 
+      How fast can you calculate 18 decimal 
+places for 1/19. 10 minutes? 5 minutes? 2 
+minutes? We can do that in 30 seconds. 
+How? In next issue … 
+   
+ 
+ 
+Do you know?  
+Spelling of numbers starting from ‘Zero’ to ‘Hundred’ does not contain an 
+alphabet ‘A’. 
+ 
+The chief function of your body is to carry your brain around. 
+           -  Thomas Alva Edison. 
+ 

@@ -16,3 +16,6 @@ research/transcripts/whisper/
 *.wav
 *.mp4
 *.webm
+
+# Raw Wayback downloads of the old site (the useful parts live in site/magazine and site/img/archive)
+research/old-site/files*/

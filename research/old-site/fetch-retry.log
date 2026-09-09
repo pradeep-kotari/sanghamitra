@@ -1,0 +1,78 @@
+FAIL Events/Medhavadhanam2007_Flyer.pdf (404)
+FAIL favicon.ico (404)
+FAIL Image001.jpg (404)
+OK   images/charitardhulu.jpg
+OK   images/chuddam.jpg
+OK   images/chuddam_eng.jpg
+OK   images/cover0711.JPG
+OK   images/cover1006.jpg
+OK   images/editor.jpg
+OK   images/event_title.jpg
+OK   images/ganapati_master.jpg
+OK   images/indexlist.jpg
+OK   images/jokes.jpg
+OK   images/letters.jpg
+OK   images/mathematrics.jpg
+OK   images/mlgb.jpg
+OK   images/new_title.jpg
+OK   images/podupu.jpg
+OK   images/ramarao.jpg
+OK   images/sanchika4.jpg
+OK   images/srini.jpg
+OK   images/srini_eng.jpg
+OK   images/sudhakar.jpg
+OK   images/sudhakar_eng.jpg
+OK   images/susri.jpg
+OK   images/title.jpg
+OK   images/toranam.jpg
+OK   images/toranam_eng.jpg
+OK   images/tudipaluku.jpg
+OK   images/vaasanti.jpg
+OK   images/vaibhavam.jpg
+OK   images/vemana.jpg
+FAIL index2007.html (404)
+OK   index2008.html
+OK   index22.html
+OK   index23.html
+OK   index44e.html
+OK   index51e.html
+OK   index52e.html
+OK   index53.html
+OK   indexT.html
+FAIL MathQuiz/2014 (404)
+OK   MathQuiz/2016
+OK   MathQuiz/Images/ans.jpg
+FAIL MathQuiz/images/bk_poster.jpg (404)
+OK   MathQuiz/Images/MQlogo.jpg
+OK   MathQuiz/Images/next.jpg
+OK   MathQuiz/Images/prev.jpg
+OK   MathQuiz/NewRules.html
+FAIL robots.txt (404)
+FAIL sitemap.xml (404)
+OK   slideshow/Mathematricks_Club_2010_participants.JPG
+OK   src/ramanujan.pdf
+OK   src/sametalu.pdf
+OK   src/tolipaluku.pdf
+OK   src0711/tudipaluku.pdf
+OK   src0711/tudipaluku_eng.pdf
+OK   src0711/vemana.pdf
+OK   src1006/acharamulu.pdf
+OK   src1006/charitardulu.pdf
+OK   src1006/crossword.pdf
+OK   src1006/veekshanam.pdf
+OK   src1006/vemana.pdf
+OK   src1006/vidupu.pdf
+OK   src105/samkranti-viluvalu.pdf
+OK   src106/charitardulu.pdf
+OK   src106/crossword.pdf
+OK   src106/vemana.pdf
+OK   src306/toranam_eng.pdf
+OK   src409/chuddam_eng.pdf
+OK   src706/crossword.pdf
+OK   src706/jokes.pdf
+OK   src706/mathematrix_eng.pdf
+OK   src706/padam.pdf
+OK   src706/tudipaluku.pdf
+OK   srmathclub/cuberoot.html
+
+DONE ok=68 fail=8 skip=146
