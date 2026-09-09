@@ -4,6 +4,12 @@ Public site for Sanghamitra (సంఘమిత్ర) — community sessions, H
 
 **Agents:** start with [AGENTS.md](AGENTS.md) (owner comms rule: [.cursor/rules/sreeni-comms.mdc](.cursor/rules/sreeni-comms.mdc)).
 
+- **Live at https://sanghamitra.pages.dev — that is the public address, on purpose.**
+  `sanghamitra.org` still resolves to the old host (74.91.138.137, not Cloudflare) and does
+  NOT serve this site. Pradeep's call, 9 Sep 2026: it stays that way until Sreeni has time to
+  move the DNS. So every address written for a visitor — share text, calendar notes, emails,
+  canonical tags, the sitemap — says `pages.dev`. Mentions of `sanghamitra.org` in page copy
+  are about the *old* site the archive came from, and those stay.
 - Live files: `site/`
 - Event source of truth: `site/data/site.json`
 - Next flyer: `.venv-whisper/bin/python tools/ingest-flyer.py /path/to.pdf`

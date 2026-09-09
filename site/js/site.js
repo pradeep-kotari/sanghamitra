@@ -318,7 +318,7 @@ function gcalUrl(event) {
   const details = [
     event.blurb || "",
     event.joinUrl ? `Join on Zoom: ${event.joinUrl}` : "",
-    "From sanghamitra.org — everyone is welcome.",
+    "From sanghamitra.pages.dev — everyone is welcome.",
   ].filter(Boolean).join("\n");
   const params = new URLSearchParams({
     action: "TEMPLATE",
