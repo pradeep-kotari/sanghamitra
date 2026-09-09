@@ -19,6 +19,32 @@ That rule has `alwaysApply: true` but treat this link as mandatory — especiall
 
 **North star:** save the owner's time; make the site and `/admin` easier for him — not more email or builder jargon.
 
+## Public copy is written for the visitor
+
+Pradeep, 9 Sep 2026, on the Vedic Mathematics page: *"the whole copy is written
+poorly — it is written for me rather than for the users."* He was right. Three
+faults to avoid, all of which had shipped:
+
+- **Never mention the old site.** The reader has never seen sanghamitra.org and
+  does not know anything was lost or restored. "his old site", "They are back",
+  "recovered from the sanghamitra.org slideshow" are migration news addressed to
+  the builder. Say what the thing IS. The magazine pages are the one exception:
+  there, "recovered from the Internet Archive" explains why some listed pieces
+  cannot be read, which the reader needs.
+- **Never open a section or a page on a bare "he".** A visitor arrives from a
+  search result, not from the top of the site. Name Sreenivasa in the section
+  where you first refer to him.
+- **No build-log register.** "two little practice pages", "they need nothing but
+  this page" is really "no download, no sign-up" said to the wrong reader.
+
+The test before writing any public sentence: a parent has landed on this page
+from a search for a maths teacher and knows nothing about this organization.
+Does the sentence tell them what this is, whether it will help their child, or
+how to start? If it tells them about the project instead, rewrite it.
+
+Meta descriptions and og:description count as public copy. They are the sentence
+that shows up when someone forwards the page on WhatsApp.
+
 ## Repo map
 
 - Public site: `site/` → https://sanghamitra.pages.dev
