@@ -19,9 +19,9 @@ rendered page before it becomes an image, the same list redact.py works from.
 Writes site/magazine/img/covers/<issue-id>.jpg and site/data/magazine-covers.json, which
 generate.py reads. Re-run it after recovering more of an issue: a page beats a contents card.
 """
-import json, os, re, sys, io
+import json, os, re, sys, io, collections
 import pymupdf
-from PIL import Image, ImageChops
+from PIL import Image, ImageChops, ImageDraw, ImageFont
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 SITE = os.path.join(ROOT, "site")
@@ -32,6 +32,10 @@ OUT = os.path.join(IMG, "covers")
 W, H = 600, 800          # 3:4, the shape the cards are cut to
 PAPER = (255, 248, 235)  # --card, so a built cover sits on the same paper as the page
 RULE = (212, 196, 164)   # --line
+HIS_GREEN = (0, 128, 0)  # the green his own contents pages printed the month in
+SERIF = "/usr/share/fonts/truetype/liberation/LiberationSerif-Regular.ttf"
+MONTHS = ["", "January", "February", "March", "April", "May", "June", "July",
+          "August", "September", "October", "November", "December"]
 
 # His own street addresses, landlines and old mailboxes, plus the bare ZIP that survives
 # redaction because it sits on its own line. The WhatsApp number stays: it is public.
@@ -69,38 +73,57 @@ def rule(card, y, inset=110):
         card.putpixel((xx, y), RULE)
 
 
+def draw_line(card, text, y, size, colour):
+    """The month and year, in the green his own contents pages printed it in. It is the one thing
+    that is different on every issue's page, so it is what keeps these cards apart."""
+    try:
+        font = ImageFont.truetype(SERIF, size)
+    except OSError:
+        font = ImageFont.load_default()
+    d = ImageDraw.Draw(card)
+    box = d.textbbox((0, 0), text, font=font)
+    d.text(((W - (box[2] - box[0])) // 2 - box[0], y - box[1]), text, font=font, fill=colour)
+    return box[3] - box[1]
+
+
+def date_line(issue):
+    season = issue.get("season")
+    month = f"{MONTHS[issue['month']]} {issue['year']}"
+    return f"{season} · {month}" if season and season not in month else month
+
+
 def contents_card(issue, headings):
-    """His contents page, rebuilt from its own parts: the title block, 'in this issue', and the
-    column headings that issue actually carried, in the order his page listed them."""
+    """His contents page, rebuilt from its own parts: the title block, the month in his green,
+    'in this issue', and the column headings that issue carried."""
     card = Image.new("RGB", (W, H), PAPER)
-    y = 54
-    y += paste_art(card, "samghamitra_title.jpg", y, int(W * 0.60)) + 12
-    y += paste_art(card, "samghamitra_motto.jpg", y, int(W * 0.70)) + 26
-    rule(card, y); y += 26
-    y += paste_art(card, "indexlist.jpg", y, int(W * 0.46)) + 26
-    # Fill the page the way his did: as many of that issue's headings as fit, in his order.
-    # The later entries are where issues differ from each other, so err on the side of more.
+    y = 46
+    y += paste_art(card, "samghamitra_title.jpg", y, int(W * 0.56)) + 10
+    y += paste_art(card, "samghamitra_motto.jpg", y, int(W * 0.66)) + 22
+    rule(card, y); y += 24
+    y += draw_line(card, date_line(issue), y, 40, HIS_GREEN) + 28
+    y += paste_art(card, "indexlist.jpg", y, int(W * 0.44)) + 24
     room = H - 52 - y
-    n = min(len(headings), max(4, room // 56))
+    n = min(len(headings), max(3, room // 60))
     gap = max(6, (room - n * 44) // max(1, n))
     for h in headings[:n]:
-        h_px = paste_art(card, h, y, int(W * 0.76))
+        h_px = paste_art(card, h, y, int(W * 0.74))
         if not h_px:
             continue
         y += h_px + gap
-        if y > H - 70:
+        if y > H - 66:
             break
     return card
 
 
-def name_card():
-    """Nothing of these issues survives but the name. The magazine's own title block stands for
-    it — borrowed from the masthead every issue carried, which the caption says out loud."""
+def name_card(issue):
+    """Nothing of these issues survives but the name and the date. The site banner he used across
+    the whole magazine stands in, with the issue's own date under it — and the caption says so."""
     card = Image.new("RGB", (W, H), PAPER)
-    y = H // 2 - 130
-    y += paste_art(card, "samghamitra_title.jpg", y, int(W * 0.74), scale_cap=2.4) + 18
-    y += paste_art(card, "samghamitra_motto.jpg", y, int(W * 0.80), scale_cap=2.4) + 34
-    rule(card, y)
+    y = H // 2 - 190
+    y += paste_art(card, "new_title.jpg", y, int(W * 0.84), scale_cap=1.2) + 40
+    rule(card, y); y += 34
+    y += draw_line(card, date_line(issue), y, 44, HIS_GREEN) + 26
+    draw_line(card, "no copy survives", y, 26, (110, 96, 78))
     return card
 
 
@@ -131,6 +154,10 @@ def build():
     os.makedirs(OUT, exist_ok=True)
     have_img = set(os.listdir(IMG))
     built, redacted = {}, []
+    # How many issues carry each column heading — the rarer ones are what make a card its own.
+    shared = collections.Counter()
+    for iss in data["issues"]:
+        shared.update({it["heading_img"] for it in iss["items"] if it.get("heading_img")})
 
     for issue in data["issues"]:
         iid = issue["id"]
@@ -169,11 +196,16 @@ def build():
                 h = it.get("heading_img")
                 if h and h not in seen and h in have_img:
                     seen.add(h); headings.append(h)
+            # He ran the same columns every quarter, so leading with his order gives nine cards
+            # that look alike. Lead instead with the headings this issue does not share with the
+            # others, keeping his order inside each group. Same art, same issue, distinct card.
+            order = {h: n for n, h in enumerate(headings)}
+            headings.sort(key=lambda h: (shared[h], order[h]))
             if len(headings) >= 3:
                 im, kind = contents_card(issue, headings), "contents"
                 note = "The column headings from this issue's own contents page. Its articles were never captured."
             else:
-                im, kind = name_card(), "name"
+                im, kind = name_card(issue), "name"
                 note = "Nothing of this issue survives but its name, so the magazine's own title block stands in."
         im.save(dst, quality=80, optimize=True, progressive=True)
         built[iid] = {"src": rel, "kind": kind, "note": note}

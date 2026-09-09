@@ -4,8 +4,16 @@ import { BUILDER_EMAIL, OWNER_EMAIL, ownerAskHtml, ownerAskText } from "./owner-
 // When sanghamitra.org moves off Network Solutions and is verified with the mail
 // provider, this becomes sanghamitra@sanghamitra.org and nothing else changes.
 export const SENDER_ADDRESS = "sanghamitra@learnerscohort.com";
-const SENDER_RESEND = `Sanghamitra <${SENDER_ADDRESS}>`;
-const SENDER_BREVO = { name: "Sanghamitra", email: SENDER_ADDRESS };
+
+// The address mail goes out as, overridable per environment with MAIL_FROM. Deliverability depends on
+// the sending DOMAIN's DNS, not on the provider: it needs an SPF record and a DKIM key, and it must
+// satisfy whatever DMARC policy the domain publishes. On 9 September 2026 learnerscohort.com had a
+// DKIM key but NO SPF record at all while publishing DMARC p=quarantine, and every sign-in code sent
+// from it since 30 August was accepted by the provider and never delivered. Switching domains is
+// therefore a config change, not a code change.
+function senderAddress(env) {
+  return (env && env.MAIL_FROM ? String(env.MAIL_FROM).trim() : "") || SENDER_ADDRESS;
+}
 
 async function postJson(url, headers, body) {
   const res = await fetch(url, {
@@ -34,7 +42,7 @@ export async function sendMail(env, { to, cc, subject, text, html }) {
     // support@agreements.co.in (a different business) and a dead placeholder, so a
     // person who wrote to Sanghamitra could get an answer branded as someone else.
     {
-      const from = SENDER_RESEND;
+      const from = `Sanghamitra <${senderAddress(env)}>`;
       const payload = { from, to: recipients, subject, text, html };
       if (copies.length) payload.cc = copies;
       const ok = await postJson(
@@ -51,7 +59,7 @@ export async function sendMail(env, { to, cc, subject, text, html }) {
 
   if (env.BREVO_API_KEY) {
     {
-      const sender = SENDER_BREVO;
+      const sender = { name: "Sanghamitra", email: senderAddress(env) };
       const payload = {
         sender,
         to: recipients.map((email) => ({ email })),
