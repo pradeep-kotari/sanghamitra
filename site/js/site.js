@@ -986,7 +986,7 @@ function wireBookingForm(data) {
 
 const INTENT_OK = {
   enroll: "Received. Sreenivasa will write back about a seat. Also send the same note on WhatsApp if you want him to see it today.",
-  donate: "Received. He will send how to give — this page does not take a card.",
+  donate: "Received. He will write back with an organization he trusts, or how a school fee can be paid direct. Sanghamitra itself takes nothing.",
   volunteer: "Received. He will write back about where help is needed.",
   talk: "Received. He will write back about the sitting.",
   poetry: "Received. He will send what is already public, or a time to hear it.",
@@ -1266,3 +1266,47 @@ async function mountTeluguArticle() {
   } catch { /* the pending note and the printed page stay; nothing invented */ }
 }
 document.addEventListener("DOMContentLoaded", mountTeluguArticle);
+
+// --- The two drills from the old srmathclub pages, rebuilt without a server (9 Sep 2026) ---
+// His cuberoot.html picked a random whole number up to 100 and showed its cube, three at a time; square.html
+// showed five numbers to square. The old CGI script only scored them. All of that now happens on the page.
+function mountDrills() {
+  document.querySelectorAll("form[data-drill]").forEach((form) => {
+    const kind = form.getAttribute("data-drill");
+    const rows = Math.max(1, parseInt(form.getAttribute("data-rows"), 10) || 3);
+    const body = form.querySelector("tbody");
+    const result = form.querySelector(".drill-result");
+    let answers = [];
+    const rand = (lo, hi) => lo + Math.floor(Math.random() * (hi - lo + 1));
+    function newSet() {
+      answers = [];
+      body.innerHTML = "";
+      for (let r = 0; r < rows; r += 1) {
+        const n = kind === "cube" ? rand(2, 100) : rand(2, 100);
+        const shown = kind === "cube" ? n * n * n : n;
+        answers.push(kind === "cube" ? n : n * n);
+        const tr = document.createElement("tr");
+        tr.innerHTML = `<td><strong>${shown}</strong></td><td><input inputmode="numeric" pattern="[0-9]*" autocomplete="off" aria-label="${kind === "cube" ? "Cube root of " + shown : "Square of " + shown}"></td>`;
+        body.appendChild(tr);
+      }
+      result.textContent = "";
+      form.querySelectorAll("td").forEach((td) => td.classList.remove("is-right", "is-wrong"));
+    }
+    form.addEventListener("submit", (ev) => {
+      ev.preventDefault();
+      const inputs = [...form.querySelectorAll("tbody input")];
+      let right = 0; const lines = [];
+      inputs.forEach((inp, i) => {
+        const cell = inp.closest("td"); const val = inp.value.trim();
+        const shown = body.rows[i].cells[0].textContent;
+        if (val === "") { lines.push(`${shown}: empty`); cell.classList.add("is-wrong"); return; }
+        if (Number(val) === answers[i]) { right += 1; cell.classList.add("is-right"); lines.push(`${shown}: correct`); }
+        else { cell.classList.add("is-wrong"); lines.push(`${shown}: the answer is ${answers[i]}`); }
+      });
+      result.textContent = `${right} of ${rows} right. ` + lines.join(" · ");
+    });
+    form.querySelector("[data-again]").addEventListener("click", newSet);
+    newSet();
+  });
+}
+document.addEventListener("DOMContentLoaded", mountDrills);

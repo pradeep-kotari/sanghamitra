@@ -1253,3 +1253,15 @@ a.cal-day.has-event:hover { background: var(--paper-2); border-color: var(--line
 .page-images { display: grid; gap: 1rem; margin-top: 1.2rem; max-width: 44rem; }
 .page-images img { width: 100%; border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); display: block; }
 .te-article-wrap[data-approved] .page-images { max-width: 20rem; opacity: .9; }
+
+/* The two drills from the old srmathclub pages. */
+.drills { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.2rem; margin-top: 1rem; }
+.drill h3 { margin-top: 0; }
+.drill-table { width: 100%; border-collapse: collapse; margin: 0.6rem 0; }
+.drill-table th, .drill-table td { text-align: left; padding: 0.45rem 0.5rem; border-bottom: 1px solid var(--line); }
+.drill-table input { width: 100%; max-width: 9rem; font: inherit; padding: 0.45rem 0.6rem; border: 1px solid var(--line); border-radius: 10px; background: #fffdf7; }
+.drill-table td.is-right input { border-color: var(--ok); background: #eef7ef; }
+.drill-table td.is-wrong input { border-color: var(--saffron-deep); background: #fbeee6; }
+.drill-result { min-height: 1.4em; color: var(--ink-soft); }
+/* His hand-made Telugu column headings from the magazine years, shown above the column title. */
+.column-heading { display: block; max-height: 3.2rem; width: auto; max-width: 100%; margin: 0.2rem 0 0.6rem; }

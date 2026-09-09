@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Give · Sanghamitra</title>
-  <meta name="description" content="Donate to Sanghamitra or volunteer at a sitting. Sreenivasa Ainapurapu will send how to give — this page does not take a card.">
+  <meta name="description" content="Sanghamitra takes no donations. Sreenivasa Ainapurapu points people to organizations he has verified, pays school fees direct to schools, and welcomes volunteers.">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Sanghamitra">
   <meta property="og:title" content="Give · Sanghamitra">
-  <meta property="og:description" content="Donate to Sanghamitra or volunteer at a sitting. Sreenivasa Ainapurapu will send how to give — this page does not take a card.">
+  <meta property="og:description" content="Sanghamitra takes no donations. Sreenivasa points people to organizations he has verified, pays school fees direct to schools, and welcomes volunteers.">
   <meta property="og:url" content="https://sanghamitra.pages.dev/give.html">
   <meta property="og:image" content="https://sanghamitra.pages.dev/img/medhavadhanam-2026-st-louis-group.jpg">
   <meta name="twitter:card" content="summary_large_image">
@@ -50,39 +50,35 @@
   <main class="section">
     <div class="wrap">
       <p class="kicker">Give</p>
-      <h1>Money, or time. Both keep the sittings open.</h1>
-      <p class="lede">Sanghamitra’s sharing and caring work includes food donation, clothing, school fees and books, and support for elders. This page does not take a card. Say you want to give; Sreenivasa will send how. If you already have a way, use it and leave your name below. If you need a receipt or a tax letter, ask when you write.</p>
-
-      <div id="pay-now" data-donate>
-        <h2>How to give</h2>
-        <p>Pick a suggested amount to pre-fill your note — this is not a checkout. If Zelle, Venmo, or PayPal details appear below, use them; otherwise write or WhatsApp him.</p>
-        <div class="gift-amounts">
-          <button type="button" class="btn btn-ghost" data-gift="25">$25</button>
-          <button type="button" class="btn btn-primary" data-gift="51">$51</button>
-          <button type="button" class="btn btn-dark" data-gift="101">$101</button>
-        </div>
-        <div id="pay-methods" class="pay-methods"></div>
-        <p id="donate-how" hidden></p>
-      </div>
+      <h1>He does not take money. Here is how to give anyway.</h1>
+      <p class="lede">Sanghamitra has never accepted a donation. When an audience presses money on a Harikatha or Burrakatha artist after a sitting, every dollar goes to the artist. When a child in India needs school fees, the fee is paid to the school, never handed to a family. What Sreenivasa asks of people is older than any of this: give a tenth of what you earn back to society, and give it somewhere you are sure of.</p>
 
       <div class="split" style="margin:1.6rem 0">
-        <article class="card">
-          <h2>What the gifts go toward</h2>
-          <div id="give-covers"></div>
-          <p data-give-empty>Food. Clothing. School fees and books. Elders. The summer programme and the hall, when that is what is needed.</p>
+        <article class="card" id="donate">
+          <h2>Give where he is sure</h2>
+          <p>If you want to give and do not know whom to trust, write to him. He points people only to organizations he has personally checked, in the United States and in India, where the money reaches the person it is meant for. Nothing passes through Sanghamitra.</p>
         </article>
-        <article class="card" id="donate" data-donate>
-          <h2>Donate</h2>
-          <p>Name an amount if you have one. He will write back with how.</p>
+        <article class="card" id="fees">
+          <h2>Sponsor a child's school fees</h2>
+          <p>Sanghamitra pays fees for children in India who cannot pay them. The money goes to the school, after he has spoken to the school, and people he trusts there check each case. If you want to carry one child's year, say so below.</p>
         </article>
         <article class="card" id="volunteer">
           <h2>Volunteer</h2>
-          <p>The India Post piece thanks the volunteers who held the summer and the Medhavadhanam. Hall setup, Zoom, Telugu class help, hosting a talk in your city — say what you can do.</p>
+          <p>The India Post piece thanks the volunteers who held the summer program and the Medhavadhanam. Hall setup, Zoom, Telugu class help, books for a library in India, hosting a talk in your city. Say what you can do.</p>
         </article>
       </div>
 
-      <form class="intent card" style="margin-top:1rem" data-donate>
-        <h2>I sent a gift — or I will</h2>
+      <article class="card" style="margin:0 0 1.6rem">
+        <h2>What the work actually covers</h2>
+        <div id="give-covers"></div>
+        <p data-give-empty>Food and clothing drives. School fees and books, paid direct. Support for elders. Telugu classes. Books for libraries in Hyderabad and Visakhapatnam that people he knows keep running.</p>
+      </article>
+
+      <div id="pay-methods" hidden></div>
+      <p id="donate-how" hidden></p>
+
+      <form class="intent card" style="margin-top:1rem">
+        <h2>I want to give. Tell me where.</h2>
         <input type="hidden" name="kind" value="donate">
         <div class="form-row">
           <label>Your name
@@ -96,14 +92,14 @@
           <label>Phone
             <input name="phone" type="tel" autocomplete="tel">
           </label>
-          <label>Amount you sent, or have in mind
-            <input name="amount" placeholder="I’ll decide after he writes">
+          <label>Roughly how much, if you have a figure in mind
+            <input name="amount" placeholder="Optional">
           </label>
         </div>
-        <label>What you want it toward, if anything — food, clothing, student fees and books, elders, or the hall
+        <label>What you would like it to do — a child's fees, books for a library, food, elders, or “you choose”
           <textarea name="notes"></textarea>
         </label>
-        <button class="btn btn-primary" type="submit">Tell Sreenivasa</button>
+        <button class="btn btn-primary" type="submit">Ask Sreenivasa where</button>
         <p class="form-trust muted" data-i18n="form.privacy">This goes straight to Sreenivasa's email. Nothing you type is stored on this site.</p>
         <p class="intent-note" data-note></p>
       </form>
@@ -136,6 +132,7 @@
       </form>
 
       <p class="listen-note">Or skip the form: <a href="https://wa.me/13146015309">WhatsApp Sreenivasa</a> at +1 314 601 5309.</p>
+      <p class="muted">His words, from the 7 September 2026 conversation: he has never taken donations; gifts to performers go to the performers; fees go to the school. This page says only that.</p>
     </div>
   </main>
           <footer class="site-footer">
