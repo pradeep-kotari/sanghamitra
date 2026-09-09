@@ -9,6 +9,7 @@ import json, os, re, html as H, glob
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 SITE = os.path.join(ROOT, "site"); MAG = os.path.join(SITE, "magazine"); TEXT = os.path.join(ROOT, "research/old-site/text")
 data = json.load(open(os.path.join(SITE, "data/magazine.json"), encoding="utf-8"))
+PEOPLE = json.load(open(os.path.join(SITE, "data/magazine-people.json"), encoding="utf-8"))
 issues = data["issues"]; MASTHEAD = data["masthead"]
 MONTH = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 esc = lambda s: H.escape(str(s or ""), quote=True)
@@ -232,11 +233,20 @@ for key, rows in cols.items():
     n_av = sum(1 for _, it in rows if it["available"])
     heads = [it.get("heading_img") for _, it in rows if it.get("heading_img") and os.path.exists(os.path.join(MAG, "img", it["heading_img"]))]
     heading = f'<img class="column-heading" src="magazine/img/{esc(heads[0])}" alt="{esc(t)}, the heading as he set it in the magazine" loading="lazy">' if heads else ""
+    # The writer's name as he set it in Telugu. On the Telugu pages a byline was an image, because the
+    # font of the day could not render it; those little name graphics survive and belong beside the name.
+    who_name = next((it.get("contributor") for _, it in rows if it.get("contributor")), None)
+    byline = ""
+    if who_name and who_name in PEOPLE and os.path.exists(os.path.join(MAG, "img", "people", PEOPLE[who_name])):
+        byline = (f'<p class="byline"><img src="magazine/img/people/{esc(PEOPLE[who_name])}" '
+                  f'alt="{esc(who_name)}, his name as it was set in Telugu" loading="lazy">'
+                  f'<span>{esc(who_name)}</span></p>')
     body = f"""<main class="section">
     <div class="wrap">
       <p class="kicker"><a href="magazine.html">Sanghamitra magazine</a> · by column</p>
       {heading}
       <h1>{esc(t)}</h1>
+      {byline}
       <p class="lede">{esc(note) if note else ''}</p>
       <p class="muted">{len(rows)} instalment{'s' if len(rows) != 1 else ''} across the issues, {n_av} recovered.</p>
       <ol class="contents">

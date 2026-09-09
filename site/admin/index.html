@@ -20,12 +20,15 @@
         <span id="who"></span>
         <span class="admin-header-actions">
           <a class="btn btn-ghost" href="../index.html" target="_blank" rel="noopener">View live site</a>
-          <a href="#edit">Your details &amp; sittings</a>
+          <a href="#drive">Google Drive folder</a>
+        <a href="#edit">Your details &amp; sittings</a>
           <a href="#build-next">What to build next</a>
           <a href="#inbox">Ask Pradeep to build</a>
           <a href="#questions">Messages from visitors</a>
           <a href="#decisions" id="nav-decisions" hidden>Design choices</a>
           <a href="#library">Poetry &amp; magazine</a>
+        <a href="#telugu">Telugu to approve</a>
+        <a href="#quiz">This week's question</a>
           <a href="#photos">Photos</a>
           <a href="../gallery.html">Gallery</a>
           <button class="btn btn-ghost" type="button" id="logout">Sign out</button>
@@ -54,15 +57,26 @@
         <summary>What this login is for</summary>
         <div style="margin-top:0.8rem">
         <p class="muted">Private — not on the public site.</p>
-        <p>You already keep Sanghamitra going on WhatsApp, at the hall, and on YouTube. This site does not replace that. It is a page you can send people, so sanghamitra.org is not a parking page and a flyer can point somewhere real.</p>
+        <p>You already keep Sanghamitra going on WhatsApp, at the hall, and on YouTube. This site does not replace that. It now also holds twelve years of your magazine, your photographs, and your two practice pages, so a flyer can point somewhere real.</p>
         <ol>
-          <li><strong>Edit what changes.</strong> Phone, sittings, photos — save here. You do not need us for a new sitting.</li>
-          <li><strong>Give.</strong> Paste a Zelle name or number, Venmo, or PayPal.me under Donate only if you actually accept gifts that way. Blank means the public page will not invent a method.</li>
-          <li><strong>5 September.</strong> Copy invite / WhatsApp friends if you want a second channel besides the group you already have. I’m coming is optional — a name list, not a gate.</li>
+          <li><strong>Edit what changes.</strong> Phone, sittings, photos. Save here and it is live at once. You do not need Pradeep for a new sitting.</li>
+          <li><strong>Approve the Telugu.</strong> Your old magazine articles are being typed back into real Telugu. Nothing appears on the site until you read it and press Approve.</li>
+          <li><strong>Set the week's question</strong>, or leave it and the site shows one of your old Question Gallery questions, changing by itself every week.</li>
+          <li><strong>Upload what you have.</strong> The Satakam, magazine issues, Friend Messages, photographs. Or drop files in the shared Google Drive folder below and Pradeep will place them.</li>
           <li><strong>Messages from visitors</strong> land under Messages from visitors. WhatsApp is still the faster door, as it always was.</li>
         </ol>
         </div>
       </details>
+
+      <section id="drive" class="card" style="margin-top:1.6rem;border-left:4px solid var(--saffron)">
+        <p class="kicker">If a file is too big, or you would rather not upload here</p>
+        <h2 style="margin-top:.2rem">The shared Google Drive folder</h2>
+        <p>Put anything in this folder and Pradeep will place it on the site: old magazine issues from the flash drive, photographs, Friend Messages, scans. Your Yahoo address already has access.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://drive.google.com/drive/u/0/folders/1V0hgL8EsgovgHBCEzZUuCxppSyluHvVL" target="_blank" rel="noopener">Open the Drive folder</a>
+        </div>
+        <p class="muted">Name the files the way you always did and they drop into the right issue by themselves.</p>
+      </section>
 
       <section id="edit" style="margin-top:2rem">
         <p class="kicker">Live</p>
@@ -218,12 +232,13 @@
       <section id="library" style="margin-top:2.8rem">
         <p class="kicker">Your poetry and the magazine</p>
         <h2>The Satakam and the old issues</h2>
-        <p class="muted">Upload a file here and it appears on the public Poetry or Magazine page straight away. The May and August 2008 PDFs you emailed are ready to upload here when you have a minute.</p>
+        <p class="muted">Twenty-three issues are already on the site, recovered from the old sanghamitra.org. Upload here only what is missing, or a new Satakam, or a Friend Message. It appears on the public page straight away. Larger batches are easier through the <a href="https://drive.google.com/drive/u/0/folders/1V0hgL8EsgovgHBCEzZUuCxppSyluHvVL" target="_blank" rel="noopener">Drive folder</a>.</p>
         <form id="library-upload" class="card" style="margin:1.4rem 0">
           <label>Poetry or magazine issue?
             <select name="shelf" id="library-shelf" required>
               <option value="satakam">Poetry — a Satakam or a poem</option>
               <option value="magazine">Sanghamitra magazine — an issue</option>
+              <option value="friend-messages">Friend Messages — one message, as a PDF or an image</option>
             </select>
           </label>
           <label>Title
@@ -277,6 +292,25 @@
         <p class="muted">The Internet Archive kept your old issues. The Telugu in them was set in the Telugu Lipi font, so a machine read each page and typed it out in modern Telugu. It will have made mistakes. Nothing here appears on the public site until you press <strong>Approve</strong>; until then the public page shows only the original PDF. Your original page is on the left, the typed text on the right — correct the text and save as often as you like.</p>
         <div id="telugu-box"></div>
       </section>
+      <section id="quiz" style="margin-top:2.8rem">
+        <p class="kicker">Question Gallery</p>
+        <h2>This week's question</h2>
+        <p class="muted">Type a question and it goes on the website straight away, on the main page and on the Question page. If you leave it empty, the site shows one of your old Question Gallery questions and changes it every week by itself. Answers come to you, as before.</p>
+        <form id="quiz-form" class="card" style="margin:1.2rem 0">
+          <label>The question
+            <textarea name="q" rows="3" maxlength="600" placeholder="Who wrote &lsquo;Neeti Chandrika&rsquo;?"></textarea>
+          </label>
+          <label>A line under it, if you want one
+            <input name="note" maxlength="300" placeholder="Answers by 15 December, please.">
+          </label>
+          <div class="actions">
+            <button class="btn btn-primary" type="submit">Put it on the site</button>
+            <button class="btn btn-ghost" type="button" id="quiz-clear">Go back to my old questions</button>
+          </div>
+          <p id="quiz-note" class="muted"></p>
+        </form>
+      </section>
+
       <section id="photos" style="margin-top:2.8rem">
         <p class="kicker">Gallery</p>
         <h2>Photos</h2>
@@ -534,7 +568,7 @@
           ? `<button class="btn btn-ghost" type="button" data-make-cover="${esc(i.id)}">Create cover picture from PDF</button>`
           : "";
         const card = el(`<article class="card library-admin-item" style="margin-bottom:1rem">
-          <p class="muted">${i.shelf === "satakam" ? "Poetry" : "Magazine"}${i.when ? ` · ${esc(i.when)}` : ""}</p>
+          <p class="muted">${i.shelf === "satakam" ? "Poetry" : i.shelf === "friend-messages" ? "Friend Message" : "Magazine"}${i.when ? ` · ${esc(i.when)}` : ""}</p>
           <div class="library-admin-grid">
             ${cover}
             <form>
@@ -652,6 +686,28 @@
         const un = card.querySelector("[data-unapprove]"); if (un) un.onclick = () => post("unapprove");
         box.append(card);
       }
+    }
+
+
+    async function loadQuiz() {
+      const form = document.getElementById("quiz-form"); if (!form) return;
+      const note = document.getElementById("quiz-note");
+      try {
+        const d = await (await fetch("/api/quiz", { cache: "no-store" })).json();
+        if (d.source === "owner") { form.q.value = d.q || ""; form.note.value = d.note || ""; note.textContent = "Your question is on the site now."; }
+        else note.textContent = "Showing one of your old questions, changing every week.";
+      } catch { note.textContent = ""; }
+      form.onsubmit = async (ev) => {
+        ev.preventDefault();
+        const out = await fetch("/api/quiz", { method: "POST", headers: { "content-type": "application/json" },
+          body: JSON.stringify({ q: form.q.value, note: form.note.value }) });
+        const b = await out.json().catch(() => ({}));
+        showNote(out.ok ? "It is on the site now." : (b.error || "Could not save"), out.ok); loadQuiz();
+      };
+      document.getElementById("quiz-clear").onclick = async () => {
+        await fetch("/api/quiz", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ action: "clear" }) });
+        form.q.value = ""; form.note.value = ""; showNote("Back to your old questions.", true); loadQuiz();
+      };
     }
 
     async function loadQueries() {
@@ -893,17 +949,17 @@
       "Skip anything you do not want this round.",
       "",
       "A. Point sanghamitra.org at the live site (you change DNS; we will send the target)",
-      "B. Public email + confirm WhatsApp / group on every page",
-      "C. Donate: paste Zelle / Venmo / PayPal.me if you use them (blank = the site will not invent a method)",
-      "D. 2026 student photos: keep, replace, or take down",
-      "E. Who we enroll this month: Vedic math / SAT-ACT / Telugu",
-      "F. Satakam title + 2–4 verses, or “later”",
-      "G. Burrakatha: a YouTube link, or “coming”",
-      "H. Next public sitting after 5 September, or “none listed”",
-      "I. Homepage name spelling + years line (2003 / 2004 / 25 years)",
-      "J. Old magazine PDFs only if you still have them",
+      "B. Read the October 2006 Mundumaata under 'Telugu to approve', fix anything wrong, press Approve",
+      "C. The flash drive with the old magazine issues: twelve issues are still incomplete",
+      "D. Did the magazine start in 2003 or 2004, and was there an issue after April 2016?",
+      "E. The old release-updates reader list, if it still exists anywhere",
+      "F. Satakam title + 2-4 verses, or \u201clater\u201d",
+      "G. Friend Messages: upload any you still have",
+      "H. Burrakatha: a YouTube link, or \u201ccoming\u201d",
+      "I. Who we enroll this month: Vedic math / SAT-ACT / Telugu",
+      "J. Photographs of a Community Service drive and a Workshops session, when convenient",
       "",
-      "Not this round unless you put it first: dance directory, full Telugu pages, magazine restart, SiliconAndhra logo.",
+      "Not this round unless you put it first: dance directory, magazine restart, SiliconAndhra logo.",
     ].join("\n");
 
     if (user.email === "pradeep.kotari@gmail.com") {
@@ -1313,6 +1369,7 @@
     loadPhotos();
     loadLibrary();
     loadTelugu();
+    loadQuiz();
     loadQueries();
     if (isBuilder) loadDecisions();
   </script>

@@ -333,7 +333,8 @@ function gcalUrl(event) {
 function eventCard(event, { featured = false } = {}) {
   const upcoming = isUpcoming(event);
   const cls = `event-card${featured ? " featured" : ""}${event.flyer ? " event-with-flyer" : ""}`;
-  const flyer = event.flyer
+  // Past events keep their invitations in storage but do not show them (agreed in the 7 Sep meeting, 43:33).
+  const flyer = event.flyer && isUpcoming(event)
     ? `<a class="flyer-link" href="${event.pdf || event.flyer}"><img class="flyer" src="${event.flyer}" alt="${esc(event.title)} invitation"></a>`
     : "";
   const presenter = event.presenterTe || event.presenter
@@ -394,13 +395,13 @@ function renderNextEvent(data, el) {
   const group = SITE.whatsappGroup;
   const channel = SITE.youtube;
   el.innerHTML = `
-    <article class="event-card featured${last && last.flyer ? " event-with-flyer" : ""}">
+    <article class="event-card featured">
       <div>
         <p class="kicker">Between gatherings</p>
         <h2>${last ? `The last sitting was ${esc(last.title)}` : "The next sitting is being arranged"}</h2>
         <p class="when">${last ? esc(formatEventWhen(last)) : ""}</p>
         <p>Dates for the next one go out on WhatsApp first. Recordings of past sittings stay on the channel.</p>
-        ${last && last.flyer ? `<a class="flyer-link" href="${esc(last.pdf || last.flyer)}"><img class="flyer" src="${esc(last.flyer)}" alt="${esc(last.title)} invitation"></a>` : ""}
+
         <div class="actions">
           <a class="btn btn-primary" href="${esc(group)}">Join the WhatsApp group</a>
           <a class="btn btn-dark" href="${esc(channel)}">Watch on YouTube</a>
@@ -1214,6 +1215,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   wireStripNav();
   const satakam = document.getElementById("satakam-shelf");
   if (satakam) mountLibrary("satakam", satakam);
+  const friend = document.getElementById("friend-messages-shelf");
+  if (friend) mountLibrary("friend-messages", friend);
   const issues = document.getElementById("magazine-shelf");
   if (issues) mountLibrary("magazine", issues);
 });
@@ -1310,3 +1313,81 @@ function mountDrills() {
   });
 }
 document.addEventListener("DOMContentLoaded", mountDrills);
+
+
+// --- Returning visitors do not retype their details (his item 40, 7 Sep 2026) ---
+// Kept in this browser only, never sent anywhere by itself; the forms still post exactly what is typed.
+const REMEMBER_KEY = "sm-remember";
+function rememberFromForm(form) {
+  try {
+    const d = {}; ["name", "email", "phone", "place"].forEach((k) => { const el = form.querySelector(`[name=${k}]`); if (el && el.value.trim()) d[k] = el.value.trim(); });
+    if (Object.keys(d).length) localStorage.setItem(REMEMBER_KEY, JSON.stringify(d));
+  } catch { /* private mode or storage off: nothing to remember, nothing lost */ }
+}
+function prefillForms() {
+  let d = null;
+  try { d = JSON.parse(localStorage.getItem(REMEMBER_KEY) || "null"); } catch { d = null; }
+  if (!d) return;
+  document.querySelectorAll("form.intent").forEach((form) => {
+    let filled = false;
+    Object.entries(d).forEach(([k, v]) => { const el = form.querySelector(`[name=${k}]`); if (el && !el.value) { el.value = v; filled = true; } });
+    if (filled && !form.querySelector("[data-forget]")) {
+      const note = document.createElement("p"); note.className = "muted"; note.style.fontSize = ".9rem";
+      note.innerHTML = 'Filled in from last time on this device. <a href="#" data-forget>Not you? Clear it.</a>';
+      note.querySelector("[data-forget]").addEventListener("click", (ev) => {
+        ev.preventDefault(); try { localStorage.removeItem(REMEMBER_KEY); } catch {}
+        document.querySelectorAll("form.intent").forEach((f) => ["name", "email", "phone", "place"].forEach((k) => { const el = f.querySelector(`[name=${k}]`); if (el) el.value = ""; }));
+        document.querySelectorAll("[data-forget]").forEach((a) => a.closest("p").remove());
+      });
+      form.querySelector("button[type=submit]")?.insertAdjacentElement("afterend", note);
+    }
+  });
+}
+document.addEventListener("DOMContentLoaded", prefillForms);
+document.addEventListener("submit", (ev) => { const f = ev.target.closest && ev.target.closest("form.intent"); if (f) rememberFromForm(f); }, true);
+
+// --- Question of the week (9 Sep 2026) ---
+// His own post wins; otherwise one of his archived Question Gallery questions, picked by the week
+// number so it holds for seven days and then moves on. Answers are never shown: people write to him.
+function isoWeekKey(d = new Date()) {
+  const start = Date.UTC(d.getUTCFullYear(), 0, 1);
+  return Math.floor((Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()) - start) / 604800000)
+    + d.getUTCFullYear() * 53;
+}
+async function mountQuiz() {
+  const qEl = document.querySelector("[data-quiz-q]");
+  const archiveEl = document.getElementById("quiz-archive");
+  if (!qEl && !archiveEl) return;
+  let bank = { questions: [] };
+  try { bank = await (await fetch("data/quiz.json", { cache: "no-store" })).json(); } catch { /* fall through */ }
+  if (qEl) {
+    let posted = null;
+    try { posted = await (await fetch("/api/quiz", { cache: "no-store" })).json(); } catch { /* offline is fine */ }
+    const srcEl = document.querySelector("[data-quiz-src]");
+    const kicker = document.querySelector("[data-quiz-kicker]");
+    if (posted && posted.source === "owner" && posted.q) {
+      qEl.textContent = posted.q;
+      if (srcEl) srcEl.textContent = posted.note || "Set by Sreenivasa.";
+    } else if (bank.questions.length) {
+      const pick = bank.questions[isoWeekKey() % bank.questions.length];
+      qEl.textContent = pick.q;
+      if (srcEl) srcEl.textContent = `From his Question Gallery, ${pick.issueLabel}.`;
+    } else {
+      qEl.textContent = "The next question is on its way.";
+      if (kicker) kicker.textContent = "Between questions";
+    }
+  }
+  if (archiveEl && bank.questions.length) {
+    const byIssue = new Map();
+    bank.questions.forEach((q) => {
+      if (!byIssue.has(q.issueLabel)) byIssue.set(q.issueLabel, []);
+      byIssue.get(q.issueLabel).push(q.q);
+    });
+    archiveEl.innerHTML = [...byIssue.entries()].map(([label, list]) => `
+      <div class="quiz-year">
+        <h3>${esc(label)}</h3>
+        <ol class="contents">${list.map((q) => `<li>${esc(q)}</li>`).join("")}</ol>
+      </div>`).join("");
+  }
+}
+document.addEventListener("DOMContentLoaded", mountQuiz);

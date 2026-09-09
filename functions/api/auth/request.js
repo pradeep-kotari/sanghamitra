@@ -31,6 +31,16 @@ export async function onRequestPost(context) {
   await env.ADMIN.put(`otp:${email}`, hash, { expirationTtl: 10 * 60 });
 
   const sent = await sendAdminCode(env, email, code);
+
+  // Local development has no mail provider bound, so the code can never arrive by email and sign-in
+  // is impossible. When BOTH providers are absent — which is only ever true on a developer machine,
+  // production has both — print the code to the server log so the developer can sign in. The code is
+  // never put in the HTTP response, so this cannot leak to a browser even if it somehow ran in production.
+  if (!sent.ok && !env.RESEND_API_KEY && !env.BREVO_API_KEY) {
+    console.log(`[local dev] no mail provider configured. Sign-in code for ${email}: ${code}`);
+    return json(generic);
+  }
+
   if (!sent.ok) {
     if (previous) {
       await env.ADMIN.put(`otp:${email}`, previous, { expirationTtl: 24 * 60 * 60 });

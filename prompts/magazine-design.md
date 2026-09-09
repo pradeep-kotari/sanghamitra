@@ -367,3 +367,28 @@ sponsor a child's school fees paid direct, volunteer. The hero button reads Give
 payment-method blocks are gone from the page; the owner-console plumbing behind them is left intact and
 unrendered in case he ever changes his mind. The footer's Donate link is untouched by rule and still
 lands on the page, which now explains itself.
+
+
+## Works of Literature, Friend Messages, and remembered details — 9 September
+
+The Literature card now lands on a real Works of Literature page (`poetry.html`, kept at its address so
+nothing breaks): poetry with the Satakam shelf, the magazine with its literature columns and the two
+edition doors, and **Friend Messages** with the story he told at 21:27 and an honest empty shelf. That shelf
+is a third upload slot in the owner console beside the Satakam and the magazine, so the messages appear in
+the order he uploads them without anyone touching code. Every gap he alone can close is a slot he fills.
+
+Returning visitors no longer retype their details (his item 40): name, email, phone and city are kept in
+the visitor's own browser only, offered back on the next form with a "Not you? Clear it" link, and never
+sent anywhere by themselves.
+
+
+## A page of its own for Vedic Mathematics — 9 September
+
+He asked at 25:00 that each topic have a page dedicated to one item. Two homepage cards were landing on
+`learn.html`: Math Tutoring and Vedic Mathematics. Vedic Mathematics now has `vedic-mathematics.html`,
+carrying what belongs to it — the sitting video, the two rebuilt drills, twelve years of *Mathematricks*,
+and the seventeen club photographs by year — with the enrolment form left in one place on Learn and linked
+from both. Learn is now what its name says: tutoring, SAT and ACT, Telugu, and the form. The card, the
+navigation on all sixteen pages, and the sitemap point at the new page.
+
+All seven homepage cards now lead to a page of their own.

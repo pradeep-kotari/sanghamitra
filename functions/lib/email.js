@@ -16,8 +16,13 @@ async function postJson(url, headers, body) {
   const text = await res.text();
   if (!res.ok) {
     console.log("email_fail", res.status, url, text.slice(0, 300));
+    return false;
   }
-  return res.ok;
+  // Log the accepted response too. A provider can return 200 and still never deliver, which is
+  // exactly what happened between 30 August and 9 September 2026: the API said ok, nothing arrived,
+  // and there was no record of it anywhere. The provider's message id is what makes that traceable.
+  console.log("email_sent", res.status, url, text.slice(0, 200));
+  return true;
 }
 
 export async function sendMail(env, { to, cc, subject, text, html }) {

@@ -10,7 +10,7 @@ import {
 // Two shelves Sreenivasa fills himself from /admin: the Satakam he published, and
 // any magazine issues he still has. Nothing here is ever invented — the public pages
 // keep their honest "not here yet" line until a real file is uploaded.
-export const SHELVES = ["satakam", "magazine"];
+export const SHELVES = ["satakam", "magazine", "friend-messages"];
 
 const ALLOWED = new Set([
   "application/pdf",
@@ -44,7 +44,7 @@ export async function onRequestPost(context) {
   if (file.size > MAX_BYTES) return json({ error: "File is over 20 MB" }, 400);
 
   const shelfRaw = String(form.get("shelf") || "").trim();
-  if (!SHELVES.includes(shelfRaw)) return json({ error: "Choose the Satakam or the magazine" }, 400);
+  if (!SHELVES.includes(shelfRaw)) return json({ error: "Choose the Satakam, the magazine, or Friend Messages" }, 400);
 
   const title = String(form.get("title") || "").trim().slice(0, 160);
   if (!title) return json({ error: "Give it a title" }, 400);
@@ -100,7 +100,7 @@ export async function onRequestPost(context) {
   items.unshift(item);
   await context.env.ADMIN.put("library", JSON.stringify(items.slice(0, 200)));
   if (isOwnerEmail(gate.user.email)) {
-    const kind = shelfRaw === "magazine" ? "a magazine issue" : "poetry";
+    const kind = shelfRaw === "magazine" ? "a magazine issue" : shelfRaw === "friend-messages" ? "a Friend Message" : "poetry";
     const detail = shelfRaw === "magazine" && when ? `Issue: ${when}` : "";
     context.waitUntil(
       notifyBuilderOwnerUpload(context.env, {
