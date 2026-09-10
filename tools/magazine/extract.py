@@ -14,7 +14,12 @@ MONTHS = {m: i for i, m in enumerate(["January","February","March","April","May"
 SEASON = {1: "Sankranti", 3: "Ugadi", 4: "Ugadi", 7: "July", 10: "Vijaya Dasami"}
 # Contributor images on the Telugu pages → names, only where the English pages confirm the name.
 CONTRIB_IMG = {"editor.jpg": "Editor", "vaasanti.jpg": "Vaasanti Maghapu", "srini.jpg": "Sreenivasa Ainapurapu",
-               "srini_eng.jpg": "Sreenivasa Ainapurapu"}
+               "srini_eng.jpg": "Sreenivasa Ainapurapu",
+               # Five more writers, whose names exist only as the Telugu graphics he set. Typed from those
+               # graphics on 10 Sep 2026 (no English page names them), approved by Pradeep the same day.
+               "ramarao.jpg": "కీర్తిశేషులు ఎ.వి.ఎన్.రామారావు", "nityanand.jpg": "నిత్యానంద్",
+               "ganapati_master.jpg": "ముసునూరి లక్ష్మీగణపతిశాస్త్రి",
+               "mlgb.jpg": "శ్రీమతి మాచిరాజు లక్ష్మీ గంగా భవాని", "priyaj.jpg": "కీ॥ శే॥ శ్రీమతి ప్రియ జ్యోశ్యుల"}
 COVERS = {"src1006": "cover1006.jpg", "src0711": "cover0711.JPG", "src0416": "April2016_cover.jpg", "src107": "sankranti07_cover.jpg"}
 
 def folder_date(folder):

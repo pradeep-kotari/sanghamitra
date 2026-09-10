@@ -288,7 +288,7 @@ for key, rows in cols.items():
     if who_name and who_name in PEOPLE and os.path.exists(os.path.join(MAG, "img", "people", PEOPLE[who_name])):
         byline = (f'<p class="byline"><img src="magazine/img/people/{esc(PEOPLE[who_name])}"'
                   f'{size_attrs("magazine/img/people/" + PEOPLE[who_name])} '
-                  f'alt="{esc(who_name)}, his name as it was set in Telugu" loading="lazy">'
+                  f'alt="{esc(who_name)}, the name as it was set in Telugu" loading="lazy">'
                   f'<span>{esc(who_name)}</span></p>')
     body = f"""<main class="section">
     <div class="wrap">
