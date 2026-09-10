@@ -41,9 +41,6 @@ function mergeSite(base, overlay) {
   if (o.homepageLede) out.copy.homepageLede = o.homepageLede;
   if (o.donateMode) out.copy.donateMode = o.donateMode;
   if (o.donateHow) out.copy.donateHow = o.donateHow;
-  if (o.donateZelle) out.copy.donateZelle = o.donateZelle;
-  if (o.donateVenmo) out.copy.donateVenmo = o.donateVenmo;
-  if (o.donatePaypal) out.copy.donatePaypal = o.donatePaypal;
   if (o.enrollLive) out.copy.enrollLive = o.enrollLive;
   // Learn and Give pages read live answers saved from the owner console.
   out.copy.learnFacts = {
@@ -78,78 +75,16 @@ function mergeSite(base, overlay) {
   return out;
 }
 
-function zelleTarget(data) {
-  const C = (data && data.copy) || {};
-  return String(C.donateZelle || "").trim();
-}
-
-function venmoHref(handle) {
-  const name = String(handle || "").replace(/^@/, "").trim();
-  return name ? `https://venmo.com/${encodeURIComponent(name)}` : "";
-}
-
-function paypalHref(raw) {
-  const s = String(raw || "").trim();
-  if (!s) return "";
-  if (/^https?:\/\//i.test(s)) return s;
-  const slug = s.replace(/^paypal\.me\//i, "").replace(/^\//, "");
-  return slug ? `https://paypal.me/${slug.replace(/^\/+/, "")}` : "";
-}
-
-function renderPayMethods(data) {
-  const box = document.getElementById("pay-methods");
-  if (!box) return;
-  const C = data.copy || {};
-  const zelle = zelleTarget(data);
-  const parts = [];
-  if (zelle) {
-    parts.push(`<article class="pay-method">
-      <h3>Zelle</h3>
-      <p>Send to <strong>${esc(zelle)}</strong> — Sreenivasa Ainapurapu. Open your bank app, then tell him below so he can thank you.</p>
-      <button type="button" class="btn btn-ghost" data-copy="${esc(zelle)}">Copy the Zelle name or number</button>
-    </article>`);
-  }
-  const venmo = venmoHref(C.donateVenmo);
-  if (venmo) {
-    parts.push(`<article class="pay-method">
-      <h3>Venmo</h3>
-      <p>If you use Venmo, send there and still leave your name on the form.</p>
-      <a class="btn btn-primary" href="${esc(venmo)}" target="_blank" rel="noopener">Open Venmo</a>
-    </article>`);
-  }
-  const paypal = paypalHref(C.donatePaypal);
-  if (paypal) {
-    parts.push(`<article class="pay-method">
-      <h3>PayPal</h3>
-      <a class="btn btn-primary" href="${esc(paypal)}" target="_blank" rel="noopener">Open PayPal</a>
-    </article>`);
-  }
-  if (!parts.length && C.donateHow) {
-    parts.push(`<article class="pay-method"><p>${esc(C.donateHow)}</p></article>`);
-  }
-  box.innerHTML = parts.join("");
-  box.hidden = !parts.length;
-  box.querySelectorAll("[data-copy]").forEach((btn) => {
-    btn.addEventListener("click", async () => {
-      await navigator.clipboard.writeText(btn.getAttribute("data-copy") || "");
-      btn.textContent = "Copied";
-    });
-  });
-}
-
-function wireGiftAmounts(data) {
-  const zelle = zelleTarget(data);
+// Sanghamitra takes no money, so there is no payment account to show anywhere: no Zelle, Venmo or
+// PayPal. The owner's optional note is shown by #donate-how in applyPublicSite.
+function wireGiftAmounts() {
   document.querySelectorAll("[data-gift]").forEach((btn) => {
     btn.addEventListener("click", () => {
       const amt = btn.getAttribute("data-gift");
       const input = document.querySelector("form[data-donate] [name=amount]");
       if (input) input.value = `$${amt}`;
       const note = document.querySelector("form[data-donate] [name=notes]");
-      if (note && !note.value.trim()) {
-        note.value = zelle
-          ? `I am sending $${amt} via Zelle to ${zelle}.`
-          : `Gift in mind: $${amt}.`;
-      }
+      if (note && !note.value.trim()) note.value = `Gift in mind: $${amt}.`;
     });
   });
 }
@@ -203,8 +138,7 @@ function applyPublicSite(data) {
   if (C.donateMode === "hide") {
     document.querySelectorAll("[data-donate]").forEach((el) => { el.hidden = true; });
   } else {
-    renderPayMethods(data);
-    wireGiftAmounts(data);
+    wireGiftAmounts();
   }
   const live = C.enrollLive || {};
   document.querySelectorAll("[data-enroll]").forEach((el) => {

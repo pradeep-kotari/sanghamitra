@@ -69,6 +69,13 @@ export async function ensureDb(env) {
       by_name TEXT NOT NULL DEFAULT '',
       updated_at TEXT NOT NULL
     )`),
+    db.prepare(`CREATE TABLE IF NOT EXISTS media_items (
+      id TEXT PRIMARY KEY,
+      store TEXT NOT NULL,
+      created_at TEXT NOT NULL,
+      doc TEXT NOT NULL
+    )`),
+    db.prepare("CREATE INDEX IF NOT EXISTS idx_media_store_created ON media_items(store, created_at)"),
     db.prepare("CREATE INDEX IF NOT EXISTS idx_queries_created ON queries(created_at)"),
     db.prepare("CREATE INDEX IF NOT EXISTS idx_query_replies_query ON query_replies(query_id, created_at)"),
     db.prepare("CREATE INDEX IF NOT EXISTS idx_decision_answers_decision ON decision_answers(decision_id, created_at)"),
@@ -87,7 +94,39 @@ export async function ensureDb(env) {
   if (seed.length) await db.batch(seed);
 
   await importKvQueries(env, db);
+  await importKvMedia(env, db);
   return db;
+}
+
+// One-time copy of the old KV photo and library lists into media_items. The KV lists are left
+// where they are, untouched, as a snapshot of the moment of the move.
+async function importKvMedia(env, db) {
+  if (!env.ADMIN) return;
+  for (const store of ["photos", "library"]) {
+    const flagKey = `kv_media_imported:${store}`;
+    const flag = await db.prepare("SELECT value FROM meta WHERE key = ?").bind(flagKey).first();
+    if (flag) continue;
+    let items = [];
+    try {
+      const raw = await env.ADMIN.get(store);
+      items = raw ? JSON.parse(raw) : [];
+    } catch {
+      items = [];
+    }
+    const stmts = [
+      db.prepare("INSERT OR REPLACE INTO meta (key, value) VALUES (?, ?)").bind(flagKey, new Date().toISOString()),
+    ];
+    const n = items.length;
+    items.forEach((item, i) => {
+      if (!item || !item.id) return;
+      // The KV list was newest first. An item with no timestamp gets one that sorts where it stood.
+      const at = String(item.createdAt || new Date(Date.UTC(2000, 0, 1) + (n - i) * 1000).toISOString());
+      stmts.push(db.prepare(
+        "INSERT OR IGNORE INTO media_items (id, store, created_at, doc) VALUES (?, ?, ?, ?)",
+      ).bind(String(item.id), store, at, JSON.stringify(item)));
+    });
+    await db.batch(stmts);
+  }
 }
 
 async function importKvQueries(env, db) {

@@ -1,18 +1,18 @@
 import { json, requireAdmin } from "../lib/auth.js";
 import { normalizeActivity } from "../lib/activities.js";
 import { isOwnerEmail, notifyBuilderOwnerUpload } from "../lib/email.js";
+import { listMedia, putMedia } from "../lib/media.js";
 
 const ALLOWED = new Set(["image/jpeg", "image/png", "image/webp", "image/gif"]);
 const MAX_BYTES = 8 * 1024 * 1024;
 
-async function listPhotos(env) {
-  const raw = await env.ADMIN.get("photos");
-  return raw ? JSON.parse(raw) : [];
-}
-
 export async function onRequestGet(context) {
-  const photos = await listPhotos(context.env);
-  return json({ photos });
+  try {
+    const photos = await listMedia(context.env, "photos");
+    return json({ photos });
+  } catch (err) {
+    return json({ error: err.message || "Could not load photos", photos: [] }, err.status || 500);
+  }
 }
 
 export async function onRequestPost(context) {
@@ -36,7 +36,6 @@ export async function onRequestPost(context) {
   await context.env.ADMIN.put(`blob:${id}`, await file.arrayBuffer(), {
     metadata: { type: file.type },
   });
-  const photos = await listPhotos(context.env);
   const item = {
     id,
     caption,
@@ -48,8 +47,7 @@ export async function onRequestPost(context) {
     uploadedBy: gate.user.email,
     createdAt: new Date().toISOString(),
   };
-  photos.unshift(item);
-  await context.env.ADMIN.put("photos", JSON.stringify(photos.slice(0, 200)));
+  await putMedia(context.env, "photos", item);
   if (isOwnerEmail(gate.user.email)) {
     context.waitUntil(
       notifyBuilderOwnerUpload(context.env, {

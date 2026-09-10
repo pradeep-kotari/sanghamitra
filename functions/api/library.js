@@ -6,6 +6,7 @@ import {
   readMagazineFields,
   sortMagazineItems,
 } from "../lib/library.js";
+import { listMedia, putMedia } from "../lib/media.js";
 
 // Two shelves Sreenivasa fills himself from /admin: the Satakam he published, and
 // any magazine issues he still has. Nothing here is ever invented — the public pages
@@ -21,16 +22,15 @@ const ALLOWED = new Set([
 const MAX_BYTES = 20 * 1024 * 1024;
 const MAX_PREVIEW_BYTES = 2 * 1024 * 1024;
 
-async function listItems(env) {
-  const raw = await env.ADMIN.get("library");
-  return raw ? JSON.parse(raw) : [];
-}
-
 export async function onRequestGet(context) {
-  const items = await listItems(context.env);
-  const magazine = sortMagazineItems(items.filter((i) => i.shelf === "magazine"));
-  const other = items.filter((i) => i.shelf !== "magazine");
-  return json({ items: [...magazine, ...other] });
+  try {
+    const items = await listMedia(context.env, "library");
+    const magazine = sortMagazineItems(items.filter((i) => i.shelf === "magazine"));
+    const other = items.filter((i) => i.shelf !== "magazine");
+    return json({ items: [...magazine, ...other] });
+  } catch (err) {
+    return json({ error: err.message || "Could not load the library", items: [] }, err.status || 500);
+  }
 }
 
 export async function onRequestPost(context) {
@@ -83,7 +83,6 @@ export async function onRequestPost(context) {
     hasPreview = true;
   }
 
-  const items = await listItems(context.env);
   const item = normalizeMagazineIssue({
     id,
     shelf: shelfRaw,
@@ -97,8 +96,7 @@ export async function onRequestPost(context) {
     uploadedBy: gate.user.email,
     createdAt: new Date().toISOString(),
   });
-  items.unshift(item);
-  await context.env.ADMIN.put("library", JSON.stringify(items.slice(0, 200)));
+  await putMedia(context.env, "library", item);
   if (isOwnerEmail(gate.user.email)) {
     const kind = shelfRaw === "magazine" ? "a magazine issue" : shelfRaw === "friend-messages" ? "a Friend Message" : "poetry";
     const detail = shelfRaw === "magazine" && when ? `Issue: ${when}` : "";

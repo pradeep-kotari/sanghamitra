@@ -40,7 +40,7 @@
     <div class="wrap">
       <p class="kicker">Your Sanghamitra page</p>
       <h1>Change the site, or leave me a note.</h1>
-      <p class="lede">Phone, sittings, photos, magazine issues, and donate details — save here and the public pages update straight away. If you need a new page, write me a note and I will build it.</p>
+      <p class="lede">Phone, sittings, photos, magazine issues, and the Give page — save here and the public pages update straight away. If you need a new page, write me a note and I will build it.</p>
       <div class="card" style="margin-top:1.4rem">
         <p class="kicker">How it works</p>
         <ol style="margin:0;padding-left:1.2em">
@@ -50,6 +50,12 @@
           <li><strong>Ask Pradeep to build something</strong> — for a new page or a bigger change. That does <em>not</em> go live until he builds it. He gets an email with your note. Or pick from <strong>What to build next</strong> below.</li>
         </ol>
         <p class="muted" style="margin:0.8rem 0 0">WhatsApp is still the fastest door for day-to-day questions.</p>
+      </div>
+      <div class="card" id="backup" style="margin-top:1.4rem">
+        <p class="kicker">Keep your own copy</p>
+        <p>One file with everything on this site: every photograph and magazine issue you uploaded, the old archive, your details and sittings, and every message from visitors. Save it on your computer and on your hard drive. If the website ever went away, all of it could be put back from this one file.</p>
+        <p class="muted" id="backup-status">Checking when the last copy was taken…</p>
+        <button class="btn btn-primary" type="button" id="backup-btn">Download everything</button>
       </div>
       <p id="db-note" class="notice hidden"></p>
 
@@ -110,27 +116,16 @@
           <label>Opening paragraph on the homepage
             <textarea name="homepageLede" maxlength="800"></textarea>
           </label>
-          <h3>Donate</h3>
-          <label>How people can give
+          <h3>Give page</h3>
+          <p class="muted">Sanghamitra takes no money, so there is no place here for a payment account. The Give page asks people what they want their gift to do, and you tell them where to give.</p>
+          <label>The form on the Give page
             <select name="donateMode">
-              <option value="ask">Show the donate form. Add Zelle / Venmo / PayPal only if you paste them below</option>
-              <option value="how">Same, and also show the extra instructions below</option>
+              <option value="ask">Show the "Tell me where" form</option>
               <option value="hide">Take Donate off the public site</option>
             </select>
           </label>
-          <div class="form-row">
-            <label>Zelle (blank = do not show a Zelle target)
-              <input name="donateZelle" maxlength="80" placeholder="Only if you accept Zelle">
-            </label>
-            <label>Venmo handle
-              <input name="donateVenmo" maxlength="80" placeholder="YourVenmoName">
-            </label>
-          </div>
-          <label>PayPal.me name or URL
-            <input name="donatePaypal" maxlength="120" placeholder="paypal.me/yourname">
-          </label>
-          <label>Extra instructions (checks, India, etc.)
-            <textarea name="donateHow" maxlength="800" placeholder="Checks to Sanghamitra, mailed to …"></textarea>
+          <label>A note shown on the Give page (optional)
+            <textarea name="donateHow" maxlength="800" placeholder="For example, the kind of organizations you point people to"></textarea>
           </label>
           <h3>The practical answers on the Learn page</h3>
           <p class="muted">Leave any of these blank and the page keeps its honest "ask him" line instead of showing an empty row.</p>
@@ -356,6 +351,7 @@
     </div>
   </main>
   <script src="../js/pdf-preview.js"></script>
+  <script src="../js/backup.js"></script>
   <script type="module">
     function esc(s) {
       return String(s || "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -1040,15 +1036,12 @@
       whatsappGroup: "",
       donateMode: "ask",
       donateHow: "",
-      donateZelle: "",
       learnAges: "",
       learnWhen: "",
       learnWhere: "",
       learnCost: "",
       learnFormat: "",
       giveExamples: [],
-      donateVenmo: "",
-      donatePaypal: "",
       enrollLive: { math: true, sat: true, telugu: true },
       eventPatches: {},
       extraEvents: [],
@@ -1069,7 +1062,6 @@
       f.homepageLede.value = o.homepageLede || (b.copy && b.copy.homepageLede) || "";
       f.donateMode.value = o.donateMode || "ask";
       f.donateHow.value = o.donateHow || "";
-      f.donateZelle.value = o.donateZelle || "";
       f.learnAges.value = o.learnAges || "";
       f.learnWhen.value = o.learnWhen || "";
       f.learnWhere.value = o.learnWhere || "";
@@ -1079,8 +1071,6 @@
       f.giveExample1.value = ex[0] || "";
       f.giveExample2.value = ex[1] || "";
       f.giveExample3.value = ex[2] || "";
-      f.donateVenmo.value = o.donateVenmo || "";
-      f.donatePaypal.value = o.donatePaypal || "";
       const live = o.enrollLive || {};
       f.enrollMath.checked = live.math !== false;
       f.enrollSat.checked = live.sat !== false;
@@ -1245,7 +1235,6 @@
       siteOverlay.homepageLede = f.homepageLede.value.trim();
       siteOverlay.donateMode = f.donateMode.value;
       siteOverlay.donateHow = f.donateHow.value.trim();
-      siteOverlay.donateZelle = f.donateZelle.value.trim();
       siteOverlay.learnAges = f.learnAges.value.trim();
       siteOverlay.learnWhen = f.learnWhen.value.trim();
       siteOverlay.learnWhere = f.learnWhere.value.trim();
@@ -1253,8 +1242,6 @@
       siteOverlay.learnFormat = f.learnFormat.value.trim();
       siteOverlay.giveExamples = [f.giveExample1.value, f.giveExample2.value, f.giveExample3.value]
         .map((v) => v.trim()).filter(Boolean);
-      siteOverlay.donateVenmo = f.donateVenmo.value.trim();
-      siteOverlay.donatePaypal = f.donatePaypal.value.trim();
       siteOverlay.enrollLive = {
         math: f.enrollMath.checked,
         sat: f.enrollSat.checked,
@@ -1362,6 +1349,57 @@
       loadAnswers();
     };
 
+    // --- Keep your own copy: one zip of everything, built in this browser (site/js/backup.js) ---
+    function describeBackup(rec) {
+      if (!rec || !rec.at) return "No full copy has been taken yet. Take one now and keep it on your computer.";
+      const at = new Date(rec.at);
+      const days = Math.floor((Date.now() - at.getTime()) / 86400000);
+      const ago = days <= 0 ? "today" : days === 1 ? "yesterday" : `${days} days ago`;
+      const when = at.toLocaleDateString("en", { day: "numeric", month: "long", year: "numeric" });
+      const nudge = days > 30 ? " Time for a fresh one." : "";
+      return `Last full copy: ${when} (${ago})${rec.by ? `, by ${rec.by}` : ""}.${nudge}`;
+    }
+
+    async function loadBackupStatus() {
+      const line = document.getElementById("backup-status");
+      try {
+        const res = await fetch("/api/export?status=1", { cache: "no-store" });
+        const data = await res.json().catch(() => ({}));
+        line.textContent = res.ok ? describeBackup(data.lastBackup) : "Sign in again to see when the last copy was taken.";
+      } catch {
+        line.textContent = "Could not check when the last copy was taken.";
+      }
+    }
+
+    document.getElementById("backup-btn").onclick = async (ev) => {
+      const btn = ev.currentTarget;
+      if (!window.SMBackup) return showNote("The download tool did not load. Reload the page and try again.", false);
+      const label = btn.textContent;
+      btn.disabled = true;
+      try {
+        const out = await SMBackup.collect(({ done, total }) => { btn.textContent = `Collecting ${done} of ${total}…`; });
+        btn.textContent = "Saving…";
+        const url = URL.createObjectURL(new Blob(out.parts, { type: "application/zip" }));
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = out.name;
+        document.body.append(a);
+        a.click();
+        a.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 60000);
+        await fetch("/api/export", { method: "POST" });
+        await loadBackupStatus();
+        const gaps = out.missing.length ? ` ${out.missing.length} could not be copied; the README inside lists them.` : "";
+        showNote(`Saved ${out.name}, ${out.counts.files} files.${gaps}`, !out.missing.length);
+      } catch (err) {
+        showNote(err.message || "Could not make the copy. Try again.", false);
+      } finally {
+        btn.disabled = false;
+        btn.textContent = label;
+      }
+    };
+
+    loadBackupStatus();
     loadSiteEditor();
     loadBuildPicks();
     loadAnswers();

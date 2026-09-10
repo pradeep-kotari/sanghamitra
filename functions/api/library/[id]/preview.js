@@ -1,4 +1,5 @@
 import { json, requireAdmin } from "../../../lib/auth.js";
+import { getMedia, putMedia } from "../../../lib/media.js";
 
 const MAX_PREVIEW_BYTES = 2 * 1024 * 1024;
 
@@ -7,9 +8,7 @@ export async function onRequestPost(context) {
   if (gate.response) return gate.response;
 
   const id = context.params.id;
-  const raw = await context.env.ADMIN.get("library");
-  const items = raw ? JSON.parse(raw) : [];
-  const item = items.find((i) => i.id === id);
+  const item = await getMedia(context.env, "library", id);
   if (!item) return json({ error: "Not found" }, 404);
 
   const form = await context.request.formData();
@@ -22,6 +21,6 @@ export async function onRequestPost(context) {
     metadata: { type: preview.type },
   });
   item.hasPreview = true;
-  await context.env.ADMIN.put("library", JSON.stringify(items));
+  await putMedia(context.env, "library", item);
   return json({ ok: true, item });
 }

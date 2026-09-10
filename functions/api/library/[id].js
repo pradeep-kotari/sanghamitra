@@ -1,5 +1,6 @@
 import { json, requireAdmin } from "../../lib/auth.js";
 import { formatIssueWhen, normalizeMagazineIssue } from "../../lib/library.js";
+import { deleteMedia, getMedia, putMedia } from "../../lib/media.js";
 
 export async function onRequestPost(context) {
   const gate = await requireAdmin(context);
@@ -11,9 +12,7 @@ export async function onRequestPost(context) {
   } catch {
     return json({ error: "Send JSON" }, 400);
   }
-  const raw = await context.env.ADMIN.get("library");
-  const items = raw ? JSON.parse(raw) : [];
-  const item = items.find((i) => i.id === id);
+  const item = await getMedia(context.env, "library", id);
   if (!item) return json({ error: "Not found" }, 404);
   if (body.title != null) item.title = String(body.title).trim().slice(0, 160);
   if (body.note != null) item.note = String(body.note).trim().slice(0, 400);
@@ -32,7 +31,7 @@ export async function onRequestPost(context) {
     item.when = String(body.when).trim().slice(0, 60);
   }
 
-  await context.env.ADMIN.put("library", JSON.stringify(items));
+  await putMedia(context.env, "library", item);
   return json({ ok: true, item: normalizeMagazineIssue(item) });
 }
 
@@ -40,9 +39,7 @@ export async function onRequestDelete(context) {
   const gate = await requireAdmin(context);
   if (gate.response) return gate.response;
   const id = context.params.id;
-  const raw = await context.env.ADMIN.get("library");
-  const items = raw ? JSON.parse(raw) : [];
-  await context.env.ADMIN.put("library", JSON.stringify(items.filter((i) => i.id !== id)));
+  await deleteMedia(context.env, "library", id);
   await context.env.ADMIN.delete(`blob:${id}`);
   await context.env.ADMIN.delete(`preview:${id}`);
   return json({ ok: true });
