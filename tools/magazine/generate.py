@@ -19,6 +19,37 @@ issues = data["issues"]; MASTHEAD = data["masthead"]
 MONTH = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 esc = lambda s: H.escape(str(s or ""), quote=True)
 
+# Every <img> gets width and height. Not only to stop the page jumping as pictures
+# arrive: an image sized by CSS on one axis only (the column headings are
+# height:2.3rem, width:auto) has a zero-wide box until it loads, and a zero-area
+# element never intersects the viewport, so a lazy image in that slot waits forever
+# for a load its own size prevents. Every Telugu column heading and byline on these
+# pages was invisible from the day they were generated until 2026-09-10 for exactly
+# that reason. Read straight from the file headers so there is no new dependency.
+def img_size(path):
+    """(width, height) of a JPEG, PNG or GIF, or None if it cannot be read."""
+    try:
+        with open(path, "rb") as fh: head = fh.read(26); fh.seek(0); blob = fh.read()
+    except OSError: return None
+    if blob[:8] == b"\x89PNG\r\n\x1a\n":
+        return (int.from_bytes(blob[16:20], "big"), int.from_bytes(blob[20:24], "big"))
+    if blob[:6] in (b"GIF87a", b"GIF89a"):
+        return (int.from_bytes(blob[6:8], "little"), int.from_bytes(blob[8:10], "little"))
+    if blob[:2] == b"\xff\xd8":
+        i = 2
+        while i < len(blob) - 9:
+            if blob[i] != 0xFF: i += 1; continue
+            marker = blob[i + 1]; seg = int.from_bytes(blob[i + 2:i + 4], "big")
+            if 0xC0 <= marker <= 0xCF and marker not in (0xC4, 0xC8, 0xCC):
+                return (int.from_bytes(blob[i + 7:i + 9], "big"), int.from_bytes(blob[i + 5:i + 7], "big"))
+            i += 2 + seg
+    return None
+
+def size_attrs(site_relative_src):
+    """ width="W" height="H" for a src written the way the pages write it, or "". """
+    wh = img_size(os.path.join(SITE, site_relative_src.lstrip("/")))
+    return f' width="{wh[0]}" height="{wh[1]}"' if wh else ""
+
 def not_online(n, noun="piece", where="from this issue"):
     """The placeholder that stands in for pieces we cannot show yet. They stay in
     magazine.json; only the dead rows go. Restored by fill.py from Sreenivasa's backup."""
@@ -154,7 +185,7 @@ for tf in sorted(glob.glob(os.path.join(TE, "*.json"))):
     if not iss: continue
     it = next((x for x in iss["items"] if x["file"] == rec["file"]), None)
     name = f"read-{rec['id']}.html"; t = rec.get("titleEn") or col_title(rec["column"]); label = issue_label(iss)
-    pages_html = "".join(f'<a class="page-image" href="{esc(pg)}" target="_blank" rel="noopener"><img src="{esc(pg)}" alt="The original printed page" loading="lazy"></a>' for pg in rec["pages"])
+    pages_html = "".join(f'<a class="page-image" href="{esc(pg)}" target="_blank" rel="noopener"><img src="{esc(pg)}"{size_attrs(pg)} alt="The original printed page" loading="lazy"></a>' for pg in rec["pages"])
     body = f"""<main class="section">
     <div class="wrap">
       <p class="kicker"><a href="magazine/issue-{iss['id']}.html">{esc(label)}</a> · <a href="magazine/column-{esc(rec['column'])}.html">{esc(t)}</a></p>
@@ -194,7 +225,7 @@ for idx, i in enumerate(issues):
     avail = sum(1 for x in i["items"] if x["available"])
     newer = issues[idx - 1] if idx > 0 else None; older = issues[idx + 1] if idx + 1 < len(issues) else None
     c = cover_of(i)
-    cover = (f'<a class="library-cover" href="{esc(c["src"])}"><img src="{esc(c["src"])}" alt="{esc(c["note"] or ("Cover of the " + label + " issue"))}" loading="lazy"></a>'
+    cover = (f'<a class="library-cover" href="{esc(c["src"])}"><img src="{esc(c["src"])}"{size_attrs(c["src"])} alt="{esc(c["note"] or ("Cover of the " + label + " issue"))}" loading="lazy"></a>'
              f'<p class="muted cover-note">{esc(c["note"])}</p>') if c else ""
     if i.get("nameOnly"):
         state = "<p class=\"notice\">Only the name of this issue is known. If you have a copy, Sreenivasa would like to hear from you.</p>"
@@ -249,13 +280,14 @@ for key, rows in cols.items():
         lis.append(f'<li><span class="lang-mark" title="{lang}">{lang[:2]}</span> {link}{(" <span class=\"muted\">· " + esc(it["contributor"]) + "</span>") if it.get("contributor") else ""}</li>')
     n_av = sum(1 for _, it in rows if it["available"])
     heads = [it.get("heading_img") for _, it in rows if it.get("heading_img") and os.path.exists(os.path.join(MAG, "img", it["heading_img"]))]
-    heading = f'<img class="column-heading" src="magazine/img/{esc(heads[0])}" alt="{esc(t)}, the heading as he set it in the magazine" loading="lazy">' if heads else ""
+    heading = f'<img class="column-heading" src="magazine/img/{esc(heads[0])}"{size_attrs("magazine/img/" + heads[0])} alt="{esc(t)}, the heading as he set it in the magazine" loading="lazy">' if heads else ""
     # The writer's name as he set it in Telugu. On the Telugu pages a byline was an image, because the
     # font of the day could not render it; those little name graphics survive and belong beside the name.
     who_name = next((it.get("contributor") for _, it in rows if it.get("contributor")), None)
     byline = ""
     if who_name and who_name in PEOPLE and os.path.exists(os.path.join(MAG, "img", "people", PEOPLE[who_name])):
-        byline = (f'<p class="byline"><img src="magazine/img/people/{esc(PEOPLE[who_name])}" '
+        byline = (f'<p class="byline"><img src="magazine/img/people/{esc(PEOPLE[who_name])}"'
+                  f'{size_attrs("magazine/img/people/" + PEOPLE[who_name])} '
                   f'alt="{esc(who_name)}, his name as it was set in Telugu" loading="lazy">'
                   f'<span>{esc(who_name)}</span></p>')
     body = f"""<main class="section">
@@ -312,7 +344,7 @@ for y in sorted(years, reverse=True):
     for i in years[y]:
         avail = sum(1 for x in i["items"] if x["available"]); label = issue_label(i)
         c = cover_of(i)
-        cov = f'<img src="{esc(c["src"])}" alt="" loading="lazy">' if c else f'<span class="cover-word" lang="te" aria-hidden="true">సంఘమిత్ర</span>'
+        cov = f'<img src="{esc(c["src"])}"{size_attrs(c["src"])} alt="" loading="lazy">' if c else f'<span class="cover-word" lang="te" aria-hidden="true">సంఘమిత్ర</span>'
         cards.append(f"""<a class="issue-card{'' if avail else ' issue-contents-only'}" href="magazine/issue-{i['id']}.html">
           <span class="issue-cover">{cov}</span>
           <strong>{esc(label)}</strong>
@@ -329,8 +361,8 @@ main_new = f"""<main class="section">
     <div class="wrap">
       <p class="kicker">2004–2016 · సంఘమిత్ర</p>
       <div class="old-masthead" aria-label="The magazine’s original masthead">
-        <img src="magazine/img/samghamitra_title.jpg" alt="సంఘమిత్ర, the magazine’s title as he set it" loading="lazy">
-        <img src="magazine/img/samghamitra_motto.jpg" alt="విజ్ఞాన, వినోద, వికాస త్రైమాసిక పత్రిక — a quarterly for knowledge, entertainment and progress" loading="lazy">
+        <img src="magazine/img/samghamitra_title.jpg"{size_attrs("magazine/img/samghamitra_title.jpg")} alt="సంఘమిత్ర, the magazine’s title as he set it" loading="lazy">
+        <img src="magazine/img/samghamitra_motto.jpg"{size_attrs("magazine/img/samghamitra_motto.jpg")} alt="విజ్ఞాన, వినోద, వికాస త్రైమాసిక పత్రిక — a quarterly for knowledge, entertainment and progress" loading="lazy">
       </div>
       <h1>Sanghamitra’s online quarterly.</h1>
       <p class="lede">{esc(MASTHEAD).capitalize()} — that was the line on every masthead. It ran from October 2004 to April 2016, at first with Telugu and English side by side, then from October 2007 as separate Telugu and English editions, because a joke in Telugu does not survive translation.</p>

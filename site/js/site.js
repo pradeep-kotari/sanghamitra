@@ -779,9 +779,17 @@ async function fillPageGallery() {
   const wanted = new Set(strip.getAttribute("data-gallery-activities").split(/\s+/).filter(Boolean));
   const photos = (await loadPhotosOnce()).filter((p) => p.activity && wanted.has(p.activity));
   if (!photos.length) return;
+  // No loading="lazy" here on purpose. A strip image is sized by CSS as
+  // height:13rem / width:auto, so before it loads its box is zero pixels wide —
+  // and a zero-area element never intersects the viewport, so a lazy image in
+  // this slot would wait forever for a load that its own zero size prevents.
+  // Every column heading and Telugu byline on the magazine pages was invisible
+  // for exactly this reason until 2026-09-10; the static ones now carry width
+  // and height attributes, and these, whose size we cannot know in advance,
+  // simply load.
   strip.innerHTML = photos.map((p) => `
     <figure>
-      <img src="/media/${esc(p.id)}" alt="${esc(p.caption || "Sanghamitra")}" loading="lazy">
+      <img src="/media/${esc(p.id)}" alt="${esc(p.caption || "Sanghamitra")}">
       ${p.caption ? `<figcaption>${esc(p.caption)}</figcaption>` : ""}
     </figure>`).join("");
   const empty = document.querySelector("[data-gallery-empty]");

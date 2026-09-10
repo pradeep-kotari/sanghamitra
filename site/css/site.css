@@ -456,6 +456,12 @@ label.build-pick span { flex: 1; }
 .door:hover { transform: translateY(-2px); }
 .door span { display: block; color: var(--saffron-deep); font-size: 0.85rem; margin-bottom: 0.35rem; }
 .door h3 { margin: 0 0 0.4rem; }
+/* A photograph at the head of a door card, edge to edge like the homepage work
+   cards. Only doors that carry a real photograph take this class, so a door
+   without one still looks finished rather than broken. */
+.door.has-photo { padding: 0 0 1.25rem; overflow: hidden; }
+.door.has-photo > .topic-thumb { margin-bottom: 0.9rem; }
+.door.has-photo > :not(.topic-thumb) { padding-inline: 1.25rem; }
 
 .split {
   display: grid;
@@ -1022,6 +1028,15 @@ html[lang="te"] .brand strong {
   color: var(--ink-soft);
 }
 
+/* Who runs Sanghamitra, where, and that it takes no money — the sentence a stranger needs. */
+.who {
+  margin: 0 0 0.9rem;
+  max-width: 40rem;
+  font-size: 1.03rem;
+  line-height: 1.65;
+  color: var(--ink-soft);
+}
+
 /* Scrolling photographs below the main screen, like his old site: one row,
    swipe sideways. Captions sit under each frame and wrap freely (Telugu runs
    longer, nothing here has a fixed height). */
@@ -1266,8 +1281,12 @@ a.cal-day.has-event:hover { background: var(--paper-2); border-color: var(--line
 .drill-table td.is-right input { border-color: var(--ok); background: #eef7ef; }
 .drill-table td.is-wrong input { border-color: var(--saffron-deep); background: #fbeee6; }
 .drill-result { min-height: 1.4em; color: var(--ink-soft); }
-/* His hand-made Telugu column headings from the magazine years, shown above the column title. */
-.column-heading { display: block; max-height: 3.2rem; width: auto; max-width: 100%; margin: 0.2rem 0 0.6rem; }
+/* His hand-made Telugu column headings from the magazine years, shown above the column title.
+   The height is explicit, not a max-height: with width:auto and height:auto these images
+   laid out at zero and painted nothing at all — every column heading on the site was
+   invisible until 2026-09-10. Each of the 21 headings is 35-37px tall, so one fixed
+   height fits the whole family at its natural size. */
+.column-heading { display: block; height: 2.3rem; width: auto; max-width: 100%; margin: 0.2rem 0 0.6rem; }
 
 /* ── Homepage: one button treatment ─────────────────────────────────────────
    Founder-directed 2026-09-09: on the front page every button reads the same
