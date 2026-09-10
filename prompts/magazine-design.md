@@ -206,11 +206,16 @@ Sreenivas Garu. "Lost" means the Internet Archive never captured it, so only his
 | Issue covers | 5 | issue pages and the front-door cards | **In** |
 | Hand-made Telugu column headings | 24 captured of 42 referenced | column pages, above the title, on 31 of 52 columns (added 9 Sep) | **In**; 18 headings **Lost**, never archived |
 | Masthead and motto graphics | 2 | archive front door | **In** |
-| Contributor portraits | 12 | on disk in `research/old-site/files/images/` | **Held** — names appear, faces wait for his yes |
+| Other old page graphics | 6 | on disk only (`title`, `motto`, `event_title`, `bk_poster`, `bk_eng_poster`, `new_grows.gif`) | Retired by design: the masthead and motto are **In** from `samghamitra_title.jpg` and `samghamitra_motto.jpg`; the rest were page decoration |
+| Contents-list and title art | 2 | `site/magazine/img/indexlist.jpg`, `new_title.jpg`: served, linked from no page | Kept on purpose: `tools/magazine/covers.py` draws both onto the generated issue cards, and silently draws nothing if they are gone. Do not delete |
+| Contributor portraits | 5 | column pages, beside the byline (`magazine/img/people/`) | **In**. Until 10 Sep this row said "12, held": those twelve files are the name and heading art in the next three rows, not photographs |
+| Telugu contributor names drawn as images | 5 | on disk only (`ramarao`, `nityanand`, `ganapati_master`, `mlgb`, `priyaj`) | **Held**: these five names are on no new page in any form. Type each onto its issue page as text once he confirms the spelling |
+| Telugu heading art: dedication, "your suggestions", volume and issue numbers | 5 | on disk only (`ankitam`, `salaha`, `samchika1`, `samputi3`, `sanchika4`) | Retired by design: old contents-page decoration. The volume and issue numbers they show are not on the new issue pages; add them as text if he wants the numbering back |
+| English bylines drawn as images | 2 | on disk only (`srini_eng`, `sudhakar_eng`) | Retired: both names are typed on the column pages |
 | Homepage slideshow photographs, with captions | 19 | homepage crossfade, four topic cards, Learn and Events galleries, Community Service and Workshops galleries | **In**; one caption neutralised, original **Held** |
 | Homepage versions 2006–2025 | 7 | `research/old-site/files-versions/` — source, not pages | Preserved, not republished by design |
 | The three doors: Telugu Magazine · English Magazine · Events | 3 | front door: `magazine/telugu.html`, `magazine/english.html` (added 9 Sep), Events is its own page | **In** |
-| Event flyers | 4 of 5 | Events page, "Invitations that survived" | **In**; 2007 flyer **Lost** |
+| Event flyers | 4 of 5 | served at `magazine/events/`, linked from no page | **Hidden by decision**: the 7 Sep meeting (43:33) keeps past invitations in storage, not on show; 2007 flyer **Lost** |
 | Cube-root and squaring drills | 2 | Learn `#drills`, rebuilt without a server | **In** |
 | MathQuiz: rules, 2014 and 2016 rounds, winners | 1 rules page, 2 rounds, 1 scoreboard | on disk; rules text known (first five correct answers score 5–1; 25 points wins a cycle; new cycle from 18 April 2015) | **Held** — the scoreboard names players; reviving the quiz is his call |
 | Crossword pages (`src/crossword*.html`) | 2 | stubs pointing at images the archive never kept | **Lost** (the crossword PDFs in the issues are **In**) |
@@ -221,6 +226,13 @@ Sreenivas Garu. "Lost" means the Internet Archive never captured it, so only his
 | Favicon, `Image001.jpg`, `robots.txt`, `sitemap.xml` | 4 | never captured; the new site has its own | **Lost**, nothing of substance |
 
 Anything not in this table is a gap in the ledger, not a decision. Add it.
+
+### Other sources, not the old site
+
+| Source | Count | Where it lives in the new site | Status |
+|---|---|---|---|
+| His YouTube channel: regular uploads and live-streamed sittings | 69 listed on 10 Sep | Watch, "Every sitting on the channel", written by `tools/channel.py` | **In**; re-run the tool after he uploads |
+| His emailed outline (`Sanghamitra_Outline.docx`, 8 Sep; the copy in Downloads) | 4 photographs, 2 Friend Messages | on disk only | **Held**: the 2018 club photograph shows children (his yes); the stage photograph needs his caption; the two Friend Messages need his yes and their numbers |
 
 ---
 
