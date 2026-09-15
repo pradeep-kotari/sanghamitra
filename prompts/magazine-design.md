@@ -232,7 +232,7 @@ Anything not in this table is a gap in the ledger, not a decision. Add it.
 | Source | Count | Where it lives in the new site | Status |
 |---|---|---|---|
 | His YouTube channel: regular uploads and live-streamed sittings | 69 listed on 10 Sep | Watch, "Every sitting on the channel", written by `tools/channel.py` | **In**; re-run the tool after he uploads |
-| His emailed outline (`Sanghamitra_Outline.docx`, 8 Sep; the copy in Downloads) | 4 photographs, 2 Friend Messages | 2018 club photo on Vedic Mathematics; Zoom sitting on the Knowledge Sharing card; both Friend Messages on the Literature shelf | **In** (10 Sep, Pradeep's yes). Stage photograph **Held** for his caption; his portrait **Held** for Pradeep's word |
+| His emailed outline (`Sanghamitra_Outline.docx`, 8 Sep; the copy in Downloads) | 4 photographs, 2 Friend Messages | 2018 club photo on Vedic Mathematics; Zoom sitting on the Knowledge Sharing card; both Friend Messages on the Literature shelf | **In** (10 Sep, Pradeep's yes). Stage photograph **In** (15 Sep) on the Community Service page and the homepage Community Service card, where his outline put it, captioned from his WhatsApp answer of 12 Sep; he gave no place or date, so none is printed. His portrait **Held** for Pradeep's word |
 
 ---
 
@@ -404,3 +404,22 @@ from both. Learn is now what its name says: tutoring, SAT and ACT, Telugu, and t
 navigation on all sixteen pages, and the sitemap point at the new page.
 
 All seven homepage cards now lead to a page of their own.
+
+
+## His answers to the three questions, 12 September (WhatsApp)
+
+1. **The stage photograph.** Left, with the microphone: Sreenivasa. Middle: Sri Kesana RamaPrasadrao garu,
+   a poet, singer and writer who admires his work. Right: Sri Polineni Subbarao garu, founder of the Bright
+   Life Foundation, to which the amount collected during the Srinivasa Ramanujan Mathematricks Club summer
+   program was given. **In**: `community-service.html#bright-life` and the homepage card. Not asked yet:
+   where and when it was taken, and which summer. The caption says neither rather than guess.
+2. **Sri Venkatesa Satakam is his Satakam**, written on Lord Sri Venkateswara. **In**: a card on the Works of
+   Literature page linking the 9 August 2025 book release recording, and the title named on About.
+3. **The typed foreword.** He said only that it is part of the magazine's editorial page; he did not read or
+   approve it. The column keeps his own English title, *Foreword* (his contents pages used it), and its
+   description now says "the editorial page". **Still open**: his read of the one typed page. The other 54
+   Telugu articles wait on it, as before. Take it to the next sitting rather than another email.
+
+Also from the same thread: Manabadi classes started the weekend of 12 September "in our 2 centers"; he will
+upload pictures to the Google Drive folder and wants to sit again next week "to work a little on organizing"
+the content. He did not answer about the backed-up files.

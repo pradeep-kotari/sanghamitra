@@ -67,7 +67,7 @@ COLUMNS = {
   "jokes":         ("Smile if you wish", "The jokes. He kept these in Telugu because, in his words, a joke translated does not sound good."),
   "cover_story":   ("Cover Story", ""),
   "wow":           ("Words of Wisdom", ""),
-  "mundumaata":    ("Foreword", "The editor's opening word — 'A word with you' on the Telugu pages."),
+  "mundumaata":    ("Foreword", "The editorial page of each issue — 'A word with you' on the Telugu pages."),
   "tolipaluku":    ("A word with you", "The opening word, in the first issue."),
   "tudipaluku":    ("Final word", "The editor's closing word."),
   "jaabu-javaabu": ("Your letters, our responses", "The readers' page."),
