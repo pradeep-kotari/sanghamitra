@@ -180,6 +180,87 @@
       "flyer": "announcements/2026-summer/flyer.jpg",
       "moreHref": "learn.html#enroll",
       "moreLabel": "Ask about the next summer"
+    },
+    {
+      "id": "food-donation-visakhapatnam",
+      "title": "Food Donation with the Pranic Healers Association",
+      "kind": "service",
+      "kicker": "Community service",
+      "blurb": "Since 2018, meals have been cooked and served through the Pranic Healers Association of Visakhapatnam: at the shelters for the homeless in TSR Complex and Bheemnagar, at Hidden Sprouts Special School in MVP Colony, and in a children's dining hall. Many were given on a birthday, a wedding anniversary or a festival. In the 2020 lockdown the food went out in packets. The most recent dinner at the TSR Complex shelters was on 21 June 2025.",
+      "startsAt": "2025-06-21T19:00:00+05:30",
+      "timezoneLabel": "Visakhapatnam, India · 2018 to 2025",
+      "whenLabel": "Visakhapatnam, India · 2018 to 2025",
+      "durationMinutes": 120,
+      "moreHref": "community-service.html",
+      "moreLabel": "More community service",
+      "photos": [
+        {
+          "src": "img/food-donation/2018-08-serving.jpg",
+          "caption": "August 2018. Serving from steel pots along the veranda.",
+          "width": 1280,
+          "height": 960
+        },
+        {
+          "src": "img/food-donation/2019-05-shelter-night-meal.jpg",
+          "caption": "May 2019. The night meal at the TSR Complex shelter for the homeless.",
+          "width": 1280,
+          "height": 960
+        },
+        {
+          "src": "img/food-donation/2019-06-courtyard.jpg",
+          "caption": "June 2019. A meal served in an open courtyard.",
+          "width": 1280,
+          "height": 960
+        },
+        {
+          "src": "img/food-donation/2019-06-hidden-sprouts.jpg",
+          "caption": "June 2019. A meal at Hidden Sprouts Special School, MVP Colony.",
+          "width": 1152,
+          "height": 864
+        },
+        {
+          "src": "img/food-donation/2019-06-dining-hall.jpg",
+          "caption": "June 2019. Lunch in a children's dining hall.",
+          "width": 1280,
+          "height": 960
+        },
+        {
+          "src": "img/food-donation/2019-10-ready-to-serve.jpg",
+          "caption": "October 2019. The food cooked and ready to serve.",
+          "width": 1280,
+          "height": 960
+        },
+        {
+          "src": "img/food-donation/2020-01-lunch.jpg",
+          "caption": "January 2020. Lunch served at the table.",
+          "width": 1280,
+          "height": 960
+        },
+        {
+          "src": "img/food-donation/2020-04-lockdown-packets.jpg",
+          "caption": "April 2020, in the lockdown. Food handed out in packets.",
+          "width": 1280,
+          "height": 960
+        },
+        {
+          "src": "img/food-donation/2020-05-shelter-lunch.jpg",
+          "caption": "May 2020. Lunch at the shelter, served in masks.",
+          "width": 774,
+          "height": 580
+        },
+        {
+          "src": "img/food-donation/2020-09-ganapati-puja-lunch.jpg",
+          "caption": "September 2020. For Ganapati Puja, lunch for 90 people at the TSR Complex and Bheemnagar shelters.",
+          "width": 1280,
+          "height": 960
+        },
+        {
+          "src": "img/food-donation/2021-05-serving-line.jpg",
+          "caption": "May 2021. The serving line.",
+          "width": 960,
+          "height": 720
+        }
+      ]
     }
   ]
 }

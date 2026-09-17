@@ -296,6 +296,14 @@ function eventCard(event, { featured = false } = {}) {
   }
   const actionBar = actions.length ? `<div class="actions">${actions.join("")}</div>` : "";
   const convert = upcoming && event.kind !== "learn" ? rsvpAndShare(event) : "";
+  // Photographs written into site.json with the event (a past drive, a sitting).
+  const photos = Array.isArray(event.photos) && event.photos.length
+    ? `<div class="archive-gallery">${event.photos.map((p) => `
+        <figure>
+          <a href="${esc(p.src)}"><img src="${esc(p.src)}" alt="${esc(p.caption || event.title)}" loading="lazy"${p.width && p.height ? ` width="${Number(p.width)}" height="${Number(p.height)}"` : ""}></a>
+          ${p.caption ? `<figcaption>${esc(p.caption)}</figcaption>` : ""}
+        </figure>`).join("")}</div>`
+    : "";
   return `
     <article class="${cls}" id="${esc(event.id)}" data-event-title="${esc(event.title)}">
       <div>
@@ -308,6 +316,7 @@ function eventCard(event, { featured = false } = {}) {
         ${event.blurbTe ? `<p class="te">${esc(event.blurbTe)}</p>` : ""}
         ${event.hostTe ? `<p>— ${esc(event.hostTe)}</p>` : ""}
         ${flyer}
+        ${photos}
         ${actionBar}
         ${convert}
       </div>
