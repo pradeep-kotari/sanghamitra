@@ -16,6 +16,22 @@ Public site for Sanghamitra (సంఘమిత్ర) — community sessions, H
 - Issue pictures: `.venv-whisper/bin/python tools/magazine/covers.py` then `tools/magazine/generate.py`
   — every issue card gets a picture from that issue (its cover, a page of it, or its own column
   headings). Re-run both after recovering more of an issue: a real page beats a contents card.
+- Whole issues from Sreeni's backup (`July2009.pdf`, `July2009_eng.pdf`, …):
+  `.venv-whisper/bin/python tools/magazine/ingest_issues.py <folder>`, then `covers.py`, then `generate.py`.
+  Keep the originals under `research/old-site/files*/` (not in git): **every issue prints the editor's home
+  address, landline and email on its cover and again on its "In this issue" page, as pictures, and again in
+  the text of the pages that ask readers to write in.** The tool blanks all of it (text and pixels), checks
+  each page against the original afterwards, and refuses a file it cannot clean. Never copy a PDF from the
+  backup straight into `site/`. `tools/magazine/redact.py` holds the one list of what is private; a new
+  address goes there, and covers.py and generate.py pick it up.
+- Getting files out of his Google Drive (the connector's `download_file_content`): each call saves the file as base64
+  JSON in the session's tool-results folder and reports "exceeds maximum allowed tokens ... saved to <path>"; that
+  is success. Decode by the `id` and `title` inside the JSON. **Make the calls one at a time:** two that finish in
+  the same millisecond are saved to the same file name and one is silently lost (it happened twice, once per
+  batch). Check the bytes against the size Drive listed before trusting a file.
+- Photographs from his collection: `.venv-whisper/bin/python tools/ingest_photos.py <manifest.json>` (format in
+  the tool's header). It sizes them, drops the camera data, adds them to the gallery and to
+  `site/data/photos-archive.json`, which the admin "download everything" backup reads.
 
 Deploy the public folder only:
 

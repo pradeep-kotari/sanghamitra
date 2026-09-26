@@ -1,0 +1,93 @@
+{
+  "source": "old sanghamitra.org homepage slideshow, 2013–2025, recovered from the Internet Archive (captions are his own); and photographs Sreenivasa sent from his own collection in September 2026 (where he had written a caption it is used, otherwise the caption says only what and when, from the file names)",
+  "from": "drive-2026-09",
+  "originals": "research/old-site/files-drive-2026-09/photos",
+  "groups": [
+    {
+      "after": "img/archive/medhavadhanam2009_participants.jpg",
+      "photos": [
+        {"src": "Medhavadhanam2009 009.JPG", "out": "medhavadhanam2009_009", "year": 2009, "tags": ["vedic", "events"],
+         "caption": "Medhavadhanam 2009 · a young participant with the microphone",
+         "alt": "A girl speaking into a microphone in front of the Srinivasa Ramanujan Mathematricks Club banner"},
+        {"src": "Medhavadhanam2009 011.JPG", "out": "medhavadhanam2009_011", "year": 2009, "tags": ["vedic", "events"],
+         "caption": "Medhavadhanam 2009 · on stage",
+         "alt": "A presenter in a cream kurta speaking into a microphone in front of the club banner"},
+        {"src": "Medhavadhanam2009 016.JPG", "out": "medhavadhanam2009_016", "year": 2009, "tags": ["vedic", "events"],
+         "caption": "Medhavadhanam 2009 · in conversation on stage",
+         "alt": "Two speakers seated with microphones on stage, one in a cream kurta and one in an orange and white saree, under the club banner"},
+        {"src": "Medhavadhanam2009 025.JPG", "out": "medhavadhanam2009_025", "year": 2009, "tags": ["vedic", "events"],
+         "caption": "Medhavadhanam 2009 · children seated in a circle",
+         "alt": "Children seated in a circle on the hall floor in front of the club banner while one stands to speak"},
+        {"src": "Medhavadhanam2009 038.JPG", "out": "medhavadhanam2009_038", "year": 2009, "tags": ["vedic", "events"],
+         "caption": "Medhavadhanam 2009 · at the whiteboard",
+         "alt": "A girl at the whiteboard while children sit in a circle and a presenter looks on"},
+        {"src": "Medhavadhanam2009 042.JPG", "out": "medhavadhanam2009_042", "year": 2009, "tags": ["vedic", "events"],
+         "caption": "Medhavadhanam 2009 · children in front of the banner",
+         "alt": "Children in traditional dress seated in front of the club banner, a small boy speaking into a microphone"},
+        {"src": "Medhavadhanam2009 044.JPG", "out": "medhavadhanam2009_044", "year": 2009, "tags": ["vedic", "events"],
+         "caption": "Medhavadhanam 2009 · the participants together",
+         "alt": "A row of children and a presenter in a cream kurta standing together in front of the projector screen and whiteboard"},
+        {"src": "Medhavadhanam2009 022.JPG", "out": "medhavadhanam2009_022", "year": 2009, "tags": ["vedic", "events"],
+         "caption": "Medhavadhanam 2009 · the hall",
+         "alt": "The audience seated on orange chairs facing the projector screen and the club banner"},
+        {"src": "Medhavadhanam2009 024.JPG", "out": "medhavadhanam2009_024", "year": 2009, "tags": ["vedic", "events"],
+         "caption": "Medhavadhanam 2009 · the stage from the back of the hall",
+         "alt": "Two speakers on stage at the far end of the hall, a video camera in the foreground"},
+        {"src": "Medhavadhanam2009 041.JPG", "out": "medhavadhanam2009_041", "year": 2009, "tags": ["vedic", "events"],
+         "caption": "Medhavadhanam 2009 · projector and whiteboard",
+         "alt": "The stage with the projector screen, the whiteboard and the club banner, seen from among the audience"}
+      ]
+    },
+    {
+      "after": "img/archive/225.jpg",
+      "photos": [
+        {"src": "219.JPG", "out": "seminar2009_219", "year": 2009, "tags": ["vedic", "events"],
+         "caption": "Vedic Mathematics Seminar on May 8th, 2009 at Namaste Plaza, Sunnyvale, CA",
+         "alt": "A presenter in a striped shirt standing beside the Srinivasa Ramanujan Mathematricks Club banner at the seminar"},
+        {"src": "221.JPG", "out": "seminar2009_221", "year": 2009, "tags": ["vedic", "events"],
+         "caption": "Vedic Mathematics Seminar on May 8th, 2009 at Namaste Plaza, Sunnyvale, CA",
+         "alt": "The presenter writing on a card pinned beside the club banner"},
+        {"src": "216.JPG", "out": "seminar2009_216", "year": 2009, "tags": ["vedic", "events"],
+         "caption": "Vedic Mathematics Seminar on May 8th, 2009 at Namaste Plaza, Sunnyvale, CA",
+         "alt": "Children seated in rows in the hall, notebooks on their knees, listening"},
+        {"src": "224.JPG", "out": "seminar2009_224", "year": 2009, "tags": ["vedic", "events"],
+         "caption": "Vedic Mathematics Seminar on May 8th, 2009 at Namaste Plaza, Sunnyvale, CA",
+         "alt": "The presenter holding a paper, standing among the seated children"},
+        {"src": "226.JPG", "out": "seminar2009_226", "year": 2009, "tags": ["vedic", "events"],
+         "caption": "Vedic Mathematics Seminar on May 8th, 2009 at Namaste Plaza, Sunnyvale, CA",
+         "alt": "The seminar hall seen from the back, the presenter at the front beside the club banner"}
+      ]
+    },
+    {
+      "after": "img/archive/mathclub_participants.jpg",
+      "photos": [
+        {"src": "math club 011.JPG", "out": "mathclub2009_011", "year": 2009, "tags": ["math-club"],
+         "caption": "Mathematricks Club 2009 Participants",
+         "alt": "A group photograph of the club's members, older students standing at the back and children kneeling in front"}
+      ]
+    },
+    {
+      "after": "img/archive/medhavadhanam2007_audience.jpg",
+      "photos": [
+        {"src": "DiscussingWithDivya.JPG", "out": "medhavadhanam2007_stage1", "year": 2007, "tags": ["vedic", "events"],
+         "caption": "Medhavadhanam 2007 · participants on stage",
+         "alt": "Participants seated on stage in front of a brick wall and an American flag, some holding microphones and red roses"},
+        {"src": "FocusOnSravya.JPG", "out": "medhavadhanam2007_stage2", "year": 2007, "tags": ["vedic", "events"],
+         "caption": "Medhavadhanam 2007 · on stage",
+         "alt": "A presenter in a cream kurta and young participants seated on stage under the club banner, a sound mixer on the floor"},
+        {"src": "SomeOfTheKids.JPG", "out": "medhavadhanam2007_audience2", "year": 2007, "tags": ["vedic", "events"],
+         "caption": "Medhavadhanam 2007 · children in the audience",
+         "alt": "Children and parents seated on orange chairs in the audience"},
+        {"src": "SmithaRajan.bmp", "out": "medhavadhanam2007_smitha_rajan", "year": 2007, "tags": ["vedic", "events"], "crop": [0, 0, 264, 215],
+         "caption": "Guest of honor 2007, Smt. Smitha Rajan",
+         "alt": "Smt. Smitha Rajan speaking at a lectern in front of a brick wall"},
+        {"src": "SrinivasaRamanujanStall.JPG", "out": "stall2007_09", "year": 2007, "tags": ["math-club"],
+         "caption": "The Srinivasa Ramanujan Mathematics Club's stall, September 2007",
+         "alt": "A presenter in a cream kurta and a girl beside a table with the club's poster and books"},
+        {"src": "IMG_0237.JPG", "out": "children2006_07", "year": 2006, "tags": ["math-club"],
+         "caption": "A group of children and adults sitting together, July 2006",
+         "alt": "A group of children and a few adults sitting together on a sofa and a rug in a room with paper decorations"}
+      ]
+    }
+  ]
+}
