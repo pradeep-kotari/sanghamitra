@@ -37,14 +37,11 @@ SERIF = "/usr/share/fonts/truetype/liberation/LiberationSerif-Regular.ttf"
 MONTHS = ["", "January", "February", "March", "April", "May", "June", "July",
           "August", "September", "October", "November", "December"]
 
-# His own street addresses, landlines and old mailboxes, plus the bare ZIP that survives
-# redaction because it sits on its own line. The WhatsApp number stays: it is public.
-KEEP = {"(314) 601-5306", "(314)601-5306", "314-601-5306"}
-PRIVATE = re.compile(
-    r"12450\s+Lyric\s+Ct\.?|Lyric\s+Ct\.?|1620\s+Strecker\s+Ridge\s+Ct\.?|Strecker\s+Ridge"
-    r"|Saint\s+Louis,\s*MO\s*63146|St\.?\s*Louis,\s*MO\s*63146|Wildwood,\s*MO\s*63011"
-    r"|63146|63011|\(?314\)?[\s-]*(?:395|878)[\s-]*9516"
-    r"|[\w.+-]+@(?:sanghamitra\.org|yahoo\.com|gmail\.com)", re.I)
+# One list of what is private, shared with redact.py so the two cannot drift apart again. The bare ZIPs
+# are added here because a cover crop can show a ZIP that stands alone on its line.
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from redact import RX as _REDACT, KEEP
+PRIVATE = re.compile(_REDACT.pattern + r"|\b63146\b|\b63011\b", re.I)
 
 # Which piece stands in for an issue when its cover is gone: the pieces that opened the issue
 # first, then the columns that carry a drawing or a diagram, then whatever else was recovered.
@@ -189,7 +186,7 @@ def build():
             if hit:
                 redacted.append(os.path.relpath(src_pdf, ROOT))
             if piece is None:
-                note = "The first page of this issue, from the printable copy of the whole issue."
+                note = "The first page of this issue."
             else:
                 note = f"A page of this issue: the first page of {os.path.basename(piece['file']).replace('_eng', '').replace('.pdf', '').replace('_', ' ')}."
             kind = "page"

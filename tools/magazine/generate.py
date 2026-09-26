@@ -5,9 +5,11 @@
    site/magazine/column-<key>.html         one per column, every instalment across the years
    site/magazine/read-<folder>-<stem>.html English articles whose text extracts cleanly
 Every generated page carries the site header and a footer copied byte-for-byte from magazine.html."""
-import json, os, re, html as H, glob
+import json, os, re, sys, html as H, glob
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 SITE = os.path.join(ROOT, "site"); MAG = os.path.join(SITE, "magazine"); TEXT = os.path.join(ROOT, "research/old-site/text")
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from redact import scrub_text   # the same list of private details the PDFs are redacted with
 data = json.load(open(os.path.join(SITE, "data/magazine.json"), encoding="utf-8"))
 PEOPLE = json.load(open(os.path.join(SITE, "data/magazine-people.json"), encoding="utf-8"))
 # Built by tools/magazine/covers.py: a picture for every issue, taken from that issue. Four are
@@ -16,6 +18,19 @@ COVERS_PATH = os.path.join(SITE, "data/magazine-covers.json")
 COVERS = json.load(open(COVERS_PATH, encoding="utf-8")) if os.path.exists(COVERS_PATH) else {}
 def cover_of(i): return COVERS.get(i["id"]) or ({"src": f"magazine/img/{i['cover']}", "kind": "cover", "note": ""} if i.get("cover") else None)
 issues = data["issues"]; MASTHEAD = data["masthead"]
+# Whether a whole issue can be read is a fact about the files, so it is read from them: fullbook.pdf is the
+# Telugu (or, before October 2007, bilingual) issue and fullbook_eng.pdf the English edition. An issue known
+# only by name in the archive is no longer "name only" once a whole copy of it is on the site.
+for _i in issues:
+    _i["fullbook"] = os.path.exists(os.path.join(MAG, _i["folder"], "fullbook.pdf"))
+    _i["fullbook_eng"] = os.path.exists(os.path.join(MAG, _i["folder"], "fullbook_eng.pdf"))
+    if _i["fullbook"] or _i["fullbook_eng"]: _i.pop("nameOnly", None)
+def whole(i): return i["fullbook"] or i["fullbook_eng"]
+# The admin's "download everything" reads this list to include the whole issues, whose flags in magazine.json are
+# out of date (that file is written from the old-site archive, which knew of only two).
+_whole_files = sorted(f"{i['folder']}/{fn}" for i in issues for fn, ok in (("fullbook.pdf", i["fullbook"]), ("fullbook_eng.pdf", i["fullbook_eng"])) if ok)
+open(os.path.join(SITE, "data/magazine-whole-issues.json"), "w", encoding="utf-8").write(json.dumps({"note": "whole-issue PDFs on the site, relative to /magazine/; written by tools/magazine/generate.py", "files": _whole_files}, indent=1))
+def pdf_mb(i, name): return os.path.getsize(os.path.join(MAG, i["folder"], name)) / 1048576
 MONTH = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 esc = lambda s: H.escape(str(s or ""), quote=True)
 
@@ -161,7 +176,7 @@ for i in issues:
       <h1>{esc(t)}</h1>
       <p class="muted">{esc(issue_sub(i))}{(' · by ' + esc(who)) if who else ''}. From the Sanghamitra online magazine.</p>
       <article class="magazine-article">
-{article_html(open(tf, encoding='utf-8').read())}
+{article_html(scrub_text(open(tf, encoding='utf-8').read()))}
       </article>
       <div class="actions">
         <a class="btn btn-primary" href="magazine/{esc(it['file'])}" target="_blank" rel="noopener">Print this article (original PDF)</a>
@@ -230,12 +245,25 @@ for idx, i in enumerate(issues):
     if i.get("nameOnly"):
         state = "<p class=\"notice\">Only the name of this issue is known. If you have a copy, Sreenivasa would like to hear from you.</p>"
     else:
-        state = ("" if avail else f"<p class=\"notice\">None of this issue's pieces are online yet. If you have a copy, Sreenivasa would like to hear from you.</p>")
-    fullbook = f'<a class="btn btn-primary" href="magazine/{i["folder"]}/fullbook.pdf" target="_blank" rel="noopener">Print the whole issue</a>' if i["fullbook"] else ""
+        state = ("" if avail or whole(i) else f"<p class=\"notice\">None of this issue's pieces are online yet. If you have a copy, Sreenivasa would like to hear from you.</p>")
+    # The whole issue, as published. Two editions from October 2007 (Telugu and English); one bilingual issue before.
+    both = i["fullbook"] and i["fullbook_eng"]
+    fullbook = ""   # the whole-issue buttons moved to the top of the page; the line stays so other pages render as they did
+    wb = lambda fn, label: f'<a class="btn btn-primary" href="magazine/{i["folder"]}/{fn}" target="_blank" rel="noopener">{label}</a>'
+    whole_html = ""
+    if whole(i):
+        sizes = " and ".join(f"{pdf_mb(i, fn):.1f} MB" for fn, ok in (("fullbook.pdf", i["fullbook"]), ("fullbook_eng.pdf", i["fullbook_eng"])) if ok)
+        whole_html = (f'<div class="actions">'
+                      + (wb("fullbook.pdf", "Read the Telugu edition" if both else "Read the whole issue") if i["fullbook"] else "")
+                      + (wb("fullbook_eng.pdf", "Read the English edition") if i["fullbook_eng"] else "")
+                      + f'</div>\n          <p class="muted">The complete issue as it was published, as a PDF ({sizes}). A private address and phone number in it are blanked out.</p>\n          ')
     def section(title, rows):
         if not rows: return ""
         lis = [r for r in (item_row(i, x) for x in rows) if r]
-        gap = not_online(len(rows) - len(lis))
+        n_gap = len(rows) - len(lis)
+        # With the whole issue on the page, pieces not listed one by one are not missing: they are in it.
+        gap = (f'<p class="muted">{n_gap} more piece{"s" if n_gap != 1 else ""} from this issue {"is" if n_gap == 1 else "are"} in the whole issue above.</p>'
+               if n_gap > 0 and whole(i) else not_online(n_gap))
         if not lis: return f"<h2>{title}</h2>\n{gap}"
         return f"<h2>{title}</h2>\n<ol class=\"contents\">\n" + "\n".join(lis) + f"\n</ol>\n{gap}"
     body = f"""<main class="section">
@@ -245,7 +273,7 @@ for idx, i in enumerate(issues):
       <p class="lede">{esc(issue_sub(i))}. {esc(MASTHEAD).capitalize()}.</p>
       <div class="issue-grid">
         <div>
-          {state}
+          {whole_html}{state}
           {section("In Telugu", te)}
           {section("In English", en)}
           <div class="actions">
@@ -322,12 +350,21 @@ for lang, fname, title, intro in (
         lis = [r for r in (item_row(i, x) for x in its) if r]
         if not lis: continue
         secs.append(f'<section class="year-group"><h2><a href="magazine/issue-{i["id"]}.html">{esc(issue_label(i))}</a> <span class="muted">· {len(lis)} piece{"s" if len(lis) != 1 else ""}</span></h2><ol class="contents">{chr(10).join(lis)}</ol></section>')
+    wkey, wfile = ("fullbook", "fullbook.pdf") if lang == "te" else ("fullbook_eng", "fullbook_eng.pdf")
+    wl = [i for i in issues if i[wkey]]
+    whole_block = ""
+    if wl:
+        wnote = ("As published, page by page. Issues before October 2007 carried both languages in one, so they are listed here."
+                 if lang == "te" else "As published, page by page. The English edition began in October 2007.")
+        wli = "".join(f'<li><a href="magazine/{i["folder"]}/{wfile}" target="_blank" rel="noopener">{esc(issue_label(i))}</a> <span class="muted">· PDF, {pdf_mb(i, wfile):.1f} MB</span></li>' for i in wl)
+        whole_block = f'<h2>Whole issues</h2>\n      <p class="muted">{wnote}</p>\n      <ul class="column-list">{wli}</ul>\n      <h2>Pieces to read online</h2>'
     body = f"""<main class="section">
     <div class="wrap">
       <p class="kicker"><a href="magazine.html">Sanghamitra magazine</a> · by edition</p>
       <h1{' lang="te"' if lang == 'te' else ''}>{esc(title)}</h1>
       <p class="lede">{esc(intro)}</p>
       <div class="actions"><a class="btn btn-ghost" href="magazine/{'english.html' if lang == 'te' else 'telugu.html'}">{'The English edition' if lang == 'te' else 'The Telugu edition'}</a><a class="btn btn-ghost" href="magazine.html#columns">By column</a></div>
+      {whole_block}
       {"".join(secs)}
     </div>
   </main>
@@ -344,11 +381,12 @@ for y in sorted(years, reverse=True):
     for i in years[y]:
         avail = sum(1 for x in i["items"] if x["available"]); label = issue_label(i)
         c = cover_of(i)
+        sub = " · ".join(([f"{avail} piece{'s' if avail != 1 else ''}"] if avail else []) + (["whole issue"] if whole(i) else [])) or ("name only" if i.get("nameOnly") else "not online yet")
         cov = f'<img src="{esc(c["src"])}"{size_attrs(c["src"])} alt="" loading="lazy">' if c else f'<span class="cover-word" lang="te" aria-hidden="true">సంఘమిత్ర</span>'
-        cards.append(f"""<a class="issue-card{'' if avail else ' issue-contents-only'}" href="magazine/issue-{i['id']}.html">
+        cards.append(f"""<a class="issue-card{'' if avail or whole(i) else ' issue-contents-only'}" href="magazine/issue-{i['id']}.html">
           <span class="issue-cover">{cov}</span>
           <strong>{esc(label)}</strong>
-          <span class="muted">{esc(MONTH[i['month']])} · {('name only' if i.get('nameOnly') else (str(avail) + ' piece' + ('s' if avail != 1 else '')) if avail else 'not online yet')}</span>
+          <span class="muted">{esc(MONTH[i['month']])} · {esc(sub)}</span>
         </a>""")
     year_blocks.append(f'<section class="magazine-year" id="y{y}"><h2>{y}</h2><div class="issue-grid-cards">{"".join(cards)}</div></section>')
 top_cols = sorted(((k, v) for k, v in col_pages.items() if v[3]), key=lambda kv: -kv[1][3])
@@ -357,6 +395,7 @@ col_lis = "\n".join(col_li(n, t, c, a) for k, (n, t, c, a) in top_cols if a > 1)
 one_offs = "\n".join(col_li(n, t, c, a) for k, (n, t, c, a) in top_cols if a == 1)
 n_iss = len(issues); n_items = sum(len(i["items"]) for i in issues); n_avail = sum(1 for i in issues for x in i["items"] if x["available"])
 n_read = sum(1 for i in issues if any(x["available"] for x in i["items"]))
+n_whole = sum(1 for i in issues if whole(i)); whole_years = sorted({i["year"] for i in issues if whole(i)})
 main_new = f"""<main class="section">
     <div class="wrap">
       <p class="kicker">2004–2016 · సంఘమిత్ర</p>
@@ -366,7 +405,7 @@ main_new = f"""<main class="section">
       </div>
       <h1>Sanghamitra’s online quarterly.</h1>
       <p class="lede">{esc(MASTHEAD).capitalize()} — that was the line on every masthead. It ran from October 2004 to April 2016, at first with Telugu and English side by side, then from October 2007 as separate Telugu and English editions, because a joke in Telugu does not survive translation.</p>
-      <p>{n_avail} pieces you can read, from {n_read} issues between 2004 and 2016, in Telugu and English. More of the magazine is still to come online; if you have copies, Sreenivasa would like to hear from you.</p>
+      <p>{n_avail} pieces you can read, from {n_read} issues between 2004 and 2016, in Telugu and English. {n_whole} whole issues, from {whole_years[0]} to {whole_years[-1]}, can also be read page by page, exactly as they were published. More of the magazine is still to come online; if you have copies, Sreenivasa would like to hear from you.</p>
       <div class="actions">
         <a class="btn btn-primary" href="magazine/telugu.html" lang="te">తెలుగు సంచికలు</a>
         <a class="btn btn-primary" href="magazine/english.html">English edition</a>
@@ -384,7 +423,7 @@ main_new = f"""<main class="section">
       </ul></details>
 
       <h2 id="issues">By issue</h2>
-      <p class="muted">Named the way he named them: Sankranti in January, Ugadi in spring, July, and Vijaya Dasami in October. Four covers survive. Where one does not, the picture is a page of that issue, or the column headings its contents page carried.</p>
+      <p class="muted">Named the way he named them: Sankranti in January, Ugadi in spring, July, and Vijaya Dasami in October. Each picture is the issue’s own cover where the cover survives. Where it does not, the picture is a page of that issue, or the column headings its contents page carried.</p>
       {"".join(year_blocks)}
 
       <h2>Issues published since</h2>
@@ -398,7 +437,7 @@ main_new = f"""<main class="section">
   </main>
 """
 front = tpl[:HEAD_END] + main_new + "        " + footer_src
-desc = f"Sanghamitra’s online quarterly magazine, 2004 to 2016: {n_avail} pieces to read across {n_read} issues, in Telugu and English."
+desc = f"Sanghamitra’s online quarterly magazine, 2004 to 2016: {n_avail} pieces to read across {n_read} issues, and {n_whole} whole issues, in Telugu and English."
 front = re.sub(r'(<meta (?:name="description"|property="og:description") content=")[^"]*(")',
                lambda m: m.group(1) + H.escape(desc, quote=True) + m.group(2), front)
 open(os.path.join(SITE, "magazine.html"), "w", encoding="utf-8").write(front)

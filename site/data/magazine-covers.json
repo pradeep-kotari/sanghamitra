@@ -21,13 +21,13 @@
  },
  "2009-10": {
   "src": "magazine/img/covers/2009-10.jpg",
-  "kind": "contents",
-  "note": "The column headings this issue carried, from its own contents page."
+  "kind": "page",
+  "note": "The first page of this issue."
  },
  "2009-07": {
   "src": "magazine/img/covers/2009-07.jpg",
-  "kind": "contents",
-  "note": "The column headings this issue carried, from its own contents page."
+  "kind": "page",
+  "note": "The first page of this issue."
  },
  "2009-04": {
   "src": "magazine/img/covers/2009-04.jpg",
@@ -36,43 +36,43 @@
  },
  "2009-01": {
   "src": "magazine/img/covers/2009-01.jpg",
-  "kind": "contents",
-  "note": "The column headings this issue carried, from its own contents page."
+  "kind": "page",
+  "note": "The first page of this issue."
  },
  "2008-10": {
   "src": "magazine/img/covers/2008-10.jpg",
-  "kind": "name",
-  "note": "Its contents page survives but carried no pictures of its own, so the magazine's banner stands in."
+  "kind": "page",
+  "note": "The first page of this issue."
  },
  "2008-07": {
   "src": "magazine/img/covers/2008-07.jpg",
-  "kind": "contents",
-  "note": "The column headings this issue carried, from its own contents page."
+  "kind": "page",
+  "note": "The first page of this issue."
  },
  "2008-04": {
   "src": "magazine/img/covers/2008-04.jpg",
   "kind": "page",
-  "note": "A page of this issue: the first page of toranam."
+  "note": "The first page of this issue."
  },
  "2008-01": {
   "src": "magazine/img/covers/2008-01.jpg",
-  "kind": "contents",
-  "note": "The column headings this issue carried, from its own contents page."
+  "kind": "page",
+  "note": "The first page of this issue."
  },
  "2007-10": {
   "src": "magazine/img/covers/2007-10.jpg",
   "kind": "page",
-  "note": "A page of this issue: the first page of balamitra."
+  "note": "The first page of this issue."
  },
  "2007-07": {
   "src": "magazine/img/covers/2007-07.jpg",
-  "kind": "name",
-  "note": "Only the name of this issue survives, so the magazine's own banner stands in for the cover."
+  "kind": "page",
+  "note": "The first page of this issue."
  },
  "2007-04": {
   "src": "magazine/img/covers/2007-04.jpg",
-  "kind": "name",
-  "note": "Only the name of this issue survives, so the magazine's own banner stands in for the cover."
+  "kind": "page",
+  "note": "The first page of this issue."
  },
  "2007-01": {
   "src": "magazine/img/sankranti07_cover.jpg",
@@ -87,12 +87,12 @@
  "2006-07": {
   "src": "magazine/img/covers/2006-07.jpg",
   "kind": "page",
-  "note": "A page of this issue: the first page of toranam."
+  "note": "The first page of this issue."
  },
  "2006-03": {
   "src": "magazine/img/covers/2006-03.jpg",
   "kind": "page",
-  "note": "A page of this issue: the first page of toranam."
+  "note": "The first page of this issue."
  },
  "2006-01": {
   "src": "magazine/img/covers/2006-01.jpg",
@@ -122,6 +122,6 @@
  "2004-10": {
   "src": "magazine/img/covers/2004-10.jpg",
   "kind": "page",
-  "note": "The first page of this issue, from the printable copy of the whole issue."
+  "note": "The first page of this issue."
  }
 }

@@ -1,0 +1,28 @@
+{
+ "note": "whole-issue PDFs on the site, relative to /magazine/; written by tools/magazine/generate.py",
+ "files": [
+  "src/fullbook.pdf",
+  "src1006/fullbook.pdf",
+  "src1007/fullbook.pdf",
+  "src1007/fullbook_eng.pdf",
+  "src1008/fullbook.pdf",
+  "src1008/fullbook_eng.pdf",
+  "src1009/fullbook.pdf",
+  "src1009/fullbook_eng.pdf",
+  "src107/fullbook.pdf",
+  "src108/fullbook.pdf",
+  "src108/fullbook_eng.pdf",
+  "src109/fullbook.pdf",
+  "src109/fullbook_eng.pdf",
+  "src306/fullbook.pdf",
+  "src407/fullbook.pdf",
+  "src408/fullbook.pdf",
+  "src408/fullbook_eng.pdf",
+  "src706/fullbook.pdf",
+  "src707/fullbook.pdf",
+  "src708/fullbook.pdf",
+  "src708/fullbook_eng.pdf",
+  "src709/fullbook.pdf",
+  "src709/fullbook_eng.pdf"
+ ]
+}

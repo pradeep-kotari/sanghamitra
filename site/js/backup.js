@@ -160,7 +160,7 @@
       }
     }
 
-    const dataFiles = ["site.json", "magazine.json", "photos-archive.json", "quiz.json", "i18n.te.json"];
+    const dataFiles = ["site.json", "magazine.json", "magazine-whole-issues.json", "photos-archive.json", "quiz.json", "i18n.te.json"];
     for (const f of dataFiles) jobs.push({ kind: "archive", name: `site-archive/data/${f}`, url: `/data/${f}`, text: true });
     try {
       const archive = await (await fetch("/data/photos-archive.json", { cache: "no-store" })).json();
@@ -176,6 +176,13 @@
             jobs.push({ kind: "archive", name: `site-archive/magazine/${item.file}`, url: `/magazine/${item.file}` });
           }
         }
+      }
+    } catch { /* same */ }
+
+    try {
+      const whole = await (await fetch("/data/magazine-whole-issues.json", { cache: "no-store" })).json();
+      for (const f of whole.files || []) {
+        jobs.push({ kind: "archive", name: `site-archive/magazine/${f}`, url: `/magazine/${f}` });
       }
     } catch { /* same */ }
 
