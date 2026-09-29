@@ -60,7 +60,7 @@ To make Actions the real deploy path instead:
 4. Turn the Pages git integration off in the Cloudflare dashboard, so the two do not both deploy.
 5. Restore the `push` trigger at the top of the workflow.
 
-Do not deploy the repo root. Research notes and the intake form stay out of the production upload if you keep using `./site` — except `site/intake.html`, which is currently in that folder.
+Do not deploy the repo root. Research notes and the old intake form (`research/intake.html`, superseded by the Decisions section in `/admin`) stay out of the production upload if you keep using `./site`.
 
 ## Local preview — http://localhost:8788
 

@@ -75,6 +75,11 @@ export async function ensureDb(env) {
       created_at TEXT NOT NULL,
       doc TEXT NOT NULL
     )`),
+    db.prepare(`CREATE TABLE IF NOT EXISTS form_hits (
+      who TEXT NOT NULL,
+      created_at TEXT NOT NULL
+    )`),
+    db.prepare("CREATE INDEX IF NOT EXISTS idx_form_hits_who ON form_hits(who, created_at)"),
     db.prepare("CREATE INDEX IF NOT EXISTS idx_media_store_created ON media_items(store, created_at)"),
     db.prepare("CREATE INDEX IF NOT EXISTS idx_queries_created ON queries(created_at)"),
     db.prepare("CREATE INDEX IF NOT EXISTS idx_query_replies_query ON query_replies(query_id, created_at)"),

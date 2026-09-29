@@ -206,6 +206,7 @@ function rsvpAndShare(event) {
   const waFriends = `https://wa.me/?text=${encodeURIComponent(invite)}`;
   return `
     <form class="intent rsvp-form">
+      <p class="hp-field" aria-hidden="true"><label>Leave this box empty <input type="text" name="website" tabindex="-1" autocomplete="off"></label></p>
       <input type="hidden" name="kind" value="rsvp">
       <input type="hidden" name="eventId" value="${esc(event.id)}">
       <input type="hidden" name="eventTitle" value="${esc(event.title)}">
@@ -991,6 +992,8 @@ function wireIntentForms() {
         phone: data.phone,
         kind,
         message: composeIntentMessage(data),
+        // Honeypot. The box is off-screen, so a person never fills it; a form-filling bot does.
+        website: data.website || "",
       }),
     });
     const out = await res.json().catch(() => ({}));

@@ -1,6 +1,7 @@
 import { json, requireAdmin } from "../lib/auth.js";
 import { notifyAdminsOfQuery } from "../lib/email.js";
 import { insertQuery, listQueries } from "../lib/db.js";
+import { checkFormRate } from "../lib/rate-limit.js";
 
 export async function onRequestGet(context) {
   const gate = await requireAdmin(context);
@@ -19,13 +20,28 @@ export async function onRequestPost(context) {
   } catch {
     return json({ error: "Send JSON" }, 400);
   }
+  // Honeypot: every public form carries an off-screen "website" box that people never see.
+  // If it has anything in it, a bot filled the form. Answer as if it worked, save nothing, send
+  // nothing, so the bot has no signal to adjust to.
+  if (String(body.website || "").trim()) return json({ ok: true });
+
   const KINDS = new Set(["enroll", "donate", "volunteer", "talk", "poetry", "contact", "rsvp"]);
-  const name = String(body.name || "").trim().slice(0, 80);
+  // A name is one line. Newlines would otherwise run into the email subject.
+  const name = String(body.name || "").replace(/[\r\n\t]+/g, " ").trim().slice(0, 80);
   const email = String(body.email || "").trim().slice(0, 120);
   const phone = String(body.phone || "").trim().slice(0, 40);
   const kind = KINDS.has(String(body.kind || "").trim()) ? String(body.kind).trim() : "contact";
   const message = String(body.message || "").trim().slice(0, 4000);
   if (!name || !message) return json({ error: "Name and a note are required" }, 400);
+
+  try {
+    const rate = await checkFormRate(context.env, context.request);
+    if (rate.limited) {
+      return json({ error: "Several notes have come from this connection in the last few minutes. Please wait ten minutes and send again, or write to Sreenivasa on WhatsApp." }, 429);
+    }
+  } catch (err) {
+    return json({ error: err.message || "Could not save" }, err.status || 500);
+  }
 
   const item = {
     id: crypto.randomUUID(),

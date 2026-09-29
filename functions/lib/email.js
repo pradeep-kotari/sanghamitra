@@ -39,7 +39,8 @@ async function sendViaBrevo(env, { recipients, copies, subject, text, html }) {
     to: recipients.map((email) => ({ email })),
     subject,
     textContent: text,
-    htmlContent: html || `<pre>${text}</pre>`,
+    // A text-only message (the reply to a visitor) carries their own name, so escape it here too.
+    htmlContent: html || `<pre style="white-space:pre-wrap">${escHtml(text)}</pre>`,
   };
   if (copies.length) payload.cc = copies.map((email) => ({ email }));
   return postJson(
@@ -141,7 +142,10 @@ export async function notifyAdminsOfQuery(env, item) {
     to: ADMIN_INBOX,
     subject: `${label}: ${item.name} on Sanghamitra`,
     text,
-    html: `<p><strong>${item.name}</strong> · ${label}${item.email ? ` · ${item.email}` : ""}${item.phone ? ` · ${item.phone}` : ""}</p><p>${String(item.message).replace(/</g, "&lt;")}</p><p><a href="https://sanghamitra.pages.dev/admin/">Reply in admin</a></p>`,
+    // Every field here was typed by a stranger, so every one is escaped, not only the message.
+    // Before 29 Sep 2026 only the message was; a name like <a href=...>click</a> rendered as a live
+    // link in the inbox of Sreenivasa and Pradeep.
+    html: `<p><strong>${escHtml(item.name)}</strong> · ${escHtml(label)}${item.email ? ` · ${escHtml(item.email)}` : ""}${item.phone ? ` · ${escHtml(item.phone)}` : ""}</p><p style="white-space:pre-wrap">${escHtml(item.message)}</p><p><a href="https://sanghamitra.pages.dev/admin/">Reply in admin</a></p>`,
   });
 }
 
@@ -157,7 +161,12 @@ function normalizeOwnerEmail(email) {
 }
 
 function escHtml(s) {
-  return String(s || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  return String(s ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
 }
 
 /** Sreenivasa saved live site fields — builder gets a heads-up, not an approval gate. */
