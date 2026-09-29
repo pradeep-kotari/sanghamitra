@@ -221,7 +221,7 @@ function rsvpAndShare(event) {
       </div>
       <label class="opt"><input type="checkbox" name="alsoEnroll" value="yes"> Also enroll a student for math or SAT</label>
       <button class="btn btn-primary" type="submit">Save my name</button>
-      <p class="form-trust muted" data-i18n="form.privacy">This goes straight to Sreenivasa's email. Nothing you type is stored on this site.</p>
+      <p class="form-trust muted" data-i18n="form.privacy">Your name is saved on this site, so Sreenivasa sees it even when an email to him runs late. It is used only to write back to you.</p>
       <p class="intent-note" data-note></p>
     </form>
     <div class="share-pack">
