@@ -16,6 +16,10 @@ Public site for Sanghamitra (సంఘమిత్ర) — community sessions, H
 - Issue pictures: `.venv-whisper/bin/python tools/magazine/covers.py` then `tools/magazine/generate.py`
   — every issue card gets a picture from that issue (its cover, a page of it, or its own column
   headings). Re-run both after recovering more of an issue: a real page beats a contents card.
+- Magazine search: `generate.py` also writes `site/data/magazine-search-index.json`, which the search box on
+  `magazine.html` (`site/js/magazine-search.js`) reads in the browser. It is built in the same run as the pages,
+  so re-running `generate.py` is the only step; never edit the index by hand. It covers issue, column and piece
+  names, writers (in the script they were printed in), and the scrubbed text of the English `read-*` articles.
 - Whole issues from Sreeni's backup (`July2009.pdf`, `July2009_eng.pdf`, …):
   `.venv-whisper/bin/python tools/magazine/ingest_issues.py <folder>`, then `covers.py`, then `generate.py`.
   Keep the originals under `research/old-site/files*/` (not in git): **every issue prints the editor's home

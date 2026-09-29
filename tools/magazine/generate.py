@@ -372,6 +372,53 @@ for lang, fname, title, intro in (
     open(os.path.join(MAG, fname), "w", encoding="utf-8").write(page(1, f"{title} · Sanghamitra magazine", intro, f"https://sanghamitra.pages.dev/magazine/{fname}", body))
     written.append(f"magazine/{fname}")
 
+# --- the search index the front door's search box reads (site/js/magazine-search.js) ---
+# Written here, from the same article_pages / col_pages / item_row rules that wrote the pages above,
+# so a search result can only ever point at a page this run actually produced. Metadata only for the
+# PDFs (no text is read out of them); the English articles also carry their text, scrubbed exactly as
+# their read- page is, so no private detail reaches the index that the page itself blanks.
+def _aliases(name):
+    """Other spellings of the same writer: names that share one byline picture in magazine-people.json."""
+    if not name or name not in PEOPLE: return []
+    return [n for n, pic in PEOPLE.items() if pic == PEOPLE[name] and n != name]
+def _where(i, it):
+    """(url, state) for one piece, by the same rule item_row uses to link it."""
+    if it["file"] in article_pages: return f"magazine/{article_pages[it['file']]}", "read"
+    if it["available"]: return f"magazine/{it['file']}", "pdf"
+    return f"magazine/issue-{i['id']}.html", ("whole" if whole(i) else "none")
+_te_titles = {}
+for tf in glob.glob(os.path.join(TE, "*.json")):
+    if os.path.basename(tf) == "index.json": continue
+    _r = json.load(open(tf, encoding="utf-8")); _te_titles[_r["file"]] = _r.get("titleTe") or ""
+_body = {}
+for i in issues:
+    for it in i["items"]:
+        tf = os.path.join(TEXT, it["file"].replace("/", "__").replace(".pdf", ".txt"))
+        if it["file"] in article_pages and it["lang"] == "en" and os.path.exists(tf):
+            _body[it["file"]] = re.sub(r"\s+", " ", scrub_text(open(tf, encoding="utf-8").read())).strip()
+search_entries = []
+for i in issues:
+    avail = sum(1 for x in i["items"] if x["available"])
+    search_entries.append({"k": "issue", "t": issue_label(i), "when": issue_sub(i), "y": i["year"], "m": i["month"],
+                           "url": f"magazine/issue-{i['id']}.html",
+                           "st": "whole" if whole(i) else ("pdf" if avail else "none"), "n": avail})
+for key, (name, t, c, a) in col_pages.items():
+    search_entries.append({"k": "column", "t": t, "ck": key, "note": COLUMNS.get(key, ("", ""))[1],
+                           "url": f"magazine/{name}", "st": "pdf" if a else "none", "n": a})
+for i in issues:
+    for it in i["items"]:
+        url, st = _where(i, it); who = it.get("contributor") or ""
+        e = {"k": "item", "t": col_title(it["column"], it), "te": _te_titles.get(it["file"], ""),
+             "alt": re.sub(r"\s*src=.*$", "", it.get("title_alt") or "").strip(),
+             "by": who, "aka": _aliases(who), "col": col_title(it["column"]), "ck": it["column"],
+             "iss": issue_label(i), "when": issue_sub(i), "y": i["year"], "m": i["month"],
+             "lang": it["lang"], "url": url, "st": st, "issue": f"magazine/issue-{i['id']}.html"}
+        if it["file"] in _body: e["body"] = _body[it["file"]]
+        search_entries.append({k: v for k, v in e.items() if v not in ("", [], None)})
+open(os.path.join(SITE, "data/magazine-search-index.json"), "w", encoding="utf-8").write(json.dumps(
+    {"note": "the magazine search index; written by tools/magazine/generate.py, do not edit by hand",
+     "entries": search_entries}, ensure_ascii=False, separators=(",", ":")))
+
 # --- the front door: rewrite magazine.html's <main> only; header and footer untouched ---
 years = {}
 for i in issues: years.setdefault(i["year"], []).append(i)
@@ -412,6 +459,15 @@ main_new = f"""<main class="section">
         <a class="btn btn-dark" href="#issues">By issue</a>
         <a class="btn btn-dark" href="#columns">By column</a>
       </div>
+
+      <section class="magazine-search" id="search" aria-labelledby="search-title" hidden>
+        <h2 id="search-title">Search the magazine</h2>
+        <label for="magazine-q">A writer, a column, a festival or a year, in English or తెలుగు</label>
+        <input id="magazine-q" type="search" autocomplete="off" spellcheck="false" placeholder="Try Mathematricks, Vaasanti, నిత్యానంద్ or 2007">
+        <p class="muted" data-search-status aria-live="polite">Searches the names of every issue, column, piece and writer, and the words of the English articles you can read here.</p>
+        <ol class="contents search-results" data-search-results></ol>
+      </section>
+      <script src="js/magazine-search.js" defer></script>
 
       <h2 id="columns">By column</h2>
       <p class="muted">Every instalment of a column, across all the years, on one page.</p>

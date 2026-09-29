@@ -65,6 +65,15 @@
         <a class="btn btn-dark" href="#columns">By column</a>
       </div>
 
+      <section class="magazine-search" id="search" aria-labelledby="search-title" hidden>
+        <h2 id="search-title">Search the magazine</h2>
+        <label for="magazine-q">A writer, a column, a festival or a year, in English or తెలుగు</label>
+        <input id="magazine-q" type="search" autocomplete="off" spellcheck="false" placeholder="Try Mathematricks, Vaasanti, నిత్యానంద్ or 2007">
+        <p class="muted" data-search-status aria-live="polite">Searches the names of every issue, column, piece and writer, and the words of the English articles you can read here.</p>
+        <ol class="contents search-results" data-search-results></ol>
+      </section>
+      <script src="js/magazine-search.js" defer></script>
+
       <h2 id="columns">By column</h2>
       <p class="muted">Every instalment of a column, across all the years, on one page.</p>
       <ul class="column-list">

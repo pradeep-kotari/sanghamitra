@@ -1361,3 +1361,14 @@ body.home .event-card.featured .share-pack .btn-dark:hover {
 .series > p { margin: 0 0 0.2rem; }
 .series-days a { white-space: nowrap; }
 .channel-list .muted, .series-days .muted { font-size: 0.88rem; white-space: nowrap; }
+
+/* Search on the magazine front door (site/js/magazine-search.js). */
+.magazine-search { margin: 2rem 0 1rem; padding: 1.25rem 1.35rem; border: 1px solid var(--line); border-radius: var(--radius); background: var(--card); }
+.magazine-search h2 { margin-top: 0; }
+.magazine-search label { margin-bottom: 0.4rem; color: var(--ink-soft); }
+.magazine-search input { width: 100%; max-width: 36rem; font-size: 1.05rem; }
+.search-results { margin: 0.6rem 0 0; }
+.search-results:empty { display: none; }
+.search-results .search-meta { display: block; font-size: 0.88rem; margin-top: 0.15rem; }
+.search-results .search-snippet { font-style: italic; }
+.search-results [lang="te"] { font-family: "Noto Serif Telugu", serif; }
