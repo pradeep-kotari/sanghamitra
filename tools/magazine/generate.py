@@ -161,6 +161,46 @@ def article_html(text):
         if len(joined) < 60 and not joined.endswith((".", "?", "!", ":")): out.append(f"<h2>{esc(joined)}</h2>")
         else: out.append(f"<p>{esc(joined)}</p>")
     return "\n".join(out)
+def read_name(i, it):  # the English read-online page for a piece, or None; the same test the loop below uses
+    tf = os.path.join(TEXT, it["file"].replace("/", "__").replace(".pdf", ".txt"))
+    if not (it["available"] and it["lang"] == "en" and os.path.exists(tf)): return None
+    return f"read-{i['folder']}-{re.sub(r'\.pdf$', '', os.path.basename(it['file']), flags=re.I)}.html"
+
+# The puzzle columns print their answers in the NEXT issue, under Answers & Winners (vidupu); checked on
+# Ugadi 2006's Salutation to your solution against July 2006's answers. Pradeep, 4 Oct 2026: the answers stay
+# hidden until the reader asks for them.
+PUZZLE_COLS = {"chuddam", "toranam", "crossword"}
+CHRONO = sorted(issues, key=lambda i: (i["year"], i["month"]))
+def next_issue(i):
+    k = CHRONO.index(i)
+    if k + 1 >= len(CHRONO): return None
+    n = CHRONO[k + 1]
+    # Quarterly: the next issue is at most five months on. A bigger jump means the real next issue is missing.
+    return n if (n["year"] * 12 + n["month"]) - (i["year"] * 12 + i["month"]) <= 5 else None
+def answers_block(i, it):
+    if it["column"] not in PUZZLE_COLS: return ""
+    n = next_issue(i)
+    found = [x for x in (n["items"] if n else []) if x["column"] == "vidupu" and x["available"]]
+    if found:
+        links = []
+        for x in sorted(found, key=lambda x: x["lang"] != it["lang"]):  # the reader's own language first
+            lang = "English" if x["lang"] == "en" else "Telugu"; rn = read_name(n, x)
+            href, kind = (f"magazine/{rn}", "read online") if rn else (f"magazine/{esc(x['file'])}", "PDF")
+            links.append(f'<a href="{href}"{"" if rn else " target=\"_blank\" rel=\"noopener\""}>Open the answers ({lang}, {kind})</a>')
+        inner = f'<p>The answers were printed in the next issue, {esc(issue_label(n))}.</p><p>{" · ".join(links)}</p>'
+    elif n and whole(n) and any(x["column"] == "vidupu" for x in n["items"]):
+        # Not online as a piece of its own, but inside the whole next issue, under Answers & Winners.
+        eds = [(fn, lang) for fn, lang, ok in (("fullbook.pdf", "Telugu" if n["fullbook_eng"] else "Telugu and English", n["fullbook"]),
+                                                ("fullbook_eng.pdf", "English", n["fullbook_eng"])) if ok]
+        eds.sort(key=lambda e: (e[1] == "English") != (it["lang"] == "en"))
+        links = " · ".join(f'<a href="magazine/{n["folder"]}/{fn}" target="_blank" rel="noopener">Open the {esc(issue_label(n))} issue ({lang}, PDF)</a>' for fn, lang in eds)
+        inner = f'<p>The answers were printed in the next issue, {esc(issue_label(n))}, under “Answers &amp; Winners”.</p><p>{links}</p>'
+    elif n:
+        inner = f'<p>The answers were printed in the next issue, {esc(issue_label(n))}, which is not online yet.</p>'
+    else:
+        inner = '<p>The answers were printed in the next issue, which is not online yet.</p>'
+    return f'<details class="reveal-answers"><summary>Reveal answers</summary>{inner}</details>'
+
 article_pages = {}
 for i in issues:
     for it in i["items"]:
@@ -178,6 +218,7 @@ for i in issues:
       <article class="magazine-article">
 {article_html(scrub_text(open(tf, encoding='utf-8').read()))}
       </article>
+      {answers_block(i, it)}
       <div class="actions">
         <a class="btn btn-primary" href="magazine/{esc(it['file'])}" target="_blank" rel="noopener">Print this article (original PDF)</a>
         <a class="btn btn-ghost" href="magazine/issue-{i['id']}.html">The whole issue</a>
@@ -305,7 +346,7 @@ for key, rows in cols.items():
         if it["file"] in article_pages: link = f'<a href="magazine/{article_pages[it["file"]]}">{esc(lbl)}</a> <span class="tag">read online</span>'
         elif it["available"]: link = f'<a href="magazine/{esc(it["file"])}" target="_blank" rel="noopener">{esc(lbl)}</a> <span class="tag">PDF</span>'
         else: continue
-        lis.append(f'<li><span class="lang-mark" title="{lang}">{lang[:2]}</span> {link}{(" <span class=\"muted\">· " + esc(it["contributor"]) + "</span>") if it.get("contributor") else ""}</li>')
+        lis.append(f'<li><span class="lang-mark" title="{lang}">{lang[:2]}</span> {link}{(" <span class=\"muted\">· " + esc(it["contributor"]) + "</span>") if it.get("contributor") else ""}{answers_block(i, it)}</li>')
     n_av = sum(1 for _, it in rows if it["available"])
     heads = [it.get("heading_img") for _, it in rows if it.get("heading_img") and os.path.exists(os.path.join(MAG, "img", it["heading_img"]))]
     heading = f'<img class="column-heading" src="magazine/img/{esc(heads[0])}"{size_attrs("magazine/img/" + heads[0])} alt="{esc(t)}, the heading as he set it in the magazine" loading="lazy">' if heads else ""

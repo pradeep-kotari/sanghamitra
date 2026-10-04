@@ -1374,3 +1374,14 @@ body.home .event-card.featured .share-pack .btn-dark:hover {
 .search-results .search-meta { display: block; font-size: 0.88rem; margin-top: 0.15rem; }
 .search-results .search-snippet { font-style: italic; }
 .search-results [lang="te"] { font-family: "Noto Serif Telugu", serif; }
+
+/* Puzzle columns: answers stay hidden until the reader asks (Pradeep, 4 Oct 2026). */
+.reveal-answers { margin: 0.45rem 0 0.2rem; }
+.reveal-answers > summary {
+  display: inline-block; cursor: pointer; list-style: none;
+  padding: 0.25rem 0.8rem; border: 1px solid var(--line); border-radius: 999px;
+  background: var(--card); font-size: 0.9rem;
+}
+.reveal-answers > summary::-webkit-details-marker { display: none; }
+.reveal-answers[open] > summary { margin-bottom: 0.4rem; }
+.reveal-answers p { margin: 0.2rem 0; font-size: 0.95rem; }
