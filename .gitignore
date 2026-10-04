@@ -19,3 +19,6 @@ research/transcripts/whisper/
 
 # Raw Wayback downloads of the old site (the useful parts live in site/magazine and site/img/archive)
 research/old-site/files*/
+
+# Owner feedback and replies to him: private, never in this public repo
+feedback/

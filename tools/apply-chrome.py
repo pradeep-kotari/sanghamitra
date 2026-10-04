@@ -24,7 +24,7 @@ NAV = """      <nav>
         <a href="talks.html" class="on-wide"{workshops}>Workshops</a>
         <a href="events.html" class="on-wide"{events}>Events</a>
         <a href="contact.html"{contact}>Contact</a>
-        <a href="learn.html#enroll" class="cta"{enroll}>Enroll</a>
+        <a href="book.html" class="cta"{enroll}>Be part of Sanghamitra</a>
         <button type="button" class="lang-toggle" data-lang-toggle aria-pressed="false"
           title="Switch between English and Telugu"><span data-lang-label lang="te">తెలుగు</span></button>
       </nav>"""

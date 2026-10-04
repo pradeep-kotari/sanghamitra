@@ -78,7 +78,7 @@ COLUMNS = {
   "toranam":       ("Salutation to your solution", "In Telugu, Samasyala Thoranam — a garland of problems, or Samasyalatho Ranam, doing battle with them. He explained the double meaning in the 7 September 2026 meeting."),
   "chuddam":       ("Question Gallery", "The quiz column."),
   "vidupu":        ("Answers & Winners", "Solutions to the previous issue's questions, and who got them right."),
-  "balamitra":     ("Kids pages", ""),
+  "balamitra":     ("Kids' pages", ""),
   "jokes":         ("Smile if you wish", "The jokes. He kept these in Telugu because, in his words, a joke translated does not sound good."),
   "cover_story":   ("Cover Story", ""),
   "wow":           ("Words of Wisdom", ""),
@@ -86,7 +86,7 @@ COLUMNS = {
   "tolipaluku":    ("A word with you", "The opening word, in the first issue."),
   "tudipaluku":    ("Final word", "The editor's closing word."),
   "jaabu-javaabu": ("Your letters, our responses", "The readers' page."),
-  "telusa":        ("Did you know?", ""), "telusaa": ("Did you know?", ""),
+  "telusa":        ("Do you know?", ""), "telusaa": ("Do you know?", ""),
   "crossword":     ("Crossword", "Telugu crosswords."),
   "sameta_kathalu":("Derivation of proverbs", "The stories behind Telugu proverbs."), "sameta_katha": ("Derivation of proverbs", ""),
   "sametalu":      ("Proverbs", ""),
@@ -94,7 +94,7 @@ COLUMNS = {
   "annamayya":     ("Annamayya", "A composition of Annamacharya."),
   "tyagayya":      ("Tyagayya", "On the composer Tyagaraja."),
   "padam":         ("People's path and word", ""),
-  "charitardulu":  ("Noted people in history", ""), "charitardhulu": ("Noted people in history", ""), "ramanujan": ("Noted people in history", "On Srinivasa Ramanujan."),
+  "charitardulu":  ("Noted personalities in history", ""), "charitardhulu": ("Noted personalities in history", ""), "ramanujan": ("Noted personalities in history", "On Srinivasa Ramanujan."),
   "acharamulu":    ("Our customs and the meaning behind them", ""),
   "smruti":        ("A page in my diary", ""),
   "podupu":        ("Riddles", ""), "cheppukondi": ("Brain teasers", ""),
@@ -436,10 +436,21 @@ for y in sorted(years, reverse=True):
           <span class="muted">{esc(MONTH[i['month']])} · {esc(sub)}</span>
         </a>""")
     year_blocks.append(f'<section class="magazine-year" id="y{y}"><h2>{y}</h2><div class="issue-grid-cards">{"".join(cards)}</div></section>')
-top_cols = sorted(((k, v) for k, v in col_pages.items() if v[3]), key=lambda kv: -kv[1][3])
-def col_li(n, t, c, a): return f'<li><a href="magazine/{n}">{esc(t)}</a> <span class="muted">· {a} instalment{"s" if a != 1 else ""}</span></li>'
-col_lis = "\n".join(col_li(n, t, c, a) for k, (n, t, c, a) in top_cols if a > 1)
-one_offs = "\n".join(col_li(n, t, c, a) for k, (n, t, c, a) in top_cols if a == 1)
+# The front page lists only the columns Sreenivasa chose (his "Some Proposed Changes" note, 4 Oct 2026), in his
+# order and under his Telugu names. Every other column page is still written and still linked from its issues.
+FRONT_COLUMNS = [
+  ("acharamulu", "ఆచారములు - అంతరార్థములు"), ("balamitra", "బాలమిత్ర"), ("charitardulu", "చరిత్రకెక్కిన చరితార్థులు"),
+  ("chuddam", "చెప్పుకోండి చూద్దాం!"), ("crossword", "పదచదరంగం"), ("jokes", "నవ్వితే నవ్వండి!"),
+  ("mathematrix", "మేధామాత్రికలు"), ("padam", "జనపథం - జనపదం"), ("sameta_kathalu", "సామెతకథలు"),
+  ("smruti", "నా స్మృతిపథంలో ఒకరోజు"), ("telusa", "మీకు తెలుసా?"), ("toranam", "సమస్యలతోరణం"),
+  ("vaibhavam", "ఆంధ్ర వైభవము"), ("vemana", "మనవేమన పద్యాలు"),
+]
+def col_li(n, te, t, a):
+    return (f'<li><a href="magazine/{n}"><span lang="te">{esc(te)}</span> · {esc(t)}</a>'
+            f' <span class="muted">· {a} instalment{"s" if a != 1 else ""}</span></li>')
+missing = [k for k, _ in FRONT_COLUMNS if not col_pages.get(k, (0, 0, 0, 0))[3]]
+if missing: raise SystemExit(f"FRONT_COLUMNS names columns with nothing online: {missing}")
+col_lis = "\n".join(col_li(col_pages[k][0], te, col_pages[k][1], col_pages[k][3]) for k, te in FRONT_COLUMNS)
 n_iss = len(issues); n_items = sum(len(i["items"]) for i in issues); n_avail = sum(1 for i in issues for x in i["items"] if x["available"])
 n_read = sum(1 for i in issues if any(x["available"] for x in i["items"]))
 n_whole = sum(1 for i in issues if whole(i)); whole_years = sorted({i["year"] for i in issues if whole(i)})
@@ -474,9 +485,6 @@ main_new = f"""<main class="section">
       <ul class="column-list">
 {col_lis}
       </ul>
-      <details class="one-offs"><summary>One-off pieces</summary><ul class="column-list">
-{one_offs}
-      </ul></details>
 
       <h2 id="issues">By issue</h2>
       <p class="muted">Named the way he named them: Sankranti in January, Ugadi in spring, July, and Vijaya Dasami in October. Each picture is the issue’s own cover where the cover survives. Where it does not, the picture is a page of that issue, or the column headings its contents page carried.</p>
